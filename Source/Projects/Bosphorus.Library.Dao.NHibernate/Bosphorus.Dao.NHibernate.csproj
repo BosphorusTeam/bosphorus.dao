@@ -93,6 +93,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Session.Provider.Factory.Decoration\CacheDecorator.cs" />
+    <Compile Include="Session.Provider.Factory\AbstractAutoPersistenceModelProvider.cs" />
     <Compile Include="Session.Provider.Factory\IConfigurationProcessor.cs" />
     <Compile Include="Session.Provider.Factory\ISessionProviderFactory.cs" />
     <Compile Include="Session.Provider\NHibernateSessionProvider.cs" />

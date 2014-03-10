@@ -11,12 +11,14 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
     public class NHibernateSessionProviderFactory : ISessionProviderFactory
     {
         private readonly IPersistenceConfigurerProvider persistenceConfigurerProvider;
+        private readonly IAssemblyProvider assemblyProvider;
         private readonly IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders;
         private readonly IList<IConfigurationProcessor> configurationProcessors;
 
-        public NHibernateSessionProviderFactory(IPersistenceConfigurerProvider persistenceConfigurerProvider, IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders, IList<IConfigurationProcessor> configurationProcessors)
+        public NHibernateSessionProviderFactory(IPersistenceConfigurerProvider persistenceConfigurerProvider, IAssemblyProvider assemblyProvider, IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders, IList<IConfigurationProcessor> configurationProcessors)
         {
             this.persistenceConfigurerProvider = persistenceConfigurerProvider;
+            this.assemblyProvider = assemblyProvider;
             this.autoPersistenceModelProviders = autoPersistenceModelProviders;
             this.configurationProcessors = configurationProcessors;
         }
@@ -33,7 +35,9 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
                     cfg => configurationProcessors.ForEach(configurationProcessor => configurationProcessor.Process(cfg))
                 )
                 .Mappings(
-                    m => autoPersistenceModelProviders.ForEach(autoPersistenceModelProvider => m.AutoMappings.Add(autoPersistenceModelProvider.GetAutoPersistenceModel))
+                    m => autoPersistenceModelProviders.ForEach(
+                        autoPersistenceModelProvider => m.AutoMappings.Add(autoPersistenceModelProvider.GetAutoPersistenceModel(assemblyProvider))
+                    )
                 )
                 .BuildSessionFactory();
 
