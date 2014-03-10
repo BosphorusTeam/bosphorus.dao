@@ -6,7 +6,7 @@ namespace Bosphorus.Dao.NHibernate.Demo
 {
     public class AutoPersistenceModelProvider: AbstractAutoPersistenceModelProvider
     {
-        protected override AutoPersistenceModel GetAutoPersistenceModelInternal(IAssemblyProvider assemblyProvider)
+        public override AutoPersistenceModel GetAutoPersistenceModel(IAssemblyProvider assemblyProvider)
         {
             return AutoMap.AssemblyOf<ExecutionItemList>().Where(type => 1 == 0);
         }

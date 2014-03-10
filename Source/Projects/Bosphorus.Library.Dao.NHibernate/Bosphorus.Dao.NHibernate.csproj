@@ -96,6 +96,7 @@
     <Compile Include="Session.Provider.Factory\AbstractAutoPersistenceModelProvider.cs" />
     <Compile Include="Session.Provider.Factory\IConfigurationProcessor.cs" />
     <Compile Include="Session.Provider.Factory\ISessionProviderFactory.cs" />
+    <Compile Include="Session.Provider.Factory\TypeSource.cs" />
     <Compile Include="Session.Provider\NHibernateSessionProvider.cs" />
     <Compile Include="Session.Provider.Factory\NHibernateSessionProviderFactory.cs" />
     <Compile Include="Session.Provider.Factory\AbstractPersistenceConfigurerProvider.cs" />
