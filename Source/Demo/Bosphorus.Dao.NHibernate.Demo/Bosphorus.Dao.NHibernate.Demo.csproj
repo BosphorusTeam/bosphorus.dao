@@ -79,15 +79,15 @@
       <Name>Bosphorus.Dao.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
-      <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
+      <Project>{30fb7f75-ff3e-49df-afbd-f9037e7c5a80}</Project>
       <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Dal\Bosphorus.Dao.NHibernate.Demo.Dal.csproj">
-      <Project>{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}</Project>
+      <Project>{96aee977-4b93-48bd-bcf2-6b0a1c1f99be}</Project>
       <Name>Bosphorus.Dao.NHibernate.Demo.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Model\Bosphorus.Dao.NHibernate.Demo.Model.csproj">
-      <Project>{870963CD-DD5D-4BCE-96B9-D16BB556D90E}</Project>
+      <Project>{870963cd-dd5d-4bce-96b9-d16bb556d90e}</Project>
       <Name>Bosphorus.Dao.NHibernate.Demo.Model</Name>
     </ProjectReference>
   </ItemGroup>
