@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+  <!-- Library.Dao.[2] Threaded.Properties -->
+  <properties>
+    <assembly.project.core>Bosphorus.Library.Dao.RI</assembly.project.core>
+    <assembly.project.dal>Bosphorus.Library.Dao.RI</assembly.project.dal>
+  </properties>
+
+  <!-- Library.Dao.[2] Threaded.Threaded Declarations-->
+  <components>
+
+    <component id='session.nhibernate.factory.configurator'
+             service='Bosphorus.Library.Dao.NHibernate.Model.Session.Configurator.ISessionFactoryConfigurator, Bosphorus.Library.Dao.NHibernate'
+             type='Bosphorus.Library.Dao.NHibernate.Model.Session.Configurator.ResourceConfigurator, Bosphorus.Library.Dao.NHibernate'
+             lifestyle='singleton'>
+      <parameters>
+        <assemblyName>#{assembly.project.dal}</assemblyName>
+        <resourceName>#{assembly.project.dal}.Dao.NHibernate.Session.CashFlow.cfg.xml</resourceName>
+      </parameters>
+    </component>
+
+    <!-- Library.Dao.[0] Dao.[3] NHibernate.[1] SessionFactory -->
+    <component id='session.nhibernate.factory'
+              service='Bosphorus.Library.Dao.NHibernate.Model.Session.INHibernateSessionFactory, Bosphorus.Library.Dao.NHibernate'
+              type='Bosphorus.Library.Dao.NHibernate.Model.Session.NHibernateSessionFactory, Bosphorus.Library.Dao.NHibernate'
+              lifestyle='transient'>
+    </component>
+
+    <!-- Library.Dao.[0] Dao.[3] NHibernate.[1] SessionFactory -->
+    <component id='session.nhibernate.adapter'
+              service='Bosphorus.Library.Dao.Core.Model.Session.ISession, Bosphorus.Library.Dao.Core'
+              type='Bosphorus.Library.Dao.NHibernate.Model.Session.NHibernateSessionAdapter, Bosphorus.Library.Dao.NHibernate'
+              lifestyle='transient'>
+      <parameters>
+        <name>Default Thread Session</name>
+      </parameters>
+    </component>
+
+    <!-- Library.Dao.[2] Threaded.Default Threaded -->
+    <component id='threaded.default.generic'
+               service='Bosphorus.Library.Dao.Core.Extension.Model.Dao.Threaded.ThreadedDecorator`1, Bosphorus.Library.Dao.Core.Extension'
+               type='Bosphorus.Library.Dao.Core.Extension.Model.Dao.Threaded.DefaultThreadedDecorator`1, Bosphorus.Library.Dao.Core.Extension'/>
+
+  </components>
+
+</configuration>

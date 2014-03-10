@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Components xmlns="urn:deneme-schema">
+  <Component
+      Key="Repository.Domain.Live"
+      Interface="Bosphorus.Library.Container.Core.IContainer, Bosphorus.Library.Container.Core"
+      Implimentation="Bosphorus.Library.Container.Castle.CastleContainerAdapter, Bosphorus.Library.Container.Castle">
+    <Parameter Name="AssemblyName" Value="Demo.WebService.Service.Dal"/>
+    <Parameter Name="ResourceName" Value="Demo.WebService.Service.Dal.DaoFactory.xml"/>
+  </Component>
+  <!--<Component
+      Key="Repository.Domain.Live2"
+      Interface="Bosphorus.Library.Container.Core.IContainer, Bosphorus.Library.Container.Core"
+      Implimentation="Bosphorus.Library.Container.Castle.CastleContainerAdapter, Bosphorus.Library.Container.Castle">
+    <Parameter Name="AssemblyName" Value="Demo.WebService.Service.Dal"/>
+    <Parameter Name="ResourceName" Value="Demo.WebService.Service.Dal.DaoFactory.xml"/>
+  </Component>-->
+</Components>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+  <!-- Library.Dao.[0] Dao.[1] Properties -->
+  <properties>
+    <assembly.project.core>Demo.WebService.Core</assembly.project.core>
+    <assembly.project.dal>Demo.WebService.Dal</assembly.project.dal>
+
+    <namespace.project.core.model.domain>Demo.WebService.Core.Model.Domain</namespace.project.core.model.domain>
+    <namespace.project.dal.model.dao>Demo.WebService.Dal.Dao.Model</namespace.project.dal.model.dao>
+    <namespace.project.dal.model.service>Demo.WebService.Dal.Dao.Service</namespace.project.dal.model.service>
+  </properties>
+
+  <!-- Library.Dao.[0] Dao.[2] Dao Declarations-->
+  <components>
+    <component id='dao.webservice.configurator'
+             service='Bosphorus.Library.Dao.WebService.Model.Dao.Configuration.IWebServiceDaoConfigurator, Bosphorus.Library.Dao.WebService'
+             type='Bosphorus.Library.Dao.WebService.Model.Dao.Configuration.DefaultWebServiceDaoConfigurator, Bosphorus.Library.Dao.WebService'>
+      <parameters>
+        <webServiceRootUrl>http://localhost:1051</webServiceRootUrl>
+      </parameters>
+    </component>
+
+    <!--<component id='dao.custom.Account.Dao'
+               service='Bosphorus.Library.Dao.Core.Model.Dao.IDao`1[[#{namespace.project.core.model.domain}.Account, #{assembly.project.core}]], Bosphorus.Library.Dao.Core'
+               type='#{namespace.project.dal.model.dao}.AccountDao, #{assembly.project.dal}'/>-->
+        
+    <component id='dao.webservice.generic'
+             service='Bosphorus.Library.Dao.Core.Model.Dao.IDao`1, Bosphorus.Library.Dao.Core'
+             type='Bosphorus.Library.Dao.WebService.Model.Dao.GenericWebServiceProxyDao`1, Bosphorus.Library.Dao.WebService'/>
+
+  </components>
+
+</configuration>

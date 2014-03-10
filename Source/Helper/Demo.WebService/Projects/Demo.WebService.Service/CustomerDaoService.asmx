@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" CodeBehind="CustomerDaoService.asmx.cs" Class="Demo.WebService.Service.CustomerDaoService" %>

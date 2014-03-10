@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{8678E6FB-78FB-4D18-9321-A46EE3135A80}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Core", "Projects\Bosphorus.Library.Dao.Core\Bosphorus.Dao.Core.csproj", "{5C3B656E-528C-4988-A31F-EA0AABC82CFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate", "Projects\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj", "{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Client", "Projects\Bosphorus.Library.Dao.Client\Bosphorus.Dao.Client.csproj", "{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Model", "Demo\Bosphorus.Dao.NHibernate.Demo.Model\Bosphorus.Dao.NHibernate.Demo.Model.csproj", "{870963CD-DD5D-4BCE-96B9-D16BB556D90E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Dal", "Demo\Bosphorus.Dao.NHibernate.Demo.Dal\Bosphorus.Dao.NHibernate.Demo.Dal.csproj", "{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo", "Demo\Bosphorus.Dao.NHibernate.Demo\Bosphorus.Dao.NHibernate.Demo.csproj", "{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C3B656E-528C-4988-A31F-EA0AABC82CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C3B656E-528C-4988-A31F-EA0AABC82CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C3B656E-528C-4988-A31F-EA0AABC82CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C3B656E-528C-4988-A31F-EA0AABC82CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C3B656E-528C-4988-A31F-EA0AABC82CFB} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
+		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
+		{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
+		{870963CD-DD5D-4BCE-96B9-D16BB556D90E} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
+		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
+		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
+	EndGlobalSection
+	GlobalSection(TextTemplating) = postSolution
+		TextTemplating = 1
+	EndGlobalSection
+EndGlobal
