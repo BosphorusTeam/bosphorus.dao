@@ -12,6 +12,11 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
     {
         private readonly IEnumerable<Type> types;
 
+        public TypeSource(Type type)
+        {
+            this.types = new List<Type> {type};
+        }
+
         public TypeSource(IEnumerable<Type> types)
         {
             this.types = types;
