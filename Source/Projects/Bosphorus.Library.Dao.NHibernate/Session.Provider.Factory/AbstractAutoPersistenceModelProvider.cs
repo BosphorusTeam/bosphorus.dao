@@ -24,9 +24,9 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
             return autoPersistenceModel;
         }
 
-        protected virtual AutoPersistenceModel GetAutoPersistenceModel(IEnumerable<Type> allLoadedAssemblies)
+        protected virtual AutoPersistenceModel GetAutoPersistenceModel(IEnumerable<Type> allLoadedTypes)
         {
-            ITypeSource typeSource = new TypeSource(allLoadedAssemblies);
+            ITypeSource typeSource = new TypeSource(allLoadedTypes);
             return AutoMap.Source(typeSource);
         }
     }
