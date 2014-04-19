@@ -34,7 +34,7 @@ namespace Bosphorus.Dao.Core.Dao
             throw new NotImplementedException();
         }
 
-        public IQueryable<TModel> Query(ISession currentSession)
+        public virtual IQueryable<TModel> Query(ISession currentSession)
         {
             throw new NotImplementedException();
         }

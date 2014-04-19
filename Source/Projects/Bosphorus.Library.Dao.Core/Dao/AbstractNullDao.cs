@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Bosphorus.Dao.Core.Session;
 
 namespace Bosphorus.Dao.Core.Dao
@@ -13,6 +14,11 @@ namespace Bosphorus.Dao.Core.Dao
         public override IEnumerable<TModel> GetAll(ISession currentSession)
         {
             return new List<TModel>();
+        }
+
+        public override IQueryable<TModel> Query(ISession currentSession)
+        {
+            return new List<TModel>().AsQueryable();
         }
 
         public override TModel GetById<TId>(ISession currentSession, TId id)
