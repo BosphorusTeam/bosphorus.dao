@@ -87,7 +87,7 @@
     <Compile Include="Model\IExecutionItem.cs" />
     <Compile Include="Model\IExecutionItemList.cs" />
     <Compile Include="Model\AbstractExecutionItem.cs" />
-    <Compile Include="Model\ModelExceutionItem.cs" />
+    <Compile Include="Model\ModelExcecutionItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

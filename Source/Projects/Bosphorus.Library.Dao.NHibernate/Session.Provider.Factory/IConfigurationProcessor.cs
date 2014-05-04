@@ -4,6 +4,6 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
 {
     public interface IConfigurationProcessor
     {
-        void Process(Configuration configuration);
+        void Process(string sessionAlias, Configuration configuration);
     }
 }

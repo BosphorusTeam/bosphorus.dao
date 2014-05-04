@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao\AbstractNHibernateDao.Generic.cs" />
     <Compile Include="Dao\AbstractNHibernateDao.NonGeneric.cs">
@@ -94,8 +95,13 @@
     </Compile>
     <Compile Include="Session.Provider.Factory.Decoration\CacheDecorator.cs" />
     <Compile Include="Session.Provider.Factory\AbstractAutoPersistenceModelProvider.cs" />
+    <Compile Include="Session.Provider.Factory\AbstractConfigurationProcessor.cs" />
+    <Compile Include="Session.Provider.Factory\ChainedPersistenceConfigurerProvider.cs" />
+    <Compile Include="Session.Provider.Factory\CompositeConfigurationProcessor.cs" />
     <Compile Include="Session.Provider.Factory\IConfigurationProcessor.cs" />
     <Compile Include="Session.Provider.Factory\ISessionProviderFactory.cs" />
+    <Compile Include="Session.Provider.Factory\PersistenceConfigurerProviderNotFoundException.cs" />
+    <Compile Include="Session.Provider.Factory\SessionProviderFactoryExtensions.cs" />
     <Compile Include="Session.Provider.Factory\TypeSource.cs" />
     <Compile Include="Session.Provider\NHibernateSessionProvider.cs" />
     <Compile Include="Session.Provider.Factory\NHibernateSessionProviderFactory.cs" />

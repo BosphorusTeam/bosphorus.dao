@@ -3,7 +3,7 @@ using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using Castle.Core.Internal;
 using FluentNHibernate.Automapping;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Dal
+namespace Bosphorus.Dao.NHibernate.Demo.Dal.Configuration
 {
     public class AutoPersistenceModelProvider: AbstractAutoPersistenceModelProvider
     {

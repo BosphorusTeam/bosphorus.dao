@@ -4,7 +4,6 @@ using Castle.Core.Internal;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Tool.hbm2ddl;
 
 namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
 {
@@ -13,14 +12,14 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
         private readonly IPersistenceConfigurerProvider persistenceConfigurerProvider;
         private readonly IAssemblyProvider assemblyProvider;
         private readonly IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders;
-        private readonly IList<IConfigurationProcessor> configurationProcessors;
+        private readonly IConfigurationProcessor configurationProcessor;
 
-        public NHibernateSessionProviderFactory(IPersistenceConfigurerProvider persistenceConfigurerProvider, IAssemblyProvider assemblyProvider, IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders, IList<IConfigurationProcessor> configurationProcessors)
+        public NHibernateSessionProviderFactory(IPersistenceConfigurerProvider persistenceConfigurerProvider, IAssemblyProvider assemblyProvider, IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders, IConfigurationProcessor configurationProcessor)
         {
             this.persistenceConfigurerProvider = persistenceConfigurerProvider;
             this.assemblyProvider = assemblyProvider;
             this.autoPersistenceModelProviders = autoPersistenceModelProviders;
-            this.configurationProcessors = configurationProcessors;
+            this.configurationProcessor = configurationProcessor;
         }
 
         public ISessionProvider Build(string sessionAlias)
@@ -31,9 +30,7 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
                 Fluently
                 .Configure()
                 .Database(persistenceConfigurer)
-                .ExposeConfiguration(
-                    cfg => configurationProcessors.ForEach(configurationProcessor => configurationProcessor.Process(cfg))
-                )
+                .ExposeConfiguration(configuration => configurationProcessor.Process(sessionAlias, configuration))
                 .Mappings(
                     m => autoPersistenceModelProviders.ForEach(
                         autoPersistenceModelProvider => m.AutoMappings.Add(autoPersistenceModelProvider.GetAutoPersistenceModel(assemblyProvider))

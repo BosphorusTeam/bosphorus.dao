@@ -1,12 +1,11 @@
 ﻿using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
-using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
-namespace Bosphorus.Dao.NHibernate.Demo
+namespace Bosphorus.Dao.NHibernate.Demo.Dal.Configuration
 {
-    public class SchemaUpdater: IConfigurationProcessor
+    public class SchemaUpdater: AbstractConfigurationProcessor
     {
-        public void Process(Configuration configuration)
+        protected override void Process(global::NHibernate.Cfg.Configuration configuration)
         {
             SchemaUpdate schemaUpdate = new SchemaUpdate(configuration);
             schemaUpdate.Execute(true, true);

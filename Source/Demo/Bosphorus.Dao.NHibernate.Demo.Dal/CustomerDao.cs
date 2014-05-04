@@ -3,7 +3,6 @@ using System.Linq;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Model;
-using Bosphorus.Dao.NHibernate.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using NHibernate.Linq;
 

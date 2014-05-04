@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Dal", "Demo\Bosphorus.Dao.NHibernate.Demo.Dal\Bosphorus.Dao.NHibernate.Demo.Dal.csproj", "{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo", "Demo\Bosphorus.Dao.NHibernate.Demo\Bosphorus.Dao.NHibernate.Demo.csproj", "{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Client.Demo", "Demo\Bosphorus.Dao.NHibernate.Demo\Bosphorus.Dao.Client.Demo.csproj", "{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

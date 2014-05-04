@@ -29,11 +29,17 @@ namespace Bosphorus.Dao.NHibernate
                     .BasedOn<IPersistenceConfigurerProvider>()
                     .WithService
                     .FromInterface(),
+                Component
+                    .For<IPersistenceConfigurerProvider>()
+                    .ImplementedBy<ChainedPersistenceConfigurerProvider>().IsDefault(),
 
                 allLoadedTypes
                     .BasedOn<IConfigurationProcessor>()
                     .WithService
-                    .FromInterface()
+                    .FromInterface(),
+                Component
+                    .For<IConfigurationProcessor>()
+                    .ImplementedBy<CompositeConfigurationProcessor>().IsDefault()
             );
 
         }

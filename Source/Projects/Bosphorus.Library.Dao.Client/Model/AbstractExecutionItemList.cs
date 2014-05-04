@@ -41,7 +41,7 @@ namespace Bosphorus.Dao.Client.Model
         {
             string name = GetName<TModel>(functionExpression);
             Func<TModel> function = functionExpression.Compile();
-            IExecutionItem executionItem = new ModelExceutionItem<TModel>(name, function);
+            IExecutionItem executionItem = new ModelExcecutionItem<TModel>(name, function);
             executionItemList.Add(executionItem);
         }
 

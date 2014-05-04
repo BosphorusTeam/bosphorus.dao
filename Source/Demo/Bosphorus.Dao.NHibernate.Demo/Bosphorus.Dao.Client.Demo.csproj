@@ -7,8 +7,8 @@
     <ProjectGuid>{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bosphorus.Dao.NHibernate.Demo</RootNamespace>
-    <AssemblyName>Bosphorus.Dao.NHibernate.Demo</AssemblyName>
+    <RootNamespace>Bosphorus.Dao.Client.Demo</RootNamespace>
+    <AssemblyName>Bosphorus.Dao.Client.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -59,11 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoPersistenceModelProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutionItemList.cs" />
-    <Compile Include="SchemaUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
