@@ -90,25 +90,30 @@
     <Compile Include="Dao\AbstractNHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dao\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Fluent.AutoPersistenceModelProvider\Installer.cs" />
+    <Compile Include="Fluent.AutoPersistenceModelProvider\NullTypeSource.cs" />
+    <Compile Include="Fluent.ConfigurationProcessor\Installer.cs" />
+    <Compile Include="Fluent.PersistenceConfigurerProvider\Installer.cs" />
     <Compile Include="Session.Provider.Factory.Decoration\CacheDecorator.cs" />
-    <Compile Include="Session.Provider.Factory\AbstractAutoPersistenceModelProvider.cs" />
-    <Compile Include="Session.Provider.Factory\AbstractConfigurationProcessor.cs" />
-    <Compile Include="Session.Provider.Factory\ChainedPersistenceConfigurerProvider.cs" />
-    <Compile Include="Session.Provider.Factory\CompositeConfigurationProcessor.cs" />
-    <Compile Include="Session.Provider.Factory\IConfigurationProcessor.cs" />
+    <Compile Include="Fluent.AutoPersistenceModelProvider\AbstractAutoPersistenceModelProvider.cs" />
+    <Compile Include="Fluent.ConfigurationProcessor\AbstractConfigurationProcessor.cs" />
+    <Compile Include="Fluent.PersistenceConfigurerProvider\ChainedPersistenceConfigurerProvider.cs" />
+    <Compile Include="Fluent.ConfigurationProcessor\CompositeConfigurationProcessor.cs" />
+    <Compile Include="Fluent.ConfigurationProcessor\IConfigurationProcessor.cs" />
     <Compile Include="Session.Provider.Factory\ISessionProviderFactory.cs" />
-    <Compile Include="Session.Provider.Factory\PersistenceConfigurerProviderNotFoundException.cs" />
+    <Compile Include="Fluent.PersistenceConfigurerProvider\PersistenceConfigurerProviderNotFoundException.cs" />
     <Compile Include="Session.Provider.Factory\SessionProviderFactoryExtensions.cs" />
-    <Compile Include="Session.Provider.Factory\TypeSource.cs" />
+    <Compile Include="Fluent.AutoPersistenceModelProvider\TypeSource.cs" />
     <Compile Include="Session.Provider\NHibernateSessionProvider.cs" />
     <Compile Include="Session.Provider.Factory\NHibernateSessionProviderFactory.cs" />
-    <Compile Include="Session.Provider.Factory\AbstractPersistenceConfigurerProvider.cs" />
-    <Compile Include="Session.Provider.Factory\IAutoPersistenceModelProvider.cs" />
-    <Compile Include="Installer.cs" />
-    <Compile Include="Session.Provider.Factory\IPersistenceConfigurerProvider.cs" />
+    <Compile Include="Fluent.PersistenceConfigurerProvider\AbstractPersistenceConfigurerProvider.cs" />
+    <Compile Include="Fluent.AutoPersistenceModelProvider\IAutoPersistenceModelProvider.cs" />
+    <Compile Include="Session.Provider.Factory\Installer.cs" />
+    <Compile Include="Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />
     <Compile Include="Transaction\NHibernateTransaction.cs" />

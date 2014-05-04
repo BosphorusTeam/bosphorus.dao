@@ -6,11 +6,23 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider
 {
     public class NHibernateSessionProvider: ISessionProvider
     {
+        private readonly string sessionAlias;
         private readonly ISessionFactory sessionFactory;
 
-        public NHibernateSessionProvider(ISessionFactory sessionFactory)
+        public NHibernateSessionProvider(string sessionAlias, ISessionFactory sessionFactory)
         {
+            this.sessionAlias = sessionAlias;
             this.sessionFactory = sessionFactory;
+        }
+
+        internal ISessionFactory NativeSessionProvider
+        {
+            get { return sessionFactory; }
+        }
+
+        public string SessionAlias
+        {
+            get { return sessionAlias; }
         }
 
         public ISession OpenSession()

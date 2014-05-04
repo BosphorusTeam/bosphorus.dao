@@ -28,6 +28,7 @@ using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using NHibernate.Metadata;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao
@@ -40,6 +41,19 @@ namespace Bosphorus.Dao.NHibernate.Dao
         protected AbstractNHibernateDao(ISessionProviderFactory sessionProviderFactory, string sessionAlias)
         {
             this.sessionProvider = sessionProviderFactory.Build(sessionAlias);
+            EnsureEntityPersisterRegistered(sessionProvider);
+        }
+
+        private void EnsureEntityPersisterRegistered(ISessionProvider sessionProvider)
+        {
+            NHibernateSessionProvider nHibernateSessionProvider = (NHibernateSessionProvider) sessionProvider;
+            ISessionFactory nativeSessionProvider = nHibernateSessionProvider.NativeSessionProvider;
+            Type entity = typeof (TModel);
+            IClassMetadata classMetadata = nativeSessionProvider.GetClassMetadata(entity);
+            if (classMetadata == null)
+            {
+                throw new ModelMappingNotRegisteredException<TModel>(sessionProvider);
+            }
         }
 
         public ISessionProvider SessionProvider

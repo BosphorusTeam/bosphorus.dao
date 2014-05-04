@@ -55,16 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMappingOverride.cs" />
-    <Compile Include="Configuration\AutoPersistenceModelProvider.cs" />
-    <Compile Include="Configuration\PersistenceConfigurerProvider.cs">
+    <Compile Include="Default\Legacy\AutoMappingOverride.cs" />
+    <Compile Include="Log\Configuraation\AutoPersistenceModelProvider.cs" />
+    <Compile Include="Log\Configuraation\SchemaUpdater.cs" />
+    <Compile Include="Default\Configuration\AutoPersistenceModelProvider.cs" />
+    <Compile Include="Default\Configuration\PersistenceConfigurerProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CustomerDao.cs" />
-    <Compile Include="ICustomerDao.cs" />
-    <Compile Include="Configuration\LogPersistenceConfigurerProvider.cs" />
+    <Compile Include="Default\CustomerDao.cs" />
+    <Compile Include="Default\ICustomerDao.cs" />
+    <Compile Include="Log\Configuraation\LogPersistenceConfigurerProvider.cs" />
+    <Compile Include="Log\LogDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\SchemaUpdater.cs" />
+    <Compile Include="Default\Configuration\SchemaUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.Core\Bosphorus.Dao.Core.csproj">

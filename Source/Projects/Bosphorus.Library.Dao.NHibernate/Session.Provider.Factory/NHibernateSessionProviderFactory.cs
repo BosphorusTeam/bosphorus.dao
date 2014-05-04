@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
+using Bosphorus.Dao.NHibernate.Fluent.ConfigurationProcessor;
+using Bosphorus.Dao.NHibernate.Fluent.PersistenceConfigurerProvider;
 using Castle.Core.Internal;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -33,12 +36,12 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
                 .ExposeConfiguration(configuration => configurationProcessor.Process(sessionAlias, configuration))
                 .Mappings(
                     m => autoPersistenceModelProviders.ForEach(
-                        autoPersistenceModelProvider => m.AutoMappings.Add(autoPersistenceModelProvider.GetAutoPersistenceModel(assemblyProvider))
+                        autoPersistenceModelProvider => m.AutoMappings.Add(autoPersistenceModelProvider.GetAutoPersistenceModel(assemblyProvider, sessionAlias))
                     )
                 )
                 .BuildSessionFactory();
 
-            NHibernateSessionProvider sessionProvider = new NHibernateSessionProvider(sessionFactory);
+            NHibernateSessionProvider sessionProvider = new NHibernateSessionProvider(sessionAlias, sessionFactory);
             return sessionProvider;
         }
     }
