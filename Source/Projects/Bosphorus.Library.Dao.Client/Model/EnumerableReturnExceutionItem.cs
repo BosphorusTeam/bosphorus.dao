@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace Bosphorus.Dao.Client.Model
 {
-    public class EnumerableExceutionItem<TModel> : AbstractExecutionItem
+    public class EnumerableReturnExceutionItem<TModel> : AbstractExecutionItem<TModel>
     {
         private readonly Func<IEnumerable<TModel>> function;
 
-        public EnumerableExceutionItem(string name, Func<IEnumerable<TModel>> function) 
-            : base(name)
+        public EnumerableReturnExceutionItem(string functionName, Func<IEnumerable<TModel>> function) 
+            : base(functionName)
         {
             this.function = function;
         }
@@ -18,7 +18,9 @@ namespace Bosphorus.Dao.Client.Model
         public override IList Execute()
         {
             IEnumerable<TModel> enumerable = function();
-            return enumerable.ToList();
+            List<TModel> result = enumerable.ToList();
+
+            return result;
         }
     }
 }

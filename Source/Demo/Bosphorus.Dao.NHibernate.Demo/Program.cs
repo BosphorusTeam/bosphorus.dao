@@ -1,7 +1,6 @@
 using System;
-using Bosphorus.Dao.Client;
 
-namespace Bosphorus.Dao.NHibernate.Demo
+namespace Bosphorus.Dao.Client.Demo
 {
     static class Program
     {

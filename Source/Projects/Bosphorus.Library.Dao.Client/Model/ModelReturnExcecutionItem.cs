@@ -3,12 +3,12 @@ using System.Collections;
 
 namespace Bosphorus.Dao.Client.Model
 {
-    public class ModelExcecutionItem<TModel> : AbstractExecutionItem
+    public class ModelReturnExcecutionItem<TModel> : AbstractExecutionItem<TModel>
     {
         private readonly Func<TModel> function;
 
-        public ModelExcecutionItem(string name, Func<TModel> function) 
-            : base(name)
+        public ModelReturnExcecutionItem(string functionName, Func<TModel> function) 
+            : base(functionName)
         {
             this.function = function;
         }

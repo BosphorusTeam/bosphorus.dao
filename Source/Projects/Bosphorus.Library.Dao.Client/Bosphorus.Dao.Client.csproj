@@ -83,11 +83,12 @@
     </Compile>
     <Compile Include="Installer.cs" />
     <Compile Include="Model\AbstractExecutionItemList.cs" />
-    <Compile Include="Model\EnumerableExceutionItem.cs" />
+    <Compile Include="Model\AbstractExecutionItemListExtensions.cs" />
+    <Compile Include="Model\EnumerableReturnExceutionItem.cs" />
     <Compile Include="Model\IExecutionItem.cs" />
     <Compile Include="Model\IExecutionItemList.cs" />
     <Compile Include="Model\AbstractExecutionItem.cs" />
-    <Compile Include="Model\ModelExcecutionItem.cs" />
+    <Compile Include="Model\ModelReturnExcecutionItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

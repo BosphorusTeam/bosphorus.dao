@@ -14,48 +14,25 @@ namespace Bosphorus.Dao.Client.Model
             executionItemList = new List<IExecutionItem>();
         }
 
-        protected void Add<TModel>(Expression<Func<IList<TModel>>> functionExpression)
+        public void Add<TModel>(string name, Expression<Func<IEnumerable<TModel>>> enumerableReturnFunction)
         {
-            string name = GetName<TModel>(functionExpression);
-
-            Func<IList<TModel>> function = functionExpression.Compile();
-            IExecutionItem executionItem = new EnumerableExceutionItem<TModel>(name, function);
+            Func<IEnumerable<TModel>> function = enumerableReturnFunction.Compile();
+            IExecutionItem executionItem = new EnumerableReturnExceutionItem<TModel>(name, function);
             executionItemList.Add(executionItem);
         }
 
-        protected void Add<TModel>(string methodName, Func<IQueryable<TModel>> function)
+        public void Add<TModel>(string name, Expression<Func<IQueryable<TModel>>> queryableReturnFunction)
         {
-            string name = GetName<TModel>(methodName);
-            IExecutionItem executionItem = new EnumerableExceutionItem<TModel>(name, function);
+            Func<IEnumerable<TModel>> function = queryableReturnFunction.Compile();
+            IExecutionItem executionItem = new EnumerableReturnExceutionItem<TModel>(name, function);
             executionItemList.Add(executionItem);
         }
 
-        protected void Add<TModel>(string methodName, Func<IEnumerable<TModel>> function)
+        public void Add<TModel>(string name, Expression<Func<TModel>> modelReturnFunction)
         {
-            string name = GetName<TModel>(methodName);
-            IExecutionItem executionItem = new EnumerableExceutionItem<TModel>(name, function);
+            Func<TModel> function = modelReturnFunction.Compile();
+            IExecutionItem executionItem = new ModelReturnExcecutionItem<TModel>(name, function);
             executionItemList.Add(executionItem);
-        }
-
-        protected void Add<TModel>(Expression<Func<TModel>> functionExpression)
-        {
-            string name = GetName<TModel>(functionExpression);
-            Func<TModel> function = functionExpression.Compile();
-            IExecutionItem executionItem = new ModelExcecutionItem<TModel>(name, function);
-            executionItemList.Add(executionItem);
-        }
-
-        private string GetName<TModel>(LambdaExpression expression)
-        {
-            MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
-            return GetName<TModel>(methodCallExpression.Method.Name);
-        }
-
-        private static string GetName<TModel>(string methodName)
-        {
-            string modelName = typeof(TModel).Name;
-            string name = string.Format("{0} - {1}", modelName, methodName);
-            return name;
         }
 
         public IList<IExecutionItem> List
