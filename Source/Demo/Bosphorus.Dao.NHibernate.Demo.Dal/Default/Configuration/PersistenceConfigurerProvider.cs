@@ -9,9 +9,10 @@ namespace Bosphorus.Dao.NHibernate.Demo.Dal.Default.Configuration
         {
             return
                 SQLiteConfiguration
-                .Standard
-                .ConnectionString(@"data source=.\Demo.db3")
-                .ShowSql();
+                    .Standard
+                    .ConnectionString(@"data source=.\Demo.db3")
+                    .ShowSql()
+                    .FormatSql();
         }
     }
 }
