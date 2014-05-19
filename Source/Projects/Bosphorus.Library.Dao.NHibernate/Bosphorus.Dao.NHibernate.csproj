@@ -97,6 +97,10 @@
     <Compile Include="Fluent.AutoPersistenceModelProvider\Installer.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\NullTypeSource.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\Installer.cs" />
+    <Compile Include="Fluent.ConventionApplier\AbstractConventionApplier.cs" />
+    <Compile Include="Fluent.ConventionApplier\CompositeConventionApplier.cs" />
+    <Compile Include="Fluent.ConventionApplier\IConventionApplier.cs" />
+    <Compile Include="Fluent.ConventionApplier\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\Installer.cs" />
     <Compile Include="Session.Provider.Factory.Decoration\CacheDecorator.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\AbstractAutoPersistenceModelProvider.cs" />

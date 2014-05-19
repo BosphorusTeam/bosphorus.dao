@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.NHibernate.Demo.Dal.Default;
-using Bosphorus.Dao.NHibernate.Demo.Model.Default;
-using Bosphorus.Dao.NHibernate.Demo.Model.Default.Legacy;
-using Bosphorus.Dao.NHibernate.Demo.Model.Log;
+using Bosphorus.Dao.NHibernate.Demo.Business.Dal;
+using Bosphorus.Dao.NHibernate.Demo.Log.Model;
+using Bosphorus.Dao.NHibernate.Demo.Model;
+using Bosphorus.Dao.NHibernate.Demo.Model.Legacy;
 
 namespace Bosphorus.Dao.Client.Demo
 {
     public class ExecutionItemList : AbstractExecutionItemList
     {
-        public ExecutionItemList(IDao nonGenericDao, IDao<Order> orderDao, ICustomerDao customerDao, IDao<Account> accountDao, IDao<IMPORTCARGOINFOSERVICE> legancyDao, IDao<LogModel> logDao)
+        public ExecutionItemList(IDao nonGenericDao, IDao<CargoOrder> orderDao, ICustomerDao customerDao, IDao<Account> accountDao, IDao<IMPORTCARGOINFOSERVICE> legancyDao, IDao<LogModel> logDao)
         {
             IDao<Customer> cachedCustomerDao = customerDao.Cached();
 

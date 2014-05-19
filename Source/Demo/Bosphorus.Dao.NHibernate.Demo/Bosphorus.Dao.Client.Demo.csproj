@@ -84,13 +84,21 @@
       <Project>{30fb7f75-ff3e-49df-afbd-f9037e7c5a80}</Project>
       <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Dal\Bosphorus.Dao.NHibernate.Demo.Dal.csproj">
+    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Business.Dal\Bosphorus.Dao.NHibernate.Demo.Business.Dal.csproj">
       <Project>{96aee977-4b93-48bd-bcf2-6b0a1c1f99be}</Project>
-      <Name>Bosphorus.Dao.NHibernate.Demo.Dal</Name>
+      <Name>Bosphorus.Dao.NHibernate.Demo.Business.Dal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Model\Bosphorus.Dao.NHibernate.Demo.Model.csproj">
+    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Business.Model\Bosphorus.Dao.NHibernate.Demo.Business.Model.csproj">
       <Project>{870963cd-dd5d-4bce-96b9-d16bb556d90e}</Project>
-      <Name>Bosphorus.Dao.NHibernate.Demo.Model</Name>
+      <Name>Bosphorus.Dao.NHibernate.Demo.Business.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Log.Dal\Bosphorus.Dao.NHibernate.Demo.Log.Dal.csproj">
+      <Project>{98de0e1d-d18d-4a7a-8ee7-79d0404db72e}</Project>
+      <Name>Bosphorus.Dao.NHibernate.Demo.Log.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Log.Model\Bosphorus.Dao.NHibernate.Demo.Log.Model.csproj">
+      <Project>{E77E3358-1C25-4265-929A-925294F2283D}</Project>
+      <Name>Bosphorus.Dao.NHibernate.Demo.Log.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
