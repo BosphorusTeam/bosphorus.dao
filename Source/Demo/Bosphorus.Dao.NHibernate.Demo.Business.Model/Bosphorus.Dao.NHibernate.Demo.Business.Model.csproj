@@ -40,9 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="Legacy\IMPORTCARGOINFOSERVICE.cs" />
     <Compile Include="CargoOrder.cs" />
+    <Compile Include="Legacy\IMPORTCARGOINFOSERVICE.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ﻿using Bosphorus.Dao.NHibernate.Fluent.ConfigurationProcessor;
 using NHibernate.Tool.hbm2ddl;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Log.Dal.Configuration
+namespace Bosphorus.Dao.Client.Demo.Log
 {
     public class SchemaUpdater: AbstractConfigurationProcessor
     {

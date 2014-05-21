@@ -1,5 +1,4 @@
 ﻿using Bosphorus.Dao.NHibernate.Demo.Model;
-using Bosphorus.Dao.NHibernate.Extension.Convention;
 using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
 using Castle.Core.Internal;
 using FluentNHibernate.Automapping;

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}</ProjectGuid>
+    <ProjectGuid>{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bosphorus.Dao.Client.Demo</RootNamespace>
-    <AssemblyName>Bosphorus.Dao.Client.Demo</AssemblyName>
+    <RootNamespace>Bosphorus.Dao.NHibernate.Demo.Client</RootNamespace>
+    <AssemblyName>Bosphorus.Dao.NHibernate.Demo.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,17 +31,23 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Bosphorus.Dao.Client.Demo.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Common.Clr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Frameworks\Frameworks.Bosphorus\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\bin\Debug\Bosphorus.Common.Clr.dll</HintPath>
+    <Reference Include="Bosphorus.Container.Castle">
+      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.3\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+    <Reference Include="Bosphorus.Dao.Core, Version=2.1.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Projects\Bosphorus.Library.Dao.Core\bin\Debug\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\packages\Bosphorus.Dao.Core.2.1.0.4\lib\net45\Bosphorus.Dao.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Bosphorus.Dao.NHibernate, Version=2.1.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Bosphorus.Dao.NHibernate.2.1.0.4\lib\net45\Bosphorus.Dao.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -53,51 +59,44 @@
     </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\odp.net.managed.121.1.2\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\ConventionApplier.cs" />
+    <Compile Include="Comon\ConventionApplier.cs" />
     <Compile Include="Business\PersistenceConfigurerProvider.cs" />
     <Compile Include="Business\SchemaUpdater.cs" />
     <Compile Include="Log\PersistenceConfigurerProvider.cs" />
     <Compile Include="Log\SchemaUpdater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ExecutionItemList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj">
-      <Project>{e4a03b9a-de39-4e22-84cb-5a9ea29c59d8}</Project>
+      <Project>{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}</Project>
       <Name>Bosphorus.Dao.NHibernate.Extension</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.Client\Bosphorus.Dao.Client.csproj">
-      <Project>{38f86c1e-abaa-42ac-adb3-4f6579110dbf}</Project>
-      <Name>Bosphorus.Dao.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.Core\Bosphorus.Dao.Core.csproj">
-      <Project>{5c3b656e-528c-4988-a31f-ea0aabc82cfb}</Project>
-      <Name>Bosphorus.Dao.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
-      <Project>{30fb7f75-ff3e-49df-afbd-f9037e7c5a80}</Project>
-      <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Business.Dal\Bosphorus.Dao.NHibernate.Demo.Business.Dal.csproj">
       <Project>{96aee977-4b93-48bd-bcf2-6b0a1c1f99be}</Project>
       <Name>Bosphorus.Dao.NHibernate.Demo.Business.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Business.Model\Bosphorus.Dao.NHibernate.Demo.Business.Model.csproj">
-      <Project>{870963cd-dd5d-4bce-96b9-d16bb556d90e}</Project>
+      <Project>{870963CD-DD5D-4BCE-96B9-D16BB556D90E}</Project>
       <Name>Bosphorus.Dao.NHibernate.Demo.Business.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Log.Dal\Bosphorus.Dao.NHibernate.Demo.Log.Dal.csproj">
