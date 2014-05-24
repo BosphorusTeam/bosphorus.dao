@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Bosphorus.Dao.NHibernate.Demo.Log.Model;
+﻿using Bosphorus.Dao.NHibernate.Demo.Log.Model;
 using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
+using Castle.Core.Internal;
 using FluentNHibernate.Automapping;
 
 namespace Bosphorus.Dao.NHibernate.Demo.Log.Dal.Configuration
@@ -14,9 +12,11 @@ namespace Bosphorus.Dao.NHibernate.Demo.Log.Dal.Configuration
         {
         }
 
-        protected override AutoPersistenceModel GetAutoPersistenceModel(IEnumerable<Type> allLoadedTypes, string sessionAlias)
+        protected override AutoPersistenceModel GetAutoPersistenceModel(IAssemblyProvider assemblyProvider)
         {
-            return base.GetAutoPersistenceModel(allLoadedTypes.Where(type => type == typeof(LogModel)), sessionAlias);
+            return AutoMap
+                .AssemblyOf<LogModel>()
+                .UseOverridesFromAssemblyOf<AutoPersistenceModelProvider>();
         }
     }
 }

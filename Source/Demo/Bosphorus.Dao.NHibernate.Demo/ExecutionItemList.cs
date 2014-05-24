@@ -4,9 +4,10 @@ using System.Linq;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Dal;
+using Bosphorus.Dao.NHibernate.Demo.Business.Dal.Legacy;
+using Bosphorus.Dao.NHibernate.Demo.Business.Model;
+using Bosphorus.Dao.NHibernate.Demo.Business.Model.Legacy;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
-using Bosphorus.Dao.NHibernate.Demo.Model;
-using Bosphorus.Dao.NHibernate.Demo.Model.Legacy;
 
 namespace Bosphorus.Dao.Client.Demo
 {
@@ -23,6 +24,7 @@ namespace Bosphorus.Dao.Client.Demo
             this.Add(() => customerDao.GetAll());
             this.Add(() => customerDao.GetBy(customerDao.SessionProvider.OpenSession(), "Onur"));
             this.Add(() => legancyDao.GetAll());
+            this.Add(() => legancyDao.GetCustomQuery1());
             this.Add(() => from order in orderDao.Query() where order.Desi > 10 select order);
             this.Add(() => accountDao.Save(new Account { Number = 1, Name = "Onur Eker", Type = typeof(Account)}));
 

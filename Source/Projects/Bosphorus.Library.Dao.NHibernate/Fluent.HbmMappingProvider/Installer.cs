@@ -1,10 +1,9 @@
 ﻿using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Dao.Client.Model;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace Bosphorus.Dao.Client
+namespace Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider
 {
     public class Installer: AbstractWindsorInstaller
     {
@@ -12,10 +11,15 @@ namespace Bosphorus.Dao.Client
         {
             container.Register(
                 allLoadedTypes
-                    .Where(type => typeof(IExecutionItemList).IsAssignableFrom(type) && !type.IsAbstract)
+                    .BasedOn<IHbmMappingRegisterer>()
                     .WithService
-                    .FirstInterface()
+                    .FromInterface(),
+
+                Component
+                    .For<IHbmMappingRegisterer>()
+                    .ImplementedBy<CompositeHbmMappingRegisterer>().IsDefault()
             );
+
         }
     }
 }

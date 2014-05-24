@@ -1,8 +1,9 @@
 using System;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Model.Legacy {
-    
-    public class IMPORTCARGOINFOSERVICE {
+namespace Bosphorus.Dao.NHibernate.Demo.Business.Model.Legacy
+{
+    public class IMPORTCARGOINFOSERVICE
+    {
 
         public virtual Guid IMPORTCARGOINFOSERVICEID { get; set; }
         public virtual Guid? IMPORTCARGOINFOID { get; set; }

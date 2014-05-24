@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Model
+namespace Bosphorus.Dao.NHibernate.Demo.Business.Model
 {
     public class Customer
     {

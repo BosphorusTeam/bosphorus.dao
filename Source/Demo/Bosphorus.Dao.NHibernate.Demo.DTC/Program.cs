@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Bosphorus.Container.Castle.Facade;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
-using Bosphorus.Dao.NHibernate.Demo.Model;
 
 namespace Bosphorus.Dao.NHibernate.Demo.Client
 {

@@ -39,7 +39,7 @@ namespace Bosphorus.Dao.Client
             this.lbQueries.FormattingEnabled = true;
             this.lbQueries.Location = new System.Drawing.Point(0, 0);
             this.lbQueries.Name = "lbQueries";
-            this.lbQueries.Size = new System.Drawing.Size(205, 397);
+            this.lbQueries.Size = new System.Drawing.Size(292, 632);
             this.lbQueries.TabIndex = 0;
             this.lbQueries.DoubleClick += new System.EventHandler(this.lbQueries_DoubleClick);
             this.lbQueries.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lbQueries_KeyUp);
@@ -52,17 +52,17 @@ namespace Bosphorus.Dao.Client
             this.dgResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgResult.FlatMode = true;
             this.dgResult.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-            this.dgResult.Location = new System.Drawing.Point(205, 0);
+            this.dgResult.Location = new System.Drawing.Point(292, 0);
             this.dgResult.Name = "dgResult";
             this.dgResult.ReadOnly = true;
-            this.dgResult.Size = new System.Drawing.Size(660, 397);
+            this.dgResult.Size = new System.Drawing.Size(958, 632);
             this.dgResult.TabIndex = 1;
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 397);
+            this.ClientSize = new System.Drawing.Size(1250, 632);
             this.Controls.Add(this.dgResult);
             this.Controls.Add(this.lbQueries);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));

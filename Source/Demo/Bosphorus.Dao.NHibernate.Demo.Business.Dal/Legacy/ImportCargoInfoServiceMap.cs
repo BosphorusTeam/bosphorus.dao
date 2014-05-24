@@ -1,10 +1,10 @@
-﻿using Bosphorus.Dao.NHibernate.Demo.Model.Legacy;
+﻿using Bosphorus.Dao.NHibernate.Demo.Business.Model.Legacy;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
 namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal.Legacy
 {
-    public class AutoMappingOverride : IAutoMappingOverride<IMPORTCARGOINFOSERVICE>
+    public class ImportCargoInfoServiceMap : IAutoMappingOverride<IMPORTCARGOINFOSERVICE>
     {
         public void Override(AutoMapping<IMPORTCARGOINFOSERVICE> mapping)
         {

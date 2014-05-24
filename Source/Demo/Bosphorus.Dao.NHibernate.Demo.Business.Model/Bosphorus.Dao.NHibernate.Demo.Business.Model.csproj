@@ -7,8 +7,8 @@
     <ProjectGuid>{870963CD-DD5D-4BCE-96B9-D16BB556D90E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bosphorus.Dao.NHibernate.Demo.Model</RootNamespace>
-    <AssemblyName>Bosphorus.Dao.NHibernate.Demo.Model</AssemblyName>
+    <RootNamespace>Bosphorus.Dao.NHibernate.Demo.Business.Model</RootNamespace>
+    <AssemblyName>Bosphorus.Dao.NHibernate.Demo.Business.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

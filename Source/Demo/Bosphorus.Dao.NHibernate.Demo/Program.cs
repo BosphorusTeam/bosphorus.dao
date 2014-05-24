@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Client.Demo
         [STAThread]
         static void Main()
         {
-            ApplicationRunner.Run();
+            DaoClientDemo.Run();
         }
     }
 }
