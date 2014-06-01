@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using System.Transactions;
 using Bosphorus.Container.Castle.Facade;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
@@ -25,7 +19,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.Client
 
         static void Main(string[] args)
         {
-            WindowsRunner.Run<Program>(args);
+            ConsoleRunner.Run<Program>(args);
         }
 
         public void Run(string[] args)
@@ -36,11 +30,25 @@ namespace Bosphorus.Dao.NHibernate.Demo.Client
             LogModel logModel = new LogModel();
             logModel.Message = "Oğuz";
 
-            using (TransactionScope ts = new TransactionScope())
-            {
-                customerDao.Save(customer);
-                logModelDao.Save(logModel);
-            }
+            TransactionOptions transactionOptions = new TransactionOptions();
+            transactionOptions.IsolationLevel = IsolationLevel.Serializable;
+
+            //ISession openSession = customerDao.SessionProvider.OpenSession();
+            //global::NHibernate.ISession innerSession = ((NHibernateSession) openSession).InnerSession;
+            //innerSession.FlushMode = FlushMode.;
+            //innerSession.SaveOrUpdate(customer);
+            //innerSession.Close();
+
+            //using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
+            //{
+            //    IEnumerable<Customer> enumerable = innerSession.Get<Customer>();
+
+            //    innerSession.Flush();
+            //    ts.Dispose();
+            //    System.Transactions.Transaction.Current.Rollback();
+            //    logModelDao.Save(logModel);
+            //    ts.Complete();
+            //}
 
         }
     }

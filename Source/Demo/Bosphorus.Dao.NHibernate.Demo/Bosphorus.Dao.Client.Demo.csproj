@@ -65,9 +65,7 @@
   <ItemGroup>
     <Compile Include="Business\ConventionApplier.cs" />
     <Compile Include="Business\PersistenceConfigurerProvider.cs" />
-    <Compile Include="Business\SchemaUpdater.cs" />
     <Compile Include="Log\PersistenceConfigurerProvider.cs" />
-    <Compile Include="Log\SchemaUpdater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutionItemList.cs" />
