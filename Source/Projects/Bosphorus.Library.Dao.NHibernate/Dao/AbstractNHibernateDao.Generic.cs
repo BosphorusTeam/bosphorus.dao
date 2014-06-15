@@ -25,6 +25,7 @@ using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
+using FluentNHibernate.Testing.Values;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
@@ -132,20 +133,31 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result as List<TReturnType>;
         }
 
-        public virtual TModel LoadById<TId>(ISession currentSession, TId id)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            return (TModel)nativeSession.Load(persitentType, id);
-        }
-
-        public virtual TModel Save(ISession currentSession, TModel entity)
+        public virtual TModel Insert(ISession currentSession, TModel entity)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             nativeSession.SaveOrUpdate(entity);
             return entity;
         }
 
-        public virtual IEnumerable<TModel> Save(ISession currentSession, IEnumerable<TModel> entityList)
+        public virtual IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> entityList)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            foreach (TModel model in entityList)
+            {
+                nativeSession.SaveOrUpdate(model);
+            }
+            return entityList;
+        }
+
+        public virtual TModel Update(ISession currentSession, TModel entity)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            nativeSession.SaveOrUpdate(entity);
+            return entity;
+        }
+
+        public virtual IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> entityList)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             foreach (TModel model in entityList)

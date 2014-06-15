@@ -64,25 +64,34 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return base.GetByNamedQuery<TModel>(currentSession, queryName, parameters);
         }
 
-        public override TModel LoadById<TModel, TId>(ISession currentSession, TId id)
+        public override TModel Insert<TModel>(ISession currentSession, TModel entity)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.LoadById<TModel, TId>(currentSession, id);
-        }
-
-        public override TModel Save<TModel>(ISession currentSession, TModel entity)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel model = base.Save(currentSession, entity);
+            TModel model = base.Insert(currentSession, entity);
             nativeSession.Flush();
             return model;
         }
 
-        public override IEnumerable<TModel> Save<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        public override IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IEnumerable<TModel> result = base.Save(currentSession, entityList);
+            IEnumerable<TModel> result = base.Insert(currentSession, entityList);
+            nativeSession.Flush();
+            return result;
+        }
+
+        public override TModel Update<TModel>(ISession currentSession, TModel entity)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            TModel model = base.Update(currentSession, entity);
+            nativeSession.Flush();
+            return model;
+        }
+
+        public override IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            IEnumerable<TModel> result = base.Update(currentSession, entityList);
             nativeSession.Flush();
             return result;
         }

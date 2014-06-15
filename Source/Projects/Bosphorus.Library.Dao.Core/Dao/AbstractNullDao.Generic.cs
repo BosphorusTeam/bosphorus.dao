@@ -26,59 +26,14 @@ namespace Bosphorus.Dao.Core.Dao
             return default(TModel);
         }
 
-        public override IList<TModel> GetByCriteria(ISession currentSession, params object[] criterions)
-        {
-            return new List<TModel>();
-        }
-
         public override IEnumerable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
         {
             return new List<TModel>();
         }
 
-        public override IList<TReturnType> GetByNamedQuery<TReturnType>(ISession currentSession, string queryName, params object[] parameters)
-        {
-            return new List<TReturnType>();
-        }
-
         public override IEnumerable<TModel> GetByQuery(ISession currentSession, string queryName, params object[] parameters)
         {
             return new List<TModel>();
-        }
-
-        public override IList<TReturnType> GetByQuery<TReturnType>(ISession currentSession, string queryName, params object[] parameters)
-        {
-            return new List<TReturnType>();
-        }
-
-        public override TModel LoadById<TId>(ISession currentSession, TId id)
-        {
-            return default(TModel);
-        }
-
-        public override TModel LoadById(ISession currentSession, object id)
-        {
-            return default(TModel);
-        }
-
-        public override TModel Save(ISession currentSession, TModel entity)
-        {
-            return entity;
-        }
-
-        public override IEnumerable<TModel> Save(ISession currentSession, IEnumerable<TModel> entities)
-        {
-            return entities;
-        }
-
-        public override TModel SaveOrUpdate(ISession currentSession, TModel entity)
-        {
-            return entity;
-        }
-
-        public override IEnumerable<TModel> SaveOrUpdate(ISession currentSession, IEnumerable<TModel> entities)
-        {
-            return entities;
         }
 
         public override TModel Update(ISession currentSession, TModel entity)

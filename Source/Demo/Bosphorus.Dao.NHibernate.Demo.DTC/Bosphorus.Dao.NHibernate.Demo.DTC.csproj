@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Container.Castle">
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.4\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
+    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.10\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
@@ -67,13 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\PersistenceConfigurerProvider.Test.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Business\PersistenceConfigurerProvider.cs" />
     <Compile Include="Business\SchemaUpdater.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Comon\ConventionApplier.cs" />
+    <Compile Include="Common\ConventionApplier.cs" />
     <Compile Include="Log\PersistenceConfigurerProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

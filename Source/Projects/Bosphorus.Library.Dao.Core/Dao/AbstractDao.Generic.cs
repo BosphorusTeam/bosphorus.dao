@@ -27,7 +27,10 @@ namespace Bosphorus.Dao.Core.Dao
 {
     public abstract class AbstractDao<TModel> : IDao<TModel>
     {
-        public ISessionProvider SessionProvider { get; private set; }
+        public virtual ISessionProvider SessionProvider
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public virtual IEnumerable<TModel> GetAll(ISession currentSession)
         {
@@ -35,11 +38,6 @@ namespace Bosphorus.Dao.Core.Dao
         }
 
         public virtual IQueryable<TModel> Query(ISession currentSession)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual IList<TModel> GetByCriteria(ISession currentSession, params object[] criterias)
         {
             throw new NotImplementedException();
         }
@@ -54,47 +52,17 @@ namespace Bosphorus.Dao.Core.Dao
             throw new NotImplementedException();
         }
 
-        public virtual IList<TReturnType> GetByNamedQuery<TReturnType>(ISession currentSession, string queryName, params object[] parameters)
+        public virtual IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
         {
             throw new NotImplementedException();
         }
 
-        public virtual IEnumerable<TModel> GetByQuery(ISession currentSession, string queryName, params object[] parameters)
+        public virtual TModel Insert(ISession currentSession, TModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public virtual IList<TReturnType> GetByQuery<TReturnType>(ISession currentSession, string queryName, params object[] parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual TModel LoadById<TId>(ISession currentSession, TId id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual TModel LoadById(ISession currentSession, object id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual TModel Save(ISession currentSession, TModel entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual IEnumerable<TModel> Save(ISession currentSession, IEnumerable<TModel> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual TModel SaveOrUpdate(ISession currentSession, TModel entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual IEnumerable<TModel> SaveOrUpdate(ISession currentSession, IEnumerable<TModel> entities)
+        public virtual IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> entities)
         {
             throw new NotImplementedException();
         }

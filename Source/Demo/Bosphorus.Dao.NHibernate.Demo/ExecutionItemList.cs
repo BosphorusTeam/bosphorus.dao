@@ -26,7 +26,7 @@ namespace Bosphorus.Dao.Client.Demo
             this.Add(() => legancyDao.GetAll());
             this.Add(() => legancyDao.GetCustomQuery1());
             this.Add(() => from order in orderDao.Query() where order.Desi > 10 select order);
-            this.Add(() => accountDao.Save(new Account { Number = 1, Name = "Onur Eker", Type = typeof(Account)}));
+            this.Add(() => accountDao.Insert(new Account { Number = 1, Name = "Onur Eker", Type = typeof(Account)}));
 
             this.Add("Cached", () => from model in cachedCustomerDao.Query() where model.Name == "Oğuz" select model);
             this.Add("Custom", () => from model in legancyDao.Query() where model.APPLICATIONID == 1 select model);

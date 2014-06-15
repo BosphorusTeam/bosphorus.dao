@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Common.Clr">
-      <HintPath>..\..\..\..\..\..\..\..\Frameworks\Frameworks.Bosphorus\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\bin\Debug\Bosphorus.Common.Clr.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>

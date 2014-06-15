@@ -52,38 +52,38 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public static TModel LoadById<TId, TModel>(this IDao extended, TId id)
+        public static TModel Insert<TModel>(this IDao extended, TModel entity)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            TModel result = extended.LoadById<TModel, TId>(session, id);
+            TModel result = extended.Insert(session, entity);
             sessionProvider.CloseSession(session);
             return result;
         }
 
-        public static TModel LoadById<TModel>(this IDao extended, object id)
+        public static IEnumerable<TModel> Insert<TModel>(this IDao extended, IEnumerable<TModel> entities)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            TModel result = extended.LoadById<TModel, object>(session, id);
+            IEnumerable<TModel> result = extended.Insert(session, entities);
             sessionProvider.CloseSession(session);
             return result;
         }
 
-        public static TModel Save<TModel>(this IDao extended, TModel entity)
+        public static TModel Update<TModel>(this IDao extended, TModel entity)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            TModel result = extended.Save(session, entity);
+            TModel result = extended.Update(session, entity);
             sessionProvider.CloseSession(session);
             return result;
         }
 
-        public static IEnumerable<TModel> Save<TModel>(this IDao extended, IEnumerable<TModel> entities)
+        public static IEnumerable<TModel> Update<TModel>(this IDao extended, IEnumerable<TModel> entities)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            IEnumerable<TModel> result = extended.Save(session, entities);
+            IEnumerable<TModel> result = extended.Update(session, entities);
             sessionProvider.CloseSession(session);
             return result;
         }

@@ -117,21 +117,31 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result as List<TReturnType>;
         }
 
-        public virtual TModel LoadById<TModel, TId>(ISession currentSession, TId id)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            Type persitentType = typeof (TModel);
-            return (TModel)nativeSession.Load(persitentType, id);
-        }
-
-        public virtual TModel Save<TModel>(ISession currentSession, TModel entity)
+        public virtual TModel Insert<TModel>(ISession currentSession, TModel entity)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             nativeSession.SaveOrUpdate(entity);
             return entity;
         }
 
-        public virtual IEnumerable<TModel> Save<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        public virtual IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            foreach (TModel model in entityList)
+            {
+                nativeSession.SaveOrUpdate(model);
+            }
+            return entityList;
+        }
+
+        public virtual TModel Update<TModel>(ISession currentSession, TModel entity)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            nativeSession.SaveOrUpdate(entity);
+            return entity;
+        }
+
+        public virtual IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             foreach (TModel model in entityList)
