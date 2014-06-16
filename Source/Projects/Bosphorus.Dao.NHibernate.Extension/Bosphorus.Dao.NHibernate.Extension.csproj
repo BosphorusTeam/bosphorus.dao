@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Convention.Enum\Convention.cs" />
+    <Compile Include="Convention.ForeignKey\Convention.cs" />
     <Compile Include="Convention.TablePrefix\Convention.cs" />
     <Compile Include="Convention.UpperCaseColumnName\Convention.cs" />
     <Compile Include="Convention.UpperCaseString\Convention.cs" />
