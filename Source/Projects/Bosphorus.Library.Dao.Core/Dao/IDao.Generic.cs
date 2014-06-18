@@ -38,16 +38,16 @@ namespace Bosphorus.Dao.Core.Dao
 
         IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters);
 
-        TModel Insert(ISession currentSession, TModel entity);
+        TModel Insert(ISession currentSession, TModel model);
 
-        IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> entities);
+        IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> models);
 
-        TModel Update(ISession currentSession, TModel entity);
+        TModel Update(ISession currentSession, TModel model);
 
-        IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> entities);
+        IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> models);
 
-        void Delete(ISession currentSession, TModel entity);
+        void Delete(ISession currentSession, TModel model);
 
-        void Delete(ISession currentSession, IEnumerable<TModel> entities);
+        void Delete(ISession currentSession, IEnumerable<TModel> models);
     }
 }

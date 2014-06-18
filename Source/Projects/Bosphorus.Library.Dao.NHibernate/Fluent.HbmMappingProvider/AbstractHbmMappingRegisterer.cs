@@ -1,5 +1,4 @@
 using Bosphorus.Dao.NHibernate.Common;
-using Castle.Core.Internal;
 using FluentNHibernate.Cfg;
 
 namespace Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider
@@ -18,7 +17,7 @@ namespace Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider
             this.sessionAlias = sessionAlias;
         }
 
-        public void Apply(IAssemblyProvider assemblyProvider, HbmMappingsContainer hbmMappingsContainer)
+        public void Apply(string sessionAlias, HbmMappingsContainer hbmMappingsContainer)
         {
             if (sessionAlias != this.sessionAlias)
             {

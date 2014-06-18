@@ -133,50 +133,50 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result as List<TReturnType>;
         }
 
-        public virtual TModel Insert(ISession currentSession, TModel entity)
+        public virtual TModel Insert(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.SaveOrUpdate(entity);
-            return entity;
+            nativeSession.SaveOrUpdate(model);
+            return model;
         }
 
-        public virtual IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> entityList)
+        public virtual IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> models)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            foreach (TModel model in entityList)
+            foreach (TModel model in models)
             {
                 nativeSession.SaveOrUpdate(model);
             }
-            return entityList;
+            return models;
         }
 
-        public virtual TModel Update(ISession currentSession, TModel entity)
+        public virtual TModel Update(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.SaveOrUpdate(entity);
-            return entity;
+            nativeSession.SaveOrUpdate(model);
+            return model;
         }
 
-        public virtual IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> entityList)
+        public virtual IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> models)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            foreach (TModel model in entityList)
+            foreach (TModel model in models)
             {
                 nativeSession.SaveOrUpdate(model);
             }
-            return entityList;
+            return models;
         }
 
-        public virtual void Delete(ISession currentSession, TModel entity)
+        public virtual void Delete(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Delete(entity);
+            nativeSession.Delete(model);
         }
 
-        public virtual void Delete(ISession currentSession, IEnumerable<TModel> entityList)
+        public virtual void Delete(ISession currentSession, IEnumerable<TModel> models)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            foreach (TModel model in entityList)
+            foreach (TModel model in models)
             {
                 nativeSession.Delete(model);
             }

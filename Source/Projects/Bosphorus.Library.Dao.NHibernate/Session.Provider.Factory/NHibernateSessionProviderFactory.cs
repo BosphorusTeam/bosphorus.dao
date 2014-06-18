@@ -48,7 +48,7 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
 
         private void ConfigureMapping(string sessionAlias, MappingConfiguration mappingConfiguration)
         {
-            hbmMappingRegisterer.Apply(assemblyProvider, mappingConfiguration.HbmMappings);
+            hbmMappingRegisterer.Apply(sessionAlias, mappingConfiguration.HbmMappings);
 
             foreach (var autoPersistenceModelProvider in autoPersistenceModelProviders)
             {

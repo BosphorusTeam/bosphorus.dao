@@ -64,49 +64,49 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return base.GetByNamedQuery(currentSession, queryName, parameters);
         }
 
-        public override TModel Insert(ISession currentSession, TModel entity)
+        public override TModel Insert(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel model = base.Insert(currentSession, entity);
-            nativeSession.Flush();
-            return model;
-        }
-
-        public override IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> entityList)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IEnumerable<TModel> result = base.Insert(currentSession, entityList);
+            TModel result = Insert(currentSession, model);
             nativeSession.Flush();
             return result;
         }
 
-        public override TModel Update(ISession currentSession, TModel entity)
+        public override IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> models)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel model = base.Insert(currentSession, entity);
-            nativeSession.Flush();
-            return model;
-        }
-
-        public override IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> entityList)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IEnumerable<TModel> result = base.Insert(currentSession, entityList);
+            IEnumerable<TModel> result = base.Insert(currentSession, models);
             nativeSession.Flush();
             return result;
         }
 
-        public override void Delete(ISession currentSession, TModel entity)
+        public override TModel Update(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            base.Delete(currentSession, entity);
+            TModel result = base.Insert(currentSession, model);
+            nativeSession.Flush();
+            return result;
+        }
+
+        public override IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> models)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            IEnumerable<TModel> result = base.Insert(currentSession, models);
+            nativeSession.Flush();
+            return result;
+        }
+
+        public override void Delete(ISession currentSession, TModel model)
+        {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            base.Delete(currentSession, model);
             nativeSession.Flush();
         }
 
-        public override void Delete(ISession currentSession, IEnumerable<TModel> entityList)
+        public override void Delete(ISession currentSession, IEnumerable<TModel> models)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            base.Delete(currentSession, entityList);
+            base.Delete(currentSession, models);
             nativeSession.Flush();
         }
     }

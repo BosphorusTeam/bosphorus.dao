@@ -73,14 +73,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DaoException.cs" />
+    <Compile Include="Dao.Decoration.Event\AfterGetAllEventArgs.cs" />
+    <Compile Include="Dao.Decoration.Event\BeforeGetAllEventArgs.cs" />
+    <Compile Include="Dao.Decoration.Event\DaoEventArgs.cs" />
+    <Compile Include="Dao.Decoration.Event\IDaoListener.cs" />
     <Compile Include="Dao.Decoration\CacheDecorator.cs" />
-    <Compile Include="Dao\AbstractDao.Generic.cs" />
+    <Compile Include="Dao.Decoration\EventDecorator.cs" />
+    <Compile Include="Dao.Decoration\AbstractDaoDecorator.Generic.cs" />
     <Compile Include="Dao\DaoExtension.Generic.cs" />
     <Compile Include="Dao\DaoExtension.NonGeneric.cs" />
     <Compile Include="Dao\DaoExtension.Generic.Decoration.cs" />
     <Compile Include="Dao\IDao.Generic.cs" />
     <Compile Include="Dao\IDao.NonGeneric.cs" />
-    <Compile Include="Dao\AbstractNullDao.Generic.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Session.Provider\ISessionProvider.cs" />
     <Compile Include="Session\ISession.cs" />

@@ -5,6 +5,6 @@ namespace Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider
 {
     public interface IHbmMappingRegisterer
     {
-        void Apply(IAssemblyProvider assemblyProvider, HbmMappingsContainer hbmMappingsContainer);
+        void Apply(string sessionAlias, HbmMappingsContainer hbmMappingsContainer);
     }
 }

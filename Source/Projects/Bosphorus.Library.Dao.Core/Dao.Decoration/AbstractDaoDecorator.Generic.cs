@@ -25,66 +25,73 @@ using Bosphorus.Dao.Core.Session.Provider;
 
 namespace Bosphorus.Dao.Core.Dao
 {
-    public abstract class AbstractDao<TModel> : IDao<TModel>
+    public abstract class AbstractDaoDecorator<TModel> : IDao<TModel>
     {
+        private readonly IDao<TModel> decorated;
+
+        protected AbstractDaoDecorator(IDao<TModel> decorated)
+        {
+            this.decorated = decorated;
+        }
+
         public virtual ISessionProvider SessionProvider
         {
-            get { throw new NotImplementedException(); }
+            get { return decorated.SessionProvider; }
         }
 
         public virtual IEnumerable<TModel> GetAll(ISession currentSession)
         {
-            throw new NotImplementedException();
+            return decorated.GetAll(currentSession);
         }
 
         public virtual IQueryable<TModel> Query(ISession currentSession)
         {
-            throw new NotImplementedException();
+            return decorated.Query(currentSession);
         }
 
         public virtual TModel GetById<TId>(ISession currentSession, TId id)
         {
-            throw new NotImplementedException();
+            return decorated.GetById(currentSession, id);
         }
 
         public virtual IEnumerable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
         {
-            throw new NotImplementedException();
+            return decorated.GetByNamedQuery(currentSession, queryName, parameters);
         }
 
         public virtual IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
         {
-            throw new NotImplementedException();
+            return decorated.GetByQuery(currentSession, queryString, parameters);
         }
 
-        public virtual TModel Insert(ISession currentSession, TModel entity)
+        public virtual TModel Insert(ISession currentSession, TModel model)
         {
-            throw new NotImplementedException();
+            return decorated.Insert(currentSession, model);
         }
 
-        public virtual IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> entities)
+        public virtual IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> models)
         {
-            throw new NotImplementedException();
+            return decorated.Insert(currentSession, models);
         }
 
-        public virtual TModel Update(ISession currentSession, TModel entity)
+        public virtual TModel Update(ISession currentSession, TModel model)
         {
-            throw new NotImplementedException();
+            return decorated.Update(currentSession, model);
         }
 
-        public virtual IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> entities)
+        public virtual IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> models)
         {
-            throw new NotImplementedException();
+            return decorated.Update(currentSession, models);
         }
 
-        public virtual void Delete(ISession currentSession, TModel entity)
+        public virtual void Delete(ISession currentSession, TModel model)
         {
-            throw new NotImplementedException();
+            decorated.Delete(currentSession, model);
         }
 
-        public virtual void Delete(ISession currentSession, IEnumerable<TModel> entities)
+        public virtual void Delete(ISession currentSession, IEnumerable<TModel> models)
         {
-            throw new NotImplementedException();
+            decorated.Delete(currentSession, models);
         }
     }
 }

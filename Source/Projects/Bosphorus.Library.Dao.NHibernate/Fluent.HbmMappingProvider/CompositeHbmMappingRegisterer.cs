@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Castle.Core.Internal;
 using FluentNHibernate.Cfg;
 
 namespace Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider
@@ -13,11 +12,11 @@ namespace Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider
             this.items = items;
         }
 
-        public void Apply(IAssemblyProvider assemblyProvider, HbmMappingsContainer hbmMappingsContainer)
+        public void Apply(string sessionAlias, HbmMappingsContainer hbmMappingsContainer)
         {
             foreach (IHbmMappingRegisterer item in items)
             {
-                item.Apply(assemblyProvider, hbmMappingsContainer);
+                item.Apply(sessionAlias, hbmMappingsContainer);
             }
         }
     }
