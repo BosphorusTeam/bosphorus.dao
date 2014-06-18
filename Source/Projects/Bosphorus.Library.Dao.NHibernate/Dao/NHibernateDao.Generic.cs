@@ -67,7 +67,7 @@ namespace Bosphorus.Dao.NHibernate.Dao
         public override TModel Insert(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel result = Insert(currentSession, model);
+            TModel result = base.Insert(currentSession, model);
             nativeSession.Flush();
             return result;
         }
