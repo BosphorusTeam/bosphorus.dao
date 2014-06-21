@@ -1,4 +1,4 @@
-using Bosphorus.Container.Castle.Facade;
+using Bosphorus.BootStapper.Runner;
 
 namespace Bosphorus.Dao.Client
 {

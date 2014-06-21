@@ -1,7 +1,7 @@
 ﻿using Bosphorus.Dao.NHibernate.Fluent.PersistenceConfigurerProvider;
 using FluentNHibernate.Cfg.Db;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Client.Log
+namespace Bosphorus.Dao.NHibernate.Demo.DTC.Log
 {
     public class PersistenceConfigurerProvider : AbstractPersistenceConfigurerProvider
     {

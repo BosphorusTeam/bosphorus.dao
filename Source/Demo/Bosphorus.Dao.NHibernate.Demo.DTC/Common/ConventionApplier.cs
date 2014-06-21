@@ -1,7 +1,7 @@
 ﻿using Bosphorus.Dao.NHibernate.Fluent.ConventionApplier;
 using FluentNHibernate.Conventions;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Client.Common
+namespace Bosphorus.Dao.NHibernate.Demo.DTC.Common
 {
     public class ConventionApplier: IConventionApplier
     {

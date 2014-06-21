@@ -1,10 +1,10 @@
 ﻿using System.Transactions;
-using Bosphorus.Container.Castle.Facade;
+using Bosphorus.BootStapper.Runner;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
 
-namespace Bosphorus.Dao.NHibernate.Demo.Client
+namespace Bosphorus.Dao.NHibernate.Demo.DTC
 {
     class Program: IProgram
     {
