@@ -119,14 +119,9 @@ namespace Bosphorus.Dao.NHibernate.Dao
 
         private IList<TReturnType> GetByQuery<TReturnType>(IQuery query, object[] parameters)
         {
-            int parameterCount = 0;
-            for (int i = 0; i < parameters.Length; i++)
+            for (int i = 1; i <= parameters.Length; i++)
             {
-                if (parameters[i] == null)
-                    continue;
-
-                query.SetParameter(parameterCount, parameters[i]);
-                parameterCount++;
+                query.SetParameter(i, parameters[i]);
             }
 
             IList<TReturnType> result = query.List<TReturnType>();
