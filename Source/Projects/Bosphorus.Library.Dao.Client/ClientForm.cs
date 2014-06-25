@@ -14,7 +14,8 @@ namespace Bosphorus.Dao.Client
             InitializeComponent();
 
             lbQueries.Items.Clear();
-            lbQueries.Items.AddRange(executionItemList.List.ToArray());
+            IExecutionItem[] orderedItems = executionItemList.List.OrderBy(item => item.ToString()).ToArray();
+            lbQueries.Items.AddRange(orderedItems);
         }
 
         private void lbQueries_DoubleClick(object sender, EventArgs e)
