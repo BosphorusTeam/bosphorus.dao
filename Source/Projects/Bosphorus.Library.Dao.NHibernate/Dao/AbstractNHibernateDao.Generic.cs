@@ -17,7 +17,8 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-using Remotion.Linq.Utilities;
+using System.Linq.Expressions;
+using NHibernate.Transform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,7 @@ using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
-using FluentNHibernate.Testing.Values;
 using NHibernate;
-using NHibernate.Criterion;
 using NHibernate.Linq;
 using NHibernate.Metadata;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
@@ -38,24 +37,16 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public abstract class AbstractNHibernateDao<TModel> : IDao<TModel>
     {
         private readonly ISessionProvider sessionProvider;
-        private readonly Type persitentType = typeof(TModel);
+        private readonly Type modelType = typeof(TModel);
+        private readonly IClassMetadata classMetadata;
+        private readonly IResultTransformer resultTransformer;
 
         protected AbstractNHibernateDao(ISessionProviderFactory sessionProviderFactory, string sessionAlias)
         {
             this.sessionProvider = sessionProviderFactory.Build(sessionAlias);
-            EnsureEntityPersisterRegistered(sessionProvider);
-        }
-
-        private void EnsureEntityPersisterRegistered(ISessionProvider sessionProvider)
-        {
-            NHibernateSessionProvider nHibernateSessionProvider = (NHibernateSessionProvider) sessionProvider;
-            ISessionFactory nativeSessionProvider = nHibernateSessionProvider.NativeSessionProvider;
-            Type entity = typeof (TModel);
-            IClassMetadata classMetadata = nativeSessionProvider.GetClassMetadata(entity);
-            if (classMetadata == null)
-            {
-                throw new ModelMappingNotRegisteredException<TModel>(sessionProvider);
-            }
+            modelType = typeof(TModel);
+            classMetadata = sessionProvider.GetClassMetadata(modelType);
+            resultTransformer = Transformers.AliasToBean<TModel>();
         }
 
         public ISessionProvider SessionProvider
@@ -71,24 +62,14 @@ namespace Bosphorus.Dao.NHibernate.Dao
         protected global::NHibernate.ICriteria GetNativeCriteria(ISession currentSession)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            ICriteria criteria = nativeSession.CreateCriteria(persitentType);
+            ICriteria criteria = nativeSession.CreateCriteria(modelType);
             return criteria;
         }
 
-        public virtual IEnumerable<TModel> GetAll(ISession currentSession)
+        public virtual IQueryable<TModel> GetAll(ISession currentSession)
         {
-            return GetByCriteria(currentSession);
-        }
-
-        private IEnumerable<TModel> GetByCriteria(ISession currentSession, params object[] criterions)
-        {
-            ICriteria criteria = GetNativeCriteria(currentSession);
-            foreach (object criterium in criterions)
-            {
-                criteria.Add((ICriterion)criterium);
-            }
-
-            return criteria.Future<TModel>();
+            IQueryable<TModel> queryable = Query(currentSession);
+            return queryable;
         }
 
         public IQueryable<TModel> Query(ISession currentSession)
@@ -98,35 +79,56 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return queryable;
         }
 
-        public virtual TModel GetById<TId>(ISession currentSession, TId id)
+        public virtual IQueryable<TModel> GetById<TId>(ISession currentSession, TId id)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            return nativeSession.Get<TModel>(id);
+            Expression<Func<TModel, bool>> expression = BuildGetByIdExpression(classMetadata, id);
+            IQueryable<TModel> queryable = Query(currentSession);
+            IQueryable<TModel> result = queryable.Where(expression);
+            return result;
         }
 
-        public virtual IEnumerable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
+        private Expression<Func<TModel, bool>> BuildGetByIdExpression<TId>(IClassMetadata classMetadata, TId id)
+        {
+            ParameterExpression parameterExpression = Expression.Parameter(modelType);
+            string identifierPropertyName = classMetadata.IdentifierPropertyName;
+            MemberExpression memberExpression = Expression.Property(parameterExpression, identifierPropertyName);
+            ConstantExpression constantExpression = Expression.Constant(id);
+            BinaryExpression bodyExpression = Expression.Equal(memberExpression, constantExpression);
+
+            Expression<Func<TModel, bool>> expression = Expression.Lambda<Func<TModel, bool>>(bodyExpression, parameterExpression);
+            return expression;
+        }
+
+        public virtual IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             global::NHibernate.IQuery query = nativeSession.GetNamedQuery(queryName);
+            query.SetResultTransformer(resultTransformer);
             return GetByQuery<TModel>(query, parameters);
         }
 
-        public virtual IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
+        public virtual IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IQuery query = nativeSession.CreateQuery(queryString);
+            ISQLQuery query = nativeSession.CreateSQLQuery(queryString);
+            query.AddEntity(modelType);
             return GetByQuery<TModel>(query, parameters);
         }
 
-        private IList<TReturnType> GetByQuery<TReturnType>(IQuery query, object[] parameters)
+        private IQueryable<TReturnType> GetByQuery<TReturnType>(IQuery query, object[] parameters)
         {
+            int parameterCount = 0;
             for (int i = 0; i < parameters.Length; i++)
             {
-                query.SetParameter(i, parameters[i]);
+                if (parameters[i] == null)
+                    continue;
+
+                query.SetParameter(parameterCount, parameters[i]);
+                parameterCount++;
             }
 
             IList<TReturnType> result = query.List<TReturnType>();
-            return result as List<TReturnType>;
+            return result.AsQueryable();
         }
 
         public virtual TModel Insert(ISession currentSession, TModel model)

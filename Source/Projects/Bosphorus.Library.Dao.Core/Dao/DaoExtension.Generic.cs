@@ -25,12 +25,19 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public static TModel GetById<TId, TModel>(this IDao<TModel> extended, TId id)
+        public static IQueryable<TModel> GetById<TModel, TId>(this IDao<TModel> extended, TId id)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            TModel result = extended.GetById(session, id);
+            IQueryable<TModel> result = extended.GetById(session, id);
             sessionProvider.CloseSession(session);
+            return result;
+        }
+
+        public static TModel GetByIdSingle<TModel, TId>(this IDao<TModel> extended, TId id)
+        {
+            IQueryable<TModel> queryable = extended.GetById(id);
+            TModel result = queryable.Single();
             return result;
         }
 

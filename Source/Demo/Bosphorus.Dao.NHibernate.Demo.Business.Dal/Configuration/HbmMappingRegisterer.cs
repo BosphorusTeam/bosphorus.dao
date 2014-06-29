@@ -1,4 +1,5 @@
 ﻿using Bosphorus.Dao.NHibernate.Demo.Business.Dal.Legacy;
+using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider;
 using FluentNHibernate.Cfg;
 
@@ -8,7 +9,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal.Configuration
     {
         public void Apply(string sessionAlias, HbmMappingsContainer hbmMappingsContainer)
         {
-            hbmMappingsContainer.AddClasses(typeof(ImportCargoInfoServiceMap));
+            hbmMappingsContainer.AddClasses(typeof(HbmMappingRegisterer));
         }
     }
 }

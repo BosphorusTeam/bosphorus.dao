@@ -77,7 +77,7 @@
     <Compile Include="Dao.Decoration\AbstractDaoDecorator.Generic.cs" />
     <Compile Include="Dao\DaoExtension.Generic.cs" />
     <Compile Include="Dao\DaoExtension.NonGeneric.cs" />
-    <Compile Include="Dao\DaoExtension.Generic.Decoration.cs" />
+    <Compile Include="Dao\DaoExtension.Decoration.Generic.cs" />
     <Compile Include="Dao\IDao.Generic.cs" />
     <Compile Include="Dao\IDao.NonGeneric.cs" />
     <Compile Include="Installer.cs" />

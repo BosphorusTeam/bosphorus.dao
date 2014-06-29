@@ -6,24 +6,22 @@ namespace Bosphorus.Dao.Core.Dao.Decoration
 {
     class CacheDecorator<TModel>: AbstractDaoDecorator<TModel>
     {
-        private readonly IDao<TModel> decorated;
-        private readonly IList<TModel> cache;
+        private readonly IQueryable<TModel> cache;
 
         public CacheDecorator(IDao<TModel> decorated)
             : base(decorated)
         {
-            this.decorated = decorated;
-            this.cache = decorated.GetAll().ToList();
+            this.cache = decorated.GetAll().ToList().AsQueryable();
         }
 
-        public override IEnumerable<TModel> GetAll(ISession currentSession)
+        public override IQueryable<TModel> GetAll(ISession currentSession)
         {
             return cache;
         }
 
         public override IQueryable<TModel> Query(ISession currentSession)
         {
-            return cache.AsQueryable();
+            return cache;
         }
     }
 }

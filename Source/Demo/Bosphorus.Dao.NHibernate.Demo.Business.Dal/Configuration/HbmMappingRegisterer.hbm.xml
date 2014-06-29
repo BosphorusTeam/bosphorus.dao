@@ -3,4 +3,12 @@
   <sql-query name="CustomQuery1">
     select * from IMPORTCARGOINFOSERVICE
   </sql-query>
+  <sql-query name="AccountNamedQuery">
+    SELECT
+        ID as Id,
+        NO as No,
+        NAME as Name
+    FROM
+        XAccount
+  </sql-query>
 </hibernate-mapping>

@@ -25,29 +25,36 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public static TModel GetById<TId, TModel>(this IDao extended, TId id)
+        public static IQueryable<TModel> GetById<TModel, TId>(this IDao extended, TId id)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            TModel result = extended.GetById<TModel, TId>(session, id);
+            IQueryable<TModel> result = extended.GetById<TModel, TId>(session, id);
             sessionProvider.CloseSession(session);
             return result;
         }
 
-        public static IEnumerable<TModel> GetByNamedQuery<TModel>(this IDao extended, string queryName, params object[] parameters)
+        public static TModel GetByIdSingle<TModel, TId>(this IDao extended, TId id)
+        {
+            IQueryable<TModel> queryable = extended.GetById<TModel, TId>(id);
+            TModel result = queryable.Single();
+            return result;
+        }
+
+        public static IQueryable<TModel> GetByNamedQuery<TModel>(this IDao extended, string queryName, params object[] parameters)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            IEnumerable<TModel> result = extended.GetByNamedQuery<TModel>(session, queryName, parameters);
+            IQueryable<TModel> result = extended.GetByNamedQuery<TModel>(session, queryName, parameters);
             sessionProvider.CloseSession(session);
             return result;
         }
 
-        public static IEnumerable<TModel> GetByQuery<TModel>(this IDao extended, string queryString, params object[] parameters)
+        public static IQueryable<TModel> GetByQuery<TModel>(this IDao extended, string queryString, params object[] parameters)
         {
             ISessionProvider sessionProvider = extended.SessionProvider;
             ISession session = sessionProvider.OpenSession();
-            IEnumerable<TModel> result = extended.GetByQuery<TModel>(session, queryString, parameters);
+            IQueryable<TModel> result = extended.GetByQuery<TModel>(session, queryString, parameters);
             sessionProvider.CloseSession(session);
             return result;
         }

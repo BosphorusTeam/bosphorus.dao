@@ -28,15 +28,15 @@ namespace Bosphorus.Dao.Core.Dao
     {
         ISessionProvider SessionProvider { get; }
 
-        IEnumerable<TModel> GetAll(ISession currentSession);
+        IQueryable<TModel> GetAll(ISession currentSession);
 
         IQueryable<TModel> Query(ISession currentSession);
-            
-        TModel GetById<TId>(ISession currentSession, TId id);
 
-        IEnumerable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters);
+        IQueryable<TModel> GetById<TId>(ISession currentSession, TId id);
 
-        IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters);
+        IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters);
+
+        IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters);
 
         TModel Insert(ISession currentSession, TModel model);
 

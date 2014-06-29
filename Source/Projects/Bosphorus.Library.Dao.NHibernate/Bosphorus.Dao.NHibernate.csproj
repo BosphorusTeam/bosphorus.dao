@@ -90,7 +90,7 @@
     <Compile Include="Dao\AbstractNHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dao\ModelMappingNotRegisteredException.cs" />
+    <Compile Include="Session.Provider\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -122,6 +122,7 @@
     <Compile Include="Fluent.AutoPersistenceModelProvider\IAutoPersistenceModelProvider.cs" />
     <Compile Include="Session.Provider.Factory\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
+    <Compile Include="Session.Provider\SessionProviderExtensions.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />
     <Compile Include="Transaction\NHibernateTransaction.cs" />

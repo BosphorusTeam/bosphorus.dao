@@ -18,6 +18,7 @@
 */
 
 using System.Collections.Generic;
+using System.Linq;
 using Bosphorus.Dao.NHibernate.Common;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
@@ -36,28 +37,28 @@ namespace Bosphorus.Dao.NHibernate.Dao
         {
         }
 
-        public override IEnumerable<TModel> GetAll(ISession currentSession)
+        public override IQueryable<TModel> GetAll(ISession currentSession)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             nativeSession.Clear();
             return base.GetAll(currentSession);
         }
 
-        public override TModel GetById<TId>(ISession currentSession, TId id)
+        public override IQueryable<TModel> GetById<TId>(ISession currentSession, TId id)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             nativeSession.Clear();
             return base.GetById<TId>(currentSession, id);
         }
 
-        public override IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
+        public override IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             nativeSession.Clear();
             return base.GetByQuery(currentSession, queryString, parameters);
         }
 
-        public override IEnumerable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
+        public override IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             nativeSession.Clear();

@@ -38,7 +38,7 @@ namespace Bosphorus.Dao.Core.Dao.Decoration
             get { return decorated.SessionProvider; }
         }
 
-        public virtual IEnumerable<TModel> GetAll(ISession currentSession)
+        public virtual IQueryable<TModel> GetAll(ISession currentSession)
         {
             return decorated.GetAll(currentSession);
         }
@@ -48,17 +48,17 @@ namespace Bosphorus.Dao.Core.Dao.Decoration
             return decorated.Query(currentSession);
         }
 
-        public virtual TModel GetById<TId>(ISession currentSession, TId id)
+        public virtual IQueryable<TModel> GetById<TId>(ISession currentSession, TId id)
         {
             return decorated.GetById(currentSession, id);
         }
 
-        public virtual IEnumerable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
+        public virtual IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
         {
             return decorated.GetByNamedQuery(currentSession, queryName, parameters);
         }
 
-        public virtual IEnumerable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
+        public virtual IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
         {
             return decorated.GetByQuery(currentSession, queryString, parameters);
         }

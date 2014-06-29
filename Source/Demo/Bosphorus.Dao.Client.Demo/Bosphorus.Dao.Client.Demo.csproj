@@ -76,6 +76,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Samples\Generic.cs" />
+    <Compile Include="Samples\NonGeneric.cs" />
     <Compile Include="Samples\Polymorphic.cs" />
     <Compile Include="Samples\Hbm.cs" />
     <Compile Include="Samples\Mapping.cs" />
