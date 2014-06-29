@@ -30,12 +30,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
         public override HqlTreeNode BuildHql(MethodInfo method, Expression targetObject, ReadOnlyCollection<Expression> arguments, HqlTreeBuilder treeBuilder, IHqlExpressionVisitor visitor)
         {
             var value = visitor.Visit(arguments[0]).AsExpression();
-            HqlTreeNode inClauseNode;
-
-            if (arguments[1] is ConstantExpression)
-                inClauseNode = BuildFromArray((Array)((ConstantExpression)arguments[1]).Value, treeBuilder);
-            else
-                inClauseNode = BuildFromExpression(arguments[1], visitor);
+            HqlTreeNode inClauseNode = BuildInClause(arguments, treeBuilder, visitor);
 
             HqlTreeNode inClause = treeBuilder.In(value, inClauseNode);
 
@@ -45,19 +40,36 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
             return inClause;
         }
 
+        private HqlTreeNode BuildInClause(ReadOnlyCollection<Expression> arguments, HqlTreeBuilder treeBuilder, IHqlExpressionVisitor visitor)
+        {
+            ConstantExpression constantExpression = arguments[1] as ConstantExpression;
+            if (constantExpression == null)
+            {
+                HqlTreeNode result = BuildFromExpression(arguments[1], visitor);
+                return result;
+            }
+
+            Array valueArray = (Array) constantExpression.Value;
+            Type elementType = valueArray.GetType().GetElementType();
+
+            if (elementType.IsValueType || elementType == typeof(string))
+            {
+                HqlTreeNode result = BuildFromArray(valueArray, treeBuilder, elementType);
+                return result;
+            }
+
+            HqlTreeNode hqlTreeNode = BuildFromExpression(arguments[1], visitor);
+            return hqlTreeNode;
+        }
+
         private HqlTreeNode BuildFromExpression(Expression expression, IHqlExpressionVisitor visitor)
         {
             //TODO: check if it's a valid expression for in clause, i.e. it selects only one column
             return visitor.Visit(expression).AsExpression();
         }
 
-        private HqlTreeNode BuildFromArray(Array valueArray, HqlTreeBuilder treeBuilder)
+        private HqlTreeNode BuildFromArray(Array valueArray, HqlTreeBuilder treeBuilder, Type elementType)
         {
-            var elementType = valueArray.GetType().GetElementType();
-
-            if (!elementType.IsValueType && elementType != typeof(string))
-                throw new ArgumentException("Only primitives and strings can be used");
-
             Type enumUnderlyingType = elementType.IsEnum ? Enum.GetUnderlyingType(elementType) : null;
             var variants = new HqlExpression[valueArray.Length];
 

@@ -70,12 +70,15 @@
   <ItemGroup>
     <Compile Include="Configuration\Business\ConventionApplier.cs" />
     <Compile Include="Configuration\Business\PersistenceConfigurerProvider.cs" />
+    <Compile Include="Configuration\Business\SchemaUpdater.cs" />
     <Compile Include="Configuration\Log\PersistenceConfigurerProvider.cs" />
     <Compile Include="Configuration\Log\SchemaUpdater.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CustomerTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Samples\Enum.cs" />
     <Compile Include="Samples\Generic.cs" />
     <Compile Include="Samples\NonGeneric.cs" />
     <Compile Include="Samples\Polymorphic.cs" />
