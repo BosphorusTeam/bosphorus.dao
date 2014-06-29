@@ -1,8 +1,10 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections;
 using System.Diagnostics;
+using Bosphorus.Common.Clr.IO.TextWriter;
 using Bosphorus.Dao.Client.Model;
 
 namespace Bosphorus.Dao.Client
@@ -16,10 +18,15 @@ namespace Bosphorus.Dao.Client
             lbQueries.Items.Clear();
             IExecutionItem[] orderedItems = executionItemList.List.OrderBy(item => item.ToString()).ToArray();
             lbQueries.Items.AddRange(orderedItems);
+
+            TextWriter textWriter = new TextBoxWriter(tbConsole);
+            TextWriter compsoiteWriter = new CompositeTextWriter(Console.Out, textWriter);
+            Console.SetOut(compsoiteWriter);
         }
 
         private void lbQueries_DoubleClick(object sender, EventArgs e)
         {
+            tbConsole.Clear();
             FireQueryModel();
         }
 

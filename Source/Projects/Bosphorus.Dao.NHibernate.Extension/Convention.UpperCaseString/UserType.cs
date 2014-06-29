@@ -47,16 +47,16 @@ namespace Bosphorus.Dao.NHibernate.Extension.Convention.UpperCaseString
             return xml;
         }
 
-        public object StringToObject(string xml)
-        {
-            return xml;
-        }
+        //public object StringToObject(string xml)
+        //{
+        //    return xml;
+        //}
 
-        public string ObjectToSQLString(object value, global::NHibernate.Dialect.Dialect dialect)
-        {
-            string upperCaseString = ((string)value).ToUpperInvariant();
-            return "'" + upperCaseString + "'";
-        }
+        //public string ObjectToSQLString(object value, global::NHibernate.Dialect.Dialect dialect)
+        //{
+        //    string upperCaseString = ((string)value).ToUpperInvariant();
+        //    return "'" + upperCaseString + "'";
+        //}
 
         public override string Name
         {

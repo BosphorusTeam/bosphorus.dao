@@ -56,6 +56,20 @@
     <Compile Include="Convention.UpperCaseTableName\Convention.cs" />
     <Compile Include="Driver.OracleManaged\OracleDataClientConfigurationExtensions.cs" />
     <Compile Include="Driver.OracleManaged\OracleManagedDataClientDriver.cs" />
+    <Compile Include="LinQ.CastAs\HqlGenerator.cs" />
+    <Compile Include="LinQ.CastAs\ObjectExtensions.cs" />
+    <Compile Include="LinQ.Coalesce\HqlGenerator.cs" />
+    <Compile Include="LinQ.Coalesce\ObjectExtensions.cs" />
+    <Compile Include="LinQ.Common\HqlAnyValueConstant.cs" />
+    <Compile Include="LinQ.Common\HqlTreeBuilderExtensions.cs" />
+    <Compile Include="LinQ.Equals\HqlGenerator.cs" />
+    <Compile Include="LinQ.In\HqlGenerator.cs" />
+    <Compile Include="LinQ.In\ObjectExtensions.cs" />
+    <Compile Include="LinQ.LeftJoin\HqlGenerator.cs" />
+    <Compile Include="LinQ.LeftJoin\ObjectExtensions.cs" />
+    <Compile Include="LinQ.Soundex\StringExtensions.cs" />
+    <Compile Include="LinQ\LinqExtender.cs" />
+    <Compile Include="LinQ\LinqToHqlGeneratorsRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Convention.UpperCaseString\UserType.cs" />
   </ItemGroup>
@@ -64,6 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Convention.Eumeration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
+      <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
+      <Name>Bosphorus.Dao.NHibernate</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

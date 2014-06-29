@@ -12,9 +12,14 @@ namespace Bosphorus.Dao.Client
         {
             container.Register(
                 allLoadedTypes
-                    .Where(type => typeof(IExecutionItemList).IsAssignableFrom(type) && !type.IsAbstract)
+                    .BasedOn<IExecutionItemList>()
                     .WithService
-                    .FirstInterface()
+                    .FirstInterface(),
+
+                Component
+                    .For<IExecutionItemList>()
+                    .ImplementedBy<CompositeEceutionItemList>()
+                    .IsDefault()
             );
         }
     }
