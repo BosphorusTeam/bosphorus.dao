@@ -86,10 +86,7 @@
   <ItemGroup>
     <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
-    <Compile Include="Dao\AbstractNHibernateDao.Generic.cs" />
-    <Compile Include="Dao\AbstractNHibernateDao.NonGeneric.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Dao\AbstractNHibernateDao.cs" />
     <Compile Include="Session.Provider\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>

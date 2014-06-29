@@ -19,96 +19,109 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Container.Castle.Registry;
+using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Common;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao
 {
-    public class NHibernateDao: AbstractNHibernateDao
+    public class NHibernateDao: IDao
     {
-        public NHibernateDao(ISessionProviderFactory sessionProviderFactory)
-            : this(sessionProviderFactory, SessionAlias.Default)
+        private readonly IServiceRegistry serviceRegistry;
+        private readonly ISessionProvider sessionProvider;
+
+        public NHibernateDao(ISessionProviderFactory sessionProviderFactory, IServiceRegistry serviceRegistry)
+            : this(sessionProviderFactory, SessionAlias.Default, serviceRegistry)
         {
         }
 
-        public NHibernateDao(ISessionProviderFactory sessionProviderFactory, string sessionAlias)
-            : base(sessionProviderFactory, sessionAlias)
+        public NHibernateDao(ISessionProviderFactory sessionProviderFactory, string sessionAlias, IServiceRegistry serviceRegistry)
         {
+            this.sessionProvider = sessionProviderFactory.Build(sessionAlias);
+            this.serviceRegistry = serviceRegistry;
         }
 
-        public override IQueryable<TModel> GetAll<TModel>(ISession currentSession)
+        public ISessionProvider SessionProvider
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.GetAll<TModel>(currentSession);
+            get { return sessionProvider; }
         }
 
-        public override IQueryable<TModel> GetById<TModel, TId>(ISession currentSession, TId id)
+        public IQueryable<TModel> GetAll<TModel>(ISession currentSession)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.GetById<TModel, TId>(currentSession, id);
-        }
-
-        public override IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, params object[] parameters)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.GetByQuery<TModel>(currentSession, queryString, parameters);
-        }
-
-        public override IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, params object[] parameters)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.GetByNamedQuery<TModel>(currentSession, queryName, parameters);
-        }
-
-        public override TModel Insert<TModel>(ISession currentSession, TModel entity)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel model = base.Insert(currentSession, entity);
-            nativeSession.Flush();
-            return model;
-        }
-
-        public override IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IEnumerable<TModel> result = base.Insert(currentSession, entityList);
-            nativeSession.Flush();
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IQueryable<TModel> result = genericDao.GetAll(currentSession);
             return result;
         }
 
-        public override TModel Update<TModel>(ISession currentSession, TModel entity)
+        public IQueryable<TModel> Query<TModel>(ISession currentSession)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel model = base.Update(currentSession, entity);
-            nativeSession.Flush();
-            return model;
-        }
-
-        public override IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IEnumerable<TModel> result = base.Update(currentSession, entityList);
-            nativeSession.Flush();
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IQueryable<TModel> result = genericDao.Query(currentSession);
             return result;
         }
 
-        public override void Delete<TModel>(ISession currentSession, TModel entity)
+        public IQueryable<TModel> GetById<TModel, TId>(ISession currentSession, TId id)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            base.Delete(currentSession, entity);
-            nativeSession.Flush();
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IQueryable<TModel> result = genericDao.GetById(currentSession, id);
+            return result;
         }
 
-        public override void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        public IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, params object[] parameters)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            base.Delete(currentSession, entityList);
-            nativeSession.Flush();
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IQueryable<TModel> result = genericDao.GetByQuery(currentSession, queryString, parameters);
+            return result;
+        }
+
+        public IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, params object[] parameters)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IQueryable<TModel> result = genericDao.GetByNamedQuery(currentSession, queryName, parameters);
+            return result;
+        }
+
+        public TModel Insert<TModel>(ISession currentSession, TModel entity)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            TModel result = genericDao.Insert(currentSession, entity);
+            return result;
+        }
+
+        public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IEnumerable<TModel> result = genericDao.Insert(currentSession, entityList);
+            return result;
+        }
+
+        public TModel Update<TModel>(ISession currentSession, TModel entity)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            TModel result = genericDao.Update(currentSession, entity);
+            return result;
+        }
+
+        public IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IEnumerable<TModel> result = genericDao.Update(currentSession, entityList);
+            return result;
+        }
+
+        public void Delete<TModel>(ISession currentSession, TModel entity)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            genericDao.Delete(currentSession, entity);
+        }
+
+        public void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            genericDao.Delete(currentSession, entityList);
         }
     }
 }
