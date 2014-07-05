@@ -6,7 +6,12 @@ namespace Bosphorus.Dao.Client
     {
         public static void Run()
         {
-            WinFormRunner.Run<ClientForm>();
+            Run(Environment.Local, Perspective.Debug);
+        }
+
+        public static void Run(Environment environment, Perspective perspective, params string[] args)
+        {
+            WinFormRunner.Run<ClientForm>(environment, perspective, args);
         }
     }
 }

@@ -55,8 +55,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.BootStapper">
-      <HintPath>..\..\packages\Bosphorus.BootStapper.1.1.0.4\lib\net45\Bosphorus.BootStapper.dll</HintPath>
+    <Reference Include="Bosphorus.BootStapper, Version=1.1.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Bosphorus.BootStapper.1.1.0.6\lib\net45\Bosphorus.BootStapper.dll</HintPath>
     </Reference>
     <Reference Include="Bosphorus.Common.Clr, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
