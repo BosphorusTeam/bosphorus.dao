@@ -10,8 +10,7 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     {
         public NonGeneric(IDao nonGenericDao)
         {
-            nonGenericDao.GetById<Account, Guid>(Guid.Empty);
-
+            nonGenericDao.GetById<Account, int>(1);
 
             this.Add("NonGeneric - GetAll", () => nonGenericDao.GetAll<Account>());
             this.Add("NonGeneric - GetById", () => nonGenericDao.GetById<Account, Guid>(Guid.Empty));

@@ -17,7 +17,7 @@ namespace Bosphorus.Dao.Client.Demo.Samples
         public Simple(IDao nonGenericDao, IDao<CargoOrder> orderDao, ICustomerDao customerDao, IDao<Account> accountDao, IDao<IMPORTCARGOINFOSERVICE> legancyDao, IDao<LogModel> logDao)
         {
             this.Add(() => customerDao.GetAll());
-            this.Add(() => accountDao.GetById(Guid.NewGuid()));
+            this.Add(() => accountDao.GetById(1));
             this.Add(() => accountDao.Insert(new Account { No = 1, Name = "Onur Eker", Type = typeof(Account) }));
             this.Add(() => from order in orderDao.Query() where order.Desi > 10 select order);
             this.Add("Dao - Non Generic", () => from customer in nonGenericDao.Query<Customer>() where customer.Name == "Onur" select customer);

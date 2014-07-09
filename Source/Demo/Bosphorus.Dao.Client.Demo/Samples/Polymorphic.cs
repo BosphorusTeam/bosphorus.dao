@@ -12,7 +12,7 @@ namespace Bosphorus.Dao.Client.Demo.Samples
         public Polymorphic(IDao<Account> accountDao)
         {
             IEnumerable<Account> selectedAccounts = accountDao.Query();
-            IEnumerable<Guid> selectedAccountGuids = selectedAccounts.Select(x => x.Customer.Id);
+            IEnumerable<int> selectedAccountGuids = selectedAccounts.Select(x => x.Customer.Id);
 
             this.Add("Polymorphic - Contains", () =>
                 from account in accountDao.Query()

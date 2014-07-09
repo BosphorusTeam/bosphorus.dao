@@ -71,7 +71,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
         private HqlTreeNode BuildFromArray(Array valueArray, HqlTreeBuilder treeBuilder, Type elementType)
         {
             Type enumUnderlyingType = elementType.IsEnum ? Enum.GetUnderlyingType(elementType) : null;
-            var variants = new HqlExpression[valueArray.Length];
+            HqlTreeNode[] variants = new HqlTreeNode[valueArray.Length];
 
             for (int index = 0; index < valueArray.Length; index++)
             {
@@ -84,7 +84,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
                 variants[index] = treeBuilder.Constant(val);
             }
 
-            return treeBuilder.DistinctHolder(variants);
+            return treeBuilder.ExpressionSubTreeHolder(variants);
         }
     }
 }

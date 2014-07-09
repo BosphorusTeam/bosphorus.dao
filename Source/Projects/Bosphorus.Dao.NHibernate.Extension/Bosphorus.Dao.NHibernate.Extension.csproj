@@ -34,10 +34,10 @@
       <HintPath>..\..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NHibernate.4.0.0-Alpha2\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,8 +63,12 @@
     <Compile Include="LinQ.Common\HqlAnyValueConstant.cs" />
     <Compile Include="LinQ.Common\HqlTreeBuilderExtensions.cs" />
     <Compile Include="LinQ.Equals\HqlGenerator.cs" />
-    <Compile Include="LinQ.In\HqlGenerator.cs" />
-    <Compile Include="LinQ.In\ObjectExtensions.cs" />
+    <Compile Include="LinQ.In\HqlGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinQ.In\ObjectExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LinQ.LeftJoin\HqlGenerator.cs" />
     <Compile Include="LinQ.LeftJoin\ObjectExtensions.cs" />
     <Compile Include="LinQ.Soundex\StringExtensions.cs" />
@@ -74,9 +78,6 @@
     <Compile Include="Convention.UpperCaseString\UserType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Convention.Eumeration\" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,10 @@
       <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
       <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
