@@ -10,7 +10,7 @@ namespace Bosphorus.Dao.Client.Demo.Configuration.Business
             return
                 SQLiteConfiguration
                     .Standard
-                    .ConnectionString(@"data source=.\Demo.db3")
+                    .UsingFile(@".\Demo.db3")
                     .ShowSql()
                     .FormatSql();
         }

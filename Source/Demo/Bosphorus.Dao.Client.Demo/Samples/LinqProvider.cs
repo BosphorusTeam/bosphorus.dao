@@ -12,10 +12,9 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     {
         public LinqProvider(IDao<Customer> customerDao, IDao<Account> accountDao)
         {
-            IDao<Account> cachedAccountDao = accountDao.Cached();
             string[] inList = {"Onur", "Oğuz"};
 
-            this.Add("LinqProvider - Cached", () => from model in cachedAccountDao.Query() where model.Name == "Onur" select model);
+            this.Add("LinqProvider - Cached", () => from model in accountDao.Cached().Query() where model.Name == "Onur" select model);
 
             this.Add("LinqProvider - LinQ In (Values)", () => from model in accountDao.Query() where model.Name.In("Onur", "Oğuz") select model);
             this.Add("LinqProvider - LinQ Not In (Values)", () => from model in accountDao.Query() where model.Name.NotIn("Onur", "Oğuz") select model);
