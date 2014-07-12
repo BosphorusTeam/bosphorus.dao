@@ -18,7 +18,8 @@ namespace Bosphorus.Dao.Client.Demo.Samples
         {
             this.Add(() => customerDao.GetAll());
             this.Add(() => accountDao.GetById(1));
-            this.Add(() => accountDao.Insert(new Account { No = 1, Name = "Onur Eker", Type = typeof(Account) }));
+            this.Add(() => accountDao.Insert(new Account { No = 1, Name = "Maaş Hesabı", Type = typeof(Account) }));
+            this.Add(() => customerDao.Insert(new Customer { Name = "Onur Eker", Accounts  = new[]{new Account {Id=1}}}));
             this.Add(() => from order in orderDao.Query() where order.Desi > 10 select order);
             this.Add("Dao - Non Generic", () => from customer in nonGenericDao.Query<Customer>() where customer.Name == "Onur" select customer);
             

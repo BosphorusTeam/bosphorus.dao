@@ -33,8 +33,9 @@
     <Reference Include="Bosphorus.Common.Clr">
       <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.7\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
     </Reference>
-    <Reference Include="Bosphorus.Container.Castle">
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.12\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
+    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.14\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
