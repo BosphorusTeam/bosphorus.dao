@@ -98,8 +98,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CustomerTypes.cs" />
-    <Compile Include="ExecutionList\MyFlatLoopValueInjection.cs" />
-    <Compile Include="ExecutionList\SmartConventionInjection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutionList\AutoMap.cs" />

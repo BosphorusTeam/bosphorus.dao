@@ -34,7 +34,8 @@ using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao
 {
-    public abstract class AbstractNHibernateDao<TModel> : IDao<TModel>
+    public abstract class AbstractNHibernateDao<TModel> : IDao<TModel> 
+        where TModel : class
     {
         private readonly ISessionProvider sessionProvider;
         private readonly Type modelType = typeof(TModel);
@@ -151,7 +152,7 @@ namespace Bosphorus.Dao.NHibernate.Dao
         public virtual TModel Update(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.SaveOrUpdate(model);
+            nativeSession.Merge(model);
             return model;
         }
 
@@ -160,7 +161,7 @@ namespace Bosphorus.Dao.NHibernate.Dao
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             foreach (TModel model in models)
             {
-                nativeSession.SaveOrUpdate(model);
+                nativeSession.Merge(model);
             }
             return models;
         }

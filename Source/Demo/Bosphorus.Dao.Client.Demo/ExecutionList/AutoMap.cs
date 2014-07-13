@@ -48,7 +48,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
             public static T From<TMaster>(TMaster account)
             {
                 T result = new T();
-                T foo = result.InjectFrom<MyFlatLoopValueInjection>(account) as T;
+                T foo = result.InjectFrom<FlatLoopValueInjection>(account) as T;
                 return foo;
             }
 

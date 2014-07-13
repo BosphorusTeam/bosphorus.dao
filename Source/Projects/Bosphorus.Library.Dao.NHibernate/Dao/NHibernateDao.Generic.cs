@@ -25,7 +25,8 @@ using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao
 {
-    public class NHibernateDao<TModel>: AbstractNHibernateDao<TModel>
+    public class NHibernateDao<TModel>: AbstractNHibernateDao<TModel> 
+        where TModel : class
     {
         public NHibernateDao(ISessionProviderFactory sessionProviderFactory)
             : this(sessionProviderFactory, SessionAlias.Default)
@@ -84,7 +85,7 @@ namespace Bosphorus.Dao.NHibernate.Dao
         public override TModel Update(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            TModel result = base.Insert(currentSession, model);
+            TModel result = base.Update(currentSession, model);
             nativeSession.Flush();
             return result;
         }
@@ -92,7 +93,7 @@ namespace Bosphorus.Dao.NHibernate.Dao
         public override IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> models)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            IEnumerable<TModel> result = base.Insert(currentSession, models);
+            IEnumerable<TModel> result = base.Update(currentSession, models);
             nativeSession.Flush();
             return result;
         }
