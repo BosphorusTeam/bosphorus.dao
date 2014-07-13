@@ -1,13 +1,13 @@
-using System;
+using Bosphorus.BootStapper.Common;
 
 namespace Bosphorus.Dao.Client.Demo
 {
     static class Program
     {
-        [STAThread]
+        [System.STAThread]
         static void Main()
         {
-            DaoClientDemo.Run();
+            DaoRunner.Run(Environment.Test, Perspective.Debug);
         }
     }
 }
