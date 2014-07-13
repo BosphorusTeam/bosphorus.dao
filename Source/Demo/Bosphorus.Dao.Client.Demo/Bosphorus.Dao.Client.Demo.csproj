@@ -98,20 +98,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CustomerTypes.cs" />
+    <Compile Include="ExecutionList\MyFlatLoopValueInjection.cs" />
+    <Compile Include="ExecutionList\SmartConventionInjection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Samples\AutoMap.cs" />
-    <Compile Include="Samples\Enum.cs" />
-    <Compile Include="Samples\Generic.cs" />
-    <Compile Include="Samples\Join.cs" />
-    <Compile Include="Samples\NonGeneric.cs" />
-    <Compile Include="Samples\Polymorphic.cs" />
-    <Compile Include="Samples\Hbm.cs" />
-    <Compile Include="Samples\Mapping.cs" />
-    <Compile Include="Samples\Relation.cs" />
-    <Compile Include="Samples\Session.cs" />
-    <Compile Include="Samples\Simple.cs" />
-    <Compile Include="Samples\LinqProvider.cs" />
+    <Compile Include="ExecutionList\AutoMap.cs" />
+    <Compile Include="ExecutionList\Enum.cs" />
+    <Compile Include="ExecutionList\Generic.cs" />
+    <Compile Include="ExecutionList\Join.cs" />
+    <Compile Include="ExecutionList\NonGeneric.cs" />
+    <Compile Include="ExecutionList\Polymorphic.cs" />
+    <Compile Include="ExecutionList\Hbm.cs" />
+    <Compile Include="ExecutionList\Mapping.cs" />
+    <Compile Include="ExecutionList\Relation.cs" />
+    <Compile Include="ExecutionList\Session.cs" />
+    <Compile Include="ExecutionList\Simple.cs" />
+    <Compile Include="ExecutionList\LinqProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj">

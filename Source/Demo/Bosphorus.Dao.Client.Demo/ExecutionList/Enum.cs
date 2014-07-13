@@ -5,7 +5,7 @@ using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class Enum: AbstractExecutionItemList
     {

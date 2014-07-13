@@ -3,7 +3,7 @@ using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Dal.Legacy;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model.Legacy;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class Hbm : AbstractExecutionItemList
     {

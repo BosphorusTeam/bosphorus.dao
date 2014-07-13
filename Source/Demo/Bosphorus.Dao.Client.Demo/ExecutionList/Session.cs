@@ -4,7 +4,7 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Dal;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class Session : AbstractExecutionItemList
     {

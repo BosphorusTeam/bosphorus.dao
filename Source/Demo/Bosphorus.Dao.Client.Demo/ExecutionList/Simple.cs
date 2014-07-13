@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Dal;
@@ -8,9 +6,8 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Dal.Legacy;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model.Legacy;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
-using NHibernate.Linq;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class Simple : AbstractExecutionItemList
     {

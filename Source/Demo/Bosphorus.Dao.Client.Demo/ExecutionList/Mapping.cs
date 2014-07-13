@@ -6,7 +6,7 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model.Legacy;
 using NHibernate.Linq;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class Mapping : AbstractExecutionItemList
   {

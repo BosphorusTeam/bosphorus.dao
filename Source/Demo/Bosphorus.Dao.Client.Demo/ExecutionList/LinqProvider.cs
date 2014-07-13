@@ -7,7 +7,7 @@ using Bosphorus.Dao.NHibernate.Extension.LinQ.Coalesce;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Decode;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class LinqProvider : AbstractExecutionItemList
     {

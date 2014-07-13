@@ -4,7 +4,7 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
-namespace Bosphorus.Dao.Client.Demo.Samples
+namespace Bosphorus.Dao.Client.Demo.ExecutionList
 {
     public class Join: AbstractExecutionItemList
     {
