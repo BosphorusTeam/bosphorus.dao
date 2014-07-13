@@ -10,12 +10,13 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     public class Enum: AbstractExecutionItemList
     {
         public Enum(IDao<Customer> customerDao, IDao<CustomerType> customerTypeDao)
+            : base("Enum")
         {
-            Add("Enum - Where (From Database)", () => customerDao.Query().Where(customer => customer.CustomerType == GetCustomerTypefromDatabase(customerTypeDao)));
-            Add("Enum - Where (From Memory)", () => customerDao.Query().Where(customer => customer.CustomerType == GetCustomerTypeInMemory()));
-            Add("Enum - Where (EnumerationRegistration)", () => customerDao.Query().Where(customer => customer.CustomerType == CustomerTypes.Bireysel));
-            Add("Enum - Where In (EnumerationRegistration)", () => customerDao.Query().Where(customer => customer.CustomerType.In(CustomerTypes.Hepsi)));
-            Add("Enum - Where Contains (EnumerationRegistration)", () => customerDao.Query().Where(customer => CustomerTypes.Hepsi.Contains(customer.CustomerType)));
+            Add("Where (From Database)", () => customerDao.Query().Where(customer => customer.CustomerType == GetCustomerTypefromDatabase(customerTypeDao)));
+            Add("Where (From Memory)", () => customerDao.Query().Where(customer => customer.CustomerType == GetCustomerTypeInMemory()));
+            Add("Where (EnumerationRegistration)", () => customerDao.Query().Where(customer => customer.CustomerType == CustomerTypes.Bireysel));
+            Add("Where In (EnumerationRegistration)", () => customerDao.Query().Where(customer => customer.CustomerType.In(CustomerTypes.Hepsi)));
+            Add("Where Contains (EnumerationRegistration)", () => customerDao.Query().Where(customer => CustomerTypes.Hepsi.Contains(customer.CustomerType)));
         }
 
         private Enumeration<int> GetCustomerTypeInMemory()

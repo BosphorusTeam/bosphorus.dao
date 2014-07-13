@@ -6,10 +6,10 @@ namespace Bosphorus.Dao.Client.Model
     {
         private readonly string name;
 
-        protected AbstractExecutionItem(string functionName)
+        protected AbstractExecutionItem(string prefix, string functionName)
         {
             string modelName = typeof(TModel).Name;
-            name = string.Format("{0} - {1}", modelName, functionName);
+            name = string.Format("{0} - {1} - {2}", prefix, modelName, functionName);
         }
 
         public abstract IList Execute();

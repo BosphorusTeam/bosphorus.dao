@@ -108,6 +108,7 @@
     <Compile Include="Samples\Polymorphic.cs" />
     <Compile Include="Samples\Hbm.cs" />
     <Compile Include="Samples\Mapping.cs" />
+    <Compile Include="Samples\Relation.cs" />
     <Compile Include="Samples\Session.cs" />
     <Compile Include="Samples\Simple.cs" />
     <Compile Include="Samples\LinqProvider.cs" />

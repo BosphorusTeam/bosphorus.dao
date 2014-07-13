@@ -14,9 +14,10 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     public class AutoMap: AbstractExecutionItemList
     {
         public AutoMap(IDao<Account> accountDao)
+            : base("AutoMap")
         {
-            this.Add("AutoMap", () => from account in accountDao.Query() select AutoView<AccountView>.From(account));
-            this.Add("AutoMap With Fetch", () => from account in accountDao.Query().Fetch(x => x.Customer) select AutoView<AccountView>.From(account));
+            this.Add("Default", () => from account in accountDao.Query() select AutoView<AccountView>.From(account));
+            this.Add("Default With Fetch", () => from account in accountDao.Query().Fetch(x => x.Customer) select AutoView<AccountView>.From(account));
         }
 
         public class AccountView

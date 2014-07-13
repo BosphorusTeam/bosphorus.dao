@@ -8,8 +8,9 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     public class Hbm : AbstractExecutionItemList
     {
         public Hbm(IDao<IMPORTCARGOINFOSERVICE> legancyDao)
+            : base("Hbm")
         {
-            this.Add("Hbm - Custom Query", () => legancyDao.GetCustomQuery1());
+            this.Add("Custom Query", () => legancyDao.GetCustomQuery1());
         }
     }
 }

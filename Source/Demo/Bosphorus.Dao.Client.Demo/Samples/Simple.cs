@@ -15,6 +15,7 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     public class Simple : AbstractExecutionItemList
     {
         public Simple(IDao nonGenericDao, IDao<CargoOrder> orderDao, ICustomerDao customerDao, IDao<Account> accountDao, IDao<IMPORTCARGOINFOSERVICE> legancyDao, IDao<LogModel> logDao)
+            : base("Simple")
         {
             this.Add(() => customerDao.GetAll());
             this.Add(() => accountDao.GetById(1));

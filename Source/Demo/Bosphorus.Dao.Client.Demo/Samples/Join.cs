@@ -9,8 +9,9 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     public class Join: AbstractExecutionItemList
     {
         public Join(IDao<Customer> customerDao, IDao<Account> accountDao)
+            : base("Join")
         {
-            this.Add("Join - Filtered Queryables", () => JoinFilteredQueryables(customerDao, accountDao));
+            this.Add("Filtered Queryables", () => JoinFilteredQueryables(customerDao, accountDao));
         }
 
         private IEnumerable<Customer> JoinFilteredQueryables(IDao<Customer> customerDao, IDao<Account> accountDao)

@@ -7,8 +7,8 @@ namespace Bosphorus.Dao.Client.Model
     {
         private readonly Func<TModel> function;
 
-        public ModelReturnExcecutionItem(string functionName, Func<TModel> function) 
-            : base(functionName)
+        public ModelReturnExcecutionItem(string prefix, string functionName, Func<TModel> function) 
+            : base(prefix, functionName)
         {
             this.function = function;
         }

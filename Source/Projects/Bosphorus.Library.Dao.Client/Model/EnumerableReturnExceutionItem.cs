@@ -9,8 +9,8 @@ namespace Bosphorus.Dao.Client.Model
     {
         private readonly Func<IEnumerable<TModel>> function;
 
-        public EnumerableReturnExceutionItem(string functionName, Func<IEnumerable<TModel>> function) 
-            : base(functionName)
+        public EnumerableReturnExceutionItem(string prefix, string functionName, Func<IEnumerable<TModel>> function) 
+            : base(prefix, functionName)
         {
             this.function = function;
         }

@@ -9,14 +9,15 @@ namespace Bosphorus.Dao.Client.Demo.Samples
     public class NonGeneric : AbstractExecutionItemList
     {
         public NonGeneric(IDao nonGenericDao)
+            : base("NonGeneric")
         {
             nonGenericDao.GetById<Account, int>(1);
 
-            this.Add("NonGeneric - GetAll", () => nonGenericDao.GetAll<Account>());
-            this.Add("NonGeneric - GetById", () => nonGenericDao.GetById<Account, Guid>(Guid.Empty));
-            this.Add("NonGeneric - GetByIdSingle", () => nonGenericDao.GetByIdSingle<Account, Guid>(Guid.Empty));
-            this.Add("NonGeneric - GetByQuery", () => nonGenericDao.GetByQuery<Account>("select * from XAccount"));
-            this.Add("NonGeneric - GetByNamedQuery", () => nonGenericDao.GetByNamedQuery<Account>("AccountNamedQuery"));
+            this.Add("GetAll", () => nonGenericDao.GetAll<Account>());
+            this.Add("GetById", () => nonGenericDao.GetById<Account, Guid>(Guid.Empty));
+            this.Add("GetByIdSingle", () => nonGenericDao.GetByIdSingle<Account, Guid>(Guid.Empty));
+            this.Add("GetByQuery", () => nonGenericDao.GetByQuery<Account>("select * from XAccount"));
+            this.Add("GetByNamedQuery", () => nonGenericDao.GetByNamedQuery<Account>("AccountNamedQuery"));
 
         }
     }
