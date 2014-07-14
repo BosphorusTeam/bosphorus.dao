@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
@@ -31,6 +30,10 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
 
         private Customer Update(IDao<Customer> customerDao)
         {
+            //NHibernateSession openSession = (NHibernateSession) customerDao.SessionProvider.OpenSession();
+            //ISession session = openSession.InnerSession;
+            //var loadedCustomer = session.Get<Customer>(1);
+
             var customer = BuildCustomer();
             var account = BuildAccount(customer);
 
