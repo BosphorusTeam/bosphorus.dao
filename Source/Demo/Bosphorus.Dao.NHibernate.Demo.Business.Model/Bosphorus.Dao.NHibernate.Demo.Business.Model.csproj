@@ -54,9 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="CargoOrder.cs" />
+    <Compile Include="Bank.cs" />
+    <Compile Include="CorporateCustomer.cs" />
     <Compile Include="CustomerType.cs" />
-    <Compile Include="Legacy\IMPORTCARGOINFOSERVICE.cs" />
+    <Compile Include="IndividualCustomer.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

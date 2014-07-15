@@ -34,7 +34,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.DTC
             TransactionOptions transactionOptions = new TransactionOptions();
             transactionOptions.IsolationLevel = IsolationLevel.Serializable;
 
-            //ISession openSession = customerDao.SessionProvider.OpenSession();
+            //ISession openSession = bankDao.SessionProvider.OpenSession();
             //global::NHibernate.ISession innerSession = ((NHibernateSession) openSession).InnerSession;
             //innerSession.FlushMode = FlushMode.;
             //innerSession.SaveOrUpdate(customer);

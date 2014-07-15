@@ -7,7 +7,7 @@ using Bosphorus.Dao.NHibernate.Extension.LinQ.Coalesce;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Decode;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList
+namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
     public class LinqProvider : AbstractExecutionItemList
     {
@@ -35,10 +35,10 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
             //this.Add("LinqProvider - LinQ Equals ", () => from model in accountDao.Query() where model.No  == 0L select model);
             //this.Add("LinqProvider - LinQ Soundex", () => from model in accountDao.Query() select model.Name.Soundex());
             //this.Add("LinqProvider - LinQ Oracle Left Join", () =>
-            //    from account in accountDao.Query()
-            //    from customer in customerDao.Query()
-            //    where account.Customer.Id == customer.Id.OraclePlus()
-            //    select account);
+            //    from model in accountDao.Query()
+            //    from customer in bankDao.Query()
+            //    where model.Customer.Id == customer.Id.OraclePlus()
+            //    select model);
 
         }
     }

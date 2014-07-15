@@ -5,7 +5,7 @@ using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList
+namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
     public class Enum: AbstractExecutionItemList
     {
@@ -27,7 +27,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
 
         private Enumeration<int> GetCustomerTypefromDatabase(IDao<CustomerType> customerTypeDao)
         {
-            //customerTypeDao.Insert(new CustomerType() { Name = "Bireysel" });
+            customerTypeDao.Insert(new CustomerType() { Name = "Bireysel" });
             CustomerType result = customerTypeDao.Query().First(type => type.Name == "Bireysel");
             return result;
         }

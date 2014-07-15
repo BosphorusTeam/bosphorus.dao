@@ -63,6 +63,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="NHibernate, Version=4.0.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NHibernate.4.0.0.0\lib\net40\NHibernate.dll</HintPath>
@@ -85,6 +86,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AbstractBuilder.cs" />
+    <Compile Include="Common\AccountBuilder.cs" />
+    <Compile Include="Common\BankBuilder.cs" />
+    <Compile Include="Common\CustomerBuilder.cs" />
+    <Compile Include="Common\Extensions.cs" />
     <Compile Include="Configuration\Business\ConventionApplier.cs" />
     <Compile Include="Configuration\Business\PersistenceConfigurerProvider.cs">
       <SubType>Code</SubType>
@@ -98,20 +104,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CustomerTypes.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.cs" />
+    <Compile Include="ExecutionList\Problem.cs" />
+    <Compile Include="ExecutionList\Basic\DaoCustomization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ExecutionList\AutoMap.cs" />
-    <Compile Include="ExecutionList\Enum.cs" />
-    <Compile Include="ExecutionList\Generic.cs" />
-    <Compile Include="ExecutionList\Join.cs" />
-    <Compile Include="ExecutionList\NonGeneric.cs" />
-    <Compile Include="ExecutionList\Polymorphic.cs" />
-    <Compile Include="ExecutionList\Hbm.cs" />
-    <Compile Include="ExecutionList\Mapping.cs" />
-    <Compile Include="ExecutionList\Relation.cs" />
-    <Compile Include="ExecutionList\Session.cs" />
-    <Compile Include="ExecutionList\Simple.cs" />
-    <Compile Include="ExecutionList\LinqProvider.cs" />
+    <Compile Include="ExecutionList\Extension\AutoMap.cs" />
+    <Compile Include="ExecutionList\Extension\Enum.cs" />
+    <Compile Include="ExecutionList\Basic\Generic.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Select.cs" />
+    <Compile Include="ExecutionList\Basic\NonGeneric.cs" />
+    <Compile Include="ExecutionList\Extension\Polymorphic.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Reference.cs" />
+    <Compile Include="ExecutionList\Basic\Session.cs" />
+    <Compile Include="ExecutionList\Extension\LinqProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj">
@@ -156,6 +162,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

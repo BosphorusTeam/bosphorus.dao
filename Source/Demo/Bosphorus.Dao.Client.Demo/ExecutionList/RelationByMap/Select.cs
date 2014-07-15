@@ -3,14 +3,29 @@ using System.Linq;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
+using NHibernate.Linq;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList
+namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
 {
-    public class Join: AbstractExecutionItemList
+    public class Select: AbstractExecutionItemList
     {
-        public Join(IDao<Customer> customerDao, IDao<Account> accountDao)
-            : base("Join")
+        public Select(IDao<Customer> customerDao, IDao<Account> accountDao)
+            : base("RelationByMap - Select")
         {
+            this.Add("select Master.Field from Detail", () =>
+                accountDao.Query()
+                    .Select(account => account.Customer.Name));
+
+            this.Add("select Detail from Detail (With Fetch Master)", () =>
+                accountDao.Query()
+                    .Fetch(x => x.Customer)
+                    .Select(account => account));
+
+            this.Add("select Master from Master (With Fetch Detail)", () =>
+                customerDao.Query()
+                    .FetchMany(customer => customer.Accounts)
+                    .Select(customer => customer));
+
             this.Add("Filtered Queryables", () => JoinFilteredQueryables(customerDao, accountDao));
         }
 

@@ -4,7 +4,7 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList
+namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
     public class Polymorphic : AbstractExecutionItemList
     {
@@ -17,14 +17,14 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
             this.Add("Contains", () =>
                 from account in accountDao.Query()
                 where selectedAccountGuids.Contains(account.Customer.Id)
-                select new Account { Id = account.Id, No = account.No }
+                select new Account { Id = account.Id }
             );
 
             this.Add("Join", () =>
                 from account in accountDao.Query()
                 from selectedAccount in selectedAccounts
                 where selectedAccount.Customer.Id == account.Customer.Id
-                select new Account { Id = account.Id, No = account.No }
+                select new Account { Id = account.Id }
             );
         }
     }

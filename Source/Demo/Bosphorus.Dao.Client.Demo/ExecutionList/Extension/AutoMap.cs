@@ -6,7 +6,7 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using NHibernate.Linq;
 using Omu.ValueInjecter;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList
+namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
     public class AutoMap: AbstractExecutionItemList
     {

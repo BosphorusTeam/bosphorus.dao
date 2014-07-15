@@ -1,22 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bosphorus.Dao.Client.Demo.Common;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
-using Bosphorus.Dao.NHibernate.Extension.Utiliy.Relation;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList
+namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
 {
-    public class Relation: AbstractExecutionItemList
+    public class Cascade: AbstractExecutionItemList
     {
-        public Relation(IDao<Customer> customerDao, IDao<Account> accountDao)
-            : base("Relation")
+        public Cascade(IDao<Customer> customerDao, IDao<Account> accountDao)
+            : base("RelationByMap - Cascade")
         {
-            Add("SetId - Null", () => Reference<Customer>.WithId(instance => instance.Id, null));
-            Add("SetId - 123", () => Reference<Customer>.WithId(instance => instance.Id, 123));
+            Add("Insert - SessionObject - Just Master", () => customerDao.Insert(CustomerBuilder.FromDatabase(1).Build()));
+
             Add("Insert - Customer", () => Insert(customerDao, accountDao));
             Add("Update - Customer", () => Update(customerDao));
             Add("Update - Account", () => Update(accountDao));
+            Add("Delete - Customer", () => Delete(customerDao));
+        }
+
+        private Customer Delete(IDao<Customer> customerDao)
+        {
+            Account account = new Account();
+            account.Id = 2;
+
+            var customer = new Customer {Id = 2};
+            customer.Accounts = new List<Account>();
+            customer.Accounts.Add(account);
+            account.Customer = customer;
+
+            customerDao.Delete(customer);
+
+            return customer;
         }
 
         private Account Update(IDao<Account> accountDao)
@@ -30,7 +46,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
 
         private Customer Update(IDao<Customer> customerDao)
         {
-            //NHibernateSession openSession = (NHibernateSession) customerDao.SessionProvider.OpenSession();
+            //NHibernateSession openSession = (NHibernateSession) bankDao.SessionProvider.OpenSession();
             //ISession session = openSession.InnerSession;
             //var loadedCustomer = session.Get<Customer>(1);
 
@@ -48,9 +64,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
             Account account = new Account();
             account.Id = 5;
             account.Customer = customer;
-            account.No = differentValue;
-            account.Name = "Maaş Hesabı 2";
-            account.Type = typeof (Account);
+            account.Name = "Maaş Hesabı " + differentValue;
             customer.Accounts.Add(account);
 
             return account;
@@ -77,13 +91,11 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
 
             Account account = new Account();
             account.Customer = customer;
-            account.No = 1;
             account.Name = "Maaş Hesabı";
-            account.Type = typeof (Account);
             customer.Accounts.Add(account);
 
             customerDao.Insert(customer);
-            //accountDao.Insert(account);
+            //accountDao.Insert(model);
             return customer;
         }
     }

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal
 {
-    public interface ICustomerDao: IDao<Customer>
+    public interface IBankDao: IDao<Bank>
     {
-        IList<Customer> GetBy(ISession session, string name);
+        IQueryable<Bank> GetStartsWithByInheritance(ISession session, string name);
     }
 }

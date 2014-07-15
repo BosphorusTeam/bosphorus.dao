@@ -64,10 +64,9 @@
     <Compile Include="Configuration\HbmMappingRegisterer.cs" />
     <Compile Include="Configuration\Override\AccountOverride.cs" />
     <Compile Include="Configuration\Override\CustomerOverride.cs" />
-    <Compile Include="CustomerDao.cs" />
-    <Compile Include="ICustomerDao.cs" />
-    <Compile Include="Legacy\ImportCargoInfoServiceDaoExtensions.cs" />
-    <Compile Include="Legacy\ImportCargoInfoServiceMap.cs" />
+    <Compile Include="BankDao.cs" />
+    <Compile Include="IBankDao.cs" />
+    <Compile Include="BankDaoExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,7 +88,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
