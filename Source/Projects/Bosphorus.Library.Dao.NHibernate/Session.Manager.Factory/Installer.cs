@@ -1,10 +1,10 @@
 ﻿using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory.Decoration;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
+namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
     public class Installer: AbstractWindsorInstaller
     {

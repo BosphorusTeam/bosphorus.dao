@@ -23,7 +23,7 @@ using Bosphorus.Container.Castle.Registry;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Common;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao

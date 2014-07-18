@@ -2,7 +2,7 @@
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 
 namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal
 {

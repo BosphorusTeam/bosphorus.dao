@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.NHibernate.Common;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao

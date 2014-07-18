@@ -18,6 +18,8 @@
 */
 
 using System.Linq.Expressions;
+using Bosphorus.Dao.NHibernate.Session.Manager;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using NHibernate.Transform;
 using System;
 using System.Collections.Generic;
@@ -25,8 +27,6 @@ using System.Linq;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session;
-using Bosphorus.Dao.NHibernate.Session.Provider;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Metadata;
