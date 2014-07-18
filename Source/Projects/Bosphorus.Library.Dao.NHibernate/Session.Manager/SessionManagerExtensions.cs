@@ -1,10 +1,9 @@
 ﻿using System;
 using Bosphorus.Dao.Core.Session.Provider;
-using Bosphorus.Dao.NHibernate.Dao;
 using NHibernate;
 using NHibernate.Metadata;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider
+namespace Bosphorus.Dao.NHibernate.Session.Manager
 {
     public static class SessionManagerExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using Bosphorus.Dao.Core.Session.Provider;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
+namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
     public interface ISessionManagerFactory
     {

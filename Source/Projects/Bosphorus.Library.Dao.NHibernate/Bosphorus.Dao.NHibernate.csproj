@@ -59,9 +59,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.9\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
     </Reference>
-    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.19, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.20, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.19\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
+      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.20\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,7 +90,7 @@
     <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao\AbstractNHibernateDao.cs" />
-    <Compile Include="Session.Provider\ModelMappingNotRegisteredException.cs" />
+    <Compile Include="Session.Manager\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -106,24 +106,26 @@
     <Compile Include="Fluent.HbmMappingProvider\IHbmMappingRegisterer.cs" />
     <Compile Include="Fluent.HbmMappingProvider\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\Installer.cs" />
-    <Compile Include="Session.Provider.Factory.Decoration\CacheDecorator.cs" />
+    <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\AbstractAutoPersistenceModelProvider.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\AbstractConfigurationProcessor.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\ChainedPersistenceConfigurerProvider.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\CompositeConfigurationProcessor.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\IConfigurationProcessor.cs" />
-    <Compile Include="Session.Provider.Factory\ISessionManagerFactory.cs" />
+    <Compile Include="Session.Manager.Factory\ISessionManagerFactory.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\PersistenceConfigurerProviderNotFoundException.cs" />
-    <Compile Include="Session.Provider.Factory\SessionManagerFactoryExtensions.cs" />
+    <Compile Include="Session.Manager.Factory\SessionManagerFactoryExtensions.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\TypeSource.cs" />
-    <Compile Include="Session.Provider\NHibernateSessionManager.cs" />
-    <Compile Include="Session.Provider.Factory\NHibernateSessionManagerFactory.cs" />
+    <Compile Include="Session.Manager\NHibernateSessionManager.cs" />
+    <Compile Include="Session.Manager.Factory\NHibernateSessionManagerFactory.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\AbstractPersistenceConfigurerProvider.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\IAutoPersistenceModelProvider.cs" />
-    <Compile Include="Session.Provider.Factory\Installer.cs" />
+    <Compile Include="Session.Manager.Factory\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
-    <Compile Include="Session.Provider\SessionManagerExtensions.cs" />
+    <Compile Include="Session.Manager\SessionManagerExtensions.cs" />
+    <Compile Include="Session\AbstractSessionLifeStyleProvider.cs" />
     <Compile Include="Session\Installer.cs" />
+    <Compile Include="Session\ISessionLifeStyleProvider.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />
     <Compile Include="Transaction\NHibernateTransaction.cs" />

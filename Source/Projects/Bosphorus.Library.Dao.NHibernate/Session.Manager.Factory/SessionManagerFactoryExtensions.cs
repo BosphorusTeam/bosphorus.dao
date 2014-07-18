@@ -1,7 +1,7 @@
 ﻿using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Common;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
+namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
     public static class SessionManagerFactoryExtensions
     {

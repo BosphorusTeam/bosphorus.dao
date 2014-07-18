@@ -7,12 +7,12 @@ using Bosphorus.Dao.NHibernate.Fluent.ConventionApplier;
 using Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider;
 using Bosphorus.Dao.NHibernate.Fluent.PersistenceConfigurerProvider;
 using Castle.Core.Internal;
+using Castle.Windsor;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using NHibernate;
-using NHibernate.Mapping;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
+namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
     public class NHibernateSessionManagerFactory : ISessionManagerFactory
     {

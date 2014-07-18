@@ -1,30 +1,24 @@
 ﻿using Bosphorus.Container.Castle.Registry;
 using Bosphorus.Dao.Core.Session.Provider;
+using Castle.Windsor;
 using NHibernate;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider
+namespace Bosphorus.Dao.NHibernate.Session.Manager
 {
     public class NHibernateSessionManager: AbstractSessionManager
     {
-        private readonly string sessionAlias;
         private readonly ISessionFactory sessionFactory;
 
         public NHibernateSessionManager(IServiceRegistry serviceRegistry, string sessionAlias, ISessionFactory sessionFactory)
-            : base(serviceRegistry)
+            : base(serviceRegistry, sessionAlias)
         {
-            this.sessionAlias = sessionAlias;
             this.sessionFactory = sessionFactory;
         }
 
         internal ISessionFactory NativeSessionProvider
         {
             get { return sessionFactory; }
-        }
-
-        public override string SessionAlias
-        {
-            get { return sessionAlias; }
         }
 
         public override ISession OpenSession()
