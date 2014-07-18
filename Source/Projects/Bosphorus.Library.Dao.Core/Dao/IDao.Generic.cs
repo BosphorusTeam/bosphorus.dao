@@ -26,7 +26,7 @@ namespace Bosphorus.Dao.Core.Dao
 {
     public interface IDao<TModel>
     {
-        ISessionProvider SessionProvider { get; }
+        ISessionManager SessionManager { get; }
 
         IQueryable<TModel> GetAll(ISession currentSession);
 

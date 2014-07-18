@@ -95,7 +95,9 @@
     <Compile Include="Configuration\Business\PersistenceConfigurerProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configuration\Business\SchemaUpdater.cs" />
+    <Compile Include="Configuration\Business\SchemaUpdater.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Configuration\Log\ConventionApplier.cs" />
     <Compile Include="Configuration\Log\PersistenceConfigurerProvider.cs">
       <SubType>Code</SubType>

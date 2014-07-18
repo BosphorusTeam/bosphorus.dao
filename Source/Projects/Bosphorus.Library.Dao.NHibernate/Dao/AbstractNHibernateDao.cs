@@ -37,22 +37,22 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public abstract class AbstractNHibernateDao<TModel> : IDao<TModel> 
         where TModel : class
     {
-        private readonly ISessionProvider sessionProvider;
+        private readonly ISessionManager sessionManager;
         private readonly Type modelType = typeof(TModel);
         private readonly IClassMetadata classMetadata;
         private readonly IResultTransformer resultTransformer;
 
-        protected AbstractNHibernateDao(ISessionProviderFactory sessionProviderFactory, string sessionAlias)
+        protected AbstractNHibernateDao(ISessionManagerFactory sessionManagerFactory, string sessionAlias)
         {
-            this.sessionProvider = sessionProviderFactory.Build(sessionAlias);
+            this.sessionManager = sessionManagerFactory.Build(sessionAlias);
             modelType = typeof(TModel);
-            classMetadata = sessionProvider.GetClassMetadata(modelType);
+            classMetadata = sessionManager.GetClassMetadata(modelType);
             resultTransformer = Transformers.AliasToBean<TModel>();
         }
 
-        public ISessionProvider SessionProvider
+        public ISessionManager SessionManager
         {
-            get { return sessionProvider; }
+            get { return sessionManager; }
         }
 
         protected global::NHibernate.ISession GetNativeSession(ISession currentSession)

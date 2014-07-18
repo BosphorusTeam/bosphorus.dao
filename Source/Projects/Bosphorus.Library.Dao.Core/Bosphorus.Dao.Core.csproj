@@ -85,7 +85,8 @@
     <Compile Include="Dao\IDao.Generic.cs" />
     <Compile Include="Dao\IDao.NonGeneric.cs" />
     <Compile Include="Installer.cs" />
-    <Compile Include="Session.Provider\ISessionProvider.cs" />
+    <Compile Include="Session.Provider\AbstractSessionManager.cs" />
+    <Compile Include="Session.Provider\ISessionManager.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Transaction\ITransaction.cs" />
     <Compile Include="Session\NullSession.cs" />

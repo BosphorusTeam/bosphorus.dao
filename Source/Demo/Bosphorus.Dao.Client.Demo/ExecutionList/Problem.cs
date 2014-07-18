@@ -22,7 +22,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
             Customer customer = customerDao.Query().First();
             customer.Name = DateTime.Now.ToString();
 
-            ISession session = accountDao.SessionProvider.OpenSession();
+            ISession session = accountDao.SessionManager.OpenSession();
             customerDao.Update(session, customer);
 
             return customer;
@@ -30,7 +30,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
 
         private Customer JoinFilteredQueryables2(IDao<Customer> customerDao, IDao<Account> accountDao)
         {
-            ISession session = customerDao.SessionProvider.OpenSession();
+            ISession session = customerDao.SessionManager.OpenSession();
             Customer customer = customerDao.Query(session).First();
             customer.Name = DateTime.Now.ToString();
 

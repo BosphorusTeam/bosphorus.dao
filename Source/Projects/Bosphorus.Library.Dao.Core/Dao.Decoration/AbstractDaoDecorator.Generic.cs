@@ -33,9 +33,9 @@ namespace Bosphorus.Dao.Core.Dao.Decoration
             this.decorated = decorated;
         }
 
-        public virtual ISessionProvider SessionProvider
+        public virtual ISessionManager SessionManager
         {
-            get { return decorated.SessionProvider; }
+            get { return decorated.SessionManager; }
         }
 
         public virtual IQueryable<TModel> GetAll(ISession currentSession)

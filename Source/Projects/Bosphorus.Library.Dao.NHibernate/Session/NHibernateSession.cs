@@ -50,7 +50,8 @@ namespace Bosphorus.Dao.NHibernate.Session
             if (isDisposing)
             {
                 adapted.Flush();
-                //adapted.Disconnect();
+                adapted.Close();
+                adapted.Dispose();
                 adapted = null;
                 GC.SuppressFinalize(this);
             }

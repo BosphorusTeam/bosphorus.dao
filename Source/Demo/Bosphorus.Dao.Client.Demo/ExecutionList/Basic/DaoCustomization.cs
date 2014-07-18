@@ -11,7 +11,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
             : base("Basic - DaoCustomization")
         {
             Add("Starts With (Extension)", () => genericDao.GetStartsWithByExtension("Ci"));
-            Add("Starts With (Inheritace)", () => customizedDao.GetStartsWithByInheritance(customizedDao.SessionProvider.OpenSession(), "Ci"));
+            Add("Starts With (Inheritace)", () => customizedDao.GetStartsWithByInheritance(customizedDao.SessionManager.OpenSession(), "Ci"));
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
 
         private Customer Update(IDao<Customer> customerDao)
         {
-            //NHibernateSession openSession = (NHibernateSession) bankDao.SessionProvider.OpenSession();
+            //NHibernateSession openSession = (NHibernateSession) bankDao.SessionManager.OpenSession();
             //ISession session = openSession.InnerSession;
             //var loadedCustomer = session.Get<Customer>(1);
 

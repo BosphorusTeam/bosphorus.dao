@@ -12,7 +12,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
         {
             this.Add("Default", () => defaultSessionDao.GetAll());
             this.Add("Log", () => logSessionDao.GetAll());
-            this.Add("From Parameter", () => defaultSessionDao.GetById(defaultSessionDao.SessionProvider.OpenSession(), 1));
+            this.Add("From Parameter", () => defaultSessionDao.GetById(defaultSessionDao.SessionManager.OpenSession(), 1));
         }
     }
 }

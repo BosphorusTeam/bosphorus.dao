@@ -3,28 +3,28 @@ using Bosphorus.Dao.Core.Session.Provider;
 
 namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory.Decoration
 {
-    public class CacheDecorator: ISessionProviderFactory
+    public class CacheDecorator: ISessionManagerFactory
     {
-        private readonly ISessionProviderFactory decorated;
-        private readonly Dictionary<string, ISessionProvider> cache;
+        private readonly ISessionManagerFactory decorated;
+        private readonly Dictionary<string, ISessionManager> cache;
 
-        public CacheDecorator(ISessionProviderFactory decorated)
+        public CacheDecorator(ISessionManagerFactory decorated)
         {
             this.decorated = decorated;
-            this.cache = new Dictionary<string, ISessionProvider>();
+            this.cache = new Dictionary<string, ISessionManager>();
         }
 
-        public ISessionProvider Build(string sessionAlias)
+        public ISessionManager Build(string sessionAlias)
         {
             if (cache.ContainsKey(sessionAlias))
             {
-                ISessionProvider sessionProvider = cache[sessionAlias];
-                return sessionProvider;
+                ISessionManager sessionManager = cache[sessionAlias];
+                return sessionManager;
             }
 
-            ISessionProvider newSessionProvider = decorated.Build(sessionAlias);
-            cache[sessionAlias] = newSessionProvider;
-            return newSessionProvider;
+            ISessionManager newSessionManager = decorated.Build(sessionAlias);
+            cache[sessionAlias] = newSessionManager;
+            return newSessionManager;
 
         }
     }

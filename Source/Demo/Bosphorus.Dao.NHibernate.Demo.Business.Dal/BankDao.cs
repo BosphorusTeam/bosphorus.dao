@@ -8,8 +8,8 @@ namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal
 {
     public class BankDao : NHibernateDao<Bank>, IBankDao
     {
-        public BankDao(ISessionProviderFactory sessionProviderFactory)
-            : base(sessionProviderFactory)
+        public BankDao(ISessionManagerFactory sessionManagerFactory)
+            : base(sessionManagerFactory)
         {
         }
 

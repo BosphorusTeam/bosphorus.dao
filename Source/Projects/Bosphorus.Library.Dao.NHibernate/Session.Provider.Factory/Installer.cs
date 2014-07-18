@@ -12,11 +12,11 @@ namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory
         {
             container.Register(
                 Component
-                    .For<ISessionProviderFactory>()
-                    .ImplementedBy<NHibernateSessionProviderFactory>(),
+                    .For<ISessionManagerFactory>()
+                    .ImplementedBy<NHibernateSessionManagerFactory>(),
 
                 Component
-                    .For<ISessionProviderFactory>()
+                    .For<ISessionManagerFactory>()
                     .ImplementedBy<CacheDecorator>().IsDefault()
             );
 

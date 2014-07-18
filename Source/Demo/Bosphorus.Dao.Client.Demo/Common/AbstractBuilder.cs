@@ -1,4 +1,5 @@
-﻿using Bosphorus.Container.Castle.Registry;
+﻿using System;
+using Bosphorus.Container.Castle.Registry;
 using Bosphorus.Dao.Core.Dao;
 
 namespace Bosphorus.Dao.Client.Demo.Common
@@ -21,7 +22,10 @@ namespace Bosphorus.Dao.Client.Demo.Common
 
         public static TBuilder FromDatabase(int id)
         {
+            Console.WriteLine("Reading object from database to session ----------");
             TModel model = ServiceRegistry.Get<IDao<TModel>>().GetByIdSingle(id);
+            Console.WriteLine("Reading object from database to session ----------");
+
             TBuilder builder = new TBuilder();
             builder.model = model;
             return builder;
