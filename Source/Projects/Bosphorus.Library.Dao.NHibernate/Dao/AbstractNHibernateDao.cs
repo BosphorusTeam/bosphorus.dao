@@ -17,9 +17,11 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+using System.Collections;
 using System.Linq.Expressions;
 using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
+using Castle.Core;
 using NHibernate.Transform;
 using System;
 using System.Collections.Generic;
@@ -100,32 +102,29 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return expression;
         }
 
-        public virtual IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
+        public IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, IDictionary parameterDictionary)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             global::NHibernate.IQuery query = nativeSession.GetNamedQuery(queryName);
             query.SetResultTransformer(resultTransformer);
-            return GetByQuery<TModel>(query, parameters);
+            return GetByQuery<TModel>(query, parameterDictionary);
         }
 
-        public virtual IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
+        public virtual IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, IDictionary parameterDictionary)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
             ISQLQuery query = nativeSession.CreateSQLQuery(queryString);
             query.AddEntity(modelType);
-            return GetByQuery<TModel>(query, parameters);
+            return GetByQuery<TModel>(query, parameterDictionary);
         }
 
-        private IQueryable<TReturnType> GetByQuery<TReturnType>(IQuery query, object[] parameters)
+        private IQueryable<TReturnType> GetByQuery<TReturnType>(IQuery query, IDictionary parameterDictionary)
         {
-            int parameterCount = 0;
-            for (int i = 0; i < parameters.Length; i++)
+            foreach (DictionaryEntry parameterEntry in parameterDictionary)
             {
-                if (parameters[i] == null)
-                    continue;
-
-                query.SetParameter(parameterCount, parameters[i]);
-                parameterCount++;
+                string key = (string) parameterEntry.Key;
+                object value = parameterEntry.Value;
+                query.SetParameter(key, value);
             }
 
             IList<TReturnType> result = query.List<TReturnType>();

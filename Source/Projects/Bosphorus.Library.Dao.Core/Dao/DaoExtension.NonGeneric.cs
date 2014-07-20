@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
+using Castle.Core;
 
 namespace Bosphorus.Dao.Core.Dao
 {
@@ -32,15 +34,41 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public static IQueryable<TModel> GetByNamedQuery<TModel>(this IDao extended, string queryName, params object[] parameters)
+        public static IQueryable<TModel> GetByNamedQuery<TModel>(this IDao extended, string queryName)
         {
-            IQueryable<TModel> result = extended.GetByNamedQuery<TModel>(extended.SessionManager.Current, queryName, parameters);
+            IQueryable<TModel> result = extended.GetByNamedQuery<TModel>(extended.SessionManager.Current, queryName, emptyDictionary);
             return result;
         }
 
-        public static IQueryable<TModel> GetByQuery<TModel>(this IDao extended, string queryString, params object[] parameters)
+        public static IQueryable<TModel> GetByNamedQuery<TModel>(this IDao extended, string queryName, object argumentsAsAnonymousType)
         {
-            IQueryable<TModel> result = extended.GetByQuery<TModel>(extended.SessionManager.Current, queryString, parameters);
+            IDictionary parameterDictionary = new ReflectionBasedDictionaryAdapter(argumentsAsAnonymousType);
+            IQueryable<TModel> result = extended.GetByNamedQuery<TModel>(extended.SessionManager.Current, queryName, parameterDictionary);
+            return result;
+        }
+
+        public static IQueryable<TModel> GetByNamedQuery<TModel>(this IDao extended, string queryName, IDictionary parameterDictionary)
+        {
+            IQueryable<TModel> result = extended.GetByNamedQuery<TModel>(extended.SessionManager.Current, queryName, parameterDictionary);
+            return result;
+        }
+
+        public static IQueryable<TModel> GetByQuery<TModel>(this IDao extended, string queryString)
+        {
+            IQueryable<TModel> result = extended.GetByQuery<TModel>(extended.SessionManager.Current, queryString, emptyDictionary);
+            return result;
+        }
+
+        public static IQueryable<TModel> GetByQuery<TModel>(this IDao extended, string queryString, object argumentsAsAnonymousType)
+        {
+            IDictionary parameterDictionary = new ReflectionBasedDictionaryAdapter(argumentsAsAnonymousType);
+            IQueryable<TModel> result = extended.GetByQuery<TModel>(extended.SessionManager.Current, queryString, parameterDictionary);
+            return result;
+        }
+
+        public static IQueryable<TModel> GetByQuery<TModel>(this IDao extended, string queryString, IDictionary parameterDictionary)
+        {
+            IQueryable<TModel> result = extended.GetByQuery<TModel>(extended.SessionManager.Current, queryString, parameterDictionary);
             return result;
         }
 

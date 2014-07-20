@@ -1,11 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true">
-  <sql-query name="BankNamedQuery">
-    SELECT
-        ID as Id,
-        NO as No,
-        NAME as Name
-    FROM
-        XBank
+  
+  <sql-query name="BankNamedQueryPositional">
+      SELECT
+          ID as "Id",
+          NO as "No",
+          NAME as "Name"
+      FROM
+          XBank
+      WHERE
+          NO = :No
   </sql-query>
+  
+  <sql-query name="BankNamedQueryFromProcedure">
+    { call XBANKPROC ( :Parameter1, :Parameter2 ) }
+  </sql-query>
+  
 </hibernate-mapping>

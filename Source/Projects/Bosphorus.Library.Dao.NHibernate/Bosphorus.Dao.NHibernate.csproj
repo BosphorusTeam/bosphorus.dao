@@ -90,6 +90,7 @@
     <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao\AbstractNHibernateDao.cs" />
+    <Compile Include="Fluent.ConfigurationProcessor\MustConfigurationProcessor.cs" />
     <Compile Include="Session.Manager\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
@@ -126,6 +127,7 @@
     <Compile Include="Session\AbstractSessionLifeStyleProvider.cs" />
     <Compile Include="Session\Installer.cs" />
     <Compile Include="Session\ISessionLifeStyleProvider.cs" />
+    <Compile Include="Session\NHibernateCurrentSessionContext.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />
     <Compile Include="Transaction\NHibernateTransaction.cs" />

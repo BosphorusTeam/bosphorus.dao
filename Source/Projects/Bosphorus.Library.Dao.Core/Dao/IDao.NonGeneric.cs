@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Session;
@@ -34,9 +35,9 @@ namespace Bosphorus.Dao.Core.Dao
 
         IQueryable<TModel> GetById<TModel, TId>(ISession currentSession, TId id);
 
-        IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, params object[] parameters);
+        IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, IDictionary parameterDictionary);
 
-        IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, params object[] parameters);
+        IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, IDictionary parameterDictionary);
 
         TModel Insert<TModel>(ISession currentSession, TModel entity);
 

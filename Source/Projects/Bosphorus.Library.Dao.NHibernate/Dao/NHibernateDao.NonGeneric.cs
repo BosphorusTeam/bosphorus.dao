@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Container.Castle.Registry;
@@ -70,17 +71,17 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result;
         }
 
-        public IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, params object[] parameters)
+        public IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, IDictionary parameterDictionary)
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
-            IQueryable<TModel> result = genericDao.GetByQuery(currentSession, queryString, parameters);
+            IQueryable<TModel> result = genericDao.GetByQuery(currentSession, queryString, parameterDictionary);
             return result;
         }
 
-        public IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, params object[] parameters)
+        public IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, IDictionary parameterDictionary)
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
-            IQueryable<TModel> result = genericDao.GetByNamedQuery(currentSession, queryName, parameters);
+            IQueryable<TModel> result = genericDao.GetByNamedQuery(currentSession, queryName, parameterDictionary);
             return result;
         }
 

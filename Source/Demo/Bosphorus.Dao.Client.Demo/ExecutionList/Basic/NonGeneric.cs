@@ -7,19 +7,19 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
     public class NonGeneric : AbstractExecutionItemList
     {
-        public NonGeneric(IDao nonGenericDao)
+        public NonGeneric(IDao dao)
             : base("Basic - NonGeneric")
         {
-            this.Add("GetAll", () => nonGenericDao.GetAll<Bank>());
-            this.Add("GetById", () => nonGenericDao.GetById<Bank, int>(1));
-            this.Add("GetByIdSingle", () => nonGenericDao.GetByIdSingle<Bank, int>(1));
-            this.Add("GetByQuery", () => nonGenericDao.GetByQuery<Bank>("select * from XBank"));
-            //FIXME: Hatalı çalışıyor
-            this.Add("GetByNamedQuery", () => nonGenericDao.GetByNamedQuery<Bank>("BankNamedQuery"));
+            this.Add("GetAll", () => dao.GetAll<Bank>());
+            this.Add("GetById", () => dao.GetById<Bank, int>(1));
+            this.Add("GetByIdSingle", () => dao.GetByIdSingle<Bank, int>(1));
+            this.Add("GetByQuery", () => dao.GetByQuery<Bank>("select * from XBank"));
+            this.Add("GetByNamedQuery", () => dao.GetByNamedQuery<Bank>("BankNamedQueryPositional", new { No = "0092" }));
+            this.Add("GetByNamedQueryFromProcedure", () => dao.GetByNamedQuery<Bank>("BankNamedQueryFromProcedure", new { Parameter1 = "Deneme", Parameter2 = "Deneme2" }));
 
-            this.Add("Insert", () => nonGenericDao.Insert(BankBuilder.Default.Build()));
-            this.Add("Update", () => nonGenericDao.Update(BankBuilder.FromDatabase(1).WithRandomNo().Build()));
-            this.Add("Delete", () => nonGenericDao.DeleteReturned(BankBuilder.FromDatabase(1).Build()));
+            this.Add("Insert", () => dao.Insert(BankBuilder.Default.Build()));
+            this.Add("Update", () => dao.Update(BankBuilder.FromDatabase(1).WithRandomNo().Build()));
+            this.Add("Delete", () => dao.DeleteReturned(BankBuilder.FromDatabase(1).Build()));
         }
     }
 }

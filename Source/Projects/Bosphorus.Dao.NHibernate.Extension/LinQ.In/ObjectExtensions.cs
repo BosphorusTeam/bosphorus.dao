@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
 {
@@ -9,7 +10,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
             return values.Contains(@value);
         }
 
-        public static bool In<T>(this T @value, IQueryable<T> values)
+        public static bool In<T>(this T @value, IEnumerable<T> values)
         {
             return values.Contains(@value);
         }
@@ -19,7 +20,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
             return !values.Contains(@value);
         }
 
-        public static bool NotIn<T>(this T @value, IQueryable<T> values)
+        public static bool NotIn<T>(this T @value, IEnumerable<T> values)
         {
             return !values.Contains(@value);
         }

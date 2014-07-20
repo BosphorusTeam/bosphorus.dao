@@ -56,7 +56,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.Decode
         {
             foreach (var keyBaluePair in keyValueList)
             {
-                if (extended == keyBaluePair.Key)
+                if (extended.Equals(keyBaluePair.Key))
                 {
                     return keyBaluePair.Value;
                 }

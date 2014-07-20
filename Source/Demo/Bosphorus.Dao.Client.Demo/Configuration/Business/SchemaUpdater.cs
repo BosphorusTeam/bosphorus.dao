@@ -13,7 +13,7 @@ namespace Bosphorus.Dao.Client.Demo.Configuration.Business
             SchemaUpdate schemaUpdate = new SchemaUpdate(configuration);
             schemaUpdate.Execute(true, true);
 
-            InsertInitialData(configuration);
+            //InsertInitialData(configuration);
         }
 
         private void InsertInitialData(global::NHibernate.Cfg.Configuration configuration)

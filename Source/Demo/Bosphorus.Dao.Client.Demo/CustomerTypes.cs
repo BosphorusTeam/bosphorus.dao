@@ -5,8 +5,8 @@ namespace Bosphorus.Dao.Client.Demo
 {
     public class CustomerTypes: IEnumerationRegistration<CustomerType>
     {
-        public static CustomerType Bireysel = new CustomerType { Id = 1, Name = "Bireysel" };
-        public static CustomerType Kurumsal = new CustomerType { Id = 2, Name = "Kurumsal" };
-        public static CustomerType[] Hepsi = {Bireysel, Kurumsal};
+        public static readonly CustomerType Bireysel = new CustomerType { Id = 1, Name = "Bireysel" };
+        public static readonly CustomerType Kurumsal = new CustomerType { Id = 2, Name = "Kurumsal" };
+        public static readonly CustomerType[] Hepsi = {Bireysel, Kurumsal};
     }
 }

@@ -92,17 +92,13 @@
     <Compile Include="Common\CustomerBuilder.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Configuration\Business\ConventionApplier.cs" />
-    <Compile Include="Configuration\Business\PersistenceConfigurerProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Configuration\Business\PersistenceConfigurerProvider.Test.cs" />
     <Compile Include="Configuration\Business\SchemaUpdater.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuration\Business\SessionLifeStyleProvider.cs" />
     <Compile Include="Configuration\Log\ConventionApplier.cs" />
-    <Compile Include="Configuration\Log\PersistenceConfigurerProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Configuration\Log\PersistenceConfigurerProvider.Test.cs" />
     <Compile Include="Configuration\Log\SchemaUpdater.cs">
       <SubType>Code</SubType>
     </Compile>

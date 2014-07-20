@@ -52,20 +52,6 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return base.GetById<TId>(currentSession, id);
         }
 
-        public override IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, params object[] parameters)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.GetByQuery(currentSession, queryString, parameters);
-        }
-
-        public override IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, params object[] parameters)
-        {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
-            nativeSession.Clear();
-            return base.GetByNamedQuery(currentSession, queryName, parameters);
-        }
-
         public override TModel Insert(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);

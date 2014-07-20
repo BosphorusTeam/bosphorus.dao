@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -49,8 +50,8 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
                 return result;
             }
 
-            Array valueArray = (Array) constantExpression.Value;
-            Type elementType = valueArray.GetType().GetElementType();
+            IEnumerable valueArray = (IEnumerable)constantExpression.Value;
+            Type elementType = valueArray.GetType().GetGenericArguments()[0];
 
             if (elementType.IsValueType || elementType == typeof(string))
             {
@@ -68,20 +69,20 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
             return visitor.Visit(expression).AsExpression();
         }
 
-        private HqlTreeNode BuildFromArray(Array valueArray, HqlTreeBuilder treeBuilder, Type elementType)
+        private HqlTreeNode BuildFromArray(IEnumerable valueArray, HqlTreeBuilder treeBuilder, Type elementType)
         {
             Type enumUnderlyingType = elementType.IsEnum ? Enum.GetUnderlyingType(elementType) : null;
-            HqlTreeNode[] variants = new HqlTreeNode[valueArray.Length];
+            IList<HqlTreeNode> variants = new List<HqlTreeNode>();
 
-            for (int index = 0; index < valueArray.Length; index++)
+            foreach (var variant in valueArray)
             {
-                var variant = valueArray.GetValue(index);
                 var val = variant;
 
                 if (elementType.IsEnum)
                     val = Convert.ChangeType(variant, enumUnderlyingType);
 
-                variants[index] = treeBuilder.Constant(val);
+                var hqlConstant = treeBuilder.Constant(val);
+                variants.Add(hqlConstant);
             }
 
             return treeBuilder.ExpressionSubTreeHolder(variants);
