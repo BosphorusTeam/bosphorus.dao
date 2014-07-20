@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bosphorus.Container.Castle.Registry;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
@@ -10,7 +11,9 @@ using Castle.Core.Internal;
 using Castle.Windsor;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Cfg;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
@@ -40,13 +43,25 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
             ISessionFactory sessionFactory =
                 Fluently
                 .Configure()
-                .Database(() => persistenceConfigurerProvider.GetPersistenceProvider(sessionAlias))
+                .Database(() => ConfigurePersister(sessionAlias))
                 .Mappings(mappingConfiguration => ConfigureMapping(sessionAlias, mappingConfiguration))
-                .ExposeConfiguration(configuration => configurationProcessor.Process(sessionAlias, configuration))
+                .ExposeConfiguration(configuration => ProcessConfiguration(sessionAlias, configuration))
+                .CurrentSessionContext<NHibernateCurrentSessionContext>()
                 .BuildSessionFactory();
 
             NHibernateSessionManager sessionManager = new NHibernateSessionManager(serviceRegistry, sessionAlias, sessionFactory);
             return sessionManager;
+        }
+
+        private IPersistenceConfigurer ConfigurePersister(string sessionAlias)
+        {
+            IPersistenceConfigurer result = persistenceConfigurerProvider.GetPersistenceProvider(sessionAlias);
+            return result;
+        }
+
+        private void ProcessConfiguration(string sessionAlias, Configuration configuration)
+        {
+            configurationProcessor.Process(sessionAlias, configuration);
         }
 
         private void ConfigureMapping(string sessionAlias, MappingConfiguration mappingConfiguration)

@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Client.Demo.Configuration.Business
     {
         public override LifestyleType GetLifestyle()
         {
-            return LifestyleType.Singleton;;
+            return LifestyleType.Singleton;
         }
     }
 }
