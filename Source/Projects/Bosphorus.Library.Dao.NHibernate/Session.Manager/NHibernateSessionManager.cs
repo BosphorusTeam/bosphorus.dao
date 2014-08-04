@@ -1,5 +1,5 @@
 ﻿using Bosphorus.Container.Castle.Registry;
-using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Manager;
 using Castle.Windsor;
 using NHibernate;
 using ISession = Bosphorus.Dao.Core.Session.ISession;

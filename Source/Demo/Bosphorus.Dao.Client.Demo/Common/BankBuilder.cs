@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Client.Demo.Common
     {
         public static BankBuilder Default
         {
-            get { return New.WithNo("0092").WithName("City Bank"); }
+            get { return Empty.WithNo("0092").WithName("City Bank"); }
         }
 
         public BankBuilder WithId(int id)
@@ -20,12 +20,6 @@ namespace Bosphorus.Dao.Client.Demo.Common
         {
             model.No = no;
             return this;
-        }
-
-        public BankBuilder WithRandomNo()
-        {
-            int no = DateTime.Now.Second / 10;
-            return WithNo(no.ToString());
         }
 
         public BankBuilder WithName(string name)

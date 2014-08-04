@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Session;
-using Bosphorus.Dao.Core.Session.Provider;
 using Castle.Core;
 
 namespace Bosphorus.Dao.Core.Dao

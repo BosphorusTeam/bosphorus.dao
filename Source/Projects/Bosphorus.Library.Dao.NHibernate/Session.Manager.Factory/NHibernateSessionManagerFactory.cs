@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bosphorus.Container.Castle.Registry;
-using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
 using Bosphorus.Dao.NHibernate.Fluent.ConfigurationProcessor;
 using Bosphorus.Dao.NHibernate.Fluent.ConventionApplier;

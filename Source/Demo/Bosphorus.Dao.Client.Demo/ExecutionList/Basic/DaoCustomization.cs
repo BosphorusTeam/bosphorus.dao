@@ -1,17 +1,36 @@
-﻿using Bosphorus.Dao.Client.Model;
+﻿using System.Linq;
+using Bosphorus.Dao.Client.Model;
+using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Demo.Business.Dal;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
-    public class DaoCustomization: AbstractExecutionItemList
+    public class DaoCustomization: MethodExecutionItemList
     {
-        public DaoCustomization(IDao<Bank> genericDao, IBankDao customizedDao)
-            : base("Basic - DaoCustomization")
+        private readonly IDao<Bank> genericDao;
+        private readonly IBankDao customizedDao;
+
+        public DaoCustomization(IResultTransformer resultTransformer, IDao<Bank> genericDao, IBankDao customizedDao) 
+            : base(resultTransformer)
         {
-            Add("Starts With (Extension)", () => genericDao.GetStartsWithByExtension("Ci"));
-            Add("Starts With (Inheritace)", () => customizedDao.GetStartsWithByInheritance(customizedDao.SessionManager.OpenSession(), "Ci"));
+            this.genericDao = genericDao;
+            this.customizedDao = customizedDao;
+        }
+
+        public IQueryable<Bank> StartsWith_ByExtension()
+        {
+            IQueryable<Bank> result = genericDao.GetStartsWithByExtension("Ci");
+            return result;
+        }
+
+        public IQueryable<Bank> StartsWith_ByInheritance()
+        {
+            ISession session = customizedDao.SessionManager.Current;
+            IQueryable<Bank> result = customizedDao.GetStartsWithByInheritance(session, "Ci");
+            return result;
         }
     }
 }

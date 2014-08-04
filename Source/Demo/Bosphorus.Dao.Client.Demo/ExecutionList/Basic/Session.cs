@@ -1,18 +1,43 @@
-﻿using Bosphorus.Dao.Client.Model;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Bosphorus.Dao.Client.Model;
+using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
-    public class Session : AbstractExecutionItemList
+    public class Session : MethodExecutionItemList
     {
-        public Session(IDao<Bank> defaultSessionDao, IDao<LogModel> logSessionDao)
-            : base("Basic - Session")
+        private readonly IDao<Bank> defaultSessionDao;
+        private readonly IDao<LogModel> logSessionDao;
+
+        public Session(IResultTransformer resultTransformer, IDao<Bank> defaultSessionDao, IDao<LogModel> logSessionDao) 
+            : base(resultTransformer)
         {
-            this.Add("Default", () => defaultSessionDao.GetAll());
-            this.Add("Log", () => logSessionDao.GetAll());
-            this.Add("From Parameter", () => defaultSessionDao.GetById(defaultSessionDao.SessionManager.OpenSession(), 1));
+            this.defaultSessionDao = defaultSessionDao;
+            this.logSessionDao = logSessionDao;
+        }
+
+        public IEnumerable<Bank> Default()
+        {
+            IEnumerable<Bank> result = defaultSessionDao.GetAll();
+            return result;
+        }
+
+        public IEnumerable<LogModel> Log()
+        {
+            IEnumerable<LogModel> result = logSessionDao.GetAll();
+            return result;
+        }
+
+        public IQueryable<Bank> FromParameter()
+        {
+            ISession session = defaultSessionDao.SessionManager.OpenSession();
+            IQueryable<Bank> result = defaultSessionDao.GetById(session, 1);
+            return result;
         }
     }
 }

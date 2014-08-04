@@ -21,7 +21,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Session;
-using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Manager;
 
 namespace Bosphorus.Dao.Core.Dao.Decoration
 {

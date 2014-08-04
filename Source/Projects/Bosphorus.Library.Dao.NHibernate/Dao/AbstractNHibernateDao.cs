@@ -19,6 +19,7 @@
 
 using System.Collections;
 using System.Linq.Expressions;
+using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using Castle.Core;
@@ -27,7 +28,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Session;
 using NHibernate;
 using NHibernate.Linq;
@@ -151,6 +151,13 @@ namespace Bosphorus.Dao.NHibernate.Dao
         public virtual TModel Update(ISession currentSession, TModel model)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+
+//bj j = session.get(Object.class(), id);
+//if (j != null)
+//   session.merge(myObj);
+//else
+//   session.saveOrUpdate(myObj);
+            
             nativeSession.Merge(model);
             return model;
         }

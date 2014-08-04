@@ -9,7 +9,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
     public class Polymorphic : AbstractExecutionItemList
     {
         public Polymorphic(IDao<Account> accountDao)
-            : base("Polymorphic")
+            : base("Extension - Polymorphic")
         {
             IEnumerable<Account> selectedAccounts = accountDao.Query();
             IEnumerable<int> selectedAccountGuids = selectedAccounts.Select(x => x.Customer.Id);

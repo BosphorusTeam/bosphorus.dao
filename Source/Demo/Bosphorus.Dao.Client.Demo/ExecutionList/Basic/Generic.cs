@@ -1,26 +1,80 @@
-﻿using Bosphorus.Dao.Client.Demo.Common;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Bosphorus.Dao.Client.Demo.Common;
 using Bosphorus.Dao.Client.Model;
+using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
-    public class Generic : AbstractExecutionItemList
+    public class Generic : MethodExecutionItemList
     {
-        public Generic(IDao<Bank> dao)
-            : base("Basic - Generic")
-        {
-            this.Add("GetAll", () => dao.GetAll());
-            this.Add("GetById", () => dao.GetById(1));
-            this.Add("GetByIdSingle", () => dao.GetByIdSingle(1));
-            this.Add("GetByQuery", () => dao.GetByQuery("select * from XBank"));
-            this.Add("GetByNamedQuery", () => dao.GetByNamedQuery("BankNamedQueryPositional", new { No = "0092" }));
-            this.Add("GetByNamedQueryFromProcedure", () => dao.GetByNamedQuery("BankNamedQueryFromProcedure", new { Parameter1 = "Deneme", Parameter2 = "Deneme2" }));
+        private readonly IDao<Bank> dao;
 
-            
-            this.Add("Insert", () => dao.Insert(BankBuilder.Default.Build()));
-            this.Add("Update", () => dao.Update(BankBuilder.FromDatabase(1).WithRandomNo().Build()));
-            this.Add("Delete", () => dao.DeleteReturned(BankBuilder.FromDatabase(1).Build()));
+        public Generic(IResultTransformer resultTransformer, IDao<Bank> dao) 
+            : base(resultTransformer)
+        {
+            this.dao = dao;
+        }
+
+        public IEnumerable<Bank> GetAll()
+        {
+            return dao.GetAll();
+        }
+
+        public IQueryable<Bank> GetById()
+        {
+            IQueryable<Bank> result = dao.GetById(1);
+            return result;
+        }
+
+        public Bank GetByIdSingle()
+        {
+            Bank result = dao.GetByIdSingle(1);
+            return result;
+        }
+
+        public IEnumerable<Bank> GetByQuery()
+        {
+            IEnumerable<Bank> result = dao.GetByQuery("select * from XBank");
+            return result;
+        }
+
+        public IEnumerable<Bank> GetByNamedQuery()
+        {
+            var parameter = new {No = "0092"};
+            IEnumerable<Bank> result = dao.GetByNamedQuery("BankNamedQueryPositional", parameter);
+            return result;
+        }
+
+        public IEnumerable<Bank> GetByNamedQueryFromProcedure()
+        {
+            var parameter = new {Parameter1 = "Deneme", Parameter2 = "Deneme2"};
+            IEnumerable<Bank> result = dao.GetByNamedQuery("BankNamedQueryFromProcedure", parameter);
+            return result;
+        }
+
+        public Bank Insert()
+        {
+            Bank bank = BankBuilder.Default.Build();
+            Bank result = dao.Insert(bank);
+            return result;
+        }
+
+        public Bank Update()
+        {
+            Bank bank = BankBuilder.FromDatabase().Build();
+            bank.No = Randomize.String();
+            Bank result = dao.Update(bank);
+            return result;
+        }
+
+        public Bank Delete()
+        {
+            Bank bank = BankBuilder.FromDatabase().Build();
+            dao.Delete(bank);
+            return bank;
         }
     }
 }

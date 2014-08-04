@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.Core.Session.Provider;
+﻿using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.NHibernate.Common;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory

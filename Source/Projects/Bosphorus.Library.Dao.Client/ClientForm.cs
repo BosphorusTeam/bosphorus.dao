@@ -19,14 +19,13 @@ namespace Bosphorus.Dao.Client
             IExecutionItem[] orderedItems = executionItemList.List.OrderBy(item => item.ToString()).ToArray();
             lbQueries.Items.AddRange(orderedItems);
 
-            TextWriter textWriter = new TextBoxWriter(tbConsole);
+            TextWriter textWriter = new RichTextBoxWriter(tbConsole);
             TextWriter compsoiteWriter = new CompositeTextWriter(Console.Out, textWriter);
             Console.SetOut(compsoiteWriter);
         }
 
         private void lbQueries_DoubleClick(object sender, EventArgs e)
         {
-            tbConsole.Clear();
             FireQueryModel();
         }
 
@@ -38,6 +37,9 @@ namespace Bosphorus.Dao.Client
             Cursor current = Cursor.Current;
             Cursor.Current = Cursors.WaitCursor;
 
+            tbConsole.Clear();
+            tbConsole.Refresh();
+            Console.Clear();
             IExecutionItem executionItem = (IExecutionItem)lbQueries.SelectedItem;
 
             Stopwatch stopWatch = new Stopwatch();
@@ -45,8 +47,9 @@ namespace Bosphorus.Dao.Client
             IList data = executionItem.Execute();
             stopWatch.Stop();
 
-            dgResult.CaptionText = executionItem.ToString();
+            dgResult.Text = executionItem.ToString();
             dgResult.DataSource = data;
+            dgResult.CellFormatting += DgResultOnCellFormatting;
 
             int count = data.Count;
             double totalSeconds = stopWatch.Elapsed.TotalSeconds;
@@ -54,6 +57,21 @@ namespace Bosphorus.Dao.Client
             this.Text = string.Format("Count: {0}, Time: {1}, CountPerSecond: {2}", count, totalSeconds, countPerSecond);
 
             Cursor.Current = current;
+        }
+
+        private void DgResultOnCellFormatting(object sender, DataGridViewCellFormattingEventArgs dataGridViewCellFormattingEventArgs)
+        {
+            int columnIndex = dataGridViewCellFormattingEventArgs.ColumnIndex;
+            DataGridView grid = (DataGridView)sender;
+            DataGridViewColumn column = grid.Columns[columnIndex];
+            Type columnValueType = column.ValueType;
+            if (columnValueType == typeof(string))
+                return;
+
+            if (columnValueType.IsValueType)
+                return;
+
+            dataGridViewCellFormattingEventArgs.Value = "[??]";
         }
 
         private void lbQueries_KeyUp(object sender, KeyEventArgs e)

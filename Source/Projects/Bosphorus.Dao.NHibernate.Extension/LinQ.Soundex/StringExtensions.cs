@@ -6,13 +6,13 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.Soundex
 {
     //TODO: Not working correctly so it is internal
     //http://weblogs.asp.net/ricardoperes/custom-linq-extensions-for-nhibernate
-    internal static class StringExtensions
+    public static class StringExtensions
     {
         private const String values = "01230120022455012623010202";
         private const Int32 encodingLength = 4;
 
         [LinqExtensionMethod]
-        public static String Soundex(this String input)
+        public static string Soundex(this string input)
         {
             Char prevChar = ' ';
 

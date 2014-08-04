@@ -1,5 +1,5 @@
 ﻿using System;
-using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Manager;
 using NHibernate;
 using NHibernate.Metadata;
 

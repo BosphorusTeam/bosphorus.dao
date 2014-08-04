@@ -1,44 +1,63 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Bosphorus.Common.Clr.Enum;
+using Bosphorus.Dao.Client.Demo.Common;
 using Bosphorus.Dao.Client.Model;
+using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
-    public class Enum: AbstractExecutionItemList
+    public class Enum: MethodExecutionItemList
     {
-        public Enum(IDao<Customer> customerDao, IDao<CustomerType> customerTypeDao)
-            : base("Enum")
+        private readonly IDao<Customer> customerDao;
+        private readonly IDao<CustomerType> customerTypeDao;
+
+        public Enum(IResultTransformer resultTransformer, IDao<Customer> customerDao, IDao<CustomerType> customerTypeDao) 
+            : base(resultTransformer)
         {
-            Add("Where (From Database)", () => customerDao.Query().Where(customer => customer.CustomerType == GetCustomerTypefromDatabase(customerTypeDao)));
-            Add("Where (From Memory)", () => customerDao.Query().Where(customer => customer.CustomerType == GetCustomerTypeInMemory()));
-            Add("Where (EnumerationRegistration)", () => customerDao.Query().Where(customer => customer.CustomerType == CustomerTypes.Bireysel));
-            Add("Where In (From Database)", () => customerDao.Query().Where(customer => customer.CustomerType.In(GetCustomerTypesFromDatabase(customerTypeDao))));
-            Add("Where In (EnumerationRegistration)", () => customerDao.Query().Where(customer => customer.CustomerType.In(CustomerTypes.Hepsi)));
-            Add("Where Contains (EnumerationRegistration)", () => customerDao.Query().Where(customer => CustomerTypes.Hepsi.Contains(customer.CustomerType)));
+            this.customerDao = customerDao;
+            this.customerTypeDao = customerTypeDao;
         }
 
-        private Enumeration<int> GetCustomerTypeInMemory()
+        public IQueryable<Customer> Where_FromDatabase()
         {
-            CustomerType result = new CustomerType { Id = 1 };
+            CustomerType customerType = CustomerTypeBuilder.FromDatabase().Build();
+            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType == customerType);
             return result;
         }
 
-        private Enumeration<int> GetCustomerTypefromDatabase(IDao<CustomerType> customerTypeDao)
+        public IQueryable<Customer> Where_FromMemory()
         {
-            customerTypeDao.Insert(new CustomerType() { Name = "Bireysel" });
-            CustomerType result = customerTypeDao.Query().First(type => type.Name == "Bireysel");
+            CustomerType customerType = new CustomerType { Id = 1 };
+            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType == customerType);
             return result;
         }
 
-        private IEnumerable<CustomerType> GetCustomerTypesFromDatabase(IDao<CustomerType> customerTypeDao)
+        public IQueryable<Customer> Where_EnumerationRegistration()
         {
-            IQueryable<CustomerType> customerTypes = customerTypeDao.Query();
-            return customerTypes;
+            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType == CustomerTypes.Bireysel);
+            return result;
+        }
+
+        public IQueryable<Customer> WhereIn_FromDatabase()
+        {
+            List<CustomerType> customerTypes = customerTypeDao.Query().ToList();
+            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType.In(customerTypes));
+            return result;
+        }
+
+        public IQueryable<Customer> WhereIn_EnumerationRegistration()
+        {
+            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType.In(CustomerTypes.Hepsi));
+            return result;
+        }
+
+        public IQueryable<Customer> WhereContains_EnumerationRegistration()
+        {
+            IQueryable<Customer> result = customerDao.Query().Where(customer => CustomerTypes.Hepsi.Contains(customer.CustomerType));
+            return result;
         }
     }
 }

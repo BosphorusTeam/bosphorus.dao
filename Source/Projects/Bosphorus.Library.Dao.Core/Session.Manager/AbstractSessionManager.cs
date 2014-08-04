@@ -1,6 +1,6 @@
 ﻿using Bosphorus.Container.Castle.Registry;
 
-namespace Bosphorus.Dao.Core.Session.Provider
+namespace Bosphorus.Dao.Core.Session.Manager
 {
     public abstract class AbstractSessionManager : ISessionManager
     {

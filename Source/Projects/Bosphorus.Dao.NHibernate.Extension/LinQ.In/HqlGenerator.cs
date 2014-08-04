@@ -51,7 +51,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
             }
 
             IEnumerable valueArray = (IEnumerable)constantExpression.Value;
-            Type elementType = valueArray.GetType().GetGenericArguments()[0];
+            Type elementType = GetElementType(valueArray);
 
             if (elementType.IsValueType || elementType == typeof(string))
             {
@@ -61,6 +61,26 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
 
             HqlTreeNode hqlTreeNode = BuildFromExpression(arguments[1], visitor);
             return hqlTreeNode;
+        }
+
+        private Type GetElementType(IEnumerable valueArray)
+        {
+            Type valueArrayType = valueArray.GetType();
+
+            if (valueArray is Array)
+            {
+                Type elementType = valueArrayType.GetElementType();
+                return elementType;
+            }
+
+            if (valueArrayType.IsGenericType)
+            {
+                Type elementType = valueArrayType.GetGenericArguments()[0];
+                return elementType;
+            }
+
+            //TODO: Typed exception
+            throw  new Exception("Can not find element type");
         }
 
         private HqlTreeNode BuildFromExpression(Expression expression, IHqlExpressionVisitor visitor)

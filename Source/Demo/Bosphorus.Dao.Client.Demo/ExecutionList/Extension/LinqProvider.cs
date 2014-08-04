@@ -1,45 +1,121 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Bosphorus.Dao.Client.Model;
+using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.CastAs;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Coalesce;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Decode;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
+using Bosphorus.Dao.NHibernate.Extension.LinQ.Soundex;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
-    public class LinqProvider : AbstractExecutionItemList
+    public class LinqProvider : MethodExecutionItemList
     {
-        public LinqProvider(IDao<Customer> customerDao, IDao<Account> accountDao)
-            : base("LinqProvider")
+        private readonly IDao<Customer> customerDao;
+        private readonly IDao<Account> accountDao;
+        private readonly string[] inList;
+
+        //this.Add("LinqProvider - LinQ Equals ", () => from model in accountDao.Query() where model.No  == 0L select model);
+        //this.Add("LinqProvider - LinQ Oracle Left Join", () =>
+        //    from model in accountDao.Query()
+        //    from customer in bankDao.Query()
+        //    where model.Customer.Id == customer.Id.OraclePlus()
+        //    select model);
+
+        public LinqProvider(IResultTransformer resultTransformer, IDao<Customer> customerDao, IDao<Account> accountDao) 
+            : base(resultTransformer)
         {
-            string[] inList = {"Onur", "Oğuz"};
+            this.customerDao = customerDao;
+            this.accountDao = accountDao;
+            inList = new[] {"Onur", "Oğuz"};
+        }
 
-            this.Add("Cached", () => from model in accountDao.Cached().Query() where model.Name == "Onur" select model);
-            this.Add("LinQ In (Values)", () => from model in accountDao.Query() where model.Name.In("Onur", "Oğuz") select model);
-            this.Add("LinQ Not In (Values)", () => from model in accountDao.Query() where model.Name.NotIn("Onur", "Oğuz") select model);
-            this.Add("LinQ In (List)", () => from model in accountDao.Query() where model.Name.In(inList) select model);
-            this.Add("LinQ Not In (List)", () => from model in accountDao.Query() where model.Name.NotIn(inList) select model);
+        public IQueryable<Account> Cached()
+        {
+            IQueryable<Account> result = from model in accountDao.Cached().Query() where model.Name == "Onur" select model;
+            return result;
+        }
 
-            this.Add("LinQ Coalesce", () => from model in accountDao.Query() where model.Name.Coalesce("Deneme") == "Deneme" select model);
-            this.Add("LinQ Cast", () => from model in accountDao.Query() where model.Name.CastAs<string>() == "Deneme" select model);
+        public IQueryable<Account> Soundex()
+        {
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.Soundex() == "?" select model;
+            return result;
+        }
 
-            this.Add("LinQ Decode 1", () => from model in customerDao.Query() select model.Name.Decode("Onur", 1));
-            this.Add("LinQ Decode 1 - Fallback", () => from model in customerDao.Query() select model.Name.Decode("Onur", 1, -1));
-            this.Add("LinQ Decode 2", () => from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2));
-            this.Add("LinQ Decode 2 - Fallback", () => from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2, -1));
-            this.Add("LinQ Decode 3", () => from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2, "Gökhan", 3));
-            this.Add("LinQ Decode 3 - Fallback", () => from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2, "Gökhan", 3, - 1));
+        public IQueryable<Account> In_Values()
+        {
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.In("Onur", "Oğuz") select model;
+            return result;
+        }
 
-            //this.Add("LinqProvider - LinQ Equals ", () => from model in accountDao.Query() where model.No  == 0L select model);
-            //this.Add("LinqProvider - LinQ Soundex", () => from model in accountDao.Query() select model.Name.Soundex());
-            //this.Add("LinqProvider - LinQ Oracle Left Join", () =>
-            //    from model in accountDao.Query()
-            //    from customer in bankDao.Query()
-            //    where model.Customer.Id == customer.Id.OraclePlus()
-            //    select model);
+        public IQueryable<Account> In_List()
+        {
 
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.In(inList) select model;
+            return result;
+        }
+
+        public IQueryable<Account> NotIn_Values()
+        {
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.NotIn("Onur", "Oğuz") select model;
+            return result;
+        }
+
+        public IQueryable<Account> NotIn_List()
+        {
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.NotIn(inList) select model;
+            return result;
+        }
+
+        public IQueryable<Account> Coalesce()
+        {
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.Coalesce("Deneme") == "Deneme" select model;
+            return result;
+        }
+
+        public IQueryable<Account> Cast()
+        {
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.CastAs<string>() == "Deneme" select model;
+            return result;
+        }
+
+        public IQueryable<int> Decode_1()
+        {
+            IQueryable<int> result = from model in customerDao.Query() select model.Name.Decode("Onur", 1);
+            return result;
+        }
+
+        public IQueryable<int> Decode_1Fallback()
+        {
+            IQueryable<int> result = from model in customerDao.Query() select model.Name.Decode("Onur", 1, -1);
+            return result;
+        }
+
+        public IQueryable<int> Decode_2()
+        {
+            IQueryable<int> result = from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2);
+            return result;
+        }
+
+        public IQueryable<int> Decode_2Fallback()
+        {
+            IQueryable<int> result = from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2, -1);
+            return result;
+        }
+
+        public IQueryable<int> Decode_3()
+        {
+            IQueryable<int> result = from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2, "Devrim", 3);
+            return result;
+        }
+
+        public IQueryable<int> Decode_3Fallback()
+        {
+            IQueryable<int> result = from model in customerDao.Query() select model.Name.Decode("Onur", 1, "Oğuz", 2, "Devrim", 3, -1);
+            return result;
         }
     }
 }

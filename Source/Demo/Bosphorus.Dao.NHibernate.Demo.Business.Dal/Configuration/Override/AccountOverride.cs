@@ -8,7 +8,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal.Configuration.Override
     {
         public void Override(AutoMapping<Account> mapping)
         {
-            mapping.References(x => x.Customer).Cascade.All();
+            mapping.References(x => x.Customer).Cascade.None().Not.Nullable();
         }
     }
 }

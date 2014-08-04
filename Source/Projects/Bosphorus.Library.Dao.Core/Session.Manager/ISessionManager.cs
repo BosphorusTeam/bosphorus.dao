@@ -1,4 +1,4 @@
-﻿namespace Bosphorus.Dao.Core.Session.Provider
+﻿namespace Bosphorus.Dao.Core.Session.Manager
 {
     public interface ISessionManager
     {

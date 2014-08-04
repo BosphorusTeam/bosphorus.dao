@@ -1,7 +1,7 @@
 ﻿using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Dao.Decoration;
 using Bosphorus.Dao.Core.Session;
-using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using Castle.Core;
 using Castle.MicroKernel;

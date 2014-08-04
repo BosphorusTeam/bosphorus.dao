@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Manager;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration
 {

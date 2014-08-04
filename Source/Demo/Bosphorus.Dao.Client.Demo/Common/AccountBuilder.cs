@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
+using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Client.Demo.Common
 {
@@ -7,7 +10,18 @@ namespace Bosphorus.Dao.Client.Demo.Common
     {
         public static AccountBuilder Default
         {
-            get { return New.WithName("Maaş Hesabı"); }
+            get { return Empty.WithName("Maaş Hesabı"); }
+        }
+
+        public static AccountBuilder FromDatabaseWithChildren()
+        {
+            Console.WriteLine("Reading object from database to session ----------");
+            Account model = dao.Value.Query().Fetch(x => x.Customer).ThenFetch(x => x.CustomerType).First();
+            Console.WriteLine("Reading object from database to session ----------");
+
+            AccountBuilder builder = new AccountBuilder();
+            builder.model = model;
+            return builder;
         }
 
         public AccountBuilder WithId(int id)
@@ -20,12 +34,6 @@ namespace Bosphorus.Dao.Client.Demo.Common
         {
             model.Name = name;
             return this;
-        }
-
-        public AccountBuilder WithRandomName()
-        {
-            string name = "Random " + DateTime.Now.Second/10;
-            return WithName(name);
         }
 
         public AccountBuilder WithCustomer(Customer customer)

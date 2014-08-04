@@ -3,7 +3,7 @@
   
   <sql-query name="BankNamedQueryPositional">
       SELECT
-          ID as "Id",
+          cast(ID as number(4)) as "Id",
           NO as "No",
           NAME as "Name"
       FROM

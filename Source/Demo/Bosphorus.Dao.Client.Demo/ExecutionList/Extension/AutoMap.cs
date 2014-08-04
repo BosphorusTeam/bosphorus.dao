@@ -1,63 +1,109 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Dao.Client.Demo.Common;
 using Bosphorus.Dao.Client.Model;
+using Bosphorus.Dao.Client.ResultTransformer;
+using Bosphorus.Dao.Common.Mapper.Core;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.NHibernate.Demo.Business.Dto;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using NHibernate.Linq;
-using Omu.ValueInjecter;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
-    public class AutoMap: AbstractExecutionItemList
+    public class AutoMap : MethodExecutionItemList
     {
-        public AutoMap(IDao<Account> accountDao)
-            : base("AutoMap")
+        private readonly IDao<Bank> bankDao;
+        private readonly IDao<Account> accountDao;
+        private readonly IDao<Customer> customerDao;
+        private readonly IMapper mapper;
+
+        public AutoMap(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<Account> accountDao, IDao<Customer> customerDao, IMapper mapper) 
+            : base(resultTransformer)
         {
-            this.Add("View", () => from account in accountDao.Query() select AutoView<AccountView>.From(account));
-            this.Add("View With Fetch", () => from account in accountDao.Query().Fetch(x => x.Customer) select AutoView<AccountView>.From(account));
-            this.Add("View > Insert Model", () => InsertFromView(accountDao));
-            this.Add("View With Fetch", () => from account in accountDao.Query().Fetch(x => x.Customer) select AutoView<AccountView>.From(account));
+            this.bankDao = bankDao;
+            this.accountDao = accountDao;
+            this.customerDao = customerDao;
+            this.mapper = mapper;
         }
 
-        private Account InsertFromView(IDao<Account> accountDao)
+        public IQueryable<BankDto> ToDto_Basic_Simple()
         {
-            AccountView accountView = new AccountView();
-            accountView.Id = 3;
-            accountView.No = 3;
-            accountView.Name = "FromView";
-            accountView.CustomerName = "Onur";
-            accountView.CustomerCustomerTypeName = "Bireysel";
+            IQueryable<BankDto> result = 
+                from bank in bankDao.Query() 
+                select mapper.Map<BankDto>(bank);
 
-            Account account = AutoView<AccountView>.To<Account>(accountView);
-            accountDao.Insert(account);
-            return account;
+            return result;
         }
 
-        public class AccountView
+        public IQueryable<AccountDto> ToDto_Basic_Lookup()
         {
-            public int Id { get; set; }
-            public int No { get; set; }
-            public string Name { get; set; }
-            public string CustomerName { get; set; }
-            public IList<Account> CustomerAccounts { get; set; }
-            public string CustomerCustomerTypeName { get; set; }
+            IQueryable<AccountDto> result =
+                from account in accountDao.Query().Fetch(x => x.Customer).ThenFetch(x => x.CustomerType)
+                select mapper.Map<AccountDto>(account);
+
+            return result;
         }
 
-        internal class AutoView<T> where T : class, new()
+        public IQueryable<CustomerDto> ToDto_Basic_LookupAndChildren()
         {
-            public static T From<TMaster>(TMaster account)
-            {
-                T result = new T();
-                T foo = result.InjectFrom<FlatLoopValueInjection>(account) as T;
-                return foo;
-            }
+            IQueryable<CustomerDto> result =
+                from customer in customerDao.Query().Fetch(x => x.Accounts).Fetch(x => x.CustomerType)
+                select mapper.Map<CustomerDto>(customer);
 
-            public static TModel To<TModel>(T viewModel) where TModel : class, new()
-            {
-                TModel result = new TModel();
-                TModel foo = result.InjectFrom<UnflatLoopValueInjection>(viewModel) as TModel;
-                return foo;
-            }
+            return result;
         }
+
+        public IQueryable<CustomerComplexDto> ToDto_Complex()
+        {
+            IQueryable<CustomerComplexDto> result =
+                from customer in customerDao.Query().Fetch(x => x.Accounts).Fetch(x => x.CustomerType)
+                select mapper.Map<CustomerComplexDto>(customer);
+
+            return result;
+        }
+
+        public IQueryable<Bank> FromDto_Basic_Simple()
+        {
+            Bank model = BankBuilder.FromDatabase().Evict().Build();
+            BankDto sampleDto = mapper.Map<BankDto>(model);
+            IQueryable<BankDto> dtoList = new List<BankDto> { sampleDto }.AsQueryable();
+
+            IQueryable<Bank> result = 
+                from dto in dtoList
+                select mapper.Map<Bank>(dto);
+
+            return result;
+        }
+
+        //TODO: DtoBuilder'ları yap.
+        public IQueryable<Account> FromDto_Basic_Lookup()
+        {
+            Account model = AccountBuilder.FromDatabaseWithChildren().Evict().Build();
+            AccountDto sampleDto = mapper.Map<AccountDto>(model);
+            IQueryable<AccountDto> dtoList = new List<AccountDto> { sampleDto }.AsQueryable();
+
+            IQueryable<Account> result =
+                from dto in dtoList
+                select mapper.Map<Account>(dto);
+
+            return result;
+        }
+
+        public IQueryable<Customer> FromDto_Complex()
+        {
+            Customer model = CustomerBuilder.FromDatabaseWithChildren().Evict().Build();
+            CustomerComplexDto sampleDto = mapper.Map<CustomerComplexDto>(model);
+            IQueryable<CustomerComplexDto> dtoList = new List<CustomerComplexDto> { sampleDto }.AsQueryable();
+
+
+            IQueryable<Customer> result =
+                from dto in dtoList
+                select mapper.Map<Customer>(dto);
+
+            return result;
+        }
+
+       
     }
 }

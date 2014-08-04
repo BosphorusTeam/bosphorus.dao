@@ -30,8 +30,8 @@ namespace Bosphorus.Dao.Client
         {
             this.lbQueries = new System.Windows.Forms.ListBox();
             this.splLeft = new System.Windows.Forms.Splitter();
-            this.dgResult = new System.Windows.Forms.DataGrid();
-            this.tbConsole = new System.Windows.Forms.TextBox();
+            this.dgResult = new System.Windows.Forms.DataGridView();
+            this.tbConsole = new System.Windows.Forms.RichTextBox();
             this.splRight = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.dgResult)).BeginInit();
             this.SuspendLayout();
@@ -58,11 +58,7 @@ namespace Bosphorus.Dao.Client
             // dgResult
             // 
             this.dgResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgResult.CaptionFont = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dgResult.DataMember = "";
             this.dgResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgResult.FlatMode = true;
-            this.dgResult.HeaderForeColor = System.Drawing.SystemColors.ControlText;
             this.dgResult.Location = new System.Drawing.Point(297, 0);
             this.dgResult.Name = "dgResult";
             this.dgResult.ReadOnly = true;
@@ -72,20 +68,19 @@ namespace Bosphorus.Dao.Client
             // tbConsole
             // 
             this.tbConsole.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tbConsole.Location = new System.Drawing.Point(1233, 0);
-            this.tbConsole.MaxLength = 0;
-            this.tbConsole.Multiline = true;
+            this.tbConsole.Location = new System.Drawing.Point(1256, 0);
             this.tbConsole.Name = "tbConsole";
-            this.tbConsole.Size = new System.Drawing.Size(350, 714);
-            this.tbConsole.TabIndex = 6;
+            this.tbConsole.Size = new System.Drawing.Size(327, 714);
+            this.tbConsole.TabIndex = 14;
+            this.tbConsole.Text = "";
             // 
             // splRight
             // 
             this.splRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splRight.Location = new System.Drawing.Point(1228, 0);
+            this.splRight.Location = new System.Drawing.Point(1251, 0);
             this.splRight.Name = "splRight";
             this.splRight.Size = new System.Drawing.Size(5, 714);
-            this.splRight.TabIndex = 8;
+            this.splRight.TabIndex = 15;
             this.splRight.TabStop = false;
             // 
             // ClientForm
@@ -104,7 +99,6 @@ namespace Bosphorus.Dao.Client
             this.Text = "Dal Client Form";
             ((System.ComponentModel.ISupportInitialize)(this.dgResult)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -112,8 +106,8 @@ namespace Bosphorus.Dao.Client
 
         private System.Windows.Forms.ListBox lbQueries;
         private System.Windows.Forms.Splitter splLeft;
-        private System.Windows.Forms.DataGrid dgResult;
-        private System.Windows.Forms.TextBox tbConsole;
+        private System.Windows.Forms.DataGridView dgResult;
+        private System.Windows.Forms.RichTextBox tbConsole;
         private System.Windows.Forms.Splitter splRight;
     }
 }
