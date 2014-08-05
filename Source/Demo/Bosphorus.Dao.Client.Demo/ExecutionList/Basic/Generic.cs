@@ -51,6 +51,9 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
         public IEnumerable<Bank> GetByNamedQueryFromProcedure()
         {
             var parameter = new {Parameter1 = "Deneme", Parameter2 = "Deneme2"};
+            dao.GetByQuery("call XBANKPROC ( :Parameter1, :Parameter2 )", parameter);
+
+            //var parameter = new {Parameter1 = "Deneme", Parameter2 = "Deneme2"};
             IEnumerable<Bank> result = dao.GetByNamedQuery("BankNamedQueryFromProcedure", parameter);
             return result;
         }

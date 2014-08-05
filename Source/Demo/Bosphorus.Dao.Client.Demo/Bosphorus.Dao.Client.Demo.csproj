@@ -95,7 +95,9 @@
     <Compile Include="Common\ObjectExtensions.cs" />
     <Compile Include="Configuration\Business\ConventionApplier.cs" />
     <Compile Include="Configuration\Business\PersistenceConfigurerProvider.Test.cs" />
-    <Compile Include="Configuration\Business\SessionLifeStyleProvider.cs" />
+    <Compile Include="Configuration\Business\SessionLifeStyleProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Configuration\Log\ConventionApplier.cs" />
     <Compile Include="Configuration\Log\PersistenceConfigurerProvider.Test.cs" />
     <Compile Include="Configuration\Log\SchemaUpdater.cs">

@@ -4,8 +4,11 @@ using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using Castle.Core;
+using Castle.Core.Configuration;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
+using Castle.MicroKernel.ModelBuilder;
+using Castle.MicroKernel.ModelBuilder.Descriptors;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -24,14 +27,10 @@ namespace Bosphorus.Dao.NHibernate.Session
 
                 Component
                     .For<ISession>()
-                    .UsingFactoryMethod(BuildSession, true)
-                    .LifeStyle.Singleton
+                    .UsingFactoryMethod(BuildSession)
+                    .LifestyleCustom<SessionLifeStyleManager>()
 
             );
-
-            ISessionLifeStyleProvider sessionLifeStyleProvider = container.Resolve<ISessionLifeStyleProvider>();
-            LifestyleType lifestyleType = sessionLifeStyleProvider.GetLifestyle();
-            container.Kernel.GetHandler(typeof(ISession)).ComponentModel.LifestyleType = lifestyleType;
         }
 
         private ISession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)

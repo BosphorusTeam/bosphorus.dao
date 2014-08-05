@@ -129,6 +129,7 @@
     <Compile Include="Session\NHibernateCurrentSessionContext.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />
+    <Compile Include="Session\SessionLifeStyleManager.cs" />
     <Compile Include="Transaction\NHibernateTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
