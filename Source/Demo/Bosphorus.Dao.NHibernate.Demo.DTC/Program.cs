@@ -1,4 +1,5 @@
 ﻿using System.Transactions;
+using Bosphorus.BootStapper.Common;
 using Bosphorus.BootStapper.Program;
 using Bosphorus.BootStapper.Runner;
 using Bosphorus.Dao.Core.Dao;
@@ -20,7 +21,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.DTC
 
         static void Main(string[] args)
         {
-            ConsoleRunner.Run<Program>(args);
+            ConsoleRunner.Run<Program>(Environment.Development, Perspective.Debug, args);
         }
 
         public void Run(string[] args)
