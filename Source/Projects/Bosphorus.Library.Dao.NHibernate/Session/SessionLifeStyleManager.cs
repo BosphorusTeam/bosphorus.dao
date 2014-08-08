@@ -16,6 +16,7 @@ namespace Bosphorus.Dao.NHibernate.Session
             map = new Dictionary<LifestyleType, ILifestyleManager>();
             map.Add(LifestyleType.Singleton, new SingletonLifestyleManager());
             map.Add(LifestyleType.PerWebRequest, new ScopedLifestyleManager(new WebRequestScopeAccessor()));
+            map.Add(LifestyleType.Thread, new ScopedLifestyleManager(new ThreadScopeAccessor()));
         }
 
         public void Init(IComponentActivator componentActivator, IKernel kernel, ComponentModel model)
