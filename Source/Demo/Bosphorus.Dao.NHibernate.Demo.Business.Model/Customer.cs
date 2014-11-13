@@ -9,5 +9,6 @@ namespace Bosphorus.Dao.NHibernate.Demo.Business.Model
         public virtual string Name { get; set; }
         public virtual IList<Account> Accounts { get; set; }
         public virtual CustomerType CustomerType { get; set; }
+        public virtual Account PrimaryAccount { get; set; }
     }
 }

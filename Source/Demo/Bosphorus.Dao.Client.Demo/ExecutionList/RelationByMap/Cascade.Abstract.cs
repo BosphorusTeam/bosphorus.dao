@@ -27,10 +27,15 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
         public virtual Customer Customer_Insert()
         {
             Customer customer = CustomerBuilder.Default.Build();
-            Account account = AccountBuilder.Default.Build();
+            Account account1 = AccountBuilder.Default.Build();
+            Account account2 = AccountBuilder.Default.Build();
 
-            customer.Accounts.Add(account);
-            account.Customer = customer;
+            account1.Customer = customer;
+            account2.Customer = customer;
+
+            customer.PrimaryAccount = account1;
+            //customer.Accounts.Add(account1);
+            //customer.Accounts.Add(account2);
 
             customerDao.Insert(customer);
             return customer;
@@ -74,15 +79,15 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
             return customer;
         }
 
-        public virtual Customer Account_Insert()
+        public virtual Account Account_Insert()
         {
-            Customer customer = ReadCustomer();
+            //Customer customer = ReadCustomer();
             Account account = AccountBuilder.Default.Build();
 
-            account.Customer = customer;
+            account.Customer = new Customer() {Id = 1};
 
             accountDao.Insert(account);
-            return customer;
+            return account;
         }
 
         public virtual Account Account_Update()

@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Client.Demo
         [System.STAThread]
         static void Main()
         {
-            DaoRunner.Run(Environment.Test, Perspective.Debug);
+            DaoRunner.Run(Environment.Local, Perspective.Debug);
         }
     }
 }

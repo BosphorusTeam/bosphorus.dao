@@ -11,18 +11,7 @@ namespace Bosphorus.Dao.Client.Demo.Configuration.Business
         protected override void Process(global::NHibernate.Cfg.Configuration configuration)
         {
             SchemaUpdate schemaUpdate = new SchemaUpdate(configuration);
-            //schemaUpdate.Execute(script => UpdateAction(script, configuration), true);
             schemaUpdate.Execute(true, true);
-
-            //InsertInitialData(configuration);
-        }
-
-        private void UpdateAction(string script, global::NHibernate.Cfg.Configuration configuration)
-        {
-            if (script == string.Empty)
-            {
-                return;
-            }
 
             //InsertInitialData(configuration);
         }
@@ -40,17 +29,28 @@ namespace Bosphorus.Dao.Client.Demo.Configuration.Business
             session.Save(customer);
             session.Flush();
 
-            Account account = AccountBuilder.Empty.WithName("Varsayılan Hesap").Build();
-            account.Customer = customer;
-            session.Save(account);
+            Account account1 = AccountBuilder.Empty.WithName("Varsayılan Hesap").Build();
+            account1.Customer = customer;
+            session.Save(account1);
             session.Flush();
 
-            customer.Accounts.Add(account);
+            Account account2 = AccountBuilder.Empty.WithName("USD Hesap").Build();
+            account2.Customer = customer;
+            session.Save(account2);
+            session.Flush();
+
+            customer.Accounts.Add(account1);
+            customer.Accounts.Add(account2);
+            customer.PrimaryAccount = account1;
             session.SaveOrUpdate(customer);
             session.Flush();
 
-            account.Customer = customer;
-            session.SaveOrUpdate(account);
+            account1.Customer = customer;
+            session.SaveOrUpdate(account1);
+
+            account2.Customer = customer;
+            session.SaveOrUpdate(account2);
+
             session.Flush();
         }
     }

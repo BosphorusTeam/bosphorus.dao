@@ -57,7 +57,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
             return base.Customer_Delete();
         }
 
-        public override Customer Account_Insert()
+        public override Account Account_Insert()
         {
             return base.Account_Insert();
         }
