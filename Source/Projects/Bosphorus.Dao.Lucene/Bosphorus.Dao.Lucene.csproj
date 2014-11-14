@@ -72,9 +72,7 @@
     <Compile Include="Dao\ILuceneDao.Generic.cs" />
     <Compile Include="Dao\LuceneDao.Generic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
     <Compile Include="Session.Manager.Factory\DefaultLuceneSessionManagerFactory.cs" />
-    <Compile Include="Session.Manager.Factory\ILuceneSessionManagerFactory.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Session.Manager.Factory\LuceneSessionManagerFactoryExtensions.cs" />
     <Compile Include="Session.Manager\LuceneSessionManager.cs" />

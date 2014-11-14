@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.Core.Session.Manager.Factory;
 
-namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration
+namespace Bosphorus.Dao.Core.Session.Manager.Factory.Decoration
 {
     public class CacheDecorator: ISessionManagerFactory
     {

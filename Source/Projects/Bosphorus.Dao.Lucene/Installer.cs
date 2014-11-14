@@ -2,16 +2,16 @@
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
+using Bosphorus.Dao.Core.Session.Manager.Factory.Decoration;
 using Bosphorus.Dao.Lucene.Session;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory;
-using Bosphorus.Dao.Lucene.Session.Manager.Factory.Decoration;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Lucene.Net.Util;
 
 namespace Bosphorus.Dao.Lucene
 {
@@ -25,11 +25,11 @@ namespace Bosphorus.Dao.Lucene
                     .UsingFactoryMethod(BuildSession),
 
                 Component
-                    .For<ILuceneSessionManagerFactory>()
+                    .For<ISessionManagerFactory>()
                     .ImplementedBy<DefaultLuceneSessionManagerFactory>(),
 
                 Component
-                    .For<ILuceneSessionManagerFactory>()
+                    .For<ISessionManagerFactory>()
                     .ImplementedBy<CacheDecorator>()
                     .IsDefault()
             );
@@ -40,7 +40,7 @@ namespace Bosphorus.Dao.Lucene
         {
             IDictionary sessionCreationArguments = creationContext.AdditionalArguments;
 
-            ILuceneSessionManagerFactory luceneSessionManagerFactory = kernel.Resolve<ILuceneSessionManagerFactory>();
+            ISessionManagerFactory luceneSessionManagerFactory = kernel.Resolve<ISessionManagerFactory>();
             ISessionManager luceneSessionManager = luceneSessionManagerFactory.Build(sessionCreationArguments);
             ISession session = luceneSessionManager.OpenSession();
             return session;

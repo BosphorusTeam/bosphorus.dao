@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Bosphorus.Container.Castle.Registry;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Index;
 using Lucene.Net.Linq;
@@ -9,7 +11,7 @@ using Version = Lucene.Net.Util.Version;
 
 namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
 {
-    public class DefaultLuceneSessionManagerFactory : ILuceneSessionManagerFactory
+    public class DefaultLuceneSessionManagerFactory : ISessionManagerFactory
     {
         private readonly IServiceRegistry serviceRegistry;
 
@@ -18,8 +20,9 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
             this.serviceRegistry = serviceRegistry;
         }
 
-        public ISessionManager Build(Type type)
+        public ISessionManager Build(IDictionary creationArguments)
         {
+            Type type = (Type)creationArguments["Type"];
             Type genericType = typeof(LuceneSessionManager<>).MakeGenericType(type);
 
             StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_30);

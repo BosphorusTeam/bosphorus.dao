@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration
+namespace Bosphorus.Dao.Core.Session.Manager.Factory.Decoration
 {
     public class DictionaryElementsEqualityComparer : IEqualityComparer<IDictionary>
     {

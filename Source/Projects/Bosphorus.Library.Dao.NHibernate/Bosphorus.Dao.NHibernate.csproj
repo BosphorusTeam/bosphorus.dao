@@ -90,7 +90,6 @@
     <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao\AbstractNHibernateDao.cs" />
-    <Compile Include="Session.Manager.Factory.Decoration\DictionaryElementsEqualityComparer.cs" />
     <Compile Include="Session.Manager\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
@@ -107,7 +106,6 @@
     <Compile Include="Fluent.HbmMappingProvider\IHbmMappingRegisterer.cs" />
     <Compile Include="Fluent.HbmMappingProvider\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\Installer.cs" />
-    <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\AbstractAutoPersistenceModelProvider.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\AbstractConfigurationProcessor.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\ChainedPersistenceConfigurerProvider.cs" />

@@ -5,6 +5,7 @@ using System.Linq;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.Lucene.Session;
 using Bosphorus.Dao.Lucene.Session.Manager;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory;
@@ -16,7 +17,7 @@ namespace Bosphorus.Dao.Lucene.Dao
     {
         private readonly ISessionManager sessionManager;
 
-        protected AbstractLuceneDao(ILuceneSessionManagerFactory sessionManagerFactory, string sessionAlias)
+        protected AbstractLuceneDao(ISessionManagerFactory sessionManagerFactory)
         {
             sessionManager = sessionManagerFactory.Build(typeof(TModel));
         }

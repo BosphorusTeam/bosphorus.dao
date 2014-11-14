@@ -88,6 +88,8 @@
     <Compile Include="Session.LifeStyle\AbstractSessionLifeStyleProvider.cs" />
     <Compile Include="Session.LifeStyle\ISessionLifeStyleProvider.cs" />
     <Compile Include="Session.LifeStyle\SessionLifeStyleManager.cs" />
+    <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
+    <Compile Include="Session.Manager.Factory.Decoration\DictionaryElementsEqualityComparer.cs" />
     <Compile Include="Session.Manager.Factory\ISessionManagerFactory.cs" />
     <Compile Include="Session.Manager\AbstractSessionManager.cs" />
     <Compile Include="Session.Manager\ISessionManager.cs" />

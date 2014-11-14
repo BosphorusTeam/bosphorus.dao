@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 
 namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
 {
     public static class LuceneSessionManagerFactoryExtensions
     {
-        public static ISessionManager Build(this ILuceneSessionManagerFactory extended, IDictionary sessionCreationArguments)
+        public static ISessionManager Build(this ISessionManagerFactory extended, Type type)
         {
-            Type type = (Type)sessionCreationArguments["Type"];
-            ISessionManager result = extended.Build(type);
+            IDictionary creationArguments = new Hashtable();
+            creationArguments["Type"] = type;
+
+            ISessionManager result = extended.Build(creationArguments);
 
             return result;
         }
