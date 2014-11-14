@@ -5,7 +5,8 @@ using Lucene.Net.Linq;
 
 namespace Bosphorus.Dao.Lucene.Session.Manager
 {
-    public class LuceneSessionManager<TModel> : AbstractSessionManager<LuceneSession<TModel>> where TModel : new()
+    public class LuceneSessionManager<TModel> : AbstractSessionManager<LuceneSession<TModel>>, ILuceneSessionManager
+        where TModel : new()
     {
         private readonly IServiceRegistry serviceRegistry;
         private readonly LuceneDataProvider luceneDataProvider;

@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\SessionLifeStyleProvider.cs" />
     <Compile Include="ExecutionList\Basic\Generic.cs" />
     <Compile Include="ExecutionList\Extension\LinqProvider.cs" />
     <Compile Include="Program.cs" />

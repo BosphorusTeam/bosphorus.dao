@@ -29,12 +29,12 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public class NHibernateDao<TModel>: AbstractNHibernateDao<TModel> 
         where TModel : class
     {
-        public NHibernateDao(ISessionManagerFactory sessionManagerFactory)
+        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory)
             : this(sessionManagerFactory, SessionAlias.Default)
         {
         }
 
-        public NHibernateDao(ISessionManagerFactory sessionManagerFactory, string sessionAlias)
+        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, string sessionAlias)
             : base(sessionManagerFactory, sessionAlias)
         {
         }

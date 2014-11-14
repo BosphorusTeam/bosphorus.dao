@@ -35,12 +35,12 @@ namespace Bosphorus.Dao.NHibernate.Dao
         private readonly IServiceRegistry serviceRegistry;
         private readonly ISessionManager sessionManager;
 
-        public NHibernateDao(ISessionManagerFactory sessionManagerFactory, IServiceRegistry serviceRegistry)
+        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, IServiceRegistry serviceRegistry)
             : this(sessionManagerFactory, SessionAlias.Default, serviceRegistry)
         {
         }
 
-        public NHibernateDao(ISessionManagerFactory sessionManagerFactory, string sessionAlias, IServiceRegistry serviceRegistry)
+        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, string sessionAlias, IServiceRegistry serviceRegistry)
         {
             this.sessionManager = sessionManagerFactory.Build(sessionAlias);
             this.serviceRegistry = serviceRegistry;

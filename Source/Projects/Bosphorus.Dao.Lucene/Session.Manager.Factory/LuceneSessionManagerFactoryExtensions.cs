@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
 {
     public static class LuceneSessionManagerFactoryExtensions
     {
-        public static ISessionManager Build(this ISessionManagerFactory extended, Type type)
+        public static ISessionManager Build(this ILuceneSessionManagerFactory extended, Type type)
         {
             IDictionary creationArguments = new Hashtable();
             creationArguments["Type"] = type;

@@ -19,7 +19,7 @@ using NHibernate.Cfg;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
-    public class NHibernateSessionManagerFactory : ISessionManagerFactory
+    public class NHibernateSessionManagerFactory : INHibernateSessionManagerFactory
     {
         private readonly IServiceRegistry serviceRegistry;
         private readonly IPersistenceConfigurerProvider persistenceConfigurerProvider;

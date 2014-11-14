@@ -66,15 +66,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao\AbstractLuceneDao.cs" />
     <Compile Include="Dao\ILuceneDao.NonGeneric.cs" />
     <Compile Include="Dao\ILuceneDao.Generic.cs" />
     <Compile Include="Dao\LuceneDao.Generic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session.Manager.Factory\DefaultLuceneSessionManagerFactory.cs" />
+    <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
+    <Compile Include="Session.Manager.Factory\ILuceneSessionManagerFactory.cs" />
+    <Compile Include="Session.Manager.Factory\LuceneSessionManagerFactory.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Session.Manager.Factory\LuceneSessionManagerFactoryExtensions.cs" />
+    <Compile Include="Session.Manager\ILuceneSessionManager.cs" />
     <Compile Include="Session.Manager\LuceneSessionManager.cs" />
     <Compile Include="Session\LuceneSession.cs" />
   </ItemGroup>

@@ -11,7 +11,7 @@ using Version = Lucene.Net.Util.Version;
 
 namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
 {
-    public class LuceneSessionManagerFactory : ISessionManagerFactory
+    public class LuceneSessionManagerFactory : ILuceneSessionManagerFactory
     {
         private readonly IServiceRegistry serviceRegistry;
 

@@ -5,9 +5,9 @@ using Bosphorus.Dao.NHibernate.Common;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
-    internal static class SessionManagerFactoryExtensions
+    internal static class NHibernateSessionManagerFactoryExtensions
     {
-        public static ISessionManager Build(this ISessionManagerFactory extended, string sessionAlias)
+        public static ISessionManager Build(this INHibernateSessionManagerFactory extended, string sessionAlias)
         {
             IDictionary creationArguments = new Hashtable();
             creationArguments.Add("SessionAlias", sessionAlias);
@@ -16,7 +16,7 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
             return sessionManager;
         }
 
-        public static ISessionManager Build(this ISessionManagerFactory extended)
+        public static ISessionManager Build(this INHibernateSessionManagerFactory extended)
         {
             ISessionManager sessionManager = extended.Build(SessionAlias.Default);
             return sessionManager;

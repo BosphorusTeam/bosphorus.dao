@@ -6,7 +6,7 @@ using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager
 {
-    public class NHibernateSessionManager: AbstractSessionManager<NHibernateSession>
+    public class NHibernateSessionManager : AbstractSessionManager<NHibernateSession>, INHibernateSessionManager
     {
         private readonly string sessionAlias;
         private readonly ISessionFactory sessionFactory;

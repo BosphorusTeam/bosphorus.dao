@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.Log.Dal
 {
     public class LogDao: NHibernateDao<LogModel>
     {
-        public LogDao(ISessionManagerFactory sessionManagerFactory) 
+        public LogDao(INHibernateSessionManagerFactory sessionManagerFactory) 
             : base(sessionManagerFactory, "LOG")
         {
         }

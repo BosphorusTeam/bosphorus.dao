@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.LifeStyle;
 using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.Core.Session.Manager.Factory;
-using Bosphorus.Dao.Core.Session.Manager.Factory.Decoration;
 using Bosphorus.Dao.Lucene.Session;
+using Bosphorus.Dao.Lucene.Session.Manager;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory;
+using Bosphorus.Dao.Lucene.Session.Manager.Factory.Decoration;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
@@ -22,14 +23,19 @@ namespace Bosphorus.Dao.Lucene
             container.Register(
                 Component
                     .For(typeof(LuceneSession<>))
-                    .UsingFactoryMethod(BuildSession),
+                    .UsingFactoryMethod(BuildSession)
+                    .LifestyleCustom<SessionLifeStyleManager>(),
 
                 Component
-                    .For<ISessionManagerFactory>()
-                    .ImplementedBy<DefaultLuceneSessionManagerFactory>(),
+                    .For<ILuceneSessionManager>()
+                    .UsingFactoryMethod(BuildSessionManager),
 
                 Component
-                    .For<ISessionManagerFactory>()
+                    .For<ILuceneSessionManagerFactory>()
+                    .ImplementedBy<LuceneSessionManagerFactory>(),
+
+                Component
+                    .For<ILuceneSessionManagerFactory>()
                     .ImplementedBy<CacheDecorator>()
                     .IsDefault()
             );
@@ -38,12 +44,18 @@ namespace Bosphorus.Dao.Lucene
 
         private ISession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
         {
-            IDictionary sessionCreationArguments = creationContext.AdditionalArguments;
-
-            ISessionManagerFactory luceneSessionManagerFactory = kernel.Resolve<ISessionManagerFactory>();
-            ISessionManager luceneSessionManager = luceneSessionManagerFactory.Build(sessionCreationArguments);
-            ISession session = luceneSessionManager.OpenSession();
+            IDictionary creationArguments = creationContext.AdditionalArguments;
+            ILuceneSessionManager sessionManager = kernel.Resolve<ILuceneSessionManager>(creationArguments);
+            ISession session = sessionManager.OpenSession();
             return session;
+        }
+
+        private ILuceneSessionManager BuildSessionManager(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        {
+            IDictionary creationArguments = creationContext.AdditionalArguments;
+            ILuceneSessionManagerFactory sessionManagerFactory = kernel.Resolve<ILuceneSessionManagerFactory>();
+            ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
+            return (ILuceneSessionManager) sessionManager;
         }
     }
 }

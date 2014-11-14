@@ -4,9 +4,10 @@ using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.LifeStyle;
 using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.Core.Session.Manager.Factory;
-using Bosphorus.Dao.Core.Session.Manager.Factory.Decoration;
 using Bosphorus.Dao.NHibernate.Session;
+using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
@@ -27,11 +28,15 @@ namespace Bosphorus.Dao.NHibernate
                     .LifestyleCustom<SessionLifeStyleManager>(),
 
                 Component
-                    .For<ISessionManagerFactory>()
+                    .For<INHibernateSessionManager>()
+                    .UsingFactoryMethod(BuildSessionManager),
+
+                Component
+                    .For<INHibernateSessionManagerFactory>()
                     .ImplementedBy<NHibernateSessionManagerFactory>(),
 
                 Component
-                    .For<ISessionManagerFactory>()
+                    .For<INHibernateSessionManagerFactory>()
                     .ImplementedBy<CacheDecorator>()
                     .IsDefault()
             );
@@ -40,10 +45,18 @@ namespace Bosphorus.Dao.NHibernate
         private NHibernateSession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
         {
             IDictionary creationArguments = creationContext.AdditionalArguments;
-            ISessionManagerFactory sessionManagerFactory = kernel.Resolve<ISessionManagerFactory>();
-            ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
+            INHibernateSessionManager sessionManager = kernel.Resolve<INHibernateSessionManager>(creationArguments);
             ISession session = sessionManager.OpenSession();
             return (NHibernateSession) session;
         }
+
+        private INHibernateSessionManager BuildSessionManager(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        {
+            IDictionary creationArguments = creationContext.AdditionalArguments;
+            INHibernateSessionManagerFactory sessionManagerFactory = kernel.Resolve<INHibernateSessionManagerFactory>();
+            ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
+            return (INHibernateSessionManager)sessionManager;
+        }
+
     }
 }

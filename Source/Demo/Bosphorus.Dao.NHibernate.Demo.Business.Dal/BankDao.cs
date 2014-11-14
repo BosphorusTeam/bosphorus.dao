@@ -9,7 +9,7 @@ namespace Bosphorus.Dao.NHibernate.Demo.Business.Dal
 {
     public class BankDao : NHibernateDao<Bank>, IBankDao
     {
-        public BankDao(ISessionManagerFactory sessionManagerFactory)
+        public BankDao(INHibernateSessionManagerFactory sessionManagerFactory)
             : base(sessionManagerFactory)
         {
         }

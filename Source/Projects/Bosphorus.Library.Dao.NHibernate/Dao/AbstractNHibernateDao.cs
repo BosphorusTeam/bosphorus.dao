@@ -45,7 +45,7 @@ namespace Bosphorus.Dao.NHibernate.Dao
         private readonly IClassMetadata classMetadata;
         private readonly IResultTransformer resultTransformer;
 
-        protected AbstractNHibernateDao(ISessionManagerFactory sessionManagerFactory, string sessionAlias)
+        protected AbstractNHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, string sessionAlias)
         {
             this.sessionManager = sessionManagerFactory.Build(sessionAlias);
             modelType = typeof(TModel);

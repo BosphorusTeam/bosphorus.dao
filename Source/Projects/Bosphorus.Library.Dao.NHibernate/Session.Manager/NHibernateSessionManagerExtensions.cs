@@ -5,7 +5,7 @@ using NHibernate.Metadata;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager
 {
-    public static class SessionManagerExtensions
+    public static class NHibernateSessionManagerExtensions
     {
         public static IClassMetadata GetClassMetadata(this ISessionManager sessionManager, Type modelType)
         {

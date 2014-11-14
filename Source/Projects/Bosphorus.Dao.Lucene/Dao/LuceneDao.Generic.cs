@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager.Factory;
+using Bosphorus.Dao.Lucene.Session.Manager.Factory;
 using Lucene.Net.Linq;
 
 namespace Bosphorus.Dao.Lucene.Dao
 {
     public class LuceneDao<TModel> : AbstractLuceneDao<TModel>, ILuceneDao<TModel>
     {
-        public LuceneDao(ISessionManagerFactory sessionManagerFactory) 
+        public LuceneDao(ILuceneSessionManagerFactory sessionManagerFactory) 
             : base(sessionManagerFactory)
         {
         }
