@@ -1,22 +1,20 @@
 ﻿using System.Collections;
 using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Dao.Core.Dao.Decoration;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.LifeStyle;
 using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.Core.Session.Manager.Factory;
+using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
 using Castle.Core;
-using Castle.Core.Configuration;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
-using Castle.MicroKernel.ModelBuilder;
-using Castle.MicroKernel.ModelBuilder.Descriptors;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace Bosphorus.Dao.NHibernate.Session
+namespace Bosphorus.Dao.NHibernate
 {
     public class Installer: AbstractWindsorInstaller
     {
@@ -24,20 +22,28 @@ namespace Bosphorus.Dao.NHibernate.Session
         {
             container.Register(
                 Component
-                    .For<ISession>()
+                    .For<NHibernateSession>()
                     .UsingFactoryMethod(BuildSession)
-                    .LifestyleCustom<SessionLifeStyleManager>()
+                    .LifestyleCustom<SessionLifeStyleManager>(),
 
+                Component
+                    .For<ISessionManagerFactory>()
+                    .ImplementedBy<NHibernateSessionManagerFactory>(),
+
+                Component
+                    .For<ISessionManagerFactory>()
+                    .ImplementedBy<CacheDecorator>()
+                    .IsDefault()
             );
         }
 
-        private ISession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        private NHibernateSession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
         {
             IDictionary creationArguments = creationContext.AdditionalArguments;
             ISessionManagerFactory sessionManagerFactory = kernel.Resolve<ISessionManagerFactory>();
             ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
             ISession session = sessionManager.OpenSession();
-            return session;
+            return (NHibernateSession) session;
         }
     }
 }

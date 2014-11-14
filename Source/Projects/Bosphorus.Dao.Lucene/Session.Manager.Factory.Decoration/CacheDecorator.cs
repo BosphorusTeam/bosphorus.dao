@@ -7,25 +7,24 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory.Decoration
     public class CacheDecorator: ILuceneSessionManagerFactory
     {
         private readonly ILuceneSessionManagerFactory decorated;
-        private readonly IDictionary<Tuple<string, Type>, ISessionManager> cache;
+        private readonly IDictionary<Type, ISessionManager> cache;
 
         public CacheDecorator(ILuceneSessionManagerFactory decorated)
         {
             this.decorated = decorated;
-            this.cache = new Dictionary<Tuple<string, Type>, ISessionManager>();
+            this.cache = new Dictionary<Type, ISessionManager>();
         }
 
-        public ISessionManager Build(string sessionAlias, Type type)
+        public ISessionManager Build(Type type)
         {
-            Tuple<string, Type> key = new Tuple<string, Type>(sessionAlias, type);
-            if (cache.ContainsKey(key))
+            if (cache.ContainsKey(type))
             {
-                ISessionManager sessionManager = cache[key];
+                ISessionManager sessionManager = cache[type];
                 return sessionManager;
             }
 
-            ISessionManager newSessionManager = decorated.Build(sessionAlias, type);
-            cache[key] = newSessionManager;
+            ISessionManager newSessionManager = decorated.Build(type);
+            cache[type] = newSessionManager;
             return newSessionManager;
         }
     }

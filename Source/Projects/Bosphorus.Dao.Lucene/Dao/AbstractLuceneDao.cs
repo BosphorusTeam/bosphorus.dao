@@ -18,7 +18,7 @@ namespace Bosphorus.Dao.Lucene.Dao
 
         protected AbstractLuceneDao(ILuceneSessionManagerFactory sessionManagerFactory, string sessionAlias)
         {
-            sessionManager = sessionManagerFactory.Build(sessionAlias, typeof(TModel));
+            sessionManager = sessionManagerFactory.Build(typeof(TModel));
         }
 
         public ISessionManager SessionManager

@@ -18,7 +18,7 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
             this.serviceRegistry = serviceRegistry;
         }
 
-        public ISessionManager Build(string sessionAlias, Type type)
+        public ISessionManager Build(Type type)
         {
             Type genericType = typeof(LuceneSessionManager<>).MakeGenericType(type);
 
@@ -31,7 +31,7 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
             LuceneDataProvider provider = new LuceneDataProvider(directory, analyzer, Version.LUCENE_30, writer);
             provider.Settings.EnableMultipleEntities = false;
 
-            object instance = Activator.CreateInstance(genericType, serviceRegistry, sessionAlias, provider);
+            object instance = Activator.CreateInstance(genericType, serviceRegistry, provider);
 
             ISessionManager sessionManager = (ISessionManager)instance;
             return sessionManager;

@@ -5,6 +5,6 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
 {
     public interface ILuceneSessionManagerFactory
     {
-        ISessionManager Build(string sessionAlias, Type type);
+        ISessionManager Build(Type type);
     }
 }

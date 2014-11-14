@@ -2,6 +2,7 @@
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Lucene.Session;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory.Decoration;
 using Castle.Core;
@@ -20,7 +21,7 @@ namespace Bosphorus.Dao.Lucene
         {
             container.Register(
                 Component
-                    .For<ISession>()
+                    .For(typeof(LuceneSession<>))
                     .UsingFactoryMethod(BuildSession),
 
                 Component

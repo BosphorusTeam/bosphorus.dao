@@ -8,9 +8,8 @@ namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
     {
         public static ISessionManager Build(this ILuceneSessionManagerFactory extended, IDictionary sessionCreationArguments)
         {
-            string sessionAlias = (string)sessionCreationArguments["SessionAlias"];
             Type type = (Type)sessionCreationArguments["Type"];
-            ISessionManager result = extended.Build(sessionAlias, type);
+            ISessionManager result = extended.Build(type);
 
             return result;
         }

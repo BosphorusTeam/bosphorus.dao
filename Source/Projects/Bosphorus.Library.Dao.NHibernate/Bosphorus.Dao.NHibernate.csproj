@@ -120,10 +120,9 @@
     <Compile Include="Session.Manager.Factory\NHibernateSessionManagerFactory.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\AbstractPersistenceConfigurerProvider.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\IAutoPersistenceModelProvider.cs" />
-    <Compile Include="Session.Manager.Factory\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
     <Compile Include="Session.Manager\SessionManagerExtensions.cs" />
-    <Compile Include="Session\Installer.cs" />
+    <Compile Include="Installer.cs" />
     <Compile Include="Session\NHibernateCurrentSessionContext.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />

@@ -2,20 +2,14 @@
 
 namespace Bosphorus.Dao.Core.Session.Manager
 {
-    public abstract class AbstractSessionManager : ISessionManager
+    public abstract class AbstractSessionManager<TSession> : ISessionManager
+        where TSession: ISession
     {
         private readonly IServiceRegistry serviceRegistry;
-        private readonly string sessionAlias;
 
-        protected AbstractSessionManager(IServiceRegistry serviceRegistry, string sessionAlias)
+        protected AbstractSessionManager(IServiceRegistry serviceRegistry)
         {
             this.serviceRegistry = serviceRegistry;
-            this.sessionAlias = sessionAlias;
-        }
-
-        public string SessionAlias
-        {
-            get { return sessionAlias; }
         }
 
         public abstract ISession OpenSession();
@@ -24,10 +18,13 @@ namespace Bosphorus.Dao.Core.Session.Manager
         {
             get
             {
-                var argument = new {SessionAlias};
-                return serviceRegistry.Get<ISession>(argument);
+                var argument = BuildSessionManagerCreationArguments();
+                TSession session = serviceRegistry.Get<TSession>(argument);
+                return session;
             }
         }
+
+        protected abstract object BuildSessionManagerCreationArguments();
 
         public abstract void CloseSession(ISession session);
     }
