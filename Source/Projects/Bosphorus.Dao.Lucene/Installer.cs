@@ -3,14 +3,16 @@ using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory;
+using Bosphorus.Dao.Lucene.Session.Manager.Factory.Decoration;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Lucene.Net.Util;
 
-namespace Bosphorus.Dao.Lucene.Session
+namespace Bosphorus.Dao.Lucene
 {
     public class Installer: AbstractWindsorInstaller
     {
@@ -19,8 +21,22 @@ namespace Bosphorus.Dao.Lucene.Session
             container.Register(
                 Component
                     .For<ISession>()
-                    .UsingFactoryMethod(BuildSession)
+                    .UsingFactoryMethod(BuildSession),
+
+                Component
+                    .For<ILuceneSessionManagerFactory>()
+                    .ImplementedBy<DefaultLuceneSessionManagerFactory>(),
+
+                Component
+                    .For<ILuceneSessionManagerFactory>()
+                    .ImplementedBy<CacheDecorator>()
+                    .IsDefault(),
+
+                Component
+                    .For(typeof(Version))
+                    .Instance(Version.LUCENE_30)
             );
+
         }
 
         private ISession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)

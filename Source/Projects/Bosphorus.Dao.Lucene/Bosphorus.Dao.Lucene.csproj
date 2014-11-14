@@ -75,10 +75,9 @@
     <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
     <Compile Include="Session.Manager.Factory\DefaultLuceneSessionManagerFactory.cs" />
     <Compile Include="Session.Manager.Factory\ILuceneSessionManagerFactory.cs" />
-    <Compile Include="Session.Manager.Factory\Installer.cs" />
+    <Compile Include="Installer.cs" />
     <Compile Include="Session.Manager.Factory\LuceneSessionManagerFactoryExtensions.cs" />
     <Compile Include="Session.Manager\LuceneSessionManager.cs" />
-    <Compile Include="Session\Installer.cs" />
     <Compile Include="Session\LuceneSession.cs" />
   </ItemGroup>
   <ItemGroup>
