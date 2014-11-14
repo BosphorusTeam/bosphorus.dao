@@ -1,4 +1,5 @@
 ﻿using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -17,7 +18,8 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 
                 Component
                     .For<ISessionManagerFactory>()
-                    .ImplementedBy<CacheDecorator>().IsDefault()
+                    .ImplementedBy<CacheDecorator>()
+                    .IsDefault()
             );
 
         }

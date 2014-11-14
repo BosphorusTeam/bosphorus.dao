@@ -4,7 +4,7 @@ using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Lifestyle;
 
-namespace Bosphorus.Dao.NHibernate.Session
+namespace Bosphorus.Dao.Core.Session.LifeStyle
 {
     public class SessionLifeStyleManager : ILifestyleManager
     {

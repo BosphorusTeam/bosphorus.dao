@@ -90,6 +90,7 @@
     <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao\AbstractNHibernateDao.cs" />
+    <Compile Include="Session.Manager.Factory.Decoration\DictionaryElementsEqualityComparer.cs" />
     <Compile Include="Session.Manager\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">
       <SubType>Code</SubType>
@@ -112,7 +113,6 @@
     <Compile Include="Fluent.PersistenceConfigurerProvider\ChainedPersistenceConfigurerProvider.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\CompositeConfigurationProcessor.cs" />
     <Compile Include="Fluent.ConfigurationProcessor\IConfigurationProcessor.cs" />
-    <Compile Include="Session.Manager.Factory\ISessionManagerFactory.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\PersistenceConfigurerProviderNotFoundException.cs" />
     <Compile Include="Session.Manager.Factory\SessionManagerFactoryExtensions.cs" />
     <Compile Include="Fluent.AutoPersistenceModelProvider\TypeSource.cs" />
@@ -123,13 +123,10 @@
     <Compile Include="Session.Manager.Factory\Installer.cs" />
     <Compile Include="Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
     <Compile Include="Session.Manager\SessionManagerExtensions.cs" />
-    <Compile Include="Session\AbstractSessionLifeStyleProvider.cs" />
     <Compile Include="Session\Installer.cs" />
-    <Compile Include="Session\ISessionLifeStyleProvider.cs" />
     <Compile Include="Session\NHibernateCurrentSessionContext.cs" />
     <Compile Include="Session\NHibernateSession.cs" />
     <Compile Include="Dao\NHibernateDao.Generic.cs" />
-    <Compile Include="Session\SessionLifeStyleManager.cs" />
     <Compile Include="Transaction\NHibernateTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

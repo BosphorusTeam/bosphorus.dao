@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Bosphorus.Container.Castle.Registry;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
 using Bosphorus.Dao.NHibernate.Fluent.ConfigurationProcessor;
 using Bosphorus.Dao.NHibernate.Fluent.ConventionApplier;
@@ -38,8 +40,10 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
             this.configurationProcessor = configurationProcessor;
         }
 
-        public ISessionManager Build(string sessionAlias)
+        public ISessionManager Build(IDictionary creationArguments)
         {
+            string sessionAlias = (string) creationArguments["SessionAlias"];
+
             ISessionFactory sessionFactory =
                 Fluently
                 .Configure()

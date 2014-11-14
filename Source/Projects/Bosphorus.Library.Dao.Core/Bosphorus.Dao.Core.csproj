@@ -85,6 +85,10 @@
     <Compile Include="Dao\IDao.Generic.cs" />
     <Compile Include="Dao\IDao.NonGeneric.cs" />
     <Compile Include="Installer.cs" />
+    <Compile Include="Session.LifeStyle\AbstractSessionLifeStyleProvider.cs" />
+    <Compile Include="Session.LifeStyle\ISessionLifeStyleProvider.cs" />
+    <Compile Include="Session.LifeStyle\SessionLifeStyleManager.cs" />
+    <Compile Include="Session.Manager.Factory\ISessionManagerFactory.cs" />
     <Compile Include="Session.Manager\AbstractSessionManager.cs" />
     <Compile Include="Session.Manager\ISessionManager.cs" />
     <Compile Include="Session\ISession.cs" />
@@ -117,6 +121,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

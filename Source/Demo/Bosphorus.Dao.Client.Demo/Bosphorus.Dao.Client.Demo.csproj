@@ -101,7 +101,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuration\Log\ConventionApplier.cs" />
-    <Compile Include="Configuration\Log\PersistenceConfigurerProvider.Test.cs" />
+    <Compile Include="Configuration\Log\PersistenceConfigurerProvider.cs" />
     <Compile Include="CustomerTypes.cs" />
     <Compile Include="ExecutionList\Extension\AutoMap.cs" />
     <Compile Include="ExecutionList\RelationByMap\Cascade.Abstract.cs" />

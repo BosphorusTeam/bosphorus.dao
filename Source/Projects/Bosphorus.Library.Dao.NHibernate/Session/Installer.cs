@@ -1,7 +1,10 @@
-﻿using Bosphorus.Container.Castle.Registration;
+﻿using System.Collections;
+using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Dao.Decoration;
 using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.LifeStyle;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using Castle.Core;
 using Castle.Core.Configuration;
@@ -20,11 +23,6 @@ namespace Bosphorus.Dao.NHibernate.Session
         protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
         {
             container.Register(
-                allLoadedTypes
-                    .BasedOn<ISessionLifeStyleProvider>()
-                    .WithService
-                    .AllInterfaces(),
-
                 Component
                     .For<ISession>()
                     .UsingFactoryMethod(BuildSession)
@@ -35,9 +33,9 @@ namespace Bosphorus.Dao.NHibernate.Session
 
         private ISession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
         {
-            string sessionAlias = (string) creationContext.AdditionalArguments["SessionAlias"];
+            IDictionary creationArguments = creationContext.AdditionalArguments;
             ISessionManagerFactory sessionManagerFactory = kernel.Resolve<ISessionManagerFactory>();
-            ISessionManager sessionManager = sessionManagerFactory.Build(sessionAlias);
+            ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
             ISession session = sessionManager.OpenSession();
             return session;
         }

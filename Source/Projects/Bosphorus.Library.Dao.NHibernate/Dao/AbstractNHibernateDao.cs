@@ -20,6 +20,7 @@
 using System.Collections;
 using System.Linq.Expressions;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using Castle.Core;

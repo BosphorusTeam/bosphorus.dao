@@ -1,13 +1,24 @@
-﻿using Bosphorus.Dao.Core.Session.Manager;
+﻿using System.Collections;
+using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Common;
 
 namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
 {
-    public static class SessionManagerFactoryExtensions
+    internal static class SessionManagerFactoryExtensions
     {
-        public static ISessionManager Build(this ISessionManagerFactory sessionManagerFactory)
+        public static ISessionManager Build(this ISessionManagerFactory extended, string sessionAlias)
         {
-            ISessionManager sessionManager = sessionManagerFactory.Build(SessionAlias.Default);
+            IDictionary creationArguments = new Hashtable();
+            creationArguments.Add("SessionAlias", sessionAlias);
+            ISessionManager sessionManager = extended.Build(creationArguments);
+
+            return sessionManager;
+        }
+
+        public static ISessionManager Build(this ISessionManagerFactory extended)
+        {
+            ISessionManager sessionManager = extended.Build(SessionAlias.Default);
             return sessionManager;
         }
     }

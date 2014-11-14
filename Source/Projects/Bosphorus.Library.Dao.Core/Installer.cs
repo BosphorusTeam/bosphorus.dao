@@ -1,5 +1,6 @@
 ﻿using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session.LifeStyle;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -19,7 +20,13 @@ namespace Bosphorus.Dao.Core
                 allLoadedTypes    
                     .BasedOn(typeof(IDao))
                     .WithService
-                    .FromInterface()
+                    .FromInterface(),
+
+                allLoadedTypes
+                    .BasedOn<ISessionLifeStyleProvider>()
+                    .WithService
+                    .AllInterfaces()
+
             );
         }
     }

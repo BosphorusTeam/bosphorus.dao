@@ -30,11 +30,7 @@ namespace Bosphorus.Dao.Lucene
                 Component
                     .For<ILuceneSessionManagerFactory>()
                     .ImplementedBy<CacheDecorator>()
-                    .IsDefault(),
-
-                Component
-                    .For(typeof(Version))
-                    .Instance(Version.LUCENE_30)
+                    .IsDefault()
             );
 
         }

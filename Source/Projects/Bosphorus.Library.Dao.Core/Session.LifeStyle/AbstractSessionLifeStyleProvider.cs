@@ -1,6 +1,6 @@
 ﻿using Castle.Core;
 
-namespace Bosphorus.Dao.NHibernate.Session
+namespace Bosphorus.Dao.Core.Session.LifeStyle
 {
     public abstract class AbstractSessionLifeStyleProvider : ISessionLifeStyleProvider
     {
