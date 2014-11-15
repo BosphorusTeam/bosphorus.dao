@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.Map\ILuceneMap.cs" />
+    <Compile Include="Configuration.Map\LuceneMap.cs" />
     <Compile Include="Configuration\ILuceneDataProviderBuilder.cs" />
     <Compile Include="Configuration\LuceneDataProviderConfiguration.cs" />
     <Compile Include="Dao\AbstractLuceneDao.cs" />

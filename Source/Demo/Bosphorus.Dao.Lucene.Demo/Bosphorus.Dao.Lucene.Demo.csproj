@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\BankMap.cs" />
     <Compile Include="Configuration\LuceneDataProviderBuilder.cs" />
     <Compile Include="Configuration\SessionLifeStyleProvider.cs" />
     <Compile Include="ExecutionList\Basic\Generic.cs" />
