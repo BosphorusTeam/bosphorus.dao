@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ILuceneDataProviderBuilder.cs" />
+    <Compile Include="Configuration\LuceneDataProviderConfiguration.cs" />
     <Compile Include="Dao\AbstractLuceneDao.cs" />
     <Compile Include="Dao\ILuceneDao.NonGeneric.cs" />
     <Compile Include="Dao\ILuceneDao.Generic.cs" />
@@ -89,6 +91,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

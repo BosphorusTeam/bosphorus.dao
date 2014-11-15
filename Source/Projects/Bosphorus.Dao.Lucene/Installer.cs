@@ -3,6 +3,7 @@ using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.LifeStyle;
 using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Lucene.Configuration;
 using Bosphorus.Dao.Lucene.Session;
 using Bosphorus.Dao.Lucene.Session.Manager;
 using Bosphorus.Dao.Lucene.Session.Manager.Factory;
@@ -21,6 +22,11 @@ namespace Bosphorus.Dao.Lucene
         protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
         {
             container.Register(
+                allLoadedTypes
+                    .BasedOn<ILuceneDataProviderBuilder>()
+                    .WithService
+                    .FromInterface(),
+
                 Component
                     .For(typeof(LuceneSession<>))
                     .UsingFactoryMethod(BuildSession)

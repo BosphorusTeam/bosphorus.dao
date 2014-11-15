@@ -19,10 +19,10 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Extension
         public IQueryable<Bank> Simple()
         {
             IQueryable<Bank> result = from model in bankDao.Query()
-                where model.No == "1"
+                where model.Name.StartsWith("1234")
                 select model;
 
-            return result;
+            return result.Take(100);
         }
     }
 }

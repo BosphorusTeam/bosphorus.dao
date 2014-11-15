@@ -27,6 +27,22 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
             Bank result = dao.Insert(bank);
             return result;
         }
+        public IEnumerable<Bank> Insert_10_000()
+        {
+            int count = 10000;
+            IList<Bank> bankList = new List<Bank>(count);
+            for (int i = 0; i < count; i++)
+            {
+                Bank bank = new Bank();
+                bank.No = i.ToString();
+                bank.Name = "Citibank " + i;
+
+                bankList.Add(bank);
+            }
+
+            IEnumerable<Bank> result = dao.Insert(bankList);
+            return result;
+        }
     }
 
 }

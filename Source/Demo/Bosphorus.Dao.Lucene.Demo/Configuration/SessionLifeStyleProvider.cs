@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Lucene.Demo.Configuration
     {
         public override LifestyleType GetLifestyle()
         {
-            return LifestyleType.Singleton;
+            return LifestyleType.Transient;
         }
     }
 }

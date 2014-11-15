@@ -17,6 +17,7 @@ namespace Bosphorus.Dao.Core.Session.LifeStyle
             map.Add(LifestyleType.Singleton, new SingletonLifestyleManager());
             map.Add(LifestyleType.PerWebRequest, new ScopedLifestyleManager(new WebRequestScopeAccessor()));
             map.Add(LifestyleType.Thread, new ScopedLifestyleManager(new ThreadScopeAccessor()));
+            map.Add(LifestyleType.Transient, new TransientLifestyleManager());
         }
 
         public void Init(IComponentActivator componentActivator, IKernel kernel, ComponentModel model)

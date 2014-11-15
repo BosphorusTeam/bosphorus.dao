@@ -8,13 +8,11 @@ namespace Bosphorus.Dao.Lucene.Session.Manager
     public class LuceneSessionManager<TModel> : AbstractSessionManager<LuceneSession<TModel>>, ILuceneSessionManager
         where TModel : new()
     {
-        private readonly IServiceRegistry serviceRegistry;
         private readonly LuceneDataProvider luceneDataProvider;
 
         public LuceneSessionManager(IServiceRegistry serviceRegistry, LuceneDataProvider luceneDataProvider) 
             : base(serviceRegistry)
         {
-            this.serviceRegistry = serviceRegistry;
             this.luceneDataProvider = luceneDataProvider;
         }
 
