@@ -20,10 +20,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Container.Castle.Registry;
+using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Common;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 using ISession = Bosphorus.Dao.Core.Session.ISession;

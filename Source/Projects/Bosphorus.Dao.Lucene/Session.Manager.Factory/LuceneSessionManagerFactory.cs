@@ -1,14 +1,9 @@
 using System;
 using System.Collections;
-using Bosphorus.Container.Castle.Registry;
+using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.Lucene.Configuration;
-using Lucene.Net.Analysis.Standard;
-using Lucene.Net.Index;
 using Lucene.Net.Linq;
-using Lucene.Net.Store;
-using Version = Lucene.Net.Util.Version;
 
 namespace Bosphorus.Dao.Lucene.Session.Manager.Factory
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Bosphorus.Container.Castle.Lazy;
+using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Common.Mapper.Core;
 
 namespace Bosphorus.Dao.Common.Mapper.Default

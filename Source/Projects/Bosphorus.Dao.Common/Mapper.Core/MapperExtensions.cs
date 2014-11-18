@@ -1,5 +1,5 @@
 ﻿using System;
-using Bosphorus.Container.Castle.Registry;
+using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Common.Instantiator;
 
 namespace Bosphorus.Dao.Common.Mapper.Core

@@ -1,4 +1,4 @@
-﻿using Bosphorus.Container.Castle.Registry;
+﻿using Bosphorus.Container.Castle.Extra;
 using NHibernate;
 using NHibernate.Context;
 

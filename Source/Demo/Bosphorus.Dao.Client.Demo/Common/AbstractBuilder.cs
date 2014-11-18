@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Bosphorus.Container.Castle.Registry;
+using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Session;
 

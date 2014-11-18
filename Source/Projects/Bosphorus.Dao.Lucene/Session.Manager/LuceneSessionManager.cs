@@ -1,7 +1,6 @@
-﻿using Bosphorus.Container.Castle.Registry;
+﻿using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.Lucene.Configuration.Map;
 using Lucene.Net.Linq;
 using Lucene.Net.Linq.Mapping;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Bosphorus.Container.Castle.Lazy;
+using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Common.Instantiator;
 using Bosphorus.Dao.Common.Mapper.Core;
 using Omu.ValueInjecter;
