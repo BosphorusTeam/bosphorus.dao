@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Bosphorus.Dao.Common.Instantiator
 {
-    class DefaultInstantiator : IInstantiator
+    public class CompositeInstantiator : IInstantiator
     {
         private readonly IList<IInstantiator> instantiatorList;
 
-        public DefaultInstantiator(IList<IInstantiator> instantiatorList)
+        public CompositeInstantiator(IList<IInstantiator> instantiatorList)
         {
             this.instantiatorList = instantiatorList;
         }

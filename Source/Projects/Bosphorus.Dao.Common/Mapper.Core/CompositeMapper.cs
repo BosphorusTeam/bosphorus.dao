@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Bosphorus.Dao.Common.Mapper.Core
 {
-    class DefaultMapper: IMapper
+    public class CompositeMapper: IMapper
     {
         private readonly IList<IMapper> items;
 
-        public DefaultMapper(IList<IMapper> items)
+        public CompositeMapper(IList<IMapper> items)
         {
             this.items = items;
         }

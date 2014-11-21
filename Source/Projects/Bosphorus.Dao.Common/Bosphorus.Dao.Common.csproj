@@ -30,13 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Common.Clr, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bosphorus.Common.Clr, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.15\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
+      <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.16\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
     </Reference>
-    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.30, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.34, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.30\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
+      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.34\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
@@ -56,15 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instantiator\DefaultInstantiator.cs" />
+    <Compile Include="Instantiator\CompositeInstantiator.cs" />
     <Compile Include="Instantiator\IInstantiator.cs" />
-    <Compile Include="Instantiator\Installer.cs" />
+    <Compile Include="Installer.cs" />
     <Compile Include="Instantiator\ListInstantiator.cs" />
     <Compile Include="Mapper.Core\IMapper.cs" />
-    <Compile Include="Mapper.Core\Installer.cs" />
     <Compile Include="Mapper.Core\MapperExtensions.cs" />
     <Compile Include="Mapper.Default\EnumerableMapper.cs" />
-    <Compile Include="Mapper.Core\DefaultMapper.cs" />
+    <Compile Include="Mapper.Core\CompositeMapper.cs" />
     <Compile Include="Mapper.Default\ValueInjectorUnFlattenMapper.cs" />
     <Compile Include="Mapper.Default\ValueInjectorFlattenMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

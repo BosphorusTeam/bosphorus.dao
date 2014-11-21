@@ -14,7 +14,7 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager
             IClassMetadata classMetadata = nativeSessionProvider.GetClassMetadata(modelType);
             if (classMetadata == null)
             {
-                throw new ModelMappingNotRegisteredException(sessionManager, modelType);
+                throw new ModelMappingNotRegisteredException(modelType, sessionManager);
             }
 
             return classMetadata;

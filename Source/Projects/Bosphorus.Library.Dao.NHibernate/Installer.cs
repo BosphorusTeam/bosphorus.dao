@@ -1,13 +1,15 @@
 ﻿using System.Collections;
+using Bosphorus.Container.Castle.Fluent;
 using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.LifeStyle;
 using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.Core.Session.Manager.Factory;
+using Bosphorus.Dao.NHibernate.Dao;
 using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
-using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
@@ -23,31 +25,49 @@ namespace Bosphorus.Dao.NHibernate
         {
             container.Register(
                 Component
-                    .For<NHibernateSession>()
+                    .For(typeof (IDao<>))
+                    .ImplementedBy(typeof (NHibernateDao<>))
+                    .IsFallback()
+                    .NamedUnique(),
+
+                allLoadedTypes
+                    .BasedOn(typeof (NHibernateDao<>))
+                    .WithService
+                    .AllInterfaces()
+                    .If(type => type != typeof(NHibernateDao<>)),
+
+                Component
+                    .For<IDao>()
+                    .ImplementedBy<NHibernateDao>()
+                    .IsFallback()
+                    .NamedUnique(),
+
+                allLoadedTypes
+                    .BasedOn(typeof(NHibernateDao))
+                    .WithService
+                    .AllInterfaces()
+                    .If(type => type != typeof(NHibernateDao)),
+
+                Component
+                    .For<ISessionManagerFactory>()
+                    .Forward<INHibernateSessionManagerFactory>()
+                    .ImplementedBy<NHibernateSessionManagerFactory>()
+                    .IsFallback()
+                    .NamedUnique(),
+
+                Component
+                    .For<ISessionManager>()
+                    .Forward<INHibernateSessionManager>()
+                    .UsingFactoryMethod(BuildSessionManager)
+                    .IsFallback(),
+
+                Component
+                    .For<ISession>()
+                    .Forward<NHibernateSession>()
                     .UsingFactoryMethod(BuildSession)
-                    .LifestyleCustom<SessionLifeStyleManager>(),
-
-                Component
-                    .For<INHibernateSessionManager>()
-                    .UsingFactoryMethod(BuildSessionManager),
-
-                Component
-                    .For<INHibernateSessionManagerFactory>()
-                    .ImplementedBy<NHibernateSessionManagerFactory>(),
-
-                Component
-                    .For<INHibernateSessionManagerFactory>()
-                    .ImplementedBy<CacheDecorator>()
-                    .IsDefault()
+                    .LifestyleCustom<SessionLifeStyleManager>()
+                    .IsFallback()
             );
-        }
-
-        private NHibernateSession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
-        {
-            IDictionary creationArguments = creationContext.AdditionalArguments;
-            INHibernateSessionManager sessionManager = kernel.Resolve<INHibernateSessionManager>(creationArguments);
-            ISession session = sessionManager.OpenSession();
-            return (NHibernateSession) session;
         }
 
         private INHibernateSessionManager BuildSessionManager(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
@@ -56,6 +76,14 @@ namespace Bosphorus.Dao.NHibernate
             INHibernateSessionManagerFactory sessionManagerFactory = kernel.Resolve<INHibernateSessionManagerFactory>();
             ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
             return (INHibernateSessionManager)sessionManager;
+        }
+
+        private NHibernateSession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        {
+            IDictionary creationArguments = creationContext.AdditionalArguments;
+            INHibernateSessionManager sessionManager = kernel.Resolve<INHibernateSessionManager>(creationArguments);
+            ISession session = sessionManager.OpenSession();
+            return (NHibernateSession)session;
         }
 
     }

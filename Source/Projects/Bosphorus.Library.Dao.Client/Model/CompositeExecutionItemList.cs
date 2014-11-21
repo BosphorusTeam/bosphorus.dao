@@ -2,11 +2,11 @@
 
 namespace Bosphorus.Dao.Client.Model
 {
-    class CompositeEceutionItemList: IExecutionItemList
+    public class CompositeExecutionItemList: IExecutionItemList
     {
         private readonly IEnumerable<IExecutionItemList> items;
 
-        public CompositeEceutionItemList(IList<IExecutionItemList> items)
+        public CompositeExecutionItemList(IList<IExecutionItemList> items)
         {
             this.items = items;
         }

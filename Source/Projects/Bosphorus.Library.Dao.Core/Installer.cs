@@ -1,5 +1,5 @@
-﻿using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Dao.Core.Dao;
+﻿using Bosphorus.Container.Castle.Fluent;
+using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Session.LifeStyle;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -12,21 +12,11 @@ namespace Bosphorus.Dao.Core
         protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
         {
             container.Register(
-                allLoadedTypes
-                    .BasedOn(typeof(IDao<>))
-                    .WithService
-                    .AllInterfaces(),
-
-                allLoadedTypes    
-                    .BasedOn(typeof(IDao))
-                    .WithService
-                    .FromInterface(),
-
-                allLoadedTypes
-                    .BasedOn<ISessionLifeStyleProvider>()
-                    .WithService
-                    .AllInterfaces()
-
+                Component
+                    .For<ISessionLifeStyleProvider>()
+                    .ImplementedBy<SessionLifeStyleProvider>()
+                    .IsFallback()
+                    .NamedUnique()
             );
         }
     }
