@@ -93,7 +93,10 @@
     <Compile Include="DecorationInstaller.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Session.Manager.Factory.Decoration\CacheDecorator.cs" />
+    <Compile Include="Session.Manager.Factory.Decoration\RegistrationDecorator.cs" />
     <Compile Include="Session.Manager.Factory\INHibernateSessionManagerFactory.cs" />
+    <Compile Include="Session.Manager.Repository\DefaultSessionManagerRepository.cs" />
+    <Compile Include="Session.Manager.Repository\ISessionManagerRepository.cs" />
     <Compile Include="Session.Manager\INHibernateSessionManager.cs" />
     <Compile Include="Session.Manager\ModelMappingNotRegisteredException.cs" />
     <Compile Include="Dao\NHibernateDao.NonGeneric.cs">

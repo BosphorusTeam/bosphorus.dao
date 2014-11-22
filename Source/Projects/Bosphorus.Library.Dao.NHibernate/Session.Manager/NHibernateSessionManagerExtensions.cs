@@ -10,7 +10,7 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager
         public static IClassMetadata GetClassMetadata(this ISessionManager sessionManager, Type modelType)
         {
             NHibernateSessionManager nHibernateSessionManager = (NHibernateSessionManager)sessionManager;
-            ISessionFactory nativeSessionProvider = nHibernateSessionManager.NativeSessionProvider;
+            ISessionFactory nativeSessionProvider = nHibernateSessionManager.NativeSessionManager;
             IClassMetadata classMetadata = nativeSessionProvider.GetClassMetadata(modelType);
             if (classMetadata == null)
             {

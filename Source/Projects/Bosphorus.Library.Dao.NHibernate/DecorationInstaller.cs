@@ -16,6 +16,7 @@ namespace Bosphorus.Dao.NHibernate
                 Decorator
                     .Of<INHibernateSessionManagerFactory>()
                     .Is<CacheDecorator>()
+                    .Is<RegistrationDecorator>()
             );
         }
     }

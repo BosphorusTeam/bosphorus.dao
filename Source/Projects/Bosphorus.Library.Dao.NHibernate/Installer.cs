@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Bosphorus.Container.Castle.Fluent;
+using Bosphorus.Container.Castle.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
@@ -10,6 +11,8 @@ using Bosphorus.Dao.NHibernate.Dao;
 using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
+using Bosphorus.Dao.NHibernate.Session.Manager.Repository;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
@@ -49,11 +52,11 @@ namespace Bosphorus.Dao.NHibernate
                     .If(type => type != typeof(NHibernateDao)),
 
                 Component
-                    .For<ISessionManagerFactory>()
-                    .Forward<INHibernateSessionManagerFactory>()
-                    .ImplementedBy<NHibernateSessionManagerFactory>()
-                    .IsFallback()
-                    .NamedUnique(),
+                    .For<ISession>()
+                    .Forward<NHibernateSession>()
+                    .UsingFactoryMethod(BuildSession)
+                    .LifestyleCustom<SessionLifeStyleManager>()
+                    .IsFallback(),
 
                 Component
                     .For<ISessionManager>()
@@ -62,11 +65,16 @@ namespace Bosphorus.Dao.NHibernate
                     .IsFallback(),
 
                 Component
-                    .For<ISession>()
-                    .Forward<NHibernateSession>()
-                    .UsingFactoryMethod(BuildSession)
-                    .LifestyleCustom<SessionLifeStyleManager>()
+                    .For<ISessionManagerFactory>()
+                    .Forward<INHibernateSessionManagerFactory>()
+                    .ImplementedBy<NHibernateSessionManagerFactory>()
                     .IsFallback()
+                    .NamedUnique(),
+
+                Component
+                    .For<ISessionManagerRepository>()
+                    .Forward<DefaultSessionManagerRepository>()
+                    .ImplementedBy<DefaultSessionManagerRepository>()
             );
         }
 

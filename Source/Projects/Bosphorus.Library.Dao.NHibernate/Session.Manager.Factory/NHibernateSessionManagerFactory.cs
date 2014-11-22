@@ -50,6 +50,7 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager.Factory
                 .CurrentSessionContext<NHibernateCurrentSessionContext>()
                 .BuildSessionFactory();
 
+
             NHibernateSessionManager sessionManager = new NHibernateSessionManager(serviceRegistry, sessionAlias, sessionFactory);
             return sessionManager;
         }

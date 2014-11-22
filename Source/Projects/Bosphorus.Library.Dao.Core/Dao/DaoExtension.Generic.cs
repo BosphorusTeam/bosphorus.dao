@@ -133,7 +133,7 @@ namespace Bosphorus.Dao.Core.Dao
             extended.Delete(sessionManager.Current, entities);
         }
 
-        private static ISessionManager GetSessionManager<TModel>(IDao<TModel> extended)
+        private static ISessionManager GetSessionManager(object extended)
         {
             return defaultSessionManager;
         }

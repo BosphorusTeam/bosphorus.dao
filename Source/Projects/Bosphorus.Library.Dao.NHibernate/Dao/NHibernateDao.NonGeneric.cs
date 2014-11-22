@@ -32,22 +32,10 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public class NHibernateDao: IDao
     {
         private readonly IServiceRegistry serviceRegistry;
-        private readonly ISessionManager sessionManager;
 
-        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, IServiceRegistry serviceRegistry)
-            : this(sessionManagerFactory, SessionAlias.Default, serviceRegistry)
+        public NHibernateDao(IServiceRegistry serviceRegistry)
         {
-        }
-
-        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, string sessionAlias, IServiceRegistry serviceRegistry)
-        {
-            this.sessionManager = sessionManagerFactory.Build(sessionAlias);
             this.serviceRegistry = serviceRegistry;
-        }
-
-        public ISessionManager SessionManager
-        {
-            get { return sessionManager; }
         }
 
         public IQueryable<TModel> GetAll<TModel>(ISession currentSession)

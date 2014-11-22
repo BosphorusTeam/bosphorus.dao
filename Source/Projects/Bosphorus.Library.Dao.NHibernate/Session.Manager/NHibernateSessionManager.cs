@@ -8,23 +8,23 @@ namespace Bosphorus.Dao.NHibernate.Session.Manager
     public class NHibernateSessionManager : AbstractSessionManager<NHibernateSession>, INHibernateSessionManager
     {
         private readonly string sessionAlias;
-        private readonly ISessionFactory sessionFactory;
+        private readonly ISessionFactory sessionManager;
 
-        public NHibernateSessionManager(IServiceRegistry serviceRegistry, string sessionAlias, ISessionFactory sessionFactory)
+        public NHibernateSessionManager(IServiceRegistry serviceRegistry, string sessionAlias, ISessionFactory sessionManager)
             : base(serviceRegistry)
         {
             this.sessionAlias = sessionAlias;
-            this.sessionFactory = sessionFactory;
+            this.sessionManager = sessionManager;
         }
 
-        internal ISessionFactory NativeSessionProvider
+        public ISessionFactory NativeSessionManager
         {
-            get { return sessionFactory; }
+            get { return sessionManager; }
         }
 
         public override ISession OpenSession()
         {
-            global::NHibernate.ISession openSession = sessionFactory.OpenSession();
+            global::NHibernate.ISession openSession = sessionManager.OpenSession();
             ISession session = new NHibernateSession(openSession);
             return session;
         }
