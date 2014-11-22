@@ -31,7 +31,8 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 
         public Bank GetByIdSingle()
         {
-            Bank result = dao.GetByIdSingle<Bank, int>(1);
+            Bank bank = BankBuilder.FromDatabase().Build();
+            Bank result = dao.GetByIdSingle<Bank, int>(bank.Id);
             return result;
         }
 

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Container.Castle.Extra;
+using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Manager;
 using Castle.Core;
 
 namespace Bosphorus.Dao.Core.Dao
@@ -8,107 +11,131 @@ namespace Bosphorus.Dao.Core.Dao
     public static partial class DaoExtension
     {
         private readonly static IDictionary emptyDictionary;
+        private readonly static ISessionManager defaultSessionManager;
 
         static DaoExtension()
         {
             emptyDictionary = new Hashtable();
+            var creationContext = new {SessionAlias = "Default"};
+            defaultSessionManager = ServiceRegistry.Get<ISessionManager>(creationContext);
         }
 
         public static IEnumerable<TModel> GetAll<TModel>(this IDao<TModel> extended)
         {
-            IEnumerable<TModel> result = extended.GetAll(extended.SessionManager.Current);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.GetAll(sessionManager.Current);
             return result;
         }
 
         public static IQueryable<TModel> Query<TModel>(this IDao<TModel> extended)
         {
-            IQueryable<TModel> result = extended.Query(extended.SessionManager.Current);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IQueryable<TModel> result = extended.Query(sessionManager.Current);
             return result;
         }
 
         public static IQueryable<TModel> GetById<TModel, TId>(this IDao<TModel> extended, TId id)
         {
-            IQueryable<TModel> result = extended.GetById(extended.SessionManager.Current, id);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IQueryable<TModel> result = extended.GetById(sessionManager.Current, id);
             return result;
         }
 
         public static TModel GetByIdSingle<TModel, TId>(this IDao<TModel> extended, TId id)
         {
-            IQueryable<TModel> queryable = extended.GetById(extended.SessionManager.Current, id);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IQueryable<TModel> queryable = extended.GetById(sessionManager.Current, id);
             TModel result = queryable.Single();
             return result;
         }
 
         public static IEnumerable<TModel> GetByNamedQuery<TModel>(this IDao<TModel> extended, string queryName)
         {
-            IEnumerable<TModel> result = extended.GetByNamedQuery(extended.SessionManager.Current, queryName, emptyDictionary);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.GetByNamedQuery(sessionManager.Current, queryName, emptyDictionary);
             return result;
         }
 
         public static IEnumerable<TModel> GetByNamedQuery<TModel>(this IDao<TModel> extended, string queryName, object argumentsAsAnonymousType)
         {
+            ISessionManager sessionManager = GetSessionManager(extended);
             IDictionary parameterDictionary = new ReflectionBasedDictionaryAdapter(argumentsAsAnonymousType);
-            IEnumerable<TModel> result = extended.GetByNamedQuery(extended.SessionManager.Current, queryName, parameterDictionary);
+            IEnumerable<TModel> result = extended.GetByNamedQuery(sessionManager.Current, queryName, parameterDictionary);
             return result;
         }
 
         public static IEnumerable<TModel> GetByNamedQuery<TModel>(this IDao<TModel> extended, string queryName, IDictionary parameterDictionary)
         {
-            IEnumerable<TModel> result = extended.GetByNamedQuery(extended.SessionManager.Current, queryName, parameterDictionary);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.GetByNamedQuery(sessionManager.Current, queryName, parameterDictionary);
             return result;
         }
 
         public static IEnumerable<TModel> GetByQuery<TModel>(this IDao<TModel> extended, string queryString)
         {
-            IEnumerable<TModel> result = extended.GetByQuery(extended.SessionManager.Current, queryString, emptyDictionary);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.GetByQuery(sessionManager.Current, queryString, emptyDictionary);
             return result;
         }
 
         public static IEnumerable<TModel> GetByQuery<TModel>(this IDao<TModel> extended, string queryString, object argumentsAsAnonymousType)
         {
+            ISessionManager sessionManager = GetSessionManager(extended);
             IDictionary parameterDictionary = new ReflectionBasedDictionaryAdapter(argumentsAsAnonymousType);
-            IEnumerable<TModel> result = extended.GetByQuery(extended.SessionManager.Current, queryString, parameterDictionary);
+            IEnumerable<TModel> result = extended.GetByQuery(sessionManager.Current, queryString, parameterDictionary);
             return result;
         }
 
         public static IEnumerable<TModel> GetByQuery<TModel>(this IDao<TModel> extended, string queryString, IDictionary parameterDictionary)
         {
-            IEnumerable<TModel> result = extended.GetByQuery(extended.SessionManager.Current, queryString, parameterDictionary);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.GetByQuery(sessionManager.Current, queryString, parameterDictionary);
             return result;
         }
 
         public static TModel Insert<TModel>(this IDao<TModel> extended, TModel entity)
         {
-            TModel result = extended.Insert(extended.SessionManager.Current, entity);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            TModel result = extended.Insert(sessionManager.Current, entity);
             return result;
         }
 
         public static IEnumerable<TModel> Insert<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities)
         {
-            IEnumerable<TModel> result = extended.Insert(extended.SessionManager.Current, entities);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.Insert(sessionManager.Current, entities);
             return result;
         }
 
         public static TModel Update<TModel>(this IDao<TModel> extended, TModel entity)
         {
-            TModel result = extended.Update(extended.SessionManager.Current, entity);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            TModel result = extended.Update(sessionManager.Current, entity);
             return result;
         }
 
         public static IEnumerable<TModel> Update<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities)
         {
-            IEnumerable<TModel> result = extended.Update(extended.SessionManager.Current, entities);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            IEnumerable<TModel> result = extended.Update(sessionManager.Current, entities);
             return result;
         }
 
         public static void Delete<TModel>(this IDao<TModel> extended, TModel entity)
         {
-            extended.Delete(extended.SessionManager.Current, entity);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            extended.Delete(sessionManager.Current, entity);
         }
 
         public static void Delete<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities)
         {
-            extended.Delete(extended.SessionManager.Current, entities);
+            ISessionManager sessionManager = GetSessionManager(extended);
+            extended.Delete(sessionManager.Current, entities);
+        }
+
+        private static ISessionManager GetSessionManager<TModel>(IDao<TModel> extended)
+        {
+            return defaultSessionManager;
         }
     }
 }

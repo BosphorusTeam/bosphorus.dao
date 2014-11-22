@@ -28,7 +28,9 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 
         public IQueryable<Bank> StartsWith_ByInheritance()
         {
-            ISession session = customizedDao.SessionManager.Current;
+            //TODO:
+            //ISession session = customizedDao.SessionManager.Current;
+            ISession session = null;
             IQueryable<Bank> result = customizedDao.GetStartsWithByInheritance(session, "Ci");
             return result;
         }

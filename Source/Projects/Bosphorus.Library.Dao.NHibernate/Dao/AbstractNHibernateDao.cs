@@ -40,22 +40,13 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public abstract class AbstractNHibernateDao<TModel> : IDao<TModel> 
         where TModel : class
     {
-        private readonly ISessionManager sessionManager;
         private readonly Type modelType = typeof(TModel);
-        private readonly IClassMetadata classMetadata;
         private readonly IResultTransformer resultTransformer;
 
-        protected AbstractNHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, string sessionAlias)
+        protected AbstractNHibernateDao()
         {
-            this.sessionManager = sessionManagerFactory.Build(sessionAlias);
             modelType = typeof(TModel);
-            classMetadata = sessionManager.GetClassMetadata(modelType);
             resultTransformer = Transformers.AliasToBean<TModel>();
-        }
-
-        public ISessionManager SessionManager
-        {
-            get { return sessionManager; }
         }
 
         protected global::NHibernate.ISession GetNativeSession(ISession currentSession)
@@ -85,6 +76,8 @@ namespace Bosphorus.Dao.NHibernate.Dao
 
         public virtual IQueryable<TModel> GetById<TId>(ISession currentSession, TId id)
         {
+            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            IClassMetadata classMetadata = nativeSession.SessionFactory.GetClassMetadata(modelType);
             Expression<Func<TModel, bool>> expression = BuildGetByIdExpression(classMetadata, id);
             IQueryable<TModel> queryable = Query(currentSession);
             IQueryable<TModel> result = queryable.Where(expression);

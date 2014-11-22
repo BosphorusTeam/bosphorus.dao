@@ -41,7 +41,9 @@ namespace Bosphorus.Dao.Client.Demo.Common
 
         public TBuilder Evict()
         {
-            NHibernateSession sesion = (NHibernateSession) dao.Value.SessionManager.Current;
+            //TODO: 
+            //NHibernateSession sesion = (NHibernateSession) dao.Value.SessionManager.Current;
+            NHibernateSession sesion = null;
             var session = sesion.InnerSession;
             session.Evict(model);
 

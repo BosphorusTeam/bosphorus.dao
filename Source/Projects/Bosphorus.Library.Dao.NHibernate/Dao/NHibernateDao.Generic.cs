@@ -29,16 +29,6 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public class NHibernateDao<TModel>: AbstractNHibernateDao<TModel> 
         where TModel : class
     {
-        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory)
-            : this(sessionManagerFactory, SessionAlias.Default)
-        {
-        }
-
-        public NHibernateDao(INHibernateSessionManagerFactory sessionManagerFactory, string sessionAlias)
-            : base(sessionManagerFactory, sessionAlias)
-        {
-        }
-
         public override IQueryable<TModel> GetAll(ISession currentSession)
         {
             global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);

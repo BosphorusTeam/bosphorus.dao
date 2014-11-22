@@ -35,7 +35,8 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 
         public IQueryable<Bank> FromParameter()
         {
-            ISession session = defaultSessionDao.SessionManager.OpenSession();
+            //TODO:
+            ISession session = null; //defaultSessionDao.SessionManager.OpenSession();
             IQueryable<Bank> result = defaultSessionDao.GetById(session, 1);
             return result;
         }

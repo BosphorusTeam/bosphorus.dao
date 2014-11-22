@@ -13,30 +13,30 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList
         public Problem(IDao<Customer> customerDao, IDao<Account> accountDao)
             : base("Problem")
         {
-            this.Add("Senaryo 1", () => JoinFilteredQueryables(customerDao, accountDao));
-            this.Add("Senaryo 2", () => JoinFilteredQueryables2(customerDao, accountDao));
+            //this.Add("Senaryo 1", () => JoinFilteredQueryables(customerDao, accountDao));
+            //this.Add("Senaryo 2", () => JoinFilteredQueryables2(customerDao, accountDao));
         }
 
-        private Customer JoinFilteredQueryables(IDao<Customer> customerDao, IDao<Account> accountDao)
-        {
-            Customer customer = customerDao.Query().First();
-            customer.Name = DateTime.Now.ToString();
+        //private Customer JoinFilteredQueryables(IDao<Customer> customerDao, IDao<Account> accountDao)
+        //{
+        //    Customer customer = customerDao.Query().First();
+        //    customer.Name = DateTime.Now.ToString();
 
-            ISession session = accountDao.SessionManager.OpenSession();
-            customerDao.Update(session, customer);
+        //    ISession session = accountDao.SessionManager.OpenSession();
+        //    customerDao.Update(session, customer);
 
-            return customer;
-        }
+        //    return customer;
+        //}
 
-        private Customer JoinFilteredQueryables2(IDao<Customer> customerDao, IDao<Account> accountDao)
-        {
-            ISession session = customerDao.SessionManager.OpenSession();
-            Customer customer = customerDao.Query(session).First();
-            customer.Name = DateTime.Now.ToString();
+        //private Customer JoinFilteredQueryables2(IDao<Customer> customerDao, IDao<Account> accountDao)
+        //{
+        //    ISession session = customerDao.SessionManager.OpenSession();
+        //    Customer customer = customerDao.Query(session).First();
+        //    customer.Name = DateTime.Now.ToString();
 
-            customerDao.Update(session, customer);
+        //    customerDao.Update(session, customer);
 
-            return customer;
-        }
+        //    return customer;
+        //}
     }
 }
