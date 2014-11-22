@@ -12,7 +12,7 @@ using Bosphorus.Dao.NHibernate.Extension.LinQ.Soundex;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
-    public class LinqProvider : MethodExecutionItemList
+    public class LinqProvider : AbstractMethodExecutionItemList
     {
         private readonly IDao<Customer> customerDao;
         private readonly IDao<Account> accountDao;

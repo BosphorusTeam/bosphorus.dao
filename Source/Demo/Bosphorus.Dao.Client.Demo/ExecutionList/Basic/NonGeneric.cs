@@ -8,7 +8,7 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
-    public class NonGeneric : MethodExecutionItemList
+    public class NonGeneric : AbstractMethodExecutionItemList
     {
         private readonly IDao dao;
 
@@ -25,7 +25,8 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 
         public IQueryable<Bank> GetById()
         {
-            IQueryable<Bank> result = dao.GetById<Bank, int>(1);
+            Bank bank = BankBuilder.FromDatabase().Build();
+            IQueryable<Bank> result = dao.GetById<Bank, int>(bank.Id);
             return result;
         }
 

@@ -8,7 +8,7 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.RelationByMap
 {
-    public abstract class AbstractCascade : MethodExecutionItemList
+    public abstract class AbstractCascade : AbstractMethodExecutionItemList
     {
         private readonly IDao<Customer> customerDao;
         private readonly IDao<Account> accountDao;

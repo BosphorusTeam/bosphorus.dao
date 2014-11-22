@@ -6,11 +6,11 @@ namespace Bosphorus.Dao.Client.Model
 {
     public class MethodExecutionItem : IExecutionItem
     {
-        private readonly MethodExecutionItemList instance;
+        private readonly AbstractMethodExecutionItemList instance;
         private readonly MethodInfo methodInfo;
         private readonly IResultTransformer resultTransformer;
 
-        public MethodExecutionItem(MethodExecutionItemList instance, MethodInfo methodInfo, IResultTransformer resultTransformer)
+        public MethodExecutionItem(AbstractMethodExecutionItemList instance, MethodInfo methodInfo, IResultTransformer resultTransformer)
         {
             this.instance = instance;
             this.methodInfo = methodInfo;
@@ -33,7 +33,7 @@ namespace Bosphorus.Dao.Client.Model
 
         public override string ToString()
         {
-            return instance.GetType().Name + " - " + methodInfo.Name;
+            return methodInfo.Name;
         }
     }
 }

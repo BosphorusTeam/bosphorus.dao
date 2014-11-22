@@ -11,7 +11,7 @@ using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
-    public class AutoMap : MethodExecutionItemList
+    public class AutoMap : AbstractMethodExecutionItemList
     {
         private readonly IDao<Bank> bankDao;
         private readonly IDao<Account> accountDao;

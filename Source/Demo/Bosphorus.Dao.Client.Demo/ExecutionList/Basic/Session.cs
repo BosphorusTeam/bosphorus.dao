@@ -9,7 +9,7 @@ using Bosphorus.Dao.NHibernate.Demo.Log.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
-    public class Session : MethodExecutionItemList
+    public class Session : AbstractMethodExecutionItemList
     {
         private readonly IDao<Bank> defaultSessionDao;
         private readonly IDao<LogModel> logSessionDao;

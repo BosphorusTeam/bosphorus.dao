@@ -18,10 +18,10 @@ namespace Bosphorus.Dao.Client
                     .ImplementedBy<ChainedResultTransformer>()
                     .IsDefault(),
 
-                Compositor
-                    .Of<IExecutionItemList>()
-                    .In(allLoadedTypes)
-                    .ImplementedBy<CompositeExecutionItemList>()
+                allLoadedTypes
+                    .BasedOn<IExecutionItemList>()
+                    .WithService
+                    .FromInterface()
             );
         }
     }

@@ -8,7 +8,7 @@ using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
-    public class DaoCustomization: MethodExecutionItemList
+    public class DaoCustomization: AbstractMethodExecutionItemList
     {
         private readonly IDao<Bank> genericDao;
         private readonly IBankDao customizedDao;

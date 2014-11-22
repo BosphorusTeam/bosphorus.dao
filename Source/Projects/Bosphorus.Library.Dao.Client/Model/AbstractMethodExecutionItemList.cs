@@ -8,11 +8,11 @@ using Bosphorus.Dao.Client.ResultTransformer;
 
 namespace Bosphorus.Dao.Client.Model
 {
-    public class MethodExecutionItemList: IExecutionItemList
+    public abstract class AbstractMethodExecutionItemList: IExecutionItemList
     {
         public readonly IResultTransformer resultTransformer;
 
-        public MethodExecutionItemList(IResultTransformer resultTransformer)
+        public AbstractMethodExecutionItemList(IResultTransformer resultTransformer)
         {
             this.resultTransformer = resultTransformer;
         }
@@ -33,5 +33,14 @@ namespace Bosphorus.Dao.Client.Model
             }
         }
 
+        public override string ToString()
+        {
+            Type type = this.GetType();
+            string fullName = type.FullName;
+            string assemblyName = type.Assembly.GetName().Name;
+            string remainder = fullName.Replace(assemblyName + "." , string.Empty);
+
+            return remainder;
+        }
     }
 }

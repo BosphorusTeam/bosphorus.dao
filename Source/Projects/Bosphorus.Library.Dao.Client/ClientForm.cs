@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,27 +12,42 @@ namespace Bosphorus.Dao.Client
 {
     public partial class ClientForm : Form
     {
-        public ClientForm(IExecutionItemList executionItemList)
+        public ClientForm(IList<IExecutionItemList> executionItemListList)
         {
             InitializeComponent();
 
-            lbQueries.Items.Clear();
-            IExecutionItem[] orderedItems = executionItemList.List.OrderBy(item => item.ToString()).ToArray();
-            lbQueries.Items.AddRange(orderedItems);
+            var treeNodes = from executionItemList in executionItemListList
+                            orderby executionItemList.ToString()
+                            select BuildTreeNode(executionItemList);
+                            
+
+            tvExecutionList.Nodes.AddRange(treeNodes.ToArray());
+
 
             TextWriter textWriter = new RichTextBoxWriter(tbConsole);
             TextWriter compsoiteWriter = new CompositeTextWriter(Console.Out, textWriter);
             Console.SetOut(compsoiteWriter);
         }
 
-        private void lbQueries_DoubleClick(object sender, EventArgs e)
+        private TreeNode BuildTreeNode(IExecutionItemList executionItemList)
         {
-            FireQueryModel();
+            var treeNodes = from executionItem in executionItemList.List
+                            select BuildTreeNode(executionItem);
+
+            TreeNode node = new TreeNode(executionItemList.ToString(), treeNodes.ToArray());
+            return node;
         }
 
-        private void FireQueryModel()
+        private TreeNode BuildTreeNode(IExecutionItem executionItem)
         {
-            if (lbQueries.SelectedIndex == -1)
+            TreeNode node = new TreeNode(executionItem.ToString());
+            node.Tag = executionItem;
+            return node;
+        }
+
+        private void FireQueryModel(IExecutionItem executionItem)
+        {
+            if (executionItem == null)
                 return;
 
             Cursor current = Cursor.Current;
@@ -40,7 +56,6 @@ namespace Bosphorus.Dao.Client
             tbConsole.Clear();
             tbConsole.Refresh();
             Console.Clear();
-            IExecutionItem executionItem = (IExecutionItem)lbQueries.SelectedItem;
 
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -74,10 +89,11 @@ namespace Bosphorus.Dao.Client
             dataGridViewCellFormattingEventArgs.Value = "[??]";
         }
 
-        private void lbQueries_KeyUp(object sender, KeyEventArgs e)
+        private void tvExecutionList_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                FireQueryModel();
+            TreeNode treeNode = e.Node;
+            IExecutionItem executionItem = (IExecutionItem) treeNode.Tag;
+            FireQueryModel(executionItem);
         }
     }
 }

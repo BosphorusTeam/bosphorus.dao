@@ -9,7 +9,7 @@ using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Extension
 {
-    public class Enum: MethodExecutionItemList
+    public class Enum: AbstractMethodExecutionItemList
     {
         private readonly IDao<Customer> customerDao;
         private readonly IDao<CustomerType> customerTypeDao;
