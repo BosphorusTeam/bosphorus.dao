@@ -13,6 +13,9 @@ namespace Bosphorus.Dao.Core
         {
             container.Register(
                 Component
+                    .For<Dao.Facade.Dao>(),
+
+                Component
                     .For<ISessionLifeStyleProvider>()
                     .ImplementedBy<SessionLifeStyleProvider>()
                     .IsFallback()

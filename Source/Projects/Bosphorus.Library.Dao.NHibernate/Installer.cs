@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Bosphorus.Container.Castle.Fluent;
-using Bosphorus.Container.Castle.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
@@ -11,8 +10,6 @@ using Bosphorus.Dao.NHibernate.Dao;
 using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Manager;
 using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
-using Bosphorus.Dao.NHibernate.Session.Manager.Factory.Decoration;
-using Bosphorus.Dao.NHibernate.Session.Manager.Repository;
 using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
@@ -39,17 +36,11 @@ namespace Bosphorus.Dao.NHibernate
                     .AllInterfaces()
                     .If(type => type != typeof(NHibernateDao<>)),
 
-                Component
-                    .For<IDao>()
-                    .ImplementedBy<NHibernateDao>()
-                    .IsFallback()
-                    .NamedUnique(),
-
-                allLoadedTypes
-                    .BasedOn(typeof(NHibernateDao))
-                    .WithService
-                    .AllInterfaces()
-                    .If(type => type != typeof(NHibernateDao)),
+                //allLoadedTypes
+                //    .BasedOn(typeof(NHibernateDao))
+                //    .WithService
+                //    .AllInterfaces()
+                //    .If(type => type != typeof(NHibernateDao)),
 
                 Component
                     .For<ISession>()
@@ -69,12 +60,7 @@ namespace Bosphorus.Dao.NHibernate
                     .Forward<INHibernateSessionManagerFactory>()
                     .ImplementedBy<NHibernateSessionManagerFactory>()
                     .IsFallback()
-                    .NamedUnique(),
-
-                Component
-                    .For<ISessionManagerRepository>()
-                    .Forward<DefaultSessionManagerRepository>()
-                    .ImplementedBy<DefaultSessionManagerRepository>()
+                    .NamedUnique()
             );
         }
 
@@ -82,7 +68,7 @@ namespace Bosphorus.Dao.NHibernate
         {
             IDictionary creationArguments = creationContext.AdditionalArguments;
             INHibernateSessionManagerFactory sessionManagerFactory = kernel.Resolve<INHibernateSessionManagerFactory>();
-            ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
+            ISessionManager sessionManager = ((ISessionManagerFactory) sessionManagerFactory).Build(creationArguments);
             return (INHibernateSessionManager)sessionManager;
         }
 

@@ -8,12 +8,12 @@ using Castle.Core;
 
 namespace Bosphorus.Dao.Core.Dao
 {
-    public static partial class DaoExtension
+    public static partial class IDaoExtensions
     {
-        private readonly static IDictionary emptyDictionary;
+        public readonly static IDictionary emptyDictionary;
         private readonly static ISessionManager defaultSessionManager;
 
-        static DaoExtension()
+        static IDaoExtensions()
         {
             emptyDictionary = new Hashtable();
             var creationContext = new {SessionAlias = "Default"};
@@ -133,7 +133,7 @@ namespace Bosphorus.Dao.Core.Dao
             extended.Delete(sessionManager.Current, entities);
         }
 
-        private static ISessionManager GetSessionManager(object extended)
+        internal static ISessionManager GetSessionManager(object extended)
         {
             return defaultSessionManager;
         }

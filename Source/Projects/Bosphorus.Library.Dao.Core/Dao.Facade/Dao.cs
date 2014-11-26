@@ -21,19 +21,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Container.Castle.Extra;
-using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.NHibernate.Common;
-using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
-using ISession = Bosphorus.Dao.Core.Session.ISession;
+using Bosphorus.Dao.Core.Session;
 
-namespace Bosphorus.Dao.NHibernate.Dao
+namespace Bosphorus.Dao.Core.Dao.Facade
 {
-    public class NHibernateDao: IDao
+    public class Dao
     {
         private readonly IServiceRegistry serviceRegistry;
 
-        public NHibernateDao(IServiceRegistry serviceRegistry)
+        public Dao(IServiceRegistry serviceRegistry)
         {
             this.serviceRegistry = serviceRegistry;
         }
@@ -59,12 +55,6 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result;
         }
 
-        public IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, IDictionary parameterDictionary)
-        {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
-            IQueryable<TModel> result = genericDao.GetByQuery(currentSession, queryString, parameterDictionary);
-            return result;
-        }
 
         public IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, IDictionary parameterDictionary)
         {
@@ -73,6 +63,15 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result;
         }
 
+
+        public IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, IDictionary parameterDictionary)
+        {
+            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IQueryable<TModel> result = genericDao.GetByQuery(currentSession, queryString, parameterDictionary);
+            return result;
+        }
+
+
         public TModel Insert<TModel>(ISession currentSession, TModel entity)
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
@@ -80,10 +79,10 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result;
         }
 
-        public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entities)
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
-            IEnumerable<TModel> result = genericDao.Insert(currentSession, entityList);
+            IEnumerable<TModel> result = genericDao.Insert(currentSession, entities);
             return result;
         }
 
@@ -94,10 +93,10 @@ namespace Bosphorus.Dao.NHibernate.Dao
             return result;
         }
 
-        public IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        public IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entities)
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
-            IEnumerable<TModel> result = genericDao.Update(currentSession, entityList);
+            IEnumerable<TModel> result = genericDao.Update(currentSession, entities);
             return result;
         }
 
@@ -105,12 +104,14 @@ namespace Bosphorus.Dao.NHibernate.Dao
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
             genericDao.Delete(currentSession, entity);
+
         }
 
-        public void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entityList)
+        public void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entities)
         {
             IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
-            genericDao.Delete(currentSession, entityList);
+            genericDao.Delete(currentSession, entities);
         }
+
     }
 }

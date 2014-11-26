@@ -14,9 +14,10 @@ namespace Bosphorus.Dao.Client.Demo.Configuration.Log
         {
             return
                 SQLiteConfiguration
-                .Standard
-                .ConnectionString(@"data source=.\Demo.db3")
-                .ShowSql();
+                    .Standard
+                    .ConnectionString(@"data source=.\Demo.db3")
+                    .ShowSql()
+                    .FormatSql();
         }
     }
 }

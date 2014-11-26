@@ -79,11 +79,11 @@
     <Compile Include="Common\DaoException.cs" />
     <Compile Include="Dao.Decoration\CacheDecorator.cs" />
     <Compile Include="Dao.Decoration\AbstractDaoDecorator.Generic.cs" />
-    <Compile Include="Dao\DaoExtension.Generic.cs" />
-    <Compile Include="Dao\DaoExtension.NonGeneric.cs" />
-    <Compile Include="Dao\DaoExtension.Decoration.Generic.cs" />
-    <Compile Include="Dao\IDao.Generic.cs" />
-    <Compile Include="Dao\IDao.NonGeneric.cs" />
+    <Compile Include="Dao\IDaoExtensions.cs" />
+    <Compile Include="Dao.Facade\DaoExtensions.cs" />
+    <Compile Include="Dao\IDaoExtensions.Decoration.cs" />
+    <Compile Include="Dao\IDao.cs" />
+    <Compile Include="Dao.Facade\Dao.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Session.LifeStyle\AbstractSessionLifeStyleProvider.cs" />
     <Compile Include="Session.LifeStyle\ISessionLifeStyleProvider.cs" />

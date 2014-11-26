@@ -4,8 +4,11 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Manager;
+using Bosphorus.Dao.Core.Session.Manager.Factory;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 using Bosphorus.Dao.NHibernate.Demo.Log.Model;
+using Bosphorus.Dao.NHibernate.Session.Manager.Factory;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
@@ -13,12 +16,14 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
     {
         private readonly IDao<Bank> defaultSessionDao;
         private readonly IDao<LogModel> logSessionDao;
+        private readonly INHibernateSessionManagerFactory nHibernateSessionManagerFactory;
 
-        public Session(IResultTransformer resultTransformer, IDao<Bank> defaultSessionDao, IDao<LogModel> logSessionDao) 
+        public Session(IResultTransformer resultTransformer, IDao<Bank> defaultSessionDao, IDao<LogModel> logSessionDao, INHibernateSessionManagerFactory nHibernateSessionManagerFactory) 
             : base(resultTransformer)
         {
             this.defaultSessionDao = defaultSessionDao;
             this.logSessionDao = logSessionDao;
+            this.nHibernateSessionManagerFactory = nHibernateSessionManagerFactory;
         }
 
         public IEnumerable<Bank> Default()
@@ -35,9 +40,8 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 
         public IQueryable<Bank> FromParameter()
         {
-            //TODO:
-            ISession session = null; //defaultSessionDao.SessionManager.OpenSession();
-            IQueryable<Bank> result = defaultSessionDao.GetById(session, 1);
+            ISessionManager sessionManager = nHibernateSessionManagerFactory.Build("LOG");
+            IQueryable<Bank> result = defaultSessionDao.GetById(sessionManager.Current, 1);
             return result;
         }
     }

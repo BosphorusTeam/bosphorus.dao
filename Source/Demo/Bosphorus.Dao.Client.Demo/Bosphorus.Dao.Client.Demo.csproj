@@ -113,7 +113,6 @@
     <Compile Include="ExecutionList\Extension\Enum.cs" />
     <Compile Include="ExecutionList\Basic\Generic.cs" />
     <Compile Include="ExecutionList\RelationByMap\Select.cs" />
-    <Compile Include="ExecutionList\Basic\NonGeneric.cs" />
     <Compile Include="ExecutionList\RelationByMap\Reference.cs" />
     <Compile Include="ExecutionList\Basic\Session.cs" />
     <Compile Include="ExecutionList\Extension\LinqProvider.cs" />

@@ -3,16 +3,15 @@ using System.Linq;
 using Bosphorus.Dao.Client.Demo.Common;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
-using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.NHibernate.Demo.Business.Model;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
     public class NonGeneric : AbstractMethodExecutionItemList
     {
-        private readonly IDao dao;
+        private readonly Bosphorus.Dao.Core.Dao.Facade.Dao dao;
 
-        public NonGeneric(IResultTransformer resultTransformer, IDao dao) 
+        public NonGeneric(IResultTransformer resultTransformer, Core.Dao.Facade.Dao dao) 
             : base(resultTransformer)
         {
             this.dao = dao;
