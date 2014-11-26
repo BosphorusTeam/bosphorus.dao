@@ -18,27 +18,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Client", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Extension", "Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj", "{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Business.Model", "Demo\Bosphorus.Dao.NHibernate.Demo.Business.Model\Bosphorus.Dao.NHibernate.Demo.Business.Model.csproj", "{870963CD-DD5D-4BCE-96B9-D16BB556D90E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Business.Dal", "Demo\Bosphorus.Dao.NHibernate.Demo.Business.Dal\Bosphorus.Dao.NHibernate.Demo.Business.Dal.csproj", "{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Log.Dal", "Demo\Bosphorus.Dao.NHibernate.Demo.Log.Dal\Bosphorus.Dao.NHibernate.Demo.Log.Dal.csproj", "{98DE0E1D-D18D-4A7A-8EE7-79D0404DB72E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Log.Model", "Demo\Bosphorus.Dao.NHibernate.Demo.Log.Model\Bosphorus.Dao.NHibernate.Demo.Log.Model.csproj", "{E77E3358-1C25-4265-929A-925294F2283D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C8E49B8D-6BEC-4A87-8416-A92A0F443A1A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.DTC", "Demo\Bosphorus.Dao.NHibernate.Demo.DTC\Bosphorus.Dao.NHibernate.Demo.DTC.csproj", "{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Client.Demo", "Demo\Bosphorus.Dao.Client.Demo\Bosphorus.Dao.Client.Demo.csproj", "{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Demo.Business.Dto", "Demo\Bosphorus.Dao.NHibernate.Demo.Business.Dto\Bosphorus.Dao.NHibernate.Demo.Business.Dto.csproj", "{85EFE21B-93B4-431C-AEE2-B95D13D9EC95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Common", "Projects\Bosphorus.Dao.Common\Bosphorus.Dao.Common.csproj", "{FC12496A-983D-4980-A378-621C05F7B35E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Lucene", "Projects\Bosphorus.Dao.Lucene\Bosphorus.Dao.Lucene.csproj", "{6B1F7B25-148D-45D5-B717-0B8549D02211}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Lucene.Demo", "Demo\Bosphorus.Dao.Lucene.Demo\Bosphorus.Dao.Lucene.Demo.csproj", "{97EC6850-D454-400F-BD9F-DBA2211C1B9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.NHibernate.Common", "Demo\Bosphorus.Dao.Demo.NHibernate.Common\Bosphorus.Dao.Demo.NHibernate.Common.csproj", "{BADFF52B-E54F-4492-A51D-ECE9F576AB28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.Common", "Demo\Bosphorus.Dao.Demo.Common\Bosphorus.Dao.Demo.Common.csproj", "{778A7196-5A9F-47B1-907B-1EF673D7BD56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.NHibernate.General", "Demo\Bosphorus.Dao.Demo.NHibernate.General\Bosphorus.Dao.Demo.NHibernate.General.csproj", "{23845F08-9310-4059-8F8A-1F133C0C9003}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,34 +54,10 @@ Global
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{870963CD-DD5D-4BCE-96B9-D16BB556D90E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98DE0E1D-D18D-4A7A-8EE7-79D0404DB72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98DE0E1D-D18D-4A7A-8EE7-79D0404DB72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98DE0E1D-D18D-4A7A-8EE7-79D0404DB72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98DE0E1D-D18D-4A7A-8EE7-79D0404DB72E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E77E3358-1C25-4265-929A-925294F2283D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E77E3358-1C25-4265-929A-925294F2283D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E77E3358-1C25-4265-929A-925294F2283D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E77E3358-1C25-4265-929A-925294F2283D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85EFE21B-93B4-431C-AEE2-B95D13D9EC95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85EFE21B-93B4-431C-AEE2-B95D13D9EC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85EFE21B-93B4-431C-AEE2-B95D13D9EC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85EFE21B-93B4-431C-AEE2-B95D13D9EC95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC12496A-983D-4980-A378-621C05F7B35E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC12496A-983D-4980-A378-621C05F7B35E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC12496A-983D-4980-A378-621C05F7B35E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -102,6 +70,18 @@ Global
 		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{778A7196-5A9F-47B1-907B-1EF673D7BD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{778A7196-5A9F-47B1-907B-1EF673D7BD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{778A7196-5A9F-47B1-907B-1EF673D7BD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{778A7196-5A9F-47B1-907B-1EF673D7BD56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23845F08-9310-4059-8F8A-1F133C0C9003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23845F08-9310-4059-8F8A-1F133C0C9003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23845F08-9310-4059-8F8A-1F133C0C9003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23845F08-9310-4059-8F8A-1F133C0C9003}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,17 +91,13 @@ Global
 		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
 		{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
-		{870963CD-DD5D-4BCE-96B9-D16BB556D90E} = {C8E49B8D-6BEC-4A87-8416-A92A0F443A1A}
-		{96AEE977-4B93-48BD-BCF2-6B0A1C1F99BE} = {C8E49B8D-6BEC-4A87-8416-A92A0F443A1A}
-		{98DE0E1D-D18D-4A7A-8EE7-79D0404DB72E} = {C8E49B8D-6BEC-4A87-8416-A92A0F443A1A}
-		{E77E3358-1C25-4265-929A-925294F2283D} = {C8E49B8D-6BEC-4A87-8416-A92A0F443A1A}
-		{C8E49B8D-6BEC-4A87-8416-A92A0F443A1A} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 		{92922E6E-DFEB-4B0A-B3F1-D810F5DE00E7} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
-		{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
-		{85EFE21B-93B4-431C-AEE2-B95D13D9EC95} = {C8E49B8D-6BEC-4A87-8416-A92A0F443A1A}
 		{FC12496A-983D-4980-A378-621C05F7B35E} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
 		{6B1F7B25-148D-45D5-B717-0B8549D02211} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
 		{97EC6850-D454-400F-BD9F-DBA2211C1B9B} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
+		{BADFF52B-E54F-4492-A51D-ECE9F576AB28} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
+		{778A7196-5A9F-47B1-907B-1EF673D7BD56} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
+		{23845F08-9310-4059-8F8A-1F133C0C9003} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 	EndGlobalSection
 	GlobalSection(TextTemplating) = postSolution
 		TextTemplating = 1

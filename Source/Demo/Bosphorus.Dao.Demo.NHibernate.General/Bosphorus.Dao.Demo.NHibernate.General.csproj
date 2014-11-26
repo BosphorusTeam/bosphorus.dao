@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.props" Condition="Exists('..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.props')" />
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25C06ECA-5D95-4A50-BD8C-60C5BEC8B3F7}</ProjectGuid>
+    <ProjectGuid>{23845F08-9310-4059-8F8A-1F133C0C9003}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bosphorus.Dao.Client.Demo</RootNamespace>
-    <AssemblyName>Bosphorus.Dao.Client.Demo</AssemblyName>
+    <RootNamespace>Bosphorus.Dao.Demo.NHibernate.General</RootNamespace>
+    <AssemblyName>Bosphorus.Dao.Demo.NHibernate.General</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -22,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,62 +31,79 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Bosphorus.Dao.Client.Demo.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.BootStapper, Version=1.1.0.16, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Bosphorus.BootStapper">
       <HintPath>..\..\packages\Bosphorus.BootStapper.1.1.0.16\lib\net45\Bosphorus.BootStapper.dll</HintPath>
     </Reference>
-    <Reference Include="Bosphorus.Common.Clr, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Bosphorus.Common.Clr">
       <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.16\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
     </Reference>
-    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.34, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Bosphorus.Container.Castle">
       <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.34\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Iesi.Collections">
       <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Build.Tasks.v4.0" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate, Version=4.0.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NHibernate">
       <HintPath>..\..\packages\NHibernate.4.0.0.0\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Omu.ValueInjecter">
-      <HintPath>..\..\packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.ManagedDataAccess">
-      <HintPath>..\..\packages\odp.net.managed.121.1.2\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCL, Version=3.8.5.0, Culture=neutral, PublicKeyToken=bddade01e9c850c5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\SQLitePCL.3.8.5.0\lib\net45\SQLitePCL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AbstractBuilder.cs" />
+    <Compile Include="Common\AccountBuilder.cs" />
+    <Compile Include="Common\BankBuilder.cs" />
+    <Compile Include="Common\CustomerBuilder.cs" />
+    <Compile Include="Common\CustomerTypeBuilder.cs" />
+    <Compile Include="Common\ObjectExtensions.cs" />
+    <Compile Include="Configuration\Business\ConventionApplier.cs" />
+    <Compile Include="Configuration\Business\PersistenceConfigurerProvider.cs" />
+    <Compile Include="Configuration\Business\SessionLifeStyleProvider.cs" />
+    <Compile Include="Configuration\Log\ConventionApplier.cs" />
+    <Compile Include="Configuration\Log\PersistenceConfigurerProvider.cs" />
+    <Compile Include="Configuration\Log\SchemaUpdater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomerTypes.cs" />
+    <Compile Include="ExecutionList\Basic\DaoCustomization.cs" />
+    <Compile Include="ExecutionList\Basic\Generic.cs" />
+    <Compile Include="ExecutionList\Basic\Session.cs" />
+    <Compile Include="ExecutionList\Extension\AutoMap.cs" />
+    <Compile Include="ExecutionList\Extension\Enum.cs" />
+    <Compile Include="ExecutionList\Extension\LinqProvider.cs" />
+    <Compile Include="ExecutionList\Problem.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.Abstract.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.InSession.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.OutSession.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Reference.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Select.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statuses.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sqlite3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Common\Bosphorus.Dao.Common.csproj">
@@ -96,36 +111,31 @@
       <Name>Bosphorus.Dao.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj">
-      <Project>{e4a03b9a-de39-4e22-84cb-5a9ea29c59d8}</Project>
+      <Project>{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}</Project>
       <Name>Bosphorus.Dao.NHibernate.Extension</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.Client\Bosphorus.Dao.Client.csproj">
-      <Project>{38f86c1e-abaa-42ac-adb3-4f6579110dbf}</Project>
+      <Project>{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}</Project>
       <Name>Bosphorus.Dao.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.Core\Bosphorus.Dao.Core.csproj">
-      <Project>{5c3b656e-528c-4988-a31f-ea0aabc82cfb}</Project>
+      <Project>{5C3B656E-528C-4988-A31F-EA0AABC82CFB}</Project>
       <Name>Bosphorus.Dao.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
-      <Project>{30fb7f75-ff3e-49df-afbd-f9037e7c5a80}</Project>
+      <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
       <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bosphorus.Dao.Demo.Common\Bosphorus.Dao.Demo.Common.csproj">
+      <Project>{778A7196-5A9F-47B1-907B-1EF673D7BD56}</Project>
+      <Name>Bosphorus.Dao.Demo.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bosphorus.Dao.Demo.NHibernate.Common\Bosphorus.Dao.Demo.NHibernate.Common.csproj">
+      <Project>{BADFF52B-E54F-4492-A51D-ECE9F576AB28}</Project>
+      <Name>Bosphorus.Dao.Demo.NHibernate.Common</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.props'))" />
-    <Error Condition="!Exists('..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.targets'))" />
-  </Target>
-  <Import Project="..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.targets" Condition="Exists('..\..\packages\SQLitePCL.3.8.5.0\build\net45\SQLitePCL.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

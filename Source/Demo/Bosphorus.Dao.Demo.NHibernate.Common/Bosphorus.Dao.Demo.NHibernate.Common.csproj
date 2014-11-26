@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{870963CD-DD5D-4BCE-96B9-D16BB556D90E}</ProjectGuid>
+    <ProjectGuid>{BADFF52B-E54F-4492-A51D-ECE9F576AB28}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bosphorus.Dao.NHibernate.Demo.Business.Model</RootNamespace>
-    <AssemblyName>Bosphorus.Dao.NHibernate.Demo.Business.Model</AssemblyName>
+    <RootNamespace>Bosphorus.Dao.Demo.NHibernate.Common</RootNamespace>
+    <AssemblyName>Bosphorus.Dao.Demo.NHibernate.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,19 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Common.Clr, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Bosphorus.Common.Clr">
       <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.16\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
-    </Reference>
-    <Reference Include="Bosphorus.Container.Castle, Version=1.1.0.34, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.1.1.0.34\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.4.0.0.0\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,7 +57,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\BankDao.cs" />
+    <Compile Include="Business\BankDaoExtensions.cs" />
+    <Compile Include="Business\Configuration\AutoPersistenceModelProvider.cs" />
+    <Compile Include="Business\Configuration\HbmMappingRegisterer.cs" />
+    <Compile Include="Business\Configuration\Override\AccountOverride.cs" />
+    <Compile Include="Business\Configuration\Override\CustomerOverride.cs" />
+    <Compile Include="Business\IBankDao.cs" />
+    <Compile Include="Log\Configuration\AutoPersistenceModelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Business\Configuration\HbmMappingRegisterer.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.Core\Bosphorus.Dao.Core.csproj">
+      <Project>{5C3B656E-528C-4988-A31F-EA0AABC82CFB}</Project>
+      <Name>Bosphorus.Dao.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
+      <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
+      <Name>Bosphorus.Dao.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bosphorus.Dao.Demo.Common\Bosphorus.Dao.Demo.Common.csproj">
+      <Project>{778A7196-5A9F-47B1-907B-1EF673D7BD56}</Project>
+      <Name>Bosphorus.Dao.Demo.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

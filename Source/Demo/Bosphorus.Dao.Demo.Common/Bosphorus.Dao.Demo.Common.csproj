@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E77E3358-1C25-4265-929A-925294F2283D}</ProjectGuid>
+    <ProjectGuid>{778A7196-5A9F-47B1-907B-1EF673D7BD56}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bosphorus.Dao.NHibernate.Demo.Log.Model</RootNamespace>
-    <AssemblyName>Bosphorus.Dao.NHibernate.Demo.Log.Model</AssemblyName>
+    <RootNamespace>Bosphorus.Dao.Demo.Common</RootNamespace>
+    <AssemblyName>Bosphorus.Dao.Demo.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bosphorus.Common.Clr">
+      <HintPath>..\..\packages\Bosphorus.Common.Clr.1.0.0.16\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,7 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business.Dto\AccountDto.cs" />
+    <Compile Include="Business.Dto\BankDto.cs" />
+    <Compile Include="Business.Dto\CustomerComplexDto.cs" />
+    <Compile Include="Business.Dto\CustomerDto.cs" />
+    <Compile Include="Business\Account.cs" />
+    <Compile Include="Business\Bank.cs" />
+    <Compile Include="Business\CorporateCustomer.cs" />
+    <Compile Include="Business\Customer.cs" />
+    <Compile Include="Business\CustomerType.cs" />
+    <Compile Include="Business\IndividualCustomer.cs" />
+    <Compile Include="Business\Status.cs" />
+    <Compile Include="Log\LogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

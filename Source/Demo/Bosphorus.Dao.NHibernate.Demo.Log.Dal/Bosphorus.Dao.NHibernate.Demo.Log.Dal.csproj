@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\AutoPersistenceModelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,10 +70,6 @@
     <ProjectReference Include="..\..\Projects\Bosphorus.Library.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
       <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
       <Name>Bosphorus.Dao.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Log.Model\Bosphorus.Dao.NHibernate.Demo.Log.Model.csproj">
-      <Project>{E77E3358-1C25-4265-929A-925294F2283D}</Project>
-      <Name>Bosphorus.Dao.NHibernate.Demo.Log.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

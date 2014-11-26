@@ -33,6 +33,7 @@ using Bosphorus.Dao.NHibernate.Session;
 using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Metadata;
+using Remotion.Linq.Parsing;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Dao
@@ -40,18 +41,28 @@ namespace Bosphorus.Dao.NHibernate.Dao
     public abstract class AbstractNHibernateDao<TModel> : IDao<TModel> 
         where TModel : class
     {
-        private readonly Type modelType = typeof(TModel);
         private readonly IResultTransformer resultTransformer;
+        private readonly static Type modelType;
+        static AbstractNHibernateDao()
+        {
+            modelType = typeof(TModel);
+        }
 
         protected AbstractNHibernateDao()
         {
-            modelType = typeof(TModel);
             resultTransformer = Transformers.AliasToBean<TModel>();
         }
 
         protected global::NHibernate.ISession GetNativeSession(ISession currentSession)
         {
-            return ((NHibernateSession)currentSession).InnerSession;
+            global::NHibernate.ISession nativeSession = ((NHibernateSession) currentSession).InnerSession;
+            IClassMetadata classMetadata = nativeSession.SessionFactory.GetClassMetadata(modelType);
+            if (classMetadata == null)
+            {
+                throw new ModelMappingNotRegisteredException(modelType, null);
+            }
+
+            return nativeSession;
         }
 
         protected global::NHibernate.ICriteria GetNativeCriteria(ISession currentSession)

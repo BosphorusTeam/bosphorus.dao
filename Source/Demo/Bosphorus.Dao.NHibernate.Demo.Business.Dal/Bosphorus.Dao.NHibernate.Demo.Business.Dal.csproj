@@ -60,13 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\AutoPersistenceModelProvider.cs" />
-    <Compile Include="Configuration\HbmMappingRegisterer.cs" />
-    <Compile Include="Configuration\Override\AccountOverride.cs" />
-    <Compile Include="Configuration\Override\CustomerOverride.cs" />
-    <Compile Include="BankDao.cs" />
-    <Compile Include="IBankDao.cs" />
-    <Compile Include="BankDaoExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,19 +75,13 @@
       <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
       <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Business.Model\Bosphorus.Dao.NHibernate.Demo.Business.Model.csproj">
-      <Project>{870963CD-DD5D-4BCE-96B9-D16BB556D90E}</Project>
-      <Name>Bosphorus.Dao.NHibernate.Demo.Business.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Configuration\HbmMappingRegisterer.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Folder Include="Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

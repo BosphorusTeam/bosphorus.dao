@@ -39,17 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDto.cs" />
-    <Compile Include="BankDto.cs" />
-    <Compile Include="CustomerComplexDto.cs" />
-    <Compile Include="CustomerDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bosphorus.Dao.NHibernate.Demo.Business.Model\Bosphorus.Dao.NHibernate.Demo.Business.Model.csproj">
-      <Project>{870963CD-DD5D-4BCE-96B9-D16BB556D90E}</Project>
-      <Name>Bosphorus.Dao.NHibernate.Demo.Business.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
