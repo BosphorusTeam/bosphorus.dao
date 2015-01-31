@@ -2,30 +2,34 @@
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.NHibernate.Demo.Business.Model;
+using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Demo.Common.Business;
 
 namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
 {
-    public class Generic : MethodExecutionItemList
+    public class Generic : AbstractMethodExecutionItemList
     {
-        private readonly IDao<Bank> dao;
+        private readonly IDao<Bank> bankDao;
+        private readonly IDao<CustomerType> customerTypeDao;
 
-        public Generic(IResultTransformer resultTransformer, IDao<Bank> dao) 
+        public Generic(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<CustomerType> customerTypeDao) 
             : base(resultTransformer)
         {
-            this.dao = dao;
+            this.bankDao = bankDao;
+            this.customerTypeDao = customerTypeDao;
         }
 
-        public Bank Insert()
+        public Bank Insert_Bank()
         {
             Bank bank = new Bank();
             bank.No = "1";
             bank.Name = "Citibank";
 
-            Bank result = dao.Insert(bank);
+            Bank result = bankDao.Insert(bank);
             return result;
         }
-        public IEnumerable<Bank> Insert_10_000()
+
+        public IEnumerable<Bank> Insert_10_000_Bank()
         {
             int count = 10000;
             IList<Bank> bankList = new List<Bank>(count);
@@ -38,9 +42,20 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
                 bankList.Add(bank);
             }
 
-            IEnumerable<Bank> result = dao.Insert(bankList);
+            IEnumerable<Bank> result = bankDao.Insert(bankList);
             return result;
         }
+
+        public CustomerType Insert_CustomerType()
+        {
+            CustomerType customerType = new CustomerType();
+            customerType.Id = 1;
+            customerType.Name = "Bireysel";
+
+            customerTypeDao.Insert(customerType);
+            return customerType;
+        }
+
     }
 
 }

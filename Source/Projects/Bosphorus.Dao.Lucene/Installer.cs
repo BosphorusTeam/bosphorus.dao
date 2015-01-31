@@ -1,18 +1,15 @@
-﻿    using System.Collections;
+﻿using System;
+using Bosphorus.Container.Castle.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.Core.Session;
-using Bosphorus.Dao.Core.Session.LifeStyle;
-using Bosphorus.Dao.Core.Session.Manager;
-using Bosphorus.Dao.Lucene.Configuration;
+using Bosphorus.Dao.Core.Session.Provider.Factory;
+using Bosphorus.Dao.Lucene.Configuration.Map;
 using Bosphorus.Dao.Lucene.Dao;
 using Bosphorus.Dao.Lucene.Session;
-using Bosphorus.Dao.Lucene.Session.Manager;
-using Bosphorus.Dao.Lucene.Session.Manager.Factory;
-using Bosphorus.Dao.Lucene.Session.Manager.Factory.Decoration;
+using Bosphorus.Dao.Lucene.Session.Provider.Factory;
+using Bosphorus.Dao.Lucene.Session.Provider.Factory.Native;
 using Castle.Core;
-using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
+using Castle.MicroKernel.Handlers;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -25,57 +22,72 @@ namespace Bosphorus.Dao.Lucene
         {
             container.Register(
                 Component
-                    .For(typeof(IDao<>))
-                    .Forward(typeof(ILuceneDao<>))
-                    .ImplementedBy(typeof(LuceneDao<>))
-                    .IsFallback(),
+                    .For(typeof (ILuceneDao<>))
+                    .ImplementedBy(typeof (LuceneDao<>))
+                    .NamedAutomatically("LuceneDao"),
+
+                Component
+                    .For(typeof (ISessionProviderFactory<>))
+                    .ImplementedBy(typeof(LuceneSessionProviderFactory<>), new ImplementationMatchingStrategy(), new ServiceStrategy())
+                    .NamedAutomatically("LuceneSessionProviderFactory"),
 
                 allLoadedTypes
-                    .BasedOn(typeof(LuceneDao<>))
+                    .BasedOn(typeof(ILuceneMap<>))
                     .WithService
-                    .AllInterfaces()
-                    .If(type => type != typeof(LuceneDao<>)),
+                    .AllInterfaces(),
 
+                //TODO: Cache decoartor of LuceneSessionProviderFactory<> must be...
                 allLoadedTypes
-                    .BasedOn<ILuceneDataProviderBuilder>()
+                    .BasedOn<ILuceneDataProviderFactory>()
                     .WithService
                     .FromInterface(),
 
-                Component
-                    .For(typeof(LuceneSession<>))
-                    .UsingFactoryMethod(BuildSession)
-                    .LifestyleCustom<SessionLifeStyleManager>(),
-
-                Component
-                    .For<ILuceneSessionManager>()
-                    .UsingFactoryMethod(BuildSessionManager),
-
-                Component
-                    .For<ILuceneSessionManagerFactory>()
-                    .ImplementedBy<LuceneSessionManagerFactory>(),
-
-                Component
-                    .For<ILuceneSessionManagerFactory>()
-                    .ImplementedBy<CacheDecorator>()
-                    .IsDefault()
+                Decorator
+                    .Of<ILuceneDataProviderFactory>()
+                    .Is<CacheDecorator>()
             );
 
         }
 
-        private ISession BuildSession(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        private class ServiceStrategy : IGenericServiceStrategy
         {
-            IDictionary creationArguments = creationContext.AdditionalArguments;
-            ILuceneSessionManager sessionManager = kernel.Resolve<ILuceneSessionManager>(creationArguments);
-            ISession session = sessionManager.OpenSession();
-            return session;
+            private readonly Type luceneSessionType;
+
+            public ServiceStrategy()
+            {
+                luceneSessionType = typeof(LuceneSession<>);
+            }
+
+            public bool Supports(Type service, ComponentModel component)
+            {
+                //LuceneSession<>
+                Type sessionType = service.GetGenericArguments()[0];
+
+                if (!sessionType.IsGenericType)
+                {
+                    return false;
+                }
+
+                Type genericTypeDefinition = sessionType.GetGenericTypeDefinition();
+                if (genericTypeDefinition != luceneSessionType)
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
 
-        private ILuceneSessionManager BuildSessionManager(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        private class ImplementationMatchingStrategy : IGenericImplementationMatchingStrategy
         {
-            IDictionary creationArguments = creationContext.AdditionalArguments;
-            ILuceneSessionManagerFactory sessionManagerFactory = kernel.Resolve<ILuceneSessionManagerFactory>();
-            ISessionManager sessionManager = sessionManagerFactory.Build(creationArguments);
-            return (ILuceneSessionManager) sessionManager;
+            public Type[] GetGenericArguments(ComponentModel model, CreationContext context)
+            {
+                //LuceneSession<Foo>
+                Type sessionType = context.GenericArguments[0];
+                Type modelType = sessionType.GetGenericArguments()[0];
+                return new[] { modelType };
+            }
         }
+
     }
 }

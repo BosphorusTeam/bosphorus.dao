@@ -4,16 +4,17 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
+using Bosphorus.Dao.NHibernate.Dao;
 using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
 {
     public class Select: AbstractMethodExecutionItemList
     {
-        private readonly IDao<Customer> customerDao;
-        private readonly IDao<Account> accountDao;
+        private readonly INHibernateStatefulDao<Customer> customerDao;
+        private readonly INHibernateStatefulDao<Account> accountDao;
 
-        public Select(IResultTransformer resultTransformer, IDao<Customer> customerDao, IDao<Account> accountDao)
+        public Select(IResultTransformer resultTransformer, INHibernateStatefulDao<Customer> customerDao, INHibernateStatefulDao<Account> accountDao)
             : base(resultTransformer)
         {
             this.customerDao = customerDao;

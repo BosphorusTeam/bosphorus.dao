@@ -54,7 +54,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.Decode
 
         public static TReturn Decode<T, TReturn>(this T extended, IEnumerable<KeyValuePair<T, TReturn>> keyValueList, TReturn fallback) where T : class
         {
-            foreach (var keyBaluePair in keyValueList)
+            foreach (KeyValuePair<T, TReturn> keyBaluePair in keyValueList)
             {
                 if (extended.Equals(keyBaluePair.Key))
                 {

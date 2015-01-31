@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Demo.WebService.WinForm.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="Demo_WebService_WinForm_localhost_CustomerDaoService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:1051/AccountDaoService.asmx</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>

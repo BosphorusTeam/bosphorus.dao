@@ -1,5 +1,5 @@
 ﻿using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.NHibernate.Fluent.AutoPersistenceModelProvider;
+using Bosphorus.Dao.NHibernate.Configuration.Fluent.AutoPersistenceModelProvider;
 using Castle.Core.Internal;
 using FluentNHibernate.Automapping;
 

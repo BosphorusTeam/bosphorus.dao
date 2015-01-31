@@ -37,13 +37,13 @@ namespace Bosphorus.Dao.NHibernate.Extension.Driver.OracleManaged
                 connectionTypeName,
                 commandTypeName)
         {
-            var oracleCommandType = ReflectHelper.TypeFromAssembly("Oracle.ManagedDataAccess.Client.OracleCommand", driverAssemblyName, false);
+            Type oracleCommandType = ReflectHelper.TypeFromAssembly("Oracle.ManagedDataAccess.Client.OracleCommand", driverAssemblyName, false);
             oracleCommandBindByName = oracleCommandType.GetProperty("BindByName");
 
-            var parameterType = ReflectHelper.TypeFromAssembly("Oracle.ManagedDataAccess.Client.OracleParameter", driverAssemblyName, false);
+            Type parameterType = ReflectHelper.TypeFromAssembly("Oracle.ManagedDataAccess.Client.OracleParameter", driverAssemblyName, false);
             oracleDbType = parameterType.GetProperty("OracleDbType");
 
-            var oracleDbTypeEnum = ReflectHelper.TypeFromAssembly("Oracle.ManagedDataAccess.Client.OracleDbType", driverAssemblyName, false);
+            Type oracleDbTypeEnum = ReflectHelper.TypeFromAssembly("Oracle.ManagedDataAccess.Client.OracleDbType", driverAssemblyName, false);
             oracleDbTypeRefCursor = Enum.Parse(oracleDbTypeEnum, "RefCursor");
             oracleDbTypeXmlType = Enum.Parse(oracleDbTypeEnum, "XmlType");
         }
@@ -105,7 +105,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.Driver.OracleManaged
             // http://tgaw.wordpress.com/2006/03/03/ora-01722-with-odp-and-command-parameters/
             oracleCommandBindByName.SetValue(command, true, null);
 
-            var detail = CallableParser.Parse(command.CommandText);
+            CallableParser.Detail detail = CallableParser.Parse(command.CommandText);
 
             if (!detail.IsCallable)
                 return;
@@ -114,7 +114,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.Driver.OracleManaged
             command.CommandText = detail.FunctionName;
             oracleCommandBindByName.SetValue(command, false, null);
 
-            var outCursor = command.CreateParameter();
+            IDbDataParameter outCursor = command.CreateParameter();
             oracleDbType.SetValue(outCursor, oracleDbTypeRefCursor, null);
 
             outCursor.Direction = detail.HasReturn ? ParameterDirection.ReturnValue : ParameterDirection.Output;

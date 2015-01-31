@@ -1,7 +1,10 @@
-﻿using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.Demo.NHibernate.General.Common;
-using Bosphorus.Dao.NHibernate.Fluent.ConfigurationProcessor;
+﻿using System;
+using Bosphorus.Dao.Demo.Common.Business;
+using Bosphorus.Dao.Demo.NHibernate.Common.Common;
+using Bosphorus.Dao.NHibernate.Configuration.Fluent.ConfigurationProcessor;
+using FluentNHibernate.Conventions.AcceptanceCriteria;
 using NHibernate;
+using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.Configuration.Business
@@ -11,7 +14,13 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.Configuration.Business
         protected override void Process(global::NHibernate.Cfg.Configuration configuration)
         {
             SchemaUpdate schemaUpdate = new SchemaUpdate(configuration);
-            schemaUpdate.Execute(true, true);
+            bool isUpdated = false;
+            schemaUpdate.Execute(script => { Console.WriteLine(script); isUpdated = true;}, true);
+
+            if (!isUpdated)
+            {
+                return;
+            }
 
             InsertInitialData(configuration);
         }

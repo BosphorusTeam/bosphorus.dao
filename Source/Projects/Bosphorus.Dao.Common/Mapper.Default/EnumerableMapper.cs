@@ -29,7 +29,7 @@ namespace Bosphorus.Dao.Common.Mapper.Default
             Type targetElementType = GetElementType(targetType);
             IList targetList = (IList) target;
 
-            foreach (var sourceElement in sourceEnumerable)
+            foreach (object sourceElement in sourceEnumerable)
             {
                 object targetElement = Activator.CreateInstance(targetElementType);
                 lazyMapper.Service.Map(sourceElementType, sourceElement, targetElementType, targetElement);

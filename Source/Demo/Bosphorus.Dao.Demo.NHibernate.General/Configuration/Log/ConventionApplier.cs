@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.NHibernate.Fluent.ConventionApplier;
+﻿using Bosphorus.Dao.NHibernate.Configuration.Fluent.ConventionApplier;
 using FluentNHibernate.Conventions;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.Configuration.Log

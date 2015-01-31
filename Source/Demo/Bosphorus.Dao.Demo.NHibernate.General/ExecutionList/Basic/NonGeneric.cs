@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Dao.Client.Demo.Common;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
-using Bosphorus.Dao.NHibernate.Demo.Business.Model;
+using Bosphorus.Dao.Demo.Common.Business;
+using Bosphorus.Dao.Demo.NHibernate.General.Common;
+using Bosphorus.Dao.NHibernate.Session;
 
 namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 {
@@ -19,7 +20,7 @@ namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
 
         public IEnumerable<Bank> GetAll()
         {
-            return dao.GetAll<Bank>();
+            dao.GetAll<Bank>();
         }
 
         public IQueryable<Bank> GetById()

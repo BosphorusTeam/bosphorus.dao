@@ -2,16 +2,17 @@
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.Demo.NHibernate.General.Common;
+using Bosphorus.Dao.Demo.NHibernate.Common.Common;
+using Bosphorus.Dao.NHibernate.Dao;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
 {
     public abstract class AbstractCascade : AbstractMethodExecutionItemList
     {
-        private readonly IDao<Customer> customerDao;
-        private readonly IDao<Account> accountDao;
+        private readonly INHibernateStatefulDao<Customer> customerDao;
+        private readonly INHibernateStatefulDao<Account> accountDao;
 
-        public AbstractCascade(IResultTransformer resultTransformer, IDao<Account> accountDao, IDao<Customer> customerDao) 
+        public AbstractCascade(IResultTransformer resultTransformer, INHibernateStatefulDao<Account> accountDao, INHibernateStatefulDao<Customer> customerDao) 
             : base(resultTransformer)
         {
             this.accountDao = accountDao;
@@ -31,9 +32,9 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
             account1.Customer = customer;
             account2.Customer = customer;
 
-            customer.PrimaryAccount = account1;
-            //customer.Accounts.Add(account1);
-            //customer.Accounts.Add(account2);
+            //customer.PrimaryAccount = account1;
+            customer.Accounts.Add(account1);
+            customer.Accounts.Add(account2);
 
             customerDao.Insert(customer);
             return customer;

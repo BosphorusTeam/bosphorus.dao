@@ -20,7 +20,7 @@ namespace Bosphorus.Dao.Common.Instantiator
 
         public object Create(Type type)
         {
-            foreach (var instantiator in instantiatorList)
+            foreach (IInstantiator instantiator in instantiatorList)
             {
                 if (!instantiator.IsApplicable(type))
                 {

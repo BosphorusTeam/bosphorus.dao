@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.NHibernate.Fluent.PersistenceConfigurerProvider;
+﻿using Bosphorus.Dao.NHibernate.Configuration.Fluent.PersistenceConfigurerProvider;
 using FluentNHibernate.Cfg.Db;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.Configuration.Log

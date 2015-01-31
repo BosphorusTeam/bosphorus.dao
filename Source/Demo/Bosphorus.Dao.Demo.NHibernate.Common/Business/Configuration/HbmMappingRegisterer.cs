@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.NHibernate.Fluent.HbmMappingProvider;
+﻿using Bosphorus.Dao.NHibernate.Configuration.Fluent.HbmMappingProvider;
 using FluentNHibernate.Cfg;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Business.Configuration

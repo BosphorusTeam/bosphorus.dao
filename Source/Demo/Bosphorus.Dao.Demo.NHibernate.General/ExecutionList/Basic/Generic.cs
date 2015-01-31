@@ -4,15 +4,17 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.Demo.NHibernate.General.Common;
+using Bosphorus.Dao.Demo.NHibernate.Common.Common;
+using Bosphorus.Dao.NHibernate.Dao;
+using Bosphorus.Dao.NHibernate.Session;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
 {
     public class Generic : AbstractMethodExecutionItemList
     {
-        private readonly IDao<Bank> dao;
+        private readonly INHibernateStatefulDao<Bank> dao;
 
-        public Generic(IResultTransformer resultTransformer, IDao<Bank> dao) 
+        public Generic(IResultTransformer resultTransformer, INHibernateStatefulDao<Bank> dao)
             : base(resultTransformer)
         {
             this.dao = dao;

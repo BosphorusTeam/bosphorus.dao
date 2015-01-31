@@ -30,7 +30,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
 
         public override HqlTreeNode BuildHql(MethodInfo method, Expression targetObject, ReadOnlyCollection<Expression> arguments, HqlTreeBuilder treeBuilder, IHqlExpressionVisitor visitor)
         {
-            var value = visitor.Visit(arguments[0]).AsExpression();
+            HqlExpression value = visitor.Visit(arguments[0]).AsExpression();
             HqlTreeNode inClauseNode = BuildInClause(arguments, treeBuilder, visitor);
 
             HqlTreeNode inClause = treeBuilder.In(value, inClauseNode);
@@ -94,14 +94,14 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.In
             Type enumUnderlyingType = elementType.IsEnum ? Enum.GetUnderlyingType(elementType) : null;
             IList<HqlTreeNode> variants = new List<HqlTreeNode>();
 
-            foreach (var variant in valueArray)
+            foreach (object variant in valueArray)
             {
-                var val = variant;
+                object val = variant;
 
                 if (elementType.IsEnum)
                     val = Convert.ChangeType(variant, enumUnderlyingType);
 
-                var hqlConstant = treeBuilder.Constant(val);
+                HqlConstant hqlConstant = treeBuilder.Constant(val);
                 variants.Add(hqlConstant);
             }
 

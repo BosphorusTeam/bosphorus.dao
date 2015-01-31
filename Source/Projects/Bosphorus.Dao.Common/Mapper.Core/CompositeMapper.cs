@@ -14,7 +14,7 @@ namespace Bosphorus.Dao.Common.Mapper.Core
 
         public bool IsApplicable(Type sourceType, Type targetType)
         {
-            foreach (var item in items)
+            foreach (IMapper item in items)
             {
                 bool isApplicable = item.IsApplicable(sourceType, targetType);
                 if (isApplicable)
@@ -28,7 +28,7 @@ namespace Bosphorus.Dao.Common.Mapper.Core
 
         public void Map(Type sourceType, object source, Type targetType, object target)
         {
-            foreach (var item in items)
+            foreach (IMapper item in items)
             {
                 bool isApplicable = item.IsApplicable(sourceType, targetType);
                 if (!isApplicable)

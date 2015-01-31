@@ -4,7 +4,7 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.Demo.NHibernate.General.Common;
+using Bosphorus.Dao.Demo.NHibernate.Common.Common;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension

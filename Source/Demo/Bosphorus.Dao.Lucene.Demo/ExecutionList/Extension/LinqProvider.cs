@@ -2,11 +2,11 @@
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.NHibernate.Demo.Business.Model;
+using Bosphorus.Dao.Demo.Common.Business;
 
 namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Extension
 {
-    public class LinqProvider : MethodExecutionItemList
+    public class LinqProvider : AbstractMethodExecutionItemList
     {
         private readonly IDao<Bank> bankDao;
 

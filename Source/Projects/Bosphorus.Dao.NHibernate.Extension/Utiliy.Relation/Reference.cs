@@ -40,7 +40,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.Utiliy.Relation
 
         private static MemberExpression GetMemberExpression(Expression<Func<TModel, object>> expression)
         {
-            var body = expression.Body as MemberExpression ?? ((UnaryExpression)expression.Body).Operand as MemberExpression;
+            MemberExpression body = expression.Body as MemberExpression ?? ((UnaryExpression)expression.Body).Operand as MemberExpression;
             return body;
         }
     }
