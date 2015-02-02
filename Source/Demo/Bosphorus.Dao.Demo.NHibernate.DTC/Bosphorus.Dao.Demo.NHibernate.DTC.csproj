@@ -84,7 +84,10 @@
     <Compile Include="Common\ConventionApplier.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="LogSessionAliasProvider.cs" />
-    <Compile Include="Log\PersistenceConfigurerProvider.cs" />
+    <Compile Include="Log\PersistenceConfigurerProvider.cs">
+      <SubType>
+      </SubType>
+    </Compile>
     <Compile Include="Log\SchemaUpdater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,8 +16,4 @@
     { call XBANKPROC ( :Parameter1, :Parameter2 ) }
   </sql-query>
 
-  <sql-query name="aaa">
-    { call  ESASLIVE.PKG_ARASONLINEWRAPPERS.PROC_DATABYUNITID ( :UnitId ) }
-  </sql-query>
-
 </hibernate-mapping>
