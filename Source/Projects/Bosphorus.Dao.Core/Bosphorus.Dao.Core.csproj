@@ -55,20 +55,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Common.Clr, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Common.Clr.2.0.3.0\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
-    </Reference>
-    <Reference Include="Bosphorus.Container.Castle, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.2.0.1.0\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -77,32 +69,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DaoException.cs" />
+    <Compile Include="Common\SessionAlias.cs" />
     <Compile Include="Dao.Decoration\AbstractDaoDecorator.cs" />
-    <Compile Include="Dao.Decoration\CacheDecorator.cs" />
-    <Compile Include="Dao.Facade\Dao.cs">
+    <Compile Include="Dao\Extensions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dao\IDaoExtensions.cs" />
+    <Compile Include="Dao\Dao.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Dao\IDao.cs" />
-    <Compile Include="Dao\IDaoExtensions.Decoration.cs" />
-    <Compile Include="Installer.cs" />
-    <Compile Include="Session.Default\Alias\ChainedSessionAliasProvider.cs" />
-    <Compile Include="Session.Default\Provider\CompositeDefaultSessionProvider.cs" />
-    <Compile Include="Session.Default\Alias\IDefaultSessionAliasProvider.cs" />
-    <Compile Include="Session.LifeStyle\AbstractSessionLifeStyleProvider.cs" />
-    <Compile Include="Session.LifeStyle\ISessionLifeStyleProvider.cs" />
-    <Compile Include="Session.LifeStyle\ScopeAccessor.cs" />
-    <Compile Include="Session.LifeStyle\DefaultSessionLifeStyleProvider.cs" />
-    <Compile Include="Session.LifeStyle\SingletonScopeAccessor.cs" />
-    <Compile Include="Session.LifeStyle\TransientScopeAccessor.cs" />
-    <Compile Include="Session.Provider.Factory.Decoration\CacheDecorator.cs" />
-    <Compile Include="Session.Provider.Factory\ISessionProviderFactory.cs" />
-    <Compile Include="Session.Provider.Factory\SessionAlias.cs" />
-    <Compile Include="Session.Provider\AbstractSessionProvider.cs" />
-    <Compile Include="Session.Default\Provider\IDefaultSessionProvider.cs" />
+    <Compile Include="Session.Manager\Installer.cs" />
+    <Compile Include="Session.Manager\ISessionManager.cs" />
+    <Compile Include="Session.Manager\SessionManager.cs" />
+    <Compile Include="Session.Provider\Extension.cs" />
+    <Compile Include="Session.Provider\ExtensionConfiguration.cs" />
     <Compile Include="Session.Provider\ISessionProvider.cs" />
-    <Compile Include="Session.Provider\ISessionProviderExtensions.cs" />
-    <Compile Include="Session.Default\Provider\SessionSelectorNotFoundException.cs" />
+    <Compile Include="Session.Provider\TransientSessionProvider.cs" />
+    <Compile Include="Session.Repository\ConditionalSessionRepository.cs" />
+    <Compile Include="Session.Provider\Installer.cs" />
+    <Compile Include="Session.Repository\Installer.cs" />
+    <Compile Include="Session.Repository\ThreadSessionRepository.cs" />
+    <Compile Include="Session.Repository\ApplicationSessionRepository.cs" />
+    <Compile Include="Session.Repository\ISessionRepository.cs" />
+    <Compile Include="Session.Repository\SessionScope.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Transaction\ITransaction.cs" />
     <Compile Include="Transaction\IsolationLevel.cs" />
@@ -132,7 +121,20 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
+      <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
+      <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
+      <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>
+      <Name>Bosphorus.Configuration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
+      <Project>{9b8dbfe7-a90c-40d6-b9c1-b6a9528f8317}</Project>
+      <Name>Bosphorus.Container.Castle</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

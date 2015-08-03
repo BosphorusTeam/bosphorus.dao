@@ -1,9 +1,8 @@
-﻿using Bosphorus.Container.Castle.Fluent.Decoration;
+﻿using Bosphorus.Container.Castle.Fluent;
+using Bosphorus.Container.Castle.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Dao.Core.Session.Provider.Factory;
+using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.NHibernate.Dao;
-using Bosphorus.Dao.NHibernate.Session;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory.Native;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -11,7 +10,7 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.NHibernate
 {
-    public class Installer: AbstractWindsorInstaller
+    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
     {
         protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
         {
@@ -19,38 +18,21 @@ namespace Bosphorus.Dao.NHibernate
                 Component
                     .For(typeof(INHibernateStatefulDao<>))
                     .ImplementedBy(typeof(NHibernateStatefulDao<>))
-                    .NamedAutomatically("NHibernateStatefulDao"),
-
-                Component
-                    .For<ISessionProviderFactory<NHibernateStatefulSession>>()
-                    .ImplementedBy<NHibernateStatefulSessionProviderFactory>()
-                    .NamedAutomatically("NHibernateStatefulSessionProviderFactory"),
-
-                Decorator
-                    .Of<ISessionProviderFactory<NHibernateStatefulSession>>()
-                    .Is<Core.Session.Provider.Factory.Decoration.CacheDecorator<NHibernateStatefulSession>>(),
+                    .NamedUnique(),
 
                 Component
                     .For(typeof(INHibernateStatelessDao<>))
                     .ImplementedBy(typeof(NHibernateStatelessDao<>))
-                    .NamedAutomatically("INHibernateStatelessDao"),
-
-                Component
-                    .For<ISessionProviderFactory<NHibernateStatelessSession>>()
-                    .ImplementedBy<NHibernateStatelessSessionProviderFactory>()
-                    .NamedAutomatically("NHibernateStatelessSessionProviderFactory"),
-
-                Decorator
-                    .Of<ISessionProviderFactory<NHibernateStatelessSession>>()
-                    .Is<Core.Session.Provider.Factory.Decoration.CacheDecorator<NHibernateStatelessSession>>(),
+                    .NamedUnique(),
 
                 Component
                     .For<INHibernateSessionFactoryBuilder>()
-                    .ImplementedBy<DefaultNHibernateSessionFactoryBuilder>(),
-
+                    .ImplementedBy<DefaultNHibernateSessionFactoryBuilder>()
+                /*
                 Decorator
                     .Of<INHibernateSessionFactoryBuilder>()
                     .Is<CacheDecorator>()
+                */
             );
         }
 

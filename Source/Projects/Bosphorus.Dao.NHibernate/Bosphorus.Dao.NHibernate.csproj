@@ -55,33 +55,25 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bosphorus.Common.Clr, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Common.Clr.2.0.3.0\lib\net45\Bosphorus.Common.Clr.dll</HintPath>
-    </Reference>
-    <Reference Include="Bosphorus.Container.Castle, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bosphorus.Container.Castle.2.0.1.0\lib\net45\Bosphorus.Container.Castle.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -89,22 +81,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\NHibernateDaoException.cs" />
-    <Compile Include="Dao\AbstractNHibernateDao.cs" />
-    <Compile Include="Dao\INHibernateStatelessDao.cs" />
-    <Compile Include="Dao\INHibernateStatefulDao.cs" />
-    <Compile Include="Dao\NHibernateStatelessDao.cs" />
+    <Compile Include="Common.Dao\AbstractNHibernateDao.cs" />
+    <Compile Include="Stateless.Dao\INHibernateStatelessDao.cs" />
+    <Compile Include="Stateful.Dao\INHibernateStatefulDao.cs" />
+    <Compile Include="Stateless.Dao\NHibernateStatelessDao.cs" />
     <Compile Include="Installer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Session.Default\AbstractDefaultSessionProvider.cs" />
-    <Compile Include="Session.Default\NHibernateStatelessDefaultSessionProvider.cs" />
-    <Compile Include="Session.Provider.Factory\NHibernateStatelessSessionProviderFactory.cs" />
-    <Compile Include="Session.Provider.Factory\NHibernateStatefulSessionProviderFactory.cs" />
-    <Compile Include="Session.Provider\AbstractNHibernateSessionProvider.cs" />
-    <Compile Include="Session.Provider.Factory\Native\CacheDecorator.cs" />
-    <Compile Include="Session.Provider.Factory\Native\DefaultNHibernateSessionFactoryBuilder.cs" />
-    <Compile Include="Session.Provider.Factory\Native\INHibernateSessionFactoryBuilder.cs" />
-    <Compile Include="Session.Provider\MissingModelMappingException.cs" />
+    <Compile Include="Common.Session.Factory\CacheDecorator.cs" />
+    <Compile Include="Common.Session.Factory\DefaultNHibernateSessionFactoryBuilder.cs" />
+    <Compile Include="Common.Session.Factory\INHibernateSessionFactoryBuilder.cs" />
+    <Compile Include="Stateful.Dao\MissingModelMappingException.cs" />
     <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\Installer.cs" />
     <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\NullTypeSource.cs" />
     <Compile Include="Configuration\Fluent.ConfigurationProcessor\Installer.cs" />
@@ -124,22 +111,29 @@
     <Compile Include="Configuration\Fluent.ConfigurationProcessor\IConfigurationProcessor.cs" />
     <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\PersistenceConfigurerProviderNotFoundException.cs" />
     <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\TypeSource.cs" />
-    <Compile Include="Session.Default\NHibernateStatefulDefaultSessionProvider.cs" />
-    <Compile Include="Session.Provider\NHibernateStatefulSessionProvider.cs" />
     <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\AbstractPersistenceConfigurerProvider.cs" />
     <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\IAutoPersistenceModelProvider.cs" />
     <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
-    <Compile Include="Session.Provider\NHibernateStatelessSessionProvider.cs" />
-    <Compile Include="Session\AbstractNHibernateSession.cs" />
-    <Compile Include="Session\NHibernateStatefulSession.cs" />
-    <Compile Include="Dao\NHibernateStatefulDao.cs" />
-    <Compile Include="Session\NHibernateStatelessSession.cs" />
+    <Compile Include="Common.Session\AbstractNHibernateSession.cs" />
+    <Compile Include="Stateful.Session\NHibernateStatefulSession.cs" />
+    <Compile Include="Stateful.Dao\NHibernateStatefulDao.cs" />
+    <Compile Include="Stateless.Session.Manager\NHibernateStatelessSessionManager.cs" />
+    <Compile Include="Stateless.Session\NHibernateStatelessSession.cs" />
+    <Compile Include="Stateful.Session.Manager\NHibernateStatefulSessionManager.cs" />
     <Compile Include="Transaction\AbstractTransaction.cs" />
     <Compile Include="Transaction\NHibernateStatefulTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction\NHibernateStatelessTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
+      <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
+      <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
+      <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>
+      <Name>Bosphorus.Container.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bosphorus.Dao.Core\Bosphorus.Dao.Core.csproj">
       <Project>{5C3B656E-528C-4988-A31F-EA0AABC82CFB}</Project>
       <Name>Bosphorus.Dao.Core</Name>

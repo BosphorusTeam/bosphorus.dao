@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Transactions;
+﻿using System.Transactions;
 using Bosphorus.BootStapper.Common;
 using Bosphorus.BootStapper.Program;
-using Bosphorus.BootStapper.Runner;
+using Bosphorus.BootStapper.Runner.Console;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;

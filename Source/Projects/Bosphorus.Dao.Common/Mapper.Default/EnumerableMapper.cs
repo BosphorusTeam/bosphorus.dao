@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections;
-using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Common.Mapper.Core;
 
 namespace Bosphorus.Dao.Common.Mapper.Default
 {
     public class EnumerableMapper: IMapper
     {
-        private readonly LazyService<IMapper> lazyMapper;
+        private readonly Lazy<IMapper> lazyMapper;
         private readonly Type enumerableType;
 
-        public EnumerableMapper(LazyService<IMapper> lazyMapper)
+        public EnumerableMapper(Lazy<IMapper> lazyMapper)
         {
             this.lazyMapper = lazyMapper;
             enumerableType = typeof (IEnumerable);
@@ -32,7 +31,7 @@ namespace Bosphorus.Dao.Common.Mapper.Default
             foreach (object sourceElement in sourceEnumerable)
             {
                 object targetElement = Activator.CreateInstance(targetElementType);
-                lazyMapper.Service.Map(sourceElementType, sourceElement, targetElementType, targetElement);
+                lazyMapper.Value.Map(sourceElementType, sourceElement, targetElementType, targetElement);
                 targetList.Add(targetElement);
             }
         }

@@ -1,5 +1,6 @@
 ﻿using Bosphorus.Container.Castle.Fluent.Composition;
 using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Castle.MicroKernel.Registration;
@@ -8,7 +9,7 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.Client
 {
-    public class Installer: AbstractWindsorInstaller
+    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
     {
         protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
         {

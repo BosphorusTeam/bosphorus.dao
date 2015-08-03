@@ -1,5 +1,5 @@
 ﻿using System;
-using Bosphorus.Container.Castle.Extra;
+using Bosphorus.Container.Castle.Facade;
 using Bosphorus.Dao.Common.Instantiator;
 
 namespace Bosphorus.Dao.Common.Mapper.Core
@@ -10,7 +10,7 @@ namespace Bosphorus.Dao.Common.Mapper.Core
 
         static MapperExtensions()
         {
-            instantiator = ServiceRegistry.Get<IInstantiator>();
+            instantiator = IoC.staticContainer.Resolve<IInstantiator>();
         }
 
         public static TTarget Map<TTarget>(this IMapper extended, object source)

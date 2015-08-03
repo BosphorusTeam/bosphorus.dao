@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.Core.Session.Provider.Factory;
+﻿using Bosphorus.Dao.Core.Common;
 
 namespace Bosphorus.Dao.NHibernate.Configuration.Fluent.ConfigurationProcessor
 {

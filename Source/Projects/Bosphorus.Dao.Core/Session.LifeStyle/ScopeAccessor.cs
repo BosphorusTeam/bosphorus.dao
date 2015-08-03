@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using Bosphorus.Container.Castle.Extra;
+using Bosphorus.Container.Castle.Facade;
 using Castle.Core;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Lifestyle;
@@ -29,7 +29,7 @@ namespace Bosphorus.Dao.Core.Session.LifeStyle
 
         private IScopeAccessor BuildScopeAccessor(CreationContext context)
         {
-            var sessionLifeStyleProvider = ServiceRegistry.Get<ISessionLifeStyleProvider>();
+            var sessionLifeStyleProvider = IoC.staticContainer.Resolve<ISessionLifeStyleProvider>();
 
             Type sessionType = context.RequestedType;
             string sessionAlias = (string) context.AdditionalArguments["SessionAlias"];

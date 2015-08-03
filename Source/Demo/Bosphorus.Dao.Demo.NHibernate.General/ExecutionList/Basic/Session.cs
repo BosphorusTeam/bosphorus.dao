@@ -3,8 +3,8 @@ using System.Linq;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
-using Bosphorus.Dao.Core.Session.Provider.Factory;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
 using Bosphorus.Dao.NHibernate.Session;
@@ -15,32 +15,31 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
     {
         private readonly IDao<Bank> bankDao;
         private readonly IDao<LogModel> logDao;
-        private readonly ISessionProvider<NHibernateStatelessSession> logSessionProvider;
+        private readonly ISessionProvider sessionProvider;
+        private readonly ISession statefulSession;
+        private readonly NHibernateStatelessSession statelessSession;
 
-        public Session(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProviderFactory<NHibernateStatelessSession> sessionProviderFactory) 
+        public Session(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
             : base(resultTransformer)
         {
             this.bankDao = bankDao;
             this.logDao = logDao;
-            logSessionProvider = sessionProviderFactory.Build("LOG");
+            this.sessionProvider = sessionProvider;
+            this.statefulSession = sessionProvider.Open();
+            this.statefulSession = sessionProvider.Close();
+            this.statefulSession = sessionProvider.Open();
+            this.statelessSession = sessionProvider.Open<NHibernateStatelessSession>();
         }
 
         public IEnumerable<Bank> Default()
         {
-            //IEnumerable<Bank> result = bankDao.GetAll();
             IEnumerable<Bank> result = bankDao.Query().Where(x => x.Name.StartsWith("Ci"));
             return result;
         }
 
         public IEnumerable<LogModel> Log()
         {
-            IEnumerable<LogModel> result = logDao.GetAll();
-            return result;
-        }
-
-        public IQueryable<LogModel> FromParameter()
-        {
-            IQueryable<LogModel> result = logDao.GetAll(logSessionProvider.Current());
+            IEnumerable<LogModel> result = logDao.GetAll(statelessSession);
             return result;
         }
     }

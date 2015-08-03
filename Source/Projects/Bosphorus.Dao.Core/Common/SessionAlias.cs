@@ -1,4 +1,4 @@
-﻿namespace Bosphorus.Dao.Core.Session.Provider.Factory
+namespace Bosphorus.Dao.Core.Common
 {
     public class SessionAlias
     {

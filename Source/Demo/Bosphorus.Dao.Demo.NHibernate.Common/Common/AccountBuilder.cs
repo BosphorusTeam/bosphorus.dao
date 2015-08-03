@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Linq;
+using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.Demo.Common.Business;
+using Bosphorus.Dao.NHibernate.Session;
 using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
@@ -15,8 +20,11 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 
         public static AccountBuilder FromDatabaseWithChildren()
         {
+            ISessionProvider sessionProvider = BuildSessionProvider();
             Console.WriteLine("Reading object from database to session ----------");
-            Account model = dao.Value.Query().Fetch(x => x.Customer).ThenFetch(x => x.CustomerType).First();
+            ISession session = sessionProvider.Open<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
+            Account model = dao.Value.Query(session).Fetch(x => x.Customer).ThenFetch(x => x.CustomerType).First();
+            sessionProvider.Close<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
             Console.WriteLine("Reading object from database to session ----------");
 
             AccountBuilder builder = new AccountBuilder();

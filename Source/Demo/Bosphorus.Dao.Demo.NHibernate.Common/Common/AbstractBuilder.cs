@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Bosphorus.Container.Castle.Extra;
+using Bosphorus.Container.Castle.Facade;
+using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.NHibernate.Session;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
@@ -16,12 +20,17 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 
         private static NHibernateStatefulSession GetSession()
         {
-            return ServiceRegistry.Get<NHibernateStatefulSession>();
+            return IoC.staticContainer.Resolve<NHibernateStatefulSession>();
         }
 
         private static IDao<TModel> BuildDao()
         {
-            return ServiceRegistry.Get<IDao<TModel>>();
+            return IoC.staticContainer.Resolve<IDao<TModel>>();
+        }
+
+        protected static ISessionProvider BuildSessionProvider()
+        {
+            return IoC.staticContainer.Resolve<ISessionProvider>();
         }
 
         public AbstractBuilder()
@@ -36,8 +45,11 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 
         public static TBuilder FromDatabase()
         {
+            ISessionProvider sessionProvider = BuildSessionProvider();
             Console.WriteLine("Reading object from database to session ----------");
-            TModel model = dao.Value.Query().First();
+            ISession session = sessionProvider.Open<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
+            TModel model = dao.Value.Query(session).First();
+            sessionProvider.Close<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
             Console.WriteLine("Reading object from database to session ----------");
 
             TBuilder builder = new TBuilder();

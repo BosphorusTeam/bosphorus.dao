@@ -1,22 +1,23 @@
 ﻿using System;
-using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Default.Provider;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Core.Session.Provider.Factory;
 using Bosphorus.Dao.Lucene.Dao;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Lucene.Session.Default
 {
     public class LuceneDefaultSessionProvider: IDefaultSessionProvider
     {
-        private readonly IServiceRegistry serviceRegistry;
+        private readonly IWindsorContainer container;
 
-        public LuceneDefaultSessionProvider(IServiceRegistry serviceRegistry)
+        public LuceneDefaultSessionProvider(IWindsorContainer container)
         {
-            this.serviceRegistry = serviceRegistry;
+            this.container = container;
         }
+
 
         public ISession Get<TModel>(IDao<TModel> dao, string sessionAlias)
         {
@@ -28,7 +29,7 @@ namespace Bosphorus.Dao.Lucene.Session.Default
                 return null;
             }
 
-            ISessionProviderFactory<LuceneSession<TModel>> sessionProviderFactory = serviceRegistry.Get<ISessionProviderFactory<LuceneSession<TModel>>>();
+            ISessionProviderFactory<LuceneSession<TModel>> sessionProviderFactory = container.Resolve<ISessionProviderFactory<LuceneSession<TModel>>>();
             ISessionProvider<LuceneSession<TModel>> sessionProvider = sessionProviderFactory.Build(sessionAlias);
             LuceneSession<TModel> luceneSession = sessionProvider.Current();
             return luceneSession;

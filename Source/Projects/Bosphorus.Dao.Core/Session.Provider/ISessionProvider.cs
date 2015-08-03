@@ -1,12 +1,16 @@
-﻿namespace Bosphorus.Dao.Core.Session.Provider
+﻿using Bosphorus.Dao.Core.Session.Repository;
+
+namespace Bosphorus.Dao.Core.Session.Provider
 {
-    public interface ISessionProvider<TSession>
-        where TSession: ISession
+    public interface ISessionProvider
     {
-        string SessionAlias { get; }
+        TSession Open<TSession>(string aliasName, SessionScope sessionScope)
+            where TSession : ISession;
 
-        TSession OpenSession();
+        TSession Current<TSession>(string aliasName, SessionScope sessionScope)
+            where TSession : ISession;
 
-        void CloseSession(TSession session);
+        TSession Close<TSession>(string aliasName, SessionScope sessionScope)
+            where TSession : ISession;
     }
 }

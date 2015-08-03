@@ -20,107 +20,96 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Core.Session;
+using Castle.Windsor;
 
-namespace Bosphorus.Dao.Core.Dao.Facade
+namespace Bosphorus.Dao.Core.Dao
 {
     public class Dao
     {
-        private readonly IServiceRegistry serviceRegistry;
+        private readonly IWindsorContainer container;
 
-        public Dao(IServiceRegistry serviceRegistry)
+        public Dao(IWindsorContainer container)
         {
-            this.serviceRegistry = serviceRegistry;
+            this.container = container;
         }
 
         public IQueryable<TModel> GetAll<TModel>(ISession currentSession) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IQueryable<TModel> result = genericDao.GetAll(currentSession);
             return result;
         }
 
         public IQueryable<TModel> Query<TModel>(ISession currentSession) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IQueryable<TModel> result = genericDao.Query(currentSession);
             return result;
         }
 
         public IQueryable<TModel> GetById<TModel, TId>(ISession currentSession, TId id) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IQueryable<TModel> result = genericDao.GetById(currentSession, id);
             return result;
         }
 
 
         public IQueryable<TModel> GetByNamedQuery<TModel>(ISession currentSession, string queryName, IDictionary parameterDictionary) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IQueryable<TModel> result = genericDao.GetByNamedQuery(currentSession, queryName, parameterDictionary);
             return result;
         }
 
 
         public IQueryable<TModel> GetByQuery<TModel>(ISession currentSession, string queryString, IDictionary parameterDictionary) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IQueryable<TModel> result = genericDao.GetByQuery(currentSession, queryString, parameterDictionary);
             return result;
         }
 
 
         public TModel Insert<TModel>(ISession currentSession, TModel entity) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             TModel result = genericDao.Insert(currentSession, entity);
             return result;
         }
 
         public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entities) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IEnumerable<TModel> result = genericDao.Insert(currentSession, entities);
             return result;
         }
 
         public TModel Update<TModel>(ISession currentSession, TModel entity) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             TModel result = genericDao.Update(currentSession, entity);
             return result;
         }
 
         public IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entities) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IEnumerable<TModel> result = genericDao.Update(currentSession, entities);
             return result;
         }
 
         public void Delete<TModel>(ISession currentSession, TModel entity) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             genericDao.Delete(currentSession, entity);
 
         }
 
         public void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entities) 
-            
         {
-            IDao<TModel> genericDao = serviceRegistry.Get<IDao<TModel>>();
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             genericDao.Delete(currentSession, entities);
         }
 

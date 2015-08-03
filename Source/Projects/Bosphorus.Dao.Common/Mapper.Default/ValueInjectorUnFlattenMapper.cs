@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Bosphorus.Container.Castle.Extra;
+using System.Reflection;
 using Bosphorus.Dao.Common.Instantiator;
 using Bosphorus.Dao.Common.Mapper.Core;
 using Omu.ValueInjecter;
+using Omu.ValueInjecter.Flat;
 
 namespace Bosphorus.Dao.Common.Mapper.Default
 {
     public class ValueInjectorUnFlattenMapper : IMapper
     {
-        private readonly LazyService<IMapper> lazyMapper;
+        private readonly Lazy<IMapper> lazyMapper;
         private readonly IInstantiator instantiator;
 
-        public ValueInjectorUnFlattenMapper(LazyService<IMapper> mapper, IInstantiator instantiator)
+        public ValueInjectorUnFlattenMapper(Lazy<IMapper> mapper, IInstantiator instantiator)
         {
             this.lazyMapper = mapper;
             this.instantiator = instantiator;
@@ -28,9 +29,9 @@ namespace Bosphorus.Dao.Common.Mapper.Default
 
         public void Map(Type sourceType, object source, Type targetType, object target)
         {
-            foreach (PropertyDescriptor propertyDescriptor in source.GetProps())
+            foreach (PropertyInfo propertyDescriptor in source.GetProps())
             {
-                PropertyDescriptor prop = propertyDescriptor;
+                PropertyInfo prop = propertyDescriptor;
                 IEnumerable<PropertyWithComponent> source1 = UberFlatter.Unflat(propertyDescriptor.Name, target);
                 if (source1.Count() != 0)
                 {
@@ -50,7 +51,7 @@ namespace Bosphorus.Dao.Common.Mapper.Default
                 return sourceValue;
 
             object targetValue = instantiator.Create(targetType);
-            lazyMapper.Service.Map(sourceType, sourceValue, targetType, targetValue);
+            lazyMapper.Value.Map(sourceType, sourceValue, targetType, targetValue);
             return targetValue;
         }
     }

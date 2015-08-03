@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Bosphorus.Container.Castle.Extra;
 using Bosphorus.Dao.Common.Instantiator;
 using Bosphorus.Dao.Common.Mapper.Core;
-using Omu.ValueInjecter;
+using Omu.ValueInjecter.Flat;
 
 namespace Bosphorus.Dao.Common.Mapper.Default
 {
     public class ValueInjectorFlattenMapper : IMapper
     {
-        private readonly LazyService<IMapper> lazyMapper;
+        private readonly Lazy<IMapper> lazyMapper;
         private readonly IInstantiator instantiator;
 
-        public ValueInjectorFlattenMapper(LazyService<IMapper> mapper, IInstantiator instantiator)
+        public ValueInjectorFlattenMapper(Lazy<IMapper> mapper, IInstantiator instantiator)
         {
             this.lazyMapper = mapper;
             this.instantiator = instantiator;
@@ -51,7 +50,7 @@ namespace Bosphorus.Dao.Common.Mapper.Default
                 return sourceValue;
 
             object targetValue = instantiator.Create(targetType);
-            lazyMapper.Service.Map(sourceType, sourceValue, targetType, targetValue);
+            lazyMapper.Value.Map(sourceType, sourceValue, targetType, targetValue);
             return targetValue;
         }
     }

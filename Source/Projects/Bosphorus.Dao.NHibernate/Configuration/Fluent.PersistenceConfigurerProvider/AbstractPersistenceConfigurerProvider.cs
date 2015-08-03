@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.Core.Session.Provider.Factory;
+﻿using Bosphorus.Dao.Core.Common;
 using FluentNHibernate.Cfg.Db;
 
 namespace Bosphorus.Dao.NHibernate.Configuration.Fluent.PersistenceConfigurerProvider

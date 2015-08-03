@@ -1,36 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
-using Bosphorus.Container.Castle.Extra;
+using Bosphorus.Container.Castle.Facade;
+using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Session;
-using Bosphorus.Dao.Core.Session.Default.Alias;
-using Bosphorus.Dao.Core.Session.Default.Provider;
-using Bosphorus.Dao.Core.Session.Provider.Factory;
+using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Repository;
 using Castle.Core;
 
 namespace Bosphorus.Dao.Core.Dao
 {
-    public static partial class IDaoExtensions
+    public static class Extensions
     {
-        public readonly static IDictionary emptyDictionary;
-        private readonly static IDefaultSessionAliasProvider defaultSessionAliasProvider;
-        private readonly static IDefaultSessionProvider defaultSessionProvider;
+        private readonly static ISessionProvider sessionProvider;
+        private readonly static IDictionary emptyDictionary;
 
-        static IDaoExtensions()
+        static Extensions()
         {
+            sessionProvider = IoC.staticContainer.Resolve<ISessionProvider>();
             emptyDictionary = new Hashtable();
-            defaultSessionAliasProvider = ServiceRegistry.Get<IDefaultSessionAliasProvider>();
-            defaultSessionProvider = ServiceRegistry.Get<IDefaultSessionProvider>();
         }
 
-        private static ISession GetSession<TModel>(IDao<TModel> dao)
+        private static ISession GetSession<TModel>(IDao<TModel> dao = null, string aliasName = null)
         {
-            string sessionAlias = defaultSessionAliasProvider.GetDefaultAlias<TModel>();
-            ISession session = defaultSessionProvider.Get(dao, sessionAlias);
+            ISession session = sessionProvider.Current();
             return session;
         }
 
-        public static IEnumerable<TModel> GetAll<TModel>(this IDao<TModel> extended) 
+
+        public static IEnumerable<TModel> GetAll<TModel>(this IDao<TModel> extended)
         {
             ISession session = GetSession(extended);
             IEnumerable<TModel> result = extended.GetAll(session);
@@ -38,7 +37,6 @@ namespace Bosphorus.Dao.Core.Dao
         }
 
         public static IQueryable<TModel> Query<TModel>(this IDao<TModel> extended) 
-            
         {
             ISession session = GetSession(extended);
             IQueryable<TModel> result = extended.Query(session);
@@ -46,7 +44,6 @@ namespace Bosphorus.Dao.Core.Dao
         }
 
         public static IQueryable<TModel> GetById<TModel, TId>(this IDao<TModel> extended, TId id) 
-            
         {
             ISession session = GetSession(extended);
             IQueryable<TModel> result = extended.GetById(session, id);
