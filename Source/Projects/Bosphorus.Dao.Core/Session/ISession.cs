@@ -1,4 +1,5 @@
 using System;
+using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.Core.Transaction;
 
 namespace Bosphorus.Dao.Core.Session

@@ -28,7 +28,6 @@ namespace Bosphorus.Dao.Core.Dao
             return session;
         }
 
-
         public static IEnumerable<TModel> GetAll<TModel>(this IDao<TModel> extended)
         {
             ISession session = GetSession(extended);

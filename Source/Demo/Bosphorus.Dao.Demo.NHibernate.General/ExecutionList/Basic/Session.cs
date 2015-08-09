@@ -15,8 +15,6 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
     {
         private readonly IDao<Bank> bankDao;
         private readonly IDao<LogModel> logDao;
-        private readonly ISessionProvider sessionProvider;
-        private readonly ISession statefulSession;
         private readonly NHibernateStatelessSession statelessSession;
 
         public Session(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
@@ -24,10 +22,6 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
         {
             this.bankDao = bankDao;
             this.logDao = logDao;
-            this.sessionProvider = sessionProvider;
-            this.statefulSession = sessionProvider.Open();
-            this.statefulSession = sessionProvider.Close();
-            this.statefulSession = sessionProvider.Open();
             this.statelessSession = sessionProvider.Open<NHibernateStatelessSession>();
         }
 

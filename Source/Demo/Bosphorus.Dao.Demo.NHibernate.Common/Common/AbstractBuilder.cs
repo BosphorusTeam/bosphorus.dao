@@ -28,11 +28,6 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
             return IoC.staticContainer.Resolve<IDao<TModel>>();
         }
 
-        protected static ISessionProvider BuildSessionProvider()
-        {
-            return IoC.staticContainer.Resolve<ISessionProvider>();
-        }
-
         public AbstractBuilder()
         {
             model = new TModel();
@@ -45,11 +40,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 
         public static TBuilder FromDatabase()
         {
-            ISessionProvider sessionProvider = BuildSessionProvider();
             Console.WriteLine("Reading object from database to session ----------");
-            ISession session = sessionProvider.Open<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
-            TModel model = dao.Value.Query(session).First();
-            sessionProvider.Close<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
+            TModel model = dao.Value.Query().First();
             Console.WriteLine("Reading object from database to session ----------");
 
             TBuilder builder = new TBuilder();

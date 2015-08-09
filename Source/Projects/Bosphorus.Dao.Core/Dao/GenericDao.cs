@@ -25,11 +25,11 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.Core.Dao
 {
-    public class Dao
+    public class GenericDao
     {
         private readonly IWindsorContainer container;
 
-        public Dao(IWindsorContainer container)
+        public GenericDao(IWindsorContainer container)
         {
             this.container = container;
         }

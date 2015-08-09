@@ -31,11 +31,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 
         public static CustomerBuilder FromDatabaseWithChildren()
         {
-            ISessionProvider sessionProvider = BuildSessionProvider();
             Console.WriteLine("Reading object from database to session ----------");
-            ISession session = sessionProvider.Open<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
-            Customer model = dao.Value.Query(session).Fetch(x => x.Accounts).Fetch(x => x.CustomerType).First();
-            sessionProvider.Close<NHibernateStatefulSession>(SessionAlias.Default, SessionScope.Application);
+            Customer model = dao.Value.Query().Fetch(x => x.Accounts).Fetch(x => x.CustomerType).First();
             Console.WriteLine("Reading object from database to session ----------");
 
             CustomerBuilder builder = new CustomerBuilder();
