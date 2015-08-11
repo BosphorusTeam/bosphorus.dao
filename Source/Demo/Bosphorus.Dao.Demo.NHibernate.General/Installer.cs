@@ -1,12 +1,10 @@
-﻿using Bosphorus.Configuration.Core;
-using Bosphorus.Configuration.Default.InMemory;
-using Bosphorus.Container.Castle.Fluent.Decoration;
+﻿ using Bosphorus.Configuration.Core;
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Demo.Common;
 using Bosphorus.Dao.Demo.Common.Log;
 using Bosphorus.Dao.NHibernate.Dao;
-using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -19,12 +17,6 @@ namespace Bosphorus.Dao.Demo.NHibernate.General
         {
             container.Register(
                 Component
-                    .For<ApplicationSessionManager>()
-                    .LifeStyle
-                    .Singleton
-                    .Start(),
-
-                Component
                     .For<IParameterProvider>()
                     .ImplementedBy<ParameterProvider>(),
 
@@ -36,8 +28,6 @@ namespace Bosphorus.Dao.Demo.NHibernate.General
                     .For<IDao<LogModel>>()
                     .ImplementedBy<NHibernateStatelessDao<LogModel>>()
             );
-
-            //container.Resolve<ApplicationSessionManager>();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Extension
         public IQueryable<Bank> Simple()
         {
             IQueryable<Bank> result = from model in bankDao.Query()
-                where model.Name.StartsWith("1234")
+                where model.Name.StartsWith("Citi")
                 select model;
 
             return result.Take(100);

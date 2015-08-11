@@ -32,27 +32,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\..\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=2.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\bosphorus\Source\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Lucene.Net.Linq, Version=3.5.3.98, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\bosphorus\Source\packages\Lucene.Net.Linq.3.5.3\lib\net40\Lucene.Net.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Remotion.Linq, Version=1.13.183.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Remotion.Linq.1.13.183.0\lib\net35\Remotion.Linq.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Remotion.Linq.1.13.183.0\lib\net35\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,10 +69,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\BankMap.cs" />
     <Compile Include="Configuration\LuceneDataProviderFactory.cs" />
-    <Compile Include="Configuration\SessionLifeStyleProvider.cs" />
     <Compile Include="ExecutionList\Basic\Generic.cs" />
+    <Compile Include="ExecutionList\Basic\Session.cs" />
     <Compile Include="ExecutionList\Extension\LinqProvider.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Program.cs" />
@@ -77,6 +82,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\bosphorus.assemble\Source\Projects\Bosphorus.Assemble\Bosphorus.Assemble.csproj">
+      <Project>{6f0f64d3-8a0d-4498-8a78-646cdea3f223}</Project>
+      <Name>Bosphorus.Assemble</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.bootstrapper\Source\Projects\Bosphorus.BootStapper\Bosphorus.BootStapper.csproj">
       <Project>{E964E4A5-A437-41AE-90DB-D2929617D55B}</Project>
       <Name>Bosphorus.BootStapper</Name>
@@ -85,6 +94,14 @@
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
+      <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>
+      <Name>Bosphorus.Configuration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Default\Bosphorus.Configuration.Default.csproj">
+      <Project>{38BF9F92-847F-4703-A86B-22C7F2AC9B52}</Project>
+      <Name>Bosphorus.Configuration.Default</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
       <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>
       <Name>Bosphorus.Container.Castle</Name>
@@ -92,6 +109,10 @@
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Client\Bosphorus.Dao.Client.csproj">
       <Project>{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}</Project>
       <Name>Bosphorus.Dao.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Common\Bosphorus.Dao.Common.csproj">
+      <Project>{fc12496a-983d-4980-a378-621c05f7b35e}</Project>
+      <Name>Bosphorus.Dao.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Lucene\Bosphorus.Dao.Lucene.csproj">
       <Project>{6b1f7b25-148d-45d5-b717-0b8549d02211}</Project>

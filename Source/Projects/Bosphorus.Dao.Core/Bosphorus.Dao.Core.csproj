@@ -70,7 +70,9 @@
   <ItemGroup>
     <Compile Include="Common\DaoException.cs" />
     <Compile Include="Common\SessionAlias.cs" />
-    <Compile Include="Dao.Decoration\AbstractDaoDecorator.cs" />
+    <Compile Include="Dao\AbstractDaoDecorator.cs" />
+    <Compile Include="Dao\Decoration.Cache\CacheDecorator.cs" />
+    <Compile Include="Dao\Decorations.cs" />
     <Compile Include="Dao\Extensions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -87,8 +89,8 @@
     <Compile Include="Session.Provider\TransientSessionProvider.cs" />
     <Compile Include="Session.Repository\ConditionalSessionRepository.cs" />
     <Compile Include="Session.Provider\Installer.cs" />
-    <Compile Include="Session.Provider\Decorations.NullSafe\NullSafeDecorator.cs" />
-    <Compile Include="Session.Provider\Decorations.NullSafe\SessionNotRegisteredException.cs" />
+    <Compile Include="Session.Provider\Decoration.NullSafe\NullSafeDecorator.cs" />
+    <Compile Include="Session.Provider\Decoration.NullSafe\SessionNotRegisteredException.cs" />
     <Compile Include="Session.Repository\Installer.cs" />
     <Compile Include="Session.Repository\SessionRepositoryNotRegistered.cs" />
     <Compile Include="Session.Repository\ThreadSessionRepository.cs" />
@@ -138,9 +140,7 @@
       <Name>Bosphorus.Container.Castle</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Session.LifeStyle\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,7 +8,7 @@ namespace Bosphorus.Dao.Lucene.Demo.Configuration
     {
         protected override void Map(ClassMap<Bank> mapping)
         {
-            mapping.Key(x => x.No).NotStored();
+            mapping.Key(x => x.Id).NotStored();
             mapping.Property(x => x.Name).Analyzed();
         }
     }

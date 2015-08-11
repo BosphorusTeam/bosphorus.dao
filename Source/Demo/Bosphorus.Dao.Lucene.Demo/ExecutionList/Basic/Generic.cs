@@ -22,6 +22,7 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
         public Bank Insert_Bank()
         {
             Bank bank = new Bank();
+            bank.Id = 1;
             bank.No = "1";
             bank.Name = "Citibank";
 
@@ -36,6 +37,7 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
             for (int i = 0; i < count; i++)
             {
                 Bank bank = new Bank();
+                bank.Id = i;
                 bank.No = i.ToString();
                 bank.Name = "Citibank " + i;
 

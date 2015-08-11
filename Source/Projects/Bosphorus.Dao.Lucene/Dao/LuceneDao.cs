@@ -3,16 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Lucene.Configuration.Map;
 using Lucene.Net.Linq;
 using Bosphorus.Dao.Lucene.Session;
+using Lucene.Net.Linq.Mapping;
+using Version = Lucene.Net.Util.Version;
 
 namespace Bosphorus.Dao.Lucene.Dao
 {
-    public class LuceneDao<TModel> : ILuceneDao<TModel>
+    public class LuceneDao<TModel> : ILuceneDao<TModel> 
+        where TModel : new()
     {
-        private ISession<TModel> GetNativeSession(ISession currentSession)
+        private readonly IDocumentMapper<TModel> documentMapper;
+
+        public LuceneDao(ILuceneMap<TModel> luceneMap)
         {
-            return ((LuceneSession<TModel>)currentSession).InnerSession;
+            documentMapper = luceneMap.ToDocumentMapper(Version.LUCENE_30);
+        }
+
+        private LuceneDataProvider GetNativeSession(ISession currentSession)
+        {
+            LuceneSession luceneSession = (LuceneSession) currentSession;
+            LuceneDataProvider luceneDataProvider = luceneSession.InnerSession;
+            return luceneDataProvider;
         }
 
         public IQueryable<TModel> GetAll(ISession currentSession)
@@ -23,8 +36,8 @@ namespace Bosphorus.Dao.Lucene.Dao
 
         public IQueryable<TModel> Query(ISession currentSession)
         {
-            ISession<TModel> nativeSession = GetNativeSession(currentSession);
-            IQueryable<TModel> queryable = nativeSession.Query();
+            LuceneDataProvider nativeSession = GetNativeSession(currentSession);
+            IQueryable<TModel> queryable = nativeSession.AsQueryable(documentMapper);
             return queryable;
         }
 
@@ -45,18 +58,29 @@ namespace Bosphorus.Dao.Lucene.Dao
 
         public TModel Insert(ISession currentSession, TModel model)
         {
-            ISession<TModel> nativeSession = GetNativeSession(currentSession);
-            nativeSession.Add(model);
-            nativeSession.Commit();
+            LuceneDataProvider nativeSession = GetNativeSession(currentSession);
+            using (ISession<TModel> luceneSession = nativeSession.OpenSession(documentMapper))
+            {
+                luceneSession.Add(model);
+                luceneSession.Commit();
+            }
             return model;
         }
 
         public IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> models)
         {
-            ISession<TModel> nativeSession = GetNativeSession(currentSession);
-            nativeSession.Add(models.ToArray());
-            nativeSession.Commit();
-            return models;
+            LuceneDataProvider nativeSession = GetNativeSession(currentSession);
+            IEnumerable<TModel> modelList = models as IList<TModel> ?? models.ToList();
+
+            using (ISession<TModel> luceneSession = nativeSession.OpenSession(documentMapper))
+            {
+                foreach (TModel model in modelList)
+                {
+                    luceneSession.Add(model);
+                }
+                luceneSession.Commit();
+            }
+            return modelList;
         }
 
         public TModel Update(ISession currentSession, TModel model)
@@ -71,16 +95,26 @@ namespace Bosphorus.Dao.Lucene.Dao
 
         public void Delete(ISession currentSession, TModel model)
         {
-            ISession<TModel> nativeSession = GetNativeSession(currentSession);
-            nativeSession.Delete(model);
-            nativeSession.Commit();
+            LuceneDataProvider nativeSession = GetNativeSession(currentSession);
+            using (ISession<TModel> luceneSession = nativeSession.OpenSession(documentMapper))
+            {
+                luceneSession.Delete(model);
+                luceneSession.Commit();
+            }
         }
 
         public void Delete(ISession currentSession, IEnumerable<TModel> models)
         {
-            ISession<TModel> nativeSession = GetNativeSession(currentSession);
-            nativeSession.Delete(models.ToArray());
-            nativeSession.Commit();
+            LuceneDataProvider nativeSession = GetNativeSession(currentSession);
+            IEnumerable<TModel> modelList = models as IList<TModel> ?? models.ToList();
+            using (ISession<TModel> luceneSession = nativeSession.OpenSession(documentMapper))
+            {
+                foreach (TModel model in modelList)
+                {
+                    luceneSession.Delete(model);
+                }
+                luceneSession.Commit();
+            }
         }
     }
 }

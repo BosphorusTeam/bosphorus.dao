@@ -3,7 +3,7 @@ using Bosphorus.Dao.Core.Session;
 
 namespace Bosphorus.Dao.Core.Dao
 {
-    public static partial class IDaoExtensions
+    public static partial class Decorations
     {
         //TODO: Cache sadece bir kere yaratılmalı, her seferinde değil.
         public static IDao<TModel> Cached<TModel>(this IDao<TModel> decorated) 

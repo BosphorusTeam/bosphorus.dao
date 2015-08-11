@@ -6,7 +6,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.DTC.Business
 {
     public class SchemaUpdater: AbstractConfigurationProcessor
     {
-        protected override void Process(Configuration configuration)
+        protected override void Process(global::NHibernate.Cfg.Configuration configuration)
         {
             SchemaUpdate schemaUpdate = new SchemaUpdate(configuration);
             schemaUpdate.Execute(true, true);

@@ -32,23 +32,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\bosphorus\Source\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.ManagedDataAccess">
-      <HintPath>..\..\packages\odp.net.managed.121.1.2\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <HintPath>..\..\..\..\bosphorus\Source\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,7 +66,6 @@
     <Compile Include="Business\SchemaUpdater.cs" />
     <Compile Include="Common\ConventionApplier.cs" />
     <Compile Include="Installer.cs" />
-    <Compile Include="LogSessionAliasProvider.cs" />
     <Compile Include="Log\PersistenceConfigurerProvider.cs">
       <SubType>
       </SubType>
@@ -78,6 +79,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\bosphorus.assemble\Source\Projects\Bosphorus.Assemble\Bosphorus.Assemble.csproj">
+      <Project>{6f0f64d3-8a0d-4498-8a78-646cdea3f223}</Project>
+      <Name>Bosphorus.Assemble</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.bootstrapper\Source\Projects\Bosphorus.BootStapper\Bosphorus.BootStapper.csproj">
       <Project>{E964E4A5-A437-41AE-90DB-D2929617D55B}</Project>
       <Name>Bosphorus.BootStapper</Name>
@@ -85,6 +90,14 @@
     <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
+      <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>
+      <Name>Bosphorus.Configuration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Default\Bosphorus.Configuration.Default.csproj">
+      <Project>{38BF9F92-847F-4703-A86B-22C7F2AC9B52}</Project>
+      <Name>Bosphorus.Configuration.Default</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
       <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>

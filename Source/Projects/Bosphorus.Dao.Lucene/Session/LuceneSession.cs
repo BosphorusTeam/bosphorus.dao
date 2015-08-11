@@ -5,11 +5,11 @@ using Lucene.Net.Linq;
 
 namespace Bosphorus.Dao.Lucene.Session
 {
-    public class LuceneSession<TModel> : ISession
+    public class LuceneSession : ISession
     {
-        private ISession<TModel> adapted;
+        private readonly LuceneDataProvider adapted;
 
-        public LuceneSession(ISession<TModel> adapted)
+        public LuceneSession(LuceneDataProvider adapted)
         {
             this.adapted = adapted;
         }
@@ -19,10 +19,7 @@ namespace Bosphorus.Dao.Lucene.Session
             throw new NotImplementedException();
         }
 
-        public ISession<TModel> InnerSession
-        {
-            get { return adapted; }
-        }
+        public LuceneDataProvider InnerSession => adapted;
 
         public void Dispose()
         {
@@ -34,7 +31,7 @@ namespace Bosphorus.Dao.Lucene.Session
             if (isDisposing)
             {
                 adapted.Dispose();
-                adapted = null;
+                //adapted = null;
                 GC.SuppressFinalize(this);
             }
         }

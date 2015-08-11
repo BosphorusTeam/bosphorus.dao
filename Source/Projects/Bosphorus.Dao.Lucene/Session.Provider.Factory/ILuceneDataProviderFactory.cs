@@ -5,6 +5,6 @@ namespace Bosphorus.Dao.Lucene.Session.Provider.Factory.Native
 {
     public interface ILuceneDataProviderFactory
     {
-        LuceneDataProvider Build(string sessionAlias, Type modelType);
+        LuceneDataProvider Build(string aliasName);
     }
 }

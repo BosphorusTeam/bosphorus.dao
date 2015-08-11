@@ -12,31 +12,24 @@ namespace Bosphorus.Dao.Lucene.Configuration
 {
     public class LuceneDataProviderConfiguration
     {
-        private readonly Type type;
-        private Version currentVersion;
+        private readonly Version currentVersion;
         private FSDirectory directory;
         private Analyzer currentAnalyzer;
         private IndexWriter currentIndexWriter;
 
-        public static LuceneDataProviderConfiguration ForType(Type type)
+        public static LuceneDataProviderConfiguration Version(Version version)
         {
-            return new LuceneDataProviderConfiguration(type);
+            return new LuceneDataProviderConfiguration(version);
         }
 
-        private LuceneDataProviderConfiguration(Type type)
-        {
-            this.type = type;
-        }
-
-        public LuceneDataProviderConfiguration Version(Version version)
+        private LuceneDataProviderConfiguration(Version version)
         {
             this.currentVersion = version;
-            return this;
         }
 
         public LuceneDataProviderConfiguration UsingDirectory(string directory)
         {
-            string typeDirectory = Path.Combine(directory, type.FullName);
+            string typeDirectory = directory;
             this.directory = FSDirectory.Open(typeDirectory);
             return this;
         }

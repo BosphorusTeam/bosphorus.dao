@@ -9,10 +9,9 @@ namespace Bosphorus.Dao.Lucene.Demo.Configuration
 {
     public class LuceneDataProviderFactory : ILuceneDataProviderFactory
     {
-        public LuceneDataProvider Build(string sessionAlias, Type modelType)
+        public LuceneDataProvider Build(string sessionAlias)
         {
             return LuceneDataProviderConfiguration
-                .ForType(modelType)
                 .Version(Version.LUCENE_30)
                 .UsingDirectory(@"c:\Lucene\" + sessionAlias)
                 .AnalyzeWith(version => new StandardAnalyzer(version))

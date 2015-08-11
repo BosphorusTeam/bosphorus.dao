@@ -72,11 +72,9 @@
     <Compile Include="ExecutionList\Basic\Generic.cs" />
     <Compile Include="ExecutionList\Basic\Session.cs" />
     <Compile Include="Installer.cs" />
-    <Compile Include="ParameterProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statuses.cs" />
-    <Compile Include="ApplicationSessionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -88,9 +86,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\bosphorus.assemble\Source\Projects\Bosphorus.Assemble\Aras.Common.Customization.Bosphorus.csproj">
-      <Project>{0d4f9611-8ea5-4179-b5ff-a7b502b3b3f9}</Project>
-      <Name>Aras.Common.Customization.Bosphorus</Name>
+    <ProjectReference Include="..\..\..\..\bosphorus.assemble\Source\Projects\Bosphorus.Assemble\Bosphorus.Assemble.csproj">
+      <Project>{6f0f64d3-8a0d-4498-8a78-646cdea3f223}</Project>
+      <Name>Bosphorus.Assemble</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.bootstrapper\Source\Projects\Bosphorus.BootStapper\Bosphorus.BootStapper.csproj">
       <Project>{E964E4A5-A437-41AE-90DB-D2929617D55B}</Project>

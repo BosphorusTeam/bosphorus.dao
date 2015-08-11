@@ -55,6 +55,7 @@
     <Compile Include="Business\IndividualCustomer.cs" />
     <Compile Include="Business\Status.cs" />
     <Compile Include="Log\LogModel.cs" />
+    <Compile Include="ParameterProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +65,26 @@
     <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
+      <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>
+      <Name>Bosphorus.Configuration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Default\Bosphorus.Configuration.Default.csproj">
+      <Project>{38BF9F92-847F-4703-A86B-22C7F2AC9B52}</Project>
+      <Name>Bosphorus.Configuration.Default</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Core\Bosphorus.Dao.Core.csproj">
+      <Project>{5C3B656E-528C-4988-A31F-EA0AABC82CFB}</Project>
+      <Name>Bosphorus.Dao.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Lucene\Bosphorus.Dao.Lucene.csproj">
+      <Project>{6B1F7B25-148D-45D5-B717-0B8549D02211}</Project>
+      <Name>Bosphorus.Dao.Lucene</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Projects\Bosphorus.Dao.NHibernate\Bosphorus.Dao.NHibernate.csproj">
+      <Project>{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80}</Project>
+      <Name>Bosphorus.Dao.NHibernate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
