@@ -70,6 +70,7 @@
     <Compile Include="Configuration\Map\ILuceneMap.cs" />
     <Compile Include="Configuration\Map\AbstractLuceneMap.cs" />
     <Compile Include="Configuration\Map\ReflectionLuceneMap.cs" />
+    <Compile Include="Session.Dao\LuceneSessionDaoRegisterer.cs" />
     <Compile Include="Session.Manager\LuceneSessionManager.cs" />
     <Compile Include="Session.Provider.Factory\CacheDecorator.cs" />
     <Compile Include="Session.Provider.Factory\ILuceneDataProviderFactory.cs" />

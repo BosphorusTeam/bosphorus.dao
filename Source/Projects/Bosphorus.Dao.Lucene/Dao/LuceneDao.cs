@@ -11,7 +11,7 @@ using Version = Lucene.Net.Util.Version;
 
 namespace Bosphorus.Dao.Lucene.Dao
 {
-    public class LuceneDao<TModel> : ILuceneDao<TModel> 
+    public class LuceneDao<TModel> : ILuceneDao<TModel>
         where TModel : new()
     {
         private readonly IDocumentMapper<TModel> documentMapper;

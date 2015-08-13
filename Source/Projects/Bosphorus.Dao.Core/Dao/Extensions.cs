@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using Bosphorus.Container.Castle.Facade;
 using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Core.Session.Repository;
 using Castle.Core;
@@ -14,17 +16,21 @@ namespace Bosphorus.Dao.Core.Dao
     public static class Extensions
     {
         private readonly static ISessionProvider sessionProvider;
+        private readonly static SessionDaoRegistry sessionDaoRegistry;
         private readonly static IDictionary emptyDictionary;
 
         static Extensions()
         {
             sessionProvider = IoC.staticContainer.Resolve<ISessionProvider>();
+            sessionDaoRegistry = IoC.staticContainer.Resolve<SessionDaoRegistry>();
             emptyDictionary = new Hashtable();
         }
 
-        private static ISession GetSession<TModel>(IDao<TModel> dao = null, string aliasName = null)
+        private static ISession GetSession<TModel>(IDao<TModel> dao, string aliasName = null)
         {
-            ISession session = sessionProvider.Current();
+            Type daoType = dao.GetType();
+            Type sessionType = sessionDaoRegistry.GetSessionType(daoType);
+            ISession session = sessionProvider.Current(sessionType);
             return session;
         }
 

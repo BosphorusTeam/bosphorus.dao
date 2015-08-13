@@ -11,14 +11,8 @@ namespace Bosphorus.Dao.Core.Session.Provider
         {
         }
 
-        public Type DefaultSessionType
-        {
-            get { return GetValue<Type>("DefaultSessionType"); }
-        }
+        public Type DefaultSessionType => GetValue<Type>("DefaultSessionType");
 
-        public SessionScope DefaultSessionScope
-        {
-            get { return SessionScope.Application; }
-        }
+        public SessionScope DefaultSessionScope => SessionScope.Application;
     }
 }

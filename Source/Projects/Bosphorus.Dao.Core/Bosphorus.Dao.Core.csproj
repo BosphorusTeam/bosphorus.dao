@@ -80,6 +80,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dao\IDao.cs" />
+    <Compile Include="Session.Dao\Installer.cs" />
+    <Compile Include="Session.Dao\ISessionDaoRegisterer.cs" />
+    <Compile Include="Session.Dao\SessionDaoRegistry.cs" />
     <Compile Include="Session.Manager\Installer.cs" />
     <Compile Include="Session.Manager\ISessionManager.cs" />
     <Compile Include="Session.Manager\SessionManager.cs" />

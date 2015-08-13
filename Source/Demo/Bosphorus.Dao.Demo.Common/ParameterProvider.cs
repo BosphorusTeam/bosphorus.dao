@@ -1,7 +1,6 @@
 ﻿using Bosphorus.Configuration.Core;
 using Bosphorus.Configuration.Default.InMemory;
 using Bosphorus.Dao.Lucene.Session;
-using Bosphorus.Dao.NHibernate.Session;
 
 namespace Bosphorus.Dao.Demo.Common
 {

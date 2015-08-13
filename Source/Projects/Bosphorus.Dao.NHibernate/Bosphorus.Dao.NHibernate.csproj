@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Common\NHibernateDaoException.cs" />
     <Compile Include="Common.Dao\AbstractNHibernateDao.cs" />
+    <Compile Include="Stateful.Session.Dao\NHibernateStatefulSessionDaoRegisterer.cs" />
     <Compile Include="Stateless.Dao\INHibernateStatelessDao.cs" />
     <Compile Include="Stateful.Dao\INHibernateStatefulDao.cs" />
     <Compile Include="Stateless.Dao\NHibernateStatelessDao.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Common.Session\AbstractNHibernateSession.cs" />
     <Compile Include="Stateful.Session\NHibernateStatefulSession.cs" />
     <Compile Include="Stateful.Dao\NHibernateStatefulDao.cs" />
+    <Compile Include="Stateless.Session.Dao\NHibernateStatelessSessionDaoRegisterer.cs" />
     <Compile Include="Stateless.Session.Manager\NHibernateStatelessSessionManager.cs" />
     <Compile Include="Stateless.Session\NHibernateStatelessSession.cs" />
     <Compile Include="Stateful.Session.Manager\NHibernateStatefulSessionManager.cs" />

@@ -15,8 +15,6 @@ namespace Bosphorus.Dao.Demo.Mix.ExecutionList
         private readonly IDao<Bank> bankDao;
         private readonly IDao<LogModel> logDao;
         private readonly IDao<Customer> customerDao;
-        private readonly NHibernateStatelessSession nHibernateStatelessSession;
-        private readonly NHibernateStatefulSession nHibernateStatefulSession;
 
         public Session(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<LogModel> logDao, IDao<Customer> customerDao, ISessionProvider sessionProvider) 
             : base(resultTransformer)
@@ -24,8 +22,6 @@ namespace Bosphorus.Dao.Demo.Mix.ExecutionList
             this.bankDao = bankDao;
             this.logDao = logDao;
             this.customerDao = customerDao;
-            this.nHibernateStatelessSession = sessionProvider.Open<NHibernateStatelessSession>();
-            this.nHibernateStatefulSession = sessionProvider.Open<NHibernateStatefulSession>();
         }
 
         public IEnumerable<Bank> Lucene()
@@ -36,13 +32,13 @@ namespace Bosphorus.Dao.Demo.Mix.ExecutionList
 
         public IEnumerable<LogModel> Stateless()
         {
-            IEnumerable<LogModel> result = logDao.GetAll(nHibernateStatelessSession);
+            IEnumerable<LogModel> result = logDao.GetAll();
             return result;
         }
 
         public IEnumerable<Customer> Stateful()
         {
-            IEnumerable<Customer> result = customerDao.GetAll(nHibernateStatefulSession);
+            IEnumerable<Customer> result = customerDao.GetAll();
             return result;
         }
     }

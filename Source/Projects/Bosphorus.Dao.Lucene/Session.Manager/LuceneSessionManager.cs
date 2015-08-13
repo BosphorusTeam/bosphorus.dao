@@ -1,4 +1,7 @@
-﻿using Bosphorus.Dao.Core.Session.Builder;
+﻿using System;
+using System.Collections.Generic;
+using Bosphorus.Dao.Core.Session.Builder;
+using Bosphorus.Dao.Lucene.Dao;
 using Bosphorus.Dao.Lucene.Session.Provider.Factory.Native;
 using Lucene.Net.Linq;
 

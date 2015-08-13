@@ -1,4 +1,7 @@
-﻿using Bosphorus.Dao.Core.Session.Builder;
+﻿using System;
+using System.Collections.Generic;
+using Bosphorus.Dao.Core.Session.Builder;
+using Bosphorus.Dao.NHibernate.Dao;
 using Bosphorus.Dao.NHibernate.Session;
 using Bosphorus.Dao.NHibernate.Session.Provider.Factory.Native;
 using NHibernate;
