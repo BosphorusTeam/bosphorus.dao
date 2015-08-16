@@ -1,5 +1,4 @@
-﻿using Bosphorus.Container.Castle.Fluent.Composition;
-using Bosphorus.Container.Castle.Registration;
+﻿using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;

@@ -80,6 +80,7 @@
     <Compile Include="Installer.cs" />
     <Compile Include="Model\AbstractExecutionItemList.cs" />
     <Compile Include="Model\AbstractExecutionItemListExtensions.cs" />
+    <Compile Include="Model\CallInvokerDecorator.cs" />
     <Compile Include="Model\EnumerableReturnExceutionItem.cs" />
     <Compile Include="Model\IExecutionItem.cs" />
     <Compile Include="Model\IExecutionItemList.cs" />
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Core\Bosphorus.Common.Core.csproj">
+      <Project>{6683BC19-B6C9-4686-B8FF-EE4A8596C724}</Project>
+      <Name>Bosphorus.Common.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
       <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>

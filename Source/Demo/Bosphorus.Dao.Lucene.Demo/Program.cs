@@ -1,7 +1,7 @@
 ﻿using System;
-using Bosphorus.BootStapper.Common;
+using Bosphorus.Common.Core.Application;
 using Bosphorus.Dao.Client;
-using Environment = Bosphorus.BootStapper.Common.Environment;
+using Environment = Bosphorus.Common.Core.Application.Environment;
 
 namespace Bosphorus.Dao.Lucene.Demo
 {

@@ -1,8 +1,8 @@
-using System;
 using Bosphorus.Dao.Core.Transaction;
+using Bosphorus.Dao.NHibernate.Common.Session;
 using Bosphorus.Dao.NHibernate.Transaction;
 
-namespace Bosphorus.Dao.NHibernate.Session
+namespace Bosphorus.Dao.NHibernate.Stateful.Session
 {
     public class NHibernateStatefulSession : AbstractNHibernateSession<global::NHibernate.ISession>
     {

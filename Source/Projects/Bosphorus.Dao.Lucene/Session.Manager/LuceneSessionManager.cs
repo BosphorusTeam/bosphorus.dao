@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bosphorus.Dao.Core.Session.Builder;
+using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.Lucene.Dao;
-using Bosphorus.Dao.Lucene.Session.Provider.Factory.Native;
+using Bosphorus.Dao.Lucene.Session.Provider.Factory;
 using Lucene.Net.Linq;
 
 namespace Bosphorus.Dao.Lucene.Session.Manager
@@ -27,7 +27,8 @@ namespace Bosphorus.Dao.Lucene.Session.Manager
         {
             LuceneDataProvider innerSession = session.InnerSession;
             innerSession.IndexWriter.Optimize();
-            innerSession.Dispose();
+            //TODO: Neden patlıyor acaba burası.
+            //innerSession.Dispose();
         }
     }
 }

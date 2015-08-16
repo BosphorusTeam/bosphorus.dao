@@ -1,4 +1,4 @@
-using Bosphorus.Dao.Core.Session.Builder;
+using Bosphorus.Dao.Core.Session.Manager;
 using Bosphorus.Dao.Core.Session.Repository;
 
 namespace Bosphorus.Dao.Core.Session.Provider

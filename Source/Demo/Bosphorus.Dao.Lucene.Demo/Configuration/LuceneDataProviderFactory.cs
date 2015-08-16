@@ -1,6 +1,6 @@
 ﻿using System;
 using Bosphorus.Dao.Lucene.Configuration;
-using Bosphorus.Dao.Lucene.Session.Provider.Factory.Native;
+using Bosphorus.Dao.Lucene.Session.Provider.Factory;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Linq;
 using Version = Lucene.Net.Util.Version;

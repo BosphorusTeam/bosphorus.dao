@@ -1,7 +1,7 @@
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Common;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider
+namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 {
     public class MissingModelMappingException<TModel> : NHibernateDaoException
     {

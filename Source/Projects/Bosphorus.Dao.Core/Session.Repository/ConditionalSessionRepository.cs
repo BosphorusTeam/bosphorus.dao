@@ -10,6 +10,7 @@ namespace Bosphorus.Dao.Core.Session.Repository
         {
             repositoryDictionary = new Dictionary<SessionScope, ISessionRepository>();
             repositoryDictionary.Add(SessionScope.Application, new ApplicationSessionRepository());
+            repositoryDictionary.Add(SessionScope.Call, new ThreadSessionRepository());
             repositoryDictionary.Add(SessionScope.Thread, new ThreadSessionRepository());
         }
 

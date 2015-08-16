@@ -1,7 +1,7 @@
-﻿using Bosphorus.Container.Castle.Fluent.Decoration;
-using Bosphorus.Container.Castle.Registration;
+﻿using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Container.Castle.Registration.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration.Installer;
-using Bosphorus.Dao.Core.Session.Repository.Decorations.NullSafe;
+using Bosphorus.Dao.Core.Session.Provider.Decoration.NullSafe;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

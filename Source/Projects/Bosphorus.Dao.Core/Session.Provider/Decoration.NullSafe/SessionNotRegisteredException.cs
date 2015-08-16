@@ -1,6 +1,7 @@
 ﻿using Bosphorus.Dao.Core.Common;
+using Bosphorus.Dao.Core.Session.Repository;
 
-namespace Bosphorus.Dao.Core.Session.Repository.Decorations.NullSafe
+namespace Bosphorus.Dao.Core.Session.Provider.Decoration.NullSafe
 {
     internal class SessionNotRegisteredException : DaoException
     {

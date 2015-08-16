@@ -1,10 +1,9 @@
 using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Transaction;
 
-namespace Bosphorus.Dao.NHibernate.Session
+namespace Bosphorus.Dao.NHibernate.Common.Session
 {
     public abstract class AbstractNHibernateSession<TNativeSession>: ISession
     {

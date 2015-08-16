@@ -22,14 +22,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Bosphorus.Dao.NHibernate.Session;
-using Bosphorus.Dao.NHibernate.Session.Provider;
+using Bosphorus.Dao.NHibernate.Common.Dao;
+using Bosphorus.Dao.NHibernate.Stateful.Session;
 using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Metadata;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
-namespace Bosphorus.Dao.NHibernate.Dao
+namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 {
     public class NHibernateStatefulDao<TModel>: AbstractNHibernateDao<TModel>, INHibernateStatefulDao<TModel>
         where TModel : class

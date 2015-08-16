@@ -5,8 +5,8 @@ using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
-using Bosphorus.Dao.NHibernate.Dao;
-using Bosphorus.Dao.NHibernate.Session;
+using Bosphorus.Dao.NHibernate.Stateful.Dao;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
 {
@@ -14,8 +14,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
     {
         private readonly INHibernateStatefulDao<Bank> dao;
 
-        public Generic(IResultTransformer resultTransformer, INHibernateStatefulDao<Bank> dao)
-            : base(resultTransformer)
+        public Generic(IWindsorContainer container, INHibernateStatefulDao<Bank> dao)
+            : base(container)
         {
             this.dao = dao;
         }

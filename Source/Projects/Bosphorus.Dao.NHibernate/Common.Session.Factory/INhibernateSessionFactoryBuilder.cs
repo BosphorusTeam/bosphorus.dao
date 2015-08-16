@@ -1,6 +1,6 @@
 ﻿using NHibernate;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory.Native
+namespace Bosphorus.Dao.NHibernate.Common.Session.Factory
 {
     public interface INHibernateSessionFactoryBuilder
     {

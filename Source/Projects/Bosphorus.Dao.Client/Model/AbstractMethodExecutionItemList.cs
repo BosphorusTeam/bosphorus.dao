@@ -4,17 +4,21 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Bosphorus.Common.Core.Call;
 using Bosphorus.Dao.Client.ResultTransformer;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Client.Model
 {
     public abstract class AbstractMethodExecutionItemList: IExecutionItemList
     {
         public readonly IResultTransformer resultTransformer;
+        private readonly CallInvoker callInvoker;
 
-        public AbstractMethodExecutionItemList(IResultTransformer resultTransformer)
+        public AbstractMethodExecutionItemList(IWindsorContainer container)
         {
-            this.resultTransformer = resultTransformer;
+            this.resultTransformer = container.Resolve<IResultTransformer>();
+            this.callInvoker = container.Resolve<CallInvoker>();
         }
 
         public IList<IExecutionItem> List
@@ -26,7 +30,8 @@ namespace Bosphorus.Dao.Client.Model
                 foreach (MethodInfo methodInfo in methodInfos)
                 {
                     IExecutionItem executionItem = new MethodExecutionItem(this, methodInfo, resultTransformer);
-                    executionItemList.Add(executionItem);
+                    IExecutionItem decoratedItem = new CallInvokerDecorator(executionItem, callInvoker);
+                    executionItemList.Add(decoratedItem);
                 }
 
                 return executionItemList;

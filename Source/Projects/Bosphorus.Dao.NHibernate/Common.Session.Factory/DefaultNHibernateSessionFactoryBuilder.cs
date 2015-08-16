@@ -10,7 +10,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 
-namespace Bosphorus.Dao.NHibernate.Session.Provider.Factory.Native
+namespace Bosphorus.Dao.NHibernate.Common.Session.Factory
 {
     public class DefaultNHibernateSessionFactoryBuilder : INHibernateSessionFactoryBuilder
     {

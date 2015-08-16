@@ -1,9 +1,9 @@
-﻿using Bosphorus.Container.Castle.Fluent;
-using Bosphorus.Container.Castle.Fluent.Decoration;
-using Bosphorus.Container.Castle.Registration;
+﻿using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Container.Castle.Registration.Fluent;
 using Bosphorus.Container.Castle.Registration.Installer;
-using Bosphorus.Dao.NHibernate.Dao;
-using Bosphorus.Dao.NHibernate.Session.Provider.Factory.Native;
+using Bosphorus.Dao.NHibernate.Common.Session.Factory;
+using Bosphorus.Dao.NHibernate.Stateful.Dao;
+using Bosphorus.Dao.NHibernate.Stateless.Dao;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

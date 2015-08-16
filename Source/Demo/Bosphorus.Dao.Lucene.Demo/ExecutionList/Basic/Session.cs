@@ -8,6 +8,7 @@ using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
 {
@@ -17,8 +18,8 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
         private readonly IDao<LogModel> logDao;
         private readonly ISession logSession;
 
-        public Session(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
-            : base(resultTransformer)
+        public Session(IWindsorContainer container, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
+            : base(container)
         {
             this.bankDao = bankDao;
             this.logDao = logDao;

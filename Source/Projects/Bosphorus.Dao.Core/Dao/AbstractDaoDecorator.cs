@@ -17,13 +17,12 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bosphorus.Dao.Core.Session;
 
-namespace Bosphorus.Dao.Core.Dao.Decoration
+namespace Bosphorus.Dao.Core.Dao
 {
     public abstract class AbstractDaoDecorator<TModel> : IDao<TModel> 
     {

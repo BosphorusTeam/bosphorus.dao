@@ -3,6 +3,7 @@ using Bosphorus.Dao.Client.Model;
 using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Extension
 {
@@ -10,8 +11,8 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Extension
     {
         private readonly IDao<Bank> bankDao;
 
-        public LinqProvider(IResultTransformer resultTransformer, IDao<Bank> bankDao) 
-            : base(resultTransformer)
+        public LinqProvider(IWindsorContainer container, IDao<Bank> bankDao) 
+            : base(container)
         {
             this.bankDao = bankDao;
         }

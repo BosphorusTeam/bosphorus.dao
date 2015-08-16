@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Bosphorus.Dao.Core.Session.Builder
+﻿namespace Bosphorus.Dao.Core.Session.Manager
 {
     public interface ISessionManager<TSession>
     {

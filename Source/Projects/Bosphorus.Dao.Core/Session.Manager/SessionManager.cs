@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Bosphorus.Container.Castle.Discovery;
-using Castle.Core.Internal;
-using Castle.Windsor;
+﻿using Castle.Windsor;
 
-namespace Bosphorus.Dao.Core.Session.Builder
+namespace Bosphorus.Dao.Core.Session.Manager
 {
     public class SessionManager
     {

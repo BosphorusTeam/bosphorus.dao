@@ -4,6 +4,7 @@
     {
         Null,
         Default,
+        Call,
         Application,
         Thread
     }

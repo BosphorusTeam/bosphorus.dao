@@ -1,4 +1,5 @@
 ﻿using Bosphorus.Configuration.Core;
+using Bosphorus.Configuration.Core.Parameter;
 using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.Core.Dao;

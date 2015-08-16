@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bosphorus.Dao.Core.Session.Provider;
+﻿using Bosphorus.Dao.Core.Session.Repository;
 
-namespace Bosphorus.Dao.Core.Session.Repository.Decorations.NullSafe
+namespace Bosphorus.Dao.Core.Session.Provider.Decoration.NullSafe
 {
     public class NullSafeDecorator: ISessionProvider
     {

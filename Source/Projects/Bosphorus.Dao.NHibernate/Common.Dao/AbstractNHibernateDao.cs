@@ -17,14 +17,14 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-using System.Collections;
-using NHibernate.Transform;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NHibernate.Transform;
 using ISession = Bosphorus.Dao.Core.Session.ISession;
 
-namespace Bosphorus.Dao.NHibernate.Dao
+namespace Bosphorus.Dao.NHibernate.Common.Dao
 {
     public abstract class AbstractNHibernateDao<TModel>
         where TModel : class

@@ -1,4 +1,4 @@
-﻿using Bosphorus.BootStapper.Common;
+﻿using Bosphorus.Common.Core.Application;
 using Bosphorus.Dao.Client;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General

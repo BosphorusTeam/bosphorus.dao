@@ -7,7 +7,8 @@ using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
-using Bosphorus.Dao.NHibernate.Session;
+using Bosphorus.Dao.NHibernate.Stateless.Session;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
 {
@@ -17,8 +18,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
         private readonly IDao<LogModel> logDao;
         private readonly NHibernateStatelessSession statelessSession;
 
-        public Session(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
-            : base(resultTransformer)
+        public Session(IWindsorContainer container, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
+            : base(container)
         {
             this.bankDao = bankDao;
             this.logDao = logDao;

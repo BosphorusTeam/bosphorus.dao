@@ -7,7 +7,6 @@ using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.NHibernate.Session;
 using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Common

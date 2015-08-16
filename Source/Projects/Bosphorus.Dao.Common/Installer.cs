@@ -1,5 +1,6 @@
-﻿using Bosphorus.Container.Castle.Fluent.Composition;
-using Bosphorus.Container.Castle.Registration;
+﻿using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Container.Castle.Registration.Fluent.Composition;
+using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.Common.Instantiator;
 using Bosphorus.Dao.Common.Mapper.Core;
 using Castle.MicroKernel.Registration;

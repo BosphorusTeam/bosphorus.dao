@@ -1,5 +1,5 @@
-using Bosphorus.BootStapper.Common;
 using Bosphorus.BootStapper.Runner.WinForn;
+using Bosphorus.Common.Core.Application;
 
 namespace Bosphorus.Dao.Client
 {

@@ -1,5 +1,4 @@
-﻿using Bosphorus.Container.Castle.Fluent.Composition;
-using Bosphorus.Container.Castle.Registration;
+﻿using Bosphorus.Container.Castle.Registration;
 using Bosphorus.Container.Castle.Registration.Installer;
 using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;

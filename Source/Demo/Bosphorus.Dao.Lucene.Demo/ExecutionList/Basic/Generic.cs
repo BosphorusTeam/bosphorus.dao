@@ -4,6 +4,7 @@ using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Demo.Common.Business;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
 {
@@ -12,8 +13,8 @@ namespace Bosphorus.Dao.Lucene.Demo.ExecutionList.Basic
         private readonly IDao<Bank> bankDao;
         private readonly IDao<CustomerType> customerTypeDao;
 
-        public Generic(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<CustomerType> customerTypeDao) 
-            : base(resultTransformer)
+        public Generic(IWindsorContainer container, IDao<Bank> bankDao, IDao<CustomerType> customerTypeDao) 
+            : base(container)
         {
             this.bankDao = bankDao;
             this.customerTypeDao = customerTypeDao;

@@ -1,5 +1,6 @@
 ﻿using Bosphorus.Configuration.Core;
-using Bosphorus.Configuration.Default.InMemory;
+using Bosphorus.Configuration.Core.Parameter;
+using Bosphorus.Configuration.Default.Parameter.InMemory;
 using Bosphorus.Dao.Lucene.Session;
 
 namespace Bosphorus.Dao.Demo.Common

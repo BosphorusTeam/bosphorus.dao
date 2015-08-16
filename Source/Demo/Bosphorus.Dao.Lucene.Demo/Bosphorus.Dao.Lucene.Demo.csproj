@@ -94,6 +94,10 @@
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Core\Bosphorus.Common.Core.csproj">
+      <Project>{6683BC19-B6C9-4686-B8FF-EE4A8596C724}</Project>
+      <Name>Bosphorus.Common.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
       <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>
       <Name>Bosphorus.Configuration.Core</Name>

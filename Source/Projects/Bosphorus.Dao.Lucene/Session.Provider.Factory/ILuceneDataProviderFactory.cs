@@ -1,7 +1,6 @@
-﻿using System;
-using Lucene.Net.Linq;
+﻿using Lucene.Net.Linq;
 
-namespace Bosphorus.Dao.Lucene.Session.Provider.Factory.Native
+namespace Bosphorus.Dao.Lucene.Session.Provider.Factory
 {
     public interface ILuceneDataProviderFactory
     {

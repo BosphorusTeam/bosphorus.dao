@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using Lucene.Net.Linq;
 
-namespace Bosphorus.Dao.Lucene.Session.Provider.Factory.Native
+namespace Bosphorus.Dao.Lucene.Session.Provider.Factory
 {
     internal class CacheDecorator : ILuceneDataProviderFactory
     {

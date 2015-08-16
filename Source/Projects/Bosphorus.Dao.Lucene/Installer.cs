@@ -1,12 +1,12 @@
 ﻿using System;
-using Bosphorus.Container.Castle.Fluent;
-using Bosphorus.Container.Castle.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration;
+using Bosphorus.Container.Castle.Registration.Fluent;
+using Bosphorus.Container.Castle.Registration.Fluent.Decoration;
 using Bosphorus.Container.Castle.Registration.Installer;
 using Bosphorus.Dao.Lucene.Configuration.Map;
 using Bosphorus.Dao.Lucene.Dao;
 using Bosphorus.Dao.Lucene.Session;
-using Bosphorus.Dao.Lucene.Session.Provider.Factory.Native;
+using Bosphorus.Dao.Lucene.Session.Provider.Factory;
 using Castle.Core;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Handlers;

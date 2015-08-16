@@ -1,5 +1,7 @@
 ﻿using System;
 using Bosphorus.Configuration.Core;
+using Bosphorus.Configuration.Core.Configuration;
+using Bosphorus.Configuration.Core.Parameter;
 using Bosphorus.Dao.Core.Session.Repository;
 
 namespace Bosphorus.Dao.Core.Session.Provider
@@ -13,6 +15,6 @@ namespace Bosphorus.Dao.Core.Session.Provider
 
         public Type DefaultSessionType => GetValue<Type>("DefaultSessionType");
 
-        public SessionScope DefaultSessionScope => SessionScope.Application;
+        public SessionScope DefaultSessionScope => SessionScope.Call;
     }
 }

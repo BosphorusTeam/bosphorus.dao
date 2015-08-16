@@ -1,4 +1,4 @@
-﻿using Bosphorus.Dao.Core.Dao.Decoration;
+﻿using Bosphorus.Dao.Core.Dao.Decoration.Cache;
 using Bosphorus.Dao.Core.Session;
 
 namespace Bosphorus.Dao.Core.Dao
