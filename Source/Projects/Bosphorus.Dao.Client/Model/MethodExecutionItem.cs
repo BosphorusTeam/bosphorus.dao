@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using Bosphorus.Dao.Client.ResultTransformer;
 
 namespace Bosphorus.Dao.Client.Model
@@ -27,7 +28,9 @@ namespace Bosphorus.Dao.Client.Model
             }
             catch (TargetInvocationException exception)
             {
-                throw exception.InnerException;
+                ExceptionDispatchInfo innerExceptionDispatchInfo = ExceptionDispatchInfo.Capture(exception.InnerException);
+                innerExceptionDispatchInfo.Throw();
+                return null;
             }
         }
 
