@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.CastAs;
@@ -8,6 +6,8 @@ using Bosphorus.Dao.NHibernate.Extension.LinQ.Coalesce;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Decode;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Soundex;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
 {
@@ -24,8 +24,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         //    where model.Customer.Id == customer.Id.OraclePlus()
         //    select model);
 
-        public LinqProvider(IResultTransformer resultTransformer, IDao<Customer> customerDao, IDao<Account> accountDao) 
-            : base(resultTransformer)
+        public LinqProvider(IWindsorContainer container, IDao<Customer> customerDao, IDao<Account> accountDao) 
+            : base(container)
         {
             this.customerDao = customerDao;
             this.accountDao = accountDao;

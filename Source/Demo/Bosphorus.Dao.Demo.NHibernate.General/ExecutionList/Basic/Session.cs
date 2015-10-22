@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Repository;
+using Bosphorus.Dao.Core.Transaction;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
 using Bosphorus.Dao.NHibernate.Stateless.Session;
+using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
@@ -16,14 +17,14 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
     {
         private readonly IDao<Bank> bankDao;
         private readonly IDao<LogModel> logDao;
-        private readonly NHibernateStatelessSession statelessSession;
+        private readonly ISessionProvider sessionProvider;
 
         public Session(IWindsorContainer container, IDao<Bank> bankDao, IDao<LogModel> logDao, ISessionProvider sessionProvider) 
             : base(container)
         {
             this.bankDao = bankDao;
             this.logDao = logDao;
-            this.statelessSession = sessionProvider.Open<NHibernateStatelessSession>();
+            this.sessionProvider = sessionProvider;
         }
 
         public IEnumerable<Bank> Default()
@@ -34,7 +35,22 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
 
         public IEnumerable<LogModel> Log()
         {
-            IEnumerable<LogModel> result = logDao.GetAll(statelessSession);
+            IEnumerable<LogModel> result = logDao.GetAll();
+            return result;
+        }
+
+        public IQueryable<Bank> SessionProvider_Current()
+        {
+            ISession session = sessionProvider.Current();
+            IQueryable<Bank> result = bankDao.GetAll(session);
+            return result;
+        }
+
+        public IQueryable<Bank> SessionProvider_New()
+        {
+            ISession session = sessionProvider.Open();
+            IQueryable<Bank> result = bankDao.GetAll(session);
+            sessionProvider.Close();
             return result;
         }
     }

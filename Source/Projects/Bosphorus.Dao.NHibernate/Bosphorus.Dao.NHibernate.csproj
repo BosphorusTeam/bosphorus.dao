@@ -119,9 +119,9 @@
     <Compile Include="Stateful.Session\NHibernateStatefulSession.cs" />
     <Compile Include="Stateful.Dao\NHibernateStatefulDao.cs" />
     <Compile Include="Stateless.Session.Dao\NHibernateStatelessSessionDaoRegisterer.cs" />
-    <Compile Include="Stateless.Session.Manager\NHibernateStatelessSessionManager.cs" />
+    <Compile Include="Stateless.Session.Builder\NHibernateStatelessSessionBuilder.cs" />
     <Compile Include="Stateless.Session\NHibernateStatelessSession.cs" />
-    <Compile Include="Stateful.Session.Manager\NHibernateStatefulSessionManager.cs" />
+    <Compile Include="Stateful.Session.Builder\NHibernateStatefulSessionBuilder.cs" />
     <Compile Include="Transaction\AbstractTransaction.cs" />
     <Compile Include="Transaction\NHibernateStatefulTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

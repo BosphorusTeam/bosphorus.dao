@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Business;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
 {
@@ -11,8 +11,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
     {
         private readonly IDao<Bank> genericDao;
 
-        public DaoCustomization(IResultTransformer resultTransformer, IDao<Bank> genericDao) 
-            : base(resultTransformer)
+        public DaoCustomization(IWindsorContainer container, IDao<Bank> genericDao) 
+            : base(container)
         {
             this.genericDao = genericDao;
         }

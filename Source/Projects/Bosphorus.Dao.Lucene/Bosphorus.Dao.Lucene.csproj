@@ -42,10 +42,6 @@
       <HintPath>..\..\..\..\bosphorus\Source\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\bosphorus\Source\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\bosphorus\Source\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
       <Private>True</Private>
@@ -71,7 +67,7 @@
     <Compile Include="Configuration\Map\AbstractLuceneMap.cs" />
     <Compile Include="Configuration\Map\ReflectionLuceneMap.cs" />
     <Compile Include="Session.Dao\LuceneSessionDaoRegisterer.cs" />
-    <Compile Include="Session.Manager\LuceneSessionManager.cs" />
+    <Compile Include="Session.Builder\LuceneSessionBuilder.cs" />
     <Compile Include="Session.Provider.Factory\CacheDecorator.cs" />
     <Compile Include="Session.Provider.Factory\ILuceneDataProviderFactory.cs" />
     <Compile Include="Configuration\LuceneDataProviderConfiguration.cs" />

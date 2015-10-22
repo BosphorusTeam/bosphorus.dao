@@ -69,8 +69,20 @@
     <Compile Include="Configuration\Log\SchemaUpdater.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ExecutionList\Basic\DaoCustomization.cs" />
     <Compile Include="ExecutionList\Basic\Generic.cs" />
+    <Compile Include="ExecutionList\Basic\NonGeneric.cs" />
     <Compile Include="ExecutionList\Basic\Session.cs" />
+    <Compile Include="ExecutionList\Extension\AutoMap.cs" />
+    <Compile Include="ExecutionList\Extension\Enum.cs" />
+    <Compile Include="ExecutionList\Extension\LinqProvider.cs" />
+    <Compile Include="ExecutionList\Extension\Polymorphic.cs" />
+    <Compile Include="ExecutionList\Problem.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.Abstract.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.InSession.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Cascade.OutSession.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Reference.cs" />
+    <Compile Include="ExecutionList\RelationByMap\Select.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,10 +98,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\bosphorus.assemble\Source\Projects\Bosphorus.Assemble\Bosphorus.Assemble.csproj">
-      <Project>{6f0f64d3-8a0d-4498-8a78-646cdea3f223}</Project>
-      <Name>Bosphorus.Assemble</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.bootstrapper\Source\Projects\Bosphorus.BootStapper\Bosphorus.BootStapper.csproj">
       <Project>{E964E4A5-A437-41AE-90DB-D2929617D55B}</Project>
       <Name>Bosphorus.BootStapper</Name>
@@ -114,10 +122,6 @@
       <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>
       <Name>Bosphorus.Container.Castle</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Client\Bosphorus.Dao.Client.csproj">
-      <Project>{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}</Project>
-      <Name>Bosphorus.Dao.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Common\Bosphorus.Dao.Common.csproj">
       <Project>{FC12496A-983D-4980-A378-621C05F7B35E}</Project>
       <Name>Bosphorus.Dao.Common</Name>
@@ -141,6 +145,10 @@
     <ProjectReference Include="..\Bosphorus.Dao.Demo.NHibernate.Common\Bosphorus.Dao.Demo.NHibernate.Common.csproj">
       <Project>{BADFF52B-E54F-4492-A51D-ECE9F576AB28}</Project>
       <Name>Bosphorus.Dao.Demo.NHibernate.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="A:\Bosphorus\bosphorus.assemble\Source\Projects\Bosphorus.Demo.Runner\Bosphorus.Demo.Runner.csproj">
+      <Project>{38f86c1e-abaa-42ac-adb3-4f6579110dbf}</Project>
+      <Name>Bosphorus.Demo.Runner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

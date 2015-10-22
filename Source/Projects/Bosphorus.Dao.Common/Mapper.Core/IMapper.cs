@@ -1,11 +1,7 @@
-﻿using System;
-
-namespace Bosphorus.Dao.Common.Mapper.Core
+﻿namespace Bosphorus.Dao.Common.Mapper.Core
 {
-    public interface IMapper
+    public interface IMapper<in TSource, out TTarget>
     {
-        bool IsApplicable(Type sourceType, Type targetType);
-
-        void Map(Type sourceType, object source, Type targetType, object target);
+        TTarget Map(TSource source);
     }
 }

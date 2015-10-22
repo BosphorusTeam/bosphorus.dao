@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Common.Mapper.Core;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Business.Dto;
-using Bosphorus.Dao.Demo.NHibernate.General.Common;
+using Bosphorus.Dao.Demo.NHibernate.Common.Common;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
@@ -16,22 +17,22 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         private readonly IDao<Bank> bankDao;
         private readonly IDao<Account> accountDao;
         private readonly IDao<Customer> customerDao;
-        private readonly IMapper mapper;
+        private readonly GenericMapper genericMapper;
 
-        public AutoMap(IResultTransformer resultTransformer, IDao<Bank> bankDao, IDao<Account> accountDao, IDao<Customer> customerDao, IMapper mapper) 
-            : base(resultTransformer)
+        public AutoMap(IWindsorContainer container, IDao<Bank> bankDao, IDao<Account> accountDao, IDao<Customer> customerDao, GenericMapper genericMapper)
+            : base(container)
         {
             this.bankDao = bankDao;
             this.accountDao = accountDao;
             this.customerDao = customerDao;
-            this.mapper = mapper;
+            this.genericMapper = genericMapper;
         }
 
         public IQueryable<BankDto> ToDto_Basic_Simple()
         {
             IQueryable<BankDto> result = 
                 from bank in bankDao.Query() 
-                select mapper.Map<BankDto>(bank);
+                select genericMapper.Flatten<Bank, BankDto>(bank);
 
             return result;
         }
@@ -40,7 +41,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         {
             IQueryable<AccountDto> result =
                 from account in accountDao.Query().Fetch(x => x.Customer).ThenFetch(x => x.CustomerType)
-                select mapper.Map<AccountDto>(account);
+                select genericMapper.Flatten<Account, AccountDto>(account);
 
             return result;
         }
@@ -49,16 +50,29 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         {
             IQueryable<CustomerDto> result =
                 from customer in customerDao.Query().Fetch(x => x.Accounts).Fetch(x => x.CustomerType)
-                select mapper.Map<CustomerDto>(customer);
+                select genericMapper.Flatten<Customer, CustomerDto>(customer);
 
             return result;
+        }
+
+        public IQueryable<CustomerDto> ToDto_Basic_NullCheck()
+        {
+            IQueryable<Customer> result =
+                from customer in customerDao.Query().Fetch(x => x.Accounts).Fetch(x => x.CustomerType)
+                select customer;
+
+            List<Customer> resultList = result.ToList();
+            resultList.ForEach(customer => customer.Accounts = null);
+
+            IQueryable<CustomerDto> customerDtos = resultList.AsQueryable().Select(customer => genericMapper.Flatten<Customer, CustomerDto>(customer));
+            return customerDtos;
         }
 
         public IQueryable<CustomerComplexDto> ToDto_Complex()
         {
             IQueryable<CustomerComplexDto> result =
                 from customer in customerDao.Query().Fetch(x => x.Accounts).Fetch(x => x.CustomerType)
-                select mapper.Map<CustomerComplexDto>(customer);
+                select genericMapper.Flatten<Customer, CustomerComplexDto>(customer);
 
             return result;
         }
@@ -66,12 +80,12 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         public IQueryable<Bank> FromDto_Basic_Simple()
         {
             Bank model = BankBuilder.FromDatabase().Evict().Build();
-            BankDto sampleDto = mapper.Map<BankDto>(model);
+            BankDto sampleDto = genericMapper.Flatten<Bank, BankDto>(model);
             IQueryable<BankDto> dtoList = new List<BankDto> { sampleDto }.AsQueryable();
 
             IQueryable<Bank> result = 
                 from dto in dtoList
-                select mapper.Map<Bank>(dto);
+                select genericMapper.Unflatten<BankDto, Bank>(dto);
 
             return result;
         }
@@ -80,12 +94,12 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         public IQueryable<Account> FromDto_Basic_Lookup()
         {
             Account model = AccountBuilder.FromDatabaseWithChildren().Evict().Build();
-            AccountDto sampleDto = mapper.Map<AccountDto>(model);
+            AccountDto sampleDto = genericMapper.Flatten<Account, AccountDto>(model);
             IQueryable<AccountDto> dtoList = new List<AccountDto> { sampleDto }.AsQueryable();
 
             IQueryable<Account> result =
                 from dto in dtoList
-                select mapper.Map<Account>(dto);
+                select genericMapper.Unflatten<AccountDto, Account>(dto);
 
             return result;
         }
@@ -93,17 +107,15 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         public IQueryable<Customer> FromDto_Complex()
         {
             Customer model = CustomerBuilder.FromDatabaseWithChildren().Evict().Build();
-            CustomerComplexDto sampleDto = mapper.Map<CustomerComplexDto>(model);
+            CustomerComplexDto sampleDto = genericMapper.Flatten<Customer, CustomerComplexDto>(model);
             IQueryable<CustomerComplexDto> dtoList = new List<CustomerComplexDto> { sampleDto }.AsQueryable();
 
 
             IQueryable<Customer> result =
                 from dto in dtoList
-                select mapper.Map<Customer>(dto);
+                select genericMapper.Unflatten<CustomerComplexDto, Customer>(dto);
 
             return result;
         }
-
-       
     }
 }

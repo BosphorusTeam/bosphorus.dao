@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
 using Bosphorus.Dao.NHibernate.Stateful.Dao;
+using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic

@@ -99,10 +99,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\bosphorus.assemble\Source\Projects\Bosphorus.Assemble\Bosphorus.Assemble.csproj">
-      <Project>{6f0f64d3-8a0d-4498-8a78-646cdea3f223}</Project>
-      <Name>Bosphorus.Assemble</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.bootstrapper\Source\Projects\Bosphorus.BootStapper\Bosphorus.BootStapper.csproj">
       <Project>{E964E4A5-A437-41AE-90DB-D2929617D55B}</Project>
       <Name>Bosphorus.BootStapper</Name>
@@ -127,10 +123,6 @@
       <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>
       <Name>Bosphorus.Container.Castle</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Client\Bosphorus.Dao.Client.csproj">
-      <Project>{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}</Project>
-      <Name>Bosphorus.Dao.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.Common\Bosphorus.Dao.Common.csproj">
       <Project>{fc12496a-983d-4980-a378-621c05f7b35e}</Project>
       <Name>Bosphorus.Dao.Common</Name>
@@ -154,6 +146,10 @@
     <ProjectReference Include="..\Bosphorus.Dao.Demo.NHibernate.Common\Bosphorus.Dao.Demo.NHibernate.Common.csproj">
       <Project>{badff52b-e54f-4492-a51d-ece9f576ab28}</Project>
       <Name>Bosphorus.Dao.Demo.NHibernate.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="A:\Bosphorus\bosphorus.assemble\Source\Projects\Bosphorus.Demo.Runner\Bosphorus.Demo.Runner.csproj">
+      <Project>{38F86C1E-ABAA-42AC-ADB3-4F6579110DBF}</Project>
+      <Name>Bosphorus.Demo.Runner</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

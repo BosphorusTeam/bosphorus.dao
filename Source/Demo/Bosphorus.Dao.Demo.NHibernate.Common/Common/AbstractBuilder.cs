@@ -7,6 +7,7 @@ using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.NHibernate.Stateful.Session;
+using Bosphorus.Dao.NHibernate.Stateless.Session;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 {
@@ -16,12 +17,6 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
     {
         protected TModel model;
         protected static readonly Lazy<IDao<TModel>> dao = new Lazy<IDao<TModel>>(BuildDao);
-        protected static readonly Lazy<NHibernateStatefulSession> session = new Lazy<NHibernateStatefulSession>(GetSession);
-
-        private static NHibernateStatefulSession GetSession()
-        {
-            return IoC.staticContainer.Resolve<NHibernateStatefulSession>();
-        }
 
         private static IDao<TModel> BuildDao()
         {
@@ -51,7 +46,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 
         public TBuilder Evict()
         {
-            session.Value.InnerSession.Evict(model);
+            ISessionProvider sessionProvider = IoC.staticContainer.Resolve<ISessionProvider>();
+            sessionProvider.Current<NHibernateStatefulSession>().InnerSession.Evict(model);
             return (TBuilder) this;
         }
 

@@ -1,9 +1,10 @@
-﻿using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
+﻿using System.Collections.Generic;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
-using Bosphorus.Dao.NHibernate.Dao;
+using Bosphorus.Dao.NHibernate.Stateful.Dao;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
 {
@@ -12,8 +13,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
         private readonly INHibernateStatefulDao<Customer> customerDao;
         private readonly INHibernateStatefulDao<Account> accountDao;
 
-        public AbstractCascade(IResultTransformer resultTransformer, INHibernateStatefulDao<Account> accountDao, INHibernateStatefulDao<Customer> customerDao) 
-            : base(resultTransformer)
+        public AbstractCascade(IWindsorContainer container, INHibernateStatefulDao<Account> accountDao, INHibernateStatefulDao<Customer> customerDao) 
+            : base(container)
         {
             this.accountDao = accountDao;
             this.customerDao = customerDao;
@@ -55,6 +56,26 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
             var newAccount = AccountBuilder.Default.Build();
             customer.Accounts.Add(newAccount);
             newAccount.Customer = customer;
+
+            customerDao.Update(customer);
+            return customer;
+        }
+
+        public virtual Customer Customer_Update_NewAccountList()
+        {
+            var customer = ReadCustomer();
+
+            List<Account> newAccounts = new List<Account>();
+
+            Account newAccount = AccountBuilder.Default.Build();
+            newAccount.Customer = customer;
+            newAccounts.Add(newAccount);
+
+            Account existingAccount = ReadAccount();
+            existingAccount.Customer = customer;
+            newAccounts.Add(existingAccount);
+
+            customer.Accounts = newAccounts;
 
             customerDao.Update(customer);
             return customer;

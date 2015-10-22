@@ -1,28 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Bosphorus.Dao.Common.Instantiator
 {
-    public class ListInstantiator : IInstantiator
+    internal class ListInstantiator<TItem> : IInstantiator<IList<TItem>>
     {
-        public bool IsApplicable(Type type)
+        public IList<TItem> Create()
         {
-            if (!type.IsGenericType)
-            {
-                return false;
-            }
-
-            Type genericTypeDefinition = type.GetGenericTypeDefinition();
-            bool result = genericTypeDefinition == typeof (IList<>);
-            return result;
-        }
-
-        public object Create(Type type)
-        {
-            Type elementType = type.GetGenericArguments()[0];
-            Type imlementationListType = typeof (List<>).MakeGenericType(elementType);
-            object result = Activator.CreateInstance(imlementationListType);
-
+            IList<TItem> result = new List<TItem>();
             return result;
         }
     }

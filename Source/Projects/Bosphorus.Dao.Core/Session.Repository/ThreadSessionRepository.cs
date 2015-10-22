@@ -15,13 +15,13 @@ namespace Bosphorus.Dao.Core.Session.Repository
 
         public void Put<TSession>(string aliasName, SessionScope sessionScope, TSession session) where TSession : ISession
         {
-            string key = BuildKey<TSession>(aliasName);
+            string key = BuildKey<TSession>(aliasName, sessionScope);
             repository.Add(key, session);
         }
 
         public TSession Get<TSession>(string aliasName, SessionScope sessionScope) where TSession : ISession
         {
-            string key = BuildKey<TSession>(aliasName);
+            string key = BuildKey<TSession>(aliasName, sessionScope);
             ISession session;
             repository.TryGetValue(key, out session);
             return (TSession)session;
@@ -29,16 +29,16 @@ namespace Bosphorus.Dao.Core.Session.Repository
 
         public TSession Remove<TSession>(string aliasName, SessionScope sessionScope) where TSession : ISession
         {
-            string key = BuildKey<TSession>(aliasName);
+            string key = BuildKey<TSession>(aliasName, sessionScope);
             TSession session = Get<TSession>(aliasName, sessionScope);
             repository.Remove(key);
             return session;
         }
 
-        private string BuildKey<TSession>(string aliasName)
+        private string BuildKey<TSession>(string aliasName, SessionScope sessionScope)
         {
             string typeName = typeof(TSession).FullName;
-            string result = string.Format("{0} - {1}", aliasName, typeName);
+            string result = $"{aliasName} - {sessionScope} - {typeName}";
             return result;
         }
 

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
 {
@@ -14,8 +14,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         private readonly IDao<Customer> customerDao;
         private readonly IDao<CustomerType> customerTypeDao;
 
-        public Enum(IResultTransformer resultTransformer, IDao<Customer> customerDao, IDao<CustomerType> customerTypeDao) 
-            : base(resultTransformer)
+        public Enum(IWindsorContainer container, IDao<Customer> customerDao, IDao<CustomerType> customerTypeDao) 
+            : base(container)
         {
             this.customerDao = customerDao;
             this.customerTypeDao = customerTypeDao;

@@ -8,8 +8,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Business
     {
         public static IQueryable<Bank> GetStartsWithByExtension(this IDao<Bank> extended, string startsWith)
         {
-            //TODO:
-            IQueryable<Bank> result = extended.Query(null).Where(bank => bank.Name.StartsWith(startsWith));
+            IQueryable<Bank> result = extended.Query().Where(bank => bank.Name.StartsWith(startsWith));
             return result;
         }
     }

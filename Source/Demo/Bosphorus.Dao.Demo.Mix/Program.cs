@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bosphorus.Common.Core.Application;
-using Bosphorus.Dao.Client;
+using Bosphorus.Demo.Runner;
 
 namespace Bosphorus.Dao.Demo.Mix
 {
@@ -11,7 +11,7 @@ namespace Bosphorus.Dao.Demo.Mix
     {
         static void Main(string[] args)
         {
-            DaoRunner.Run(Environment.Local, Perspective.Debug);
+            DemoRunner.Run(Environment.Local, Perspective.Debug);
         }
     }
 }

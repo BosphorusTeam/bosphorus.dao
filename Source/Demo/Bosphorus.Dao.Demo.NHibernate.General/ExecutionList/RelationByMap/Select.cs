@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
-using Bosphorus.Dao.NHibernate.Dao;
+using Bosphorus.Dao.NHibernate.Stateful.Dao;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 using NHibernate.Linq;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
@@ -14,8 +14,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
         private readonly INHibernateStatefulDao<Customer> customerDao;
         private readonly INHibernateStatefulDao<Account> accountDao;
 
-        public Select(IResultTransformer resultTransformer, INHibernateStatefulDao<Customer> customerDao, INHibernateStatefulDao<Account> accountDao)
-            : base(resultTransformer)
+        public Select(IWindsorContainer container, INHibernateStatefulDao<Customer> customerDao, INHibernateStatefulDao<Account> accountDao)
+            : base(container)
         {
             this.customerDao = customerDao;
             this.accountDao = accountDao;

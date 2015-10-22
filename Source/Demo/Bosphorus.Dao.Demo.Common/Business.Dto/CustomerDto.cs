@@ -7,6 +7,6 @@ namespace Bosphorus.Dao.Demo.Common.Business.Dto
         public int Id { get; set; }
         public string Name { get; set; }
         public string CustomerTypeName { get; set; }
-        public IList<Account> Accounts { get; set; }
+        public IList<AccountDto> Accounts { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.Convention.Enum
         public void Apply(IPropertyInstance target)
         {
             target.CustomType(target.Property.PropertyType);
+            target.Not.Nullable();
         }
     }
 }

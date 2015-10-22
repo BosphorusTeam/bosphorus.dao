@@ -1,5 +1,5 @@
-﻿using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Container.Castle.Registration.Installer;
+﻿using Bosphorus.Container.Castle.Registration.Installer;
+using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -12,12 +12,16 @@ namespace Bosphorus.Dao.Core.Session.Manager
         {
             container.Register(
                 Component
-                    .For<SessionManager>(),
+                    .For<ApplicationSessionManager>()
+                    .LifeStyle
+                    .Singleton
+                    .Start(),
 
-                allLoadedTypes
-                    .BasedOn(typeof(ISessionManager<>))
-                    .WithService
-                    .AllInterfaces()
+                Component
+                    .For<CallSessionManager>()
+                    .LifeStyle
+                    .Singleton
+                    .Start()
             );
         }
     }

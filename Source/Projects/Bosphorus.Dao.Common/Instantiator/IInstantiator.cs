@@ -2,10 +2,8 @@
 
 namespace Bosphorus.Dao.Common.Instantiator
 {
-    public interface IInstantiator
+    public interface IInstantiator<out TModel>
     {
-        bool IsApplicable(Type type);
-
-        object Create(Type type);
+        TModel Create();
     }
 }

@@ -73,19 +73,24 @@
     <Compile Include="Dao\AbstractDaoDecorator.cs" />
     <Compile Include="Dao\Decoration.Cache\CacheDecorator.cs" />
     <Compile Include="Dao\Decorations.cs" />
-    <Compile Include="Dao\Extensions.cs">
+    <Compile Include="Dao\GenericDaoExtensions.cs" />
+    <Compile Include="Dao\IDaoExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dao\GenericDao.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dao\IDao.cs" />
+    <Compile Include="Dao\Installer.cs" />
     <Compile Include="Session.Dao\Installer.cs" />
     <Compile Include="Session.Dao\ISessionDaoRegisterer.cs" />
     <Compile Include="Session.Dao\SessionDaoRegistry.cs" />
+    <Compile Include="Session.Builder\Installer.cs" />
+    <Compile Include="Session.Builder\ISessionBuilder.cs" />
+    <Compile Include="Session.Builder\GenericSessionBuilder.cs" />
+    <Compile Include="Session.Manager\ApplicationSessionManager.cs" />
+    <Compile Include="Session.Manager\CallSessionManager.cs" />
     <Compile Include="Session.Manager\Installer.cs" />
-    <Compile Include="Session.Manager\ISessionManager.cs" />
-    <Compile Include="Session.Manager\SessionManager.cs" />
     <Compile Include="Session.Provider\Extension.cs" />
     <Compile Include="Session.Provider\ExtensionConfiguration.cs" />
     <Compile Include="Session.Provider\ISessionProvider.cs" />
@@ -133,6 +138,10 @@
     <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Core\Bosphorus.Common.Core.csproj">
+      <Project>{6683BC19-B6C9-4686-B8FF-EE4A8596C724}</Project>
+      <Name>Bosphorus.Common.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
       <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>

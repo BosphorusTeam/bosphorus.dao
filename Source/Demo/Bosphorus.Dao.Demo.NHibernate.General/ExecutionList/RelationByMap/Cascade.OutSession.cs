@@ -1,8 +1,8 @@
-﻿using Bosphorus.Dao.Client.ResultTransformer;
-using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.Demo.Common.Business;
+﻿using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
-using Bosphorus.Dao.NHibernate.Dao;
+using Bosphorus.Dao.NHibernate.Stateful.Dao;
+using Castle.Windsor;
+// ReSharper disable RedundantOverridenMember
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
 {
@@ -11,8 +11,8 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
         private readonly INHibernateStatefulDao<Customer> customerDao;
         private readonly INHibernateStatefulDao<Account> accountDao;
 
-        public Cascade_OutSession(IResultTransformer resultTransformer, INHibernateStatefulDao<Account> accountDao, INHibernateStatefulDao<Customer> customerDao) 
-            : base(resultTransformer, accountDao, customerDao)
+        public Cascade_OutSession(IWindsorContainer container, INHibernateStatefulDao<Account> accountDao, INHibernateStatefulDao<Customer> customerDao) 
+            : base(container, accountDao, customerDao)
         {
             this.accountDao = accountDao;
             this.customerDao = customerDao;
@@ -48,6 +48,11 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap
         public override Customer Customer_Update_RemoveAccount()
         {
             return base.Customer_Update_RemoveAccount();
+        }
+
+        public override Customer Customer_Update_NewAccountList()
+        {
+            return base.Customer_Update_NewAccountList();
         }
 
         public override Customer Customer_Delete()

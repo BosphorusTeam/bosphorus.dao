@@ -31,9 +31,8 @@ namespace Bosphorus.Dao.Core.Session.Dao
 
         public IList<Type> SessionTypes => sessionTypes;
 
-        public Type GetSessionType(Type daoType)
+        public Type GetSessionType(Type daoGenericType)
         {
-            Type daoGenericType = daoType.GetGenericTypeDefinition();
             Type sessionType = daoSessionDictionary[daoGenericType];
             return sessionType;
         }

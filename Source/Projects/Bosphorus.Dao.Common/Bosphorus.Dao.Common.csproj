@@ -51,22 +51,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instantiator\CompositeInstantiator.cs" />
+    <Compile Include="Comparer\EqualityComparerExtensions.cs" />
+    <Compile Include="Comparer\GenericEquailityComparer.cs" />
+    <Compile Include="Comparer\Installer.cs" />
     <Compile Include="Instantiator\IInstantiator.cs" />
-    <Compile Include="Installer.cs" />
+    <Compile Include="Instantiator\Installer.cs" />
     <Compile Include="Instantiator\ListInstantiator.cs" />
+    <Compile Include="Instantiator\NewConstaintInstantiator.cs" />
+    <Compile Include="Mapper.Core\GenericMapper.cs" />
+    <Compile Include="Mapper.Core\Installer.cs" />
+    <Compile Include="Mapper.Core\EchoMapper.cs" />
+    <Compile Include="Common\CustomActivator.cs" />
+    <Compile Include="Mapper.Flattener\EchoFlattener.cs" />
+    <Compile Include="Mapper.Flattener\GenericFlattener.cs" />
+    <Compile Include="Mapper.Flattener\Installer.cs" />
+    <Compile Include="Mapper.Flattener\IFlattener.cs" />
     <Compile Include="Mapper.Core\IMapper.cs" />
-    <Compile Include="Mapper.Core\MapperExtensions.cs" />
-    <Compile Include="Mapper.Default\EnumerableMapper.cs" />
-    <Compile Include="Mapper.Core\CompositeMapper.cs" />
-    <Compile Include="Mapper.Default\ValueInjectorUnFlattenMapper.cs" />
-    <Compile Include="Mapper.Default\ValueInjectorFlattenMapper.cs" />
+    <Compile Include="Mapper.Flattener\ListFlattener.cs" />
+    <Compile Include="Mapper.Flattener\ValueInjectorFlattener.cs" />
+    <Compile Include="Mapper.Unflattener\EchoUnflattener.cs" />
+    <Compile Include="Mapper.Unflattener\GenericUnflattener.cs" />
+    <Compile Include="Mapper.Unflattener\Installer.cs" />
+    <Compile Include="Mapper.Unflattener\IUnflattener.cs" />
+    <Compile Include="Mapper.Unflattener\ListUnflattener.cs" />
+    <Compile Include="Mapper.Unflattener\ValueInjectorUnflatener.cs" />
+    <Compile Include="Merge\DefaultMerger.cs" />
+    <Compile Include="Merge\GenericMerger.cs" />
+    <Compile Include="Merge\IMerger.cs" />
+    <Compile Include="Merge\Installer.cs" />
+    <Compile Include="Merge\ListMerger.cs" />
+    <Compile Include="Merge\PrimitiveMerger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
       <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
       <Name>Bosphorus.Common.Clr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Core\Bosphorus.Common.Core.csproj">
+      <Project>{6683BC19-B6C9-4686-B8FF-EE4A8596C724}</Project>
+      <Name>Bosphorus.Common.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
       <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>
@@ -76,6 +100,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

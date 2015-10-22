@@ -49,22 +49,13 @@ namespace Bosphorus.Dao.NHibernate.Extension.Driver.OracleManaged
         }
 
         /// <summary></summary>
-        public override string NamedPrefix
-        {
-            get { return ":"; }
-        }
+        public override string NamedPrefix => ":";
 
         /// <summary></summary>
-        public override bool UseNamedPrefixInParameter
-        {
-            get { return true; }
-        }
+        public override bool UseNamedPrefixInParameter => true;
 
         /// <summary></summary>
-        public override bool UseNamedPrefixInSql
-        {
-            get { return true; }
-        }
+        public override bool UseNamedPrefixInSql => true;
 
         /// <remarks>
         /// This adds logic to ensure that a DbType.Boolean parameter is not created since
@@ -122,9 +113,6 @@ namespace Bosphorus.Dao.NHibernate.Extension.Driver.OracleManaged
             command.Parameters.Insert(0, outCursor);
         }
 
-        System.Type IEmbeddedBatcherFactoryProvider.BatcherFactoryClass
-        {
-            get { return typeof(OracleDataClientBatchingBatcherFactory); }
-        }
+        Type IEmbeddedBatcherFactoryProvider.BatcherFactoryClass => typeof(OracleDataClientBatchingBatcherFactory);
     }
 }

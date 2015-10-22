@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
+using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
-using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Demo.Runner.Executable;
+using Castle.Windsor;
 
-namespace Bosphorus.Dao.Client.Demo.ExecutionList.Basic
+namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
 {
     public class NonGeneric : AbstractMethodExecutionItemList
     {
         private readonly GenericDao dao;
 
-        public NonGeneric(IResultTransformer resultTransformer, GenericDao dao) 
-            : base(resultTransformer)
+        public NonGeneric(IWindsorContainer container, GenericDao dao) 
+            : base(container)
         {
             this.dao = dao;
         }
 
         public IEnumerable<Bank> GetAll()
         {
-            dao.GetAll<Bank>();
+            return dao.GetAll<Bank>();
         }
 
         public IQueryable<Bank> GetById()

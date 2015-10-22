@@ -1,5 +1,7 @@
-﻿using Bosphorus.Common.Core.Application;
-using Bosphorus.Dao.Client;
+﻿using System;
+using Bosphorus.Common.Core.Application;
+using Bosphorus.Demo.Runner;
+using Environment = Bosphorus.Common.Core.Application.Environment;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General
 {
@@ -7,7 +9,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.General
     {
         static void Main()
         {
-            DaoRunner.Run(Environment.Local, Perspective.Debug);
+            DemoRunner.Run(Environment.Local, Perspective.Debug);
         }
     }
 }

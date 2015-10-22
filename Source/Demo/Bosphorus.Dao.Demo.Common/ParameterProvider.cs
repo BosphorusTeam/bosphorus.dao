@@ -1,16 +1,9 @@
-﻿using Bosphorus.Configuration.Core;
-using Bosphorus.Configuration.Core.Parameter;
+﻿using Bosphorus.Configuration.Core.Parameter;
 using Bosphorus.Configuration.Default.Parameter.InMemory;
-using Bosphorus.Dao.Lucene.Session;
 
 namespace Bosphorus.Dao.Demo.Common
 {
     public class ParameterProvider: InMemoryParameterProvider, IParameterProvider
     {
-        public ParameterProvider()
-        {
-            //SetValue("Bosphorus.Dao.Core.Session.Provider.Extension.DefaultSessionType", typeof(NHibernateStatefulSession));
-            SetValue("Bosphorus.Dao.Core.Session.Provider.Extension.DefaultSessionType", typeof(LuceneSession));
-        }
     }
 }

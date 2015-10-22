@@ -26,6 +26,7 @@ using ISession = Bosphorus.Dao.Core.Session.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Common.Dao
 {
+    //FIXME: https://lostechies.com/jimmybogard/2014/04/22/migrating-from-nhibernate-to-entity-framework/
     public abstract class AbstractNHibernateDao<TModel>
         where TModel : class
     {
