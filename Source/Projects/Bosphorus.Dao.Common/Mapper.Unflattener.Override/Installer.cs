@@ -1,11 +1,9 @@
 ﻿using Bosphorus.Container.Castle.Registration.Installer;
-using Bosphorus.Dao.Common.Mapper.Core.Decoration.Cache;
-using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace Bosphorus.Dao.Common.Mapper.Core
+namespace Bosphorus.Dao.Common.Mapper.Unflattener.Override
 {
     public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
     {
@@ -13,11 +11,13 @@ namespace Bosphorus.Dao.Common.Mapper.Core
         {
             container.Register(
                 Component
-                    .For<PerCallContextCache>()
-                    .LifeStyle.Singleton.Start(),
+                    .For(typeof(IUnflattenerOverride<,>))
+                    .ImplementedBy(typeof(NullUnflattenerOverride<,>)),
 
-                Component
-                    .For<GenericMapper>()
+                allLoadedTypes
+                    .BasedOn(typeof(IUnflattenerOverride<,>))
+                    .WithService
+                    .FromInterface()
             );
         }
     }

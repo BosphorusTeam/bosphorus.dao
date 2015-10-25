@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using Bosphorus.Common.Clr.Symbol;
 using Bosphorus.Dao.Common.Mapper.Flattener;
+using Bosphorus.Dao.Common.Mapper.Unflattener.Override;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Common.Mapper.Unflattener
@@ -18,11 +19,16 @@ namespace Bosphorus.Dao.Common.Mapper.Unflattener
             this.genericMethod = Reflection<GenericUnflattener>.GetMethodInfo(mapper => mapper.Map<object, object>(null)).GetGenericMethodDefinition();
         }
 
+        [DebuggerStepThrough]
         public TTarget Map<TSource, TTarget>(TSource source)
         {
             IUnflattener<TSource, TTarget> flattener = container.Resolve<IUnflattener<TSource, TTarget>>();
-            TTarget result = flattener.Map(source);
-            return result;
+            TTarget target = flattener.Map(source);
+
+            IUnflattenerOverride<TSource, TTarget> unflattenerOverride = container.Resolve<IUnflattenerOverride<TSource, TTarget>>();
+            unflattenerOverride.Map(source, target);
+
+            return target;
         }
 
         [DebuggerStepThrough]

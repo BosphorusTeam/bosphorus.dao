@@ -17,6 +17,7 @@ namespace Bosphorus.Dao.Common.Merge
             this.genericMethod = Reflection<GenericMerger>.GetMethodInfo(merger => merger.Merge<object>(null, null)).GetGenericMethodDefinition();
         }
 
+        [DebuggerStepThrough]
         public TModel Merge<TModel>(TModel sourceModel, TModel overrideModel)
         {
             IMerger<TModel> merger = container.Resolve<IMerger<TModel>>();

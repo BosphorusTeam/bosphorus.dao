@@ -1,6 +1,7 @@
 ﻿using Bosphorus.Container.Castle.Registration.Handler.Generic.Implementation;
 using Bosphorus.Container.Castle.Registration.Handler.Generic.Selector;
 using Bosphorus.Container.Castle.Registration.Installer;
+using Bosphorus.Dao.Common.Mapper.Unflattener.Decoration.Cache;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -23,11 +24,16 @@ namespace Bosphorus.Dao.Common.Mapper.Unflattener
 
                 Component
                     .For(typeof(IUnflattener<,>))
-                    .ImplementedBy(typeof(EchoUnflattener<>), GenericImplementationArgs.Distinct, GenericService.AllArgs.IsPrimitive),
+                    .ImplementedBy(typeof(EchoUnflattener<>), GenericImplementationArgs.Distinct, GenericService.AllArgs.IsStruct),
 
                 Component
                     .For(typeof(IUnflattener<,>))
                     .ImplementedBy(typeof(ValueInjectorUnflatener<,>)),
+
+                Component
+                    .For(typeof(IUnflattener<,>))
+                    .ImplementedBy(typeof(CacheDecorator<,>))
+                    .IsDefault(),
 
                 Component
                     .For<GenericUnflattener>()

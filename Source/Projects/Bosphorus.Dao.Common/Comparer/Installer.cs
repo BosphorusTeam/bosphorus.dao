@@ -11,10 +11,10 @@ namespace Bosphorus.Dao.Common.Comparer
         protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
         {
             container.Register(
-                allLoadedTypes
-                    .BasedOn(typeof(IEqualityComparer<>))
-                    .WithService
-                    .FromInterface(),
+                //allLoadedTypes
+                //    .BasedOn(typeof(IEqualityComparer<>))
+                //    .WithService
+                //    .FromInterface(),
 
                 Component
                     .For<GenericEquailityComparer>()

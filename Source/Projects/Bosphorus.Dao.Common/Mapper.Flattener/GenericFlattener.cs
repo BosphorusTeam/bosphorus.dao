@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Reflection;
 using Bosphorus.Common.Clr.Symbol;
+using Bosphorus.Dao.Common.Mapper.Flattener.Decoration;
+using Bosphorus.Dao.Common.Mapper.Flattener.Override;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Common.Mapper.Flattener
@@ -17,11 +19,16 @@ namespace Bosphorus.Dao.Common.Mapper.Flattener
             this.genericMethod = Reflection<GenericFlattener>.GetMethodInfo(mapper => mapper.Map<object, object>(null)).GetGenericMethodDefinition();
         }
 
+        [DebuggerStepThrough]
         public TTarget Map<TSource, TTarget>(TSource source)
         {
             IFlattener<TSource, TTarget> flattener = container.Resolve<IFlattener<TSource, TTarget>>();
-            TTarget result = flattener.Map(source);
-            return result;
+            TTarget target = flattener.Map(source);
+
+            IFlattenerOverride<TSource, TTarget> flattenerOverride = container.Resolve<IFlattenerOverride<TSource, TTarget>>();
+            flattenerOverride.Map(source, target);
+
+            return target;
         }
 
         [DebuggerStepThrough]

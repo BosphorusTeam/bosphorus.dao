@@ -76,7 +76,9 @@
     <Compile Include="ExecutionList\Extension\AutoMap.cs" />
     <Compile Include="ExecutionList\Extension\Enum.cs" />
     <Compile Include="ExecutionList\Extension\LinqProvider.cs" />
-    <Compile Include="ExecutionList\Extension\Polymorphic.cs" />
+    <Compile Include="ExecutionList\Extension\Hybrid.cs" />
+    <Compile Include="ExecutionList\Extension\Temp\QueryableExtensions.cs" />
+    <Compile Include="ExecutionList\Extension\Temp\ReplaceVisitor.cs" />
     <Compile Include="ExecutionList\Problem.cs" />
     <Compile Include="ExecutionList\RelationByMap\Cascade.Abstract.cs" />
     <Compile Include="ExecutionList\RelationByMap\Cascade.InSession.cs" />
