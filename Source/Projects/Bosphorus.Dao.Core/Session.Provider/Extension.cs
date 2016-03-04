@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Bosphorus.Common.Clr.Symbol;
-using Bosphorus.Container.Castle.Facade;
+using Bosphorus.Common.Api.Symbol;
 using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Session.Repository;
 
@@ -12,7 +11,7 @@ namespace Bosphorus.Dao.Core.Session.Provider
         private readonly static MethodInfo openMethodInfo;
         private readonly static MethodInfo currentMethodInfo;
         private readonly static MethodInfo closeMethodInfo;
-        private readonly static Lazy<ExtensionConfiguration> configuration;
+        private readonly static ExtensionConfiguration configuration;
 
         static Extension()
         {
@@ -20,12 +19,12 @@ namespace Bosphorus.Dao.Core.Session.Provider
             currentMethodInfo = Reflection<ISessionProvider>.GetMethodInfo(x => x.Current<ISession>(null, SessionScope.Null)).GetGenericMethodDefinition();
             closeMethodInfo = Reflection<ISessionProvider>.GetMethodInfo(x => x.Close<ISession>(null, SessionScope.Null)).GetGenericMethodDefinition();
 
-            configuration = IoC.staticContainer.Resolve<Lazy<ExtensionConfiguration>>();
+            configuration = ContainerHolder.Current.Resolve<ExtensionConfiguration>();
         }
 
         public static ISession Open(this ISessionProvider extended, Type sessionType = null, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
         {
-            Type currentSessionType = sessionType ?? configuration.Value.DefaultSessionType;
+            Type currentSessionType = sessionType ?? configuration.DefaultSessionType;
             SessionScope currentSessionScope = GetCurrentSessionScope(sessionScope);
             MethodInfo genericOpenMethodInfo = openMethodInfo.MakeGenericMethod(currentSessionType);
             object session = genericOpenMethodInfo.Invoke(extended, new object[] { aliasName, currentSessionScope });
@@ -42,7 +41,7 @@ namespace Bosphorus.Dao.Core.Session.Provider
 
         public static ISession Current(this ISessionProvider extended, Type sessionType = null, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
         {
-            Type currentSessionType = sessionType ?? configuration.Value.DefaultSessionType;
+            Type currentSessionType = sessionType ?? configuration.DefaultSessionType;
             SessionScope currentSessionScope = GetCurrentSessionScope(sessionScope);
             MethodInfo genericCurrentMethodInfo = currentMethodInfo.MakeGenericMethod(currentSessionType);
             object session = genericCurrentMethodInfo.Invoke(extended, new object[] { aliasName, currentSessionScope });
@@ -59,7 +58,7 @@ namespace Bosphorus.Dao.Core.Session.Provider
 
         public static ISession Close(this ISessionProvider extended, Type sessionType = null, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
         {
-            Type currentSessionType = sessionType ?? configuration.Value.DefaultSessionType;
+            Type currentSessionType = sessionType ?? configuration.DefaultSessionType;
             SessionScope currentSessionScope = GetCurrentSessionScope(sessionScope);
             MethodInfo genericCloseMethodInfo = closeMethodInfo.MakeGenericMethod(currentSessionType);
             object session = genericCloseMethodInfo.Invoke(extended, new object[] { aliasName, currentSessionScope });
@@ -81,7 +80,7 @@ namespace Bosphorus.Dao.Core.Session.Provider
                 return sessionScope;
             }
 
-            SessionScope result = configuration.Value.DefaultSessionScope;
+            SessionScope result = configuration.DefaultSessionScope;
             return result;
         }
 

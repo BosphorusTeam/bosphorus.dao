@@ -1,8 +1,4 @@
-﻿using Bosphorus.Configuration.Core;
-using Bosphorus.Configuration.Core.Parameter;
-using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Container.Castle.Registration.Installer;
-using Bosphorus.Dao.Core.Dao;
+﻿using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
@@ -13,15 +9,11 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.DTC
 {
-    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
+    public class Installer: IDemoInstaller
     {
-        protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
+        public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component
-                    .For<IParameterProvider>()
-                    .ImplementedBy<ParameterProvider>(),
-
                 Component
                     .For<IDao<Customer>>()
                     .ImplementedBy<NHibernateStatefulDao<Customer>>(),

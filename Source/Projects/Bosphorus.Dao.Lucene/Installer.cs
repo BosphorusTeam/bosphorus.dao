@@ -1,55 +1,48 @@
-﻿using System;
-using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Container.Castle.Registration.Fluent;
-using Bosphorus.Container.Castle.Registration.Fluent.Decoration;
-using Bosphorus.Container.Castle.Registration.Installer;
+﻿using Bosphorus.Common.Api.Container;
+using Bosphorus.Common.Api.Symbol;
 using Bosphorus.Dao.Lucene.Configuration.Map;
 using Bosphorus.Dao.Lucene.Dao;
-using Bosphorus.Dao.Lucene.Session;
 using Bosphorus.Dao.Lucene.Session.Provider.Factory;
-using Castle.Core;
-using Castle.MicroKernel.Context;
-using Castle.MicroKernel.Handlers;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Lucene
 {
-    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
+    public class Installer: IBosphorusInstaller
     {
-        protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
+        private readonly ITypeProvider typeProvider;
+
+        public Installer(ITypeProvider typeProvider)
+        {
+            this.typeProvider = typeProvider;
+        }
+
+        public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 Component
                     .For(typeof (ILuceneDao<>))
                     .ImplementedBy(typeof (LuceneDao<>))
-                    .NamedUnique(),
+                    .NamedFull(),
 
-                /*
-                Component
-                    .For(typeof (ISessionProviderFactory<>))
-                    .ImplementedBy(typeof(LuceneSessionProviderFactory<>), new ImplementationMatchingStrategy(), new ServiceStrategy())
-                    .NamedAutomatically("LuceneSessionProviderFactory"),
-                */
-
-                allLoadedTypes
-                    .BasedOn(typeof(ILuceneMap<>))
+                Classes.From(typeProvider.LoadedTypes)
+                    .BasedOn(typeof (ILuceneMap<>))
                     .WithService
                     .AllInterfaces(),
 
-                //TODO: Cache decoartor of LuceneSessionProviderFactory<> must be...
-                allLoadedTypes
+                Classes.From(typeProvider.LoadedTypes)
                     .BasedOn<ILuceneDataProviderFactory>()
                     .WithService
-                    .FromInterface(),
+                    .FromInterface()
 
+                /*
+                //TODO: Cache decoartor of LuceneSessionProviderFactory<> must be...
                 Decorator
                     .Of<ILuceneDataProviderFactory>()
                     .Is<CacheDecorator>()
-            );
-
+                    */
+                );
         }
-
     }
 }

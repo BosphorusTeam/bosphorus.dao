@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using Bosphorus.Container.Castle.Facade;
 using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
-using Bosphorus.Dao.Core.Session.Repository;
 using Castle.Core;
 
 namespace Bosphorus.Dao.Core.Dao
@@ -21,8 +18,8 @@ namespace Bosphorus.Dao.Core.Dao
 
         static IDaoExtensions()
         {
-            sessionProvider = IoC.staticContainer.Resolve<ISessionProvider>();
-            sessionDaoRegistry = IoC.staticContainer.Resolve<SessionDaoRegistry>();
+            sessionProvider = ContainerHolder.Current.Resolve<ISessionProvider>();
+            sessionDaoRegistry = ContainerHolder.Current.Resolve<SessionDaoRegistry>();
             emptyDictionary = new Hashtable();
         }
 
@@ -119,7 +116,14 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public static IEnumerable<TModel> Insert<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities) 
+        public static IEnumerable<TModel> Insert<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities)
+        {
+            ISession session = GetSession(extended);
+            IEnumerable<TModel> result = extended.Insert(session, entities);
+            return result;
+        }
+
+        public static IEnumerable<TModel> Insert<TModel>(this IDao<TModel> extended, IList<TModel> entities)
         {
             ISession session = GetSession(extended);
             IEnumerable<TModel> result = extended.Insert(session, entities);
@@ -133,7 +137,14 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public static IEnumerable<TModel> Update<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities) 
+        public static IEnumerable<TModel> Update<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities)
+        {
+            ISession session = GetSession(extended);
+            IEnumerable<TModel> result = extended.Update(session, entities);
+            return result;
+        }
+
+        public static IEnumerable<TModel> Update<TModel>(this IDao<TModel> extended, IList<TModel> entities)
         {
             ISession session = GetSession(extended);
             IEnumerable<TModel> result = extended.Update(session, entities);
@@ -147,6 +158,12 @@ namespace Bosphorus.Dao.Core.Dao
         }
 
         public static void Delete<TModel>(this IDao<TModel> extended, IEnumerable<TModel> entities)
+        {
+            ISession session = GetSession(extended);
+            extended.Delete(session, entities);
+        }
+
+        public static void Delete<TModel>(this IDao<TModel> extended, IList<TModel> entities)
         {
             ISession session = GetSession(extended);
             extended.Delete(session, entities);

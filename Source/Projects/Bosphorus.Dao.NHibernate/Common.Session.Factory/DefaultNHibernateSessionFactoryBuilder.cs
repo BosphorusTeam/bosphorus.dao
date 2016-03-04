@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Bosphorus.Common.Api.Symbol;
 using Bosphorus.Dao.NHibernate.Configuration.Fluent.AutoPersistenceModelProvider;
 using Bosphorus.Dao.NHibernate.Configuration.Fluent.ConfigurationProcessor;
 using Bosphorus.Dao.NHibernate.Configuration.Fluent.ConventionApplier;
@@ -15,16 +16,16 @@ namespace Bosphorus.Dao.NHibernate.Common.Session.Factory
     public class DefaultNHibernateSessionFactoryBuilder : INHibernateSessionFactoryBuilder
     {
         private readonly IPersistenceConfigurerProvider persistenceConfigurerProvider;
-        private readonly IAssemblyProvider assemblyProvider;
+        private readonly ITypeProvider typeProvider;
         private readonly IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders;
         private readonly IHbmMappingRegisterer hbmMappingRegisterer;
         private readonly IConventionApplier conventionApplier;
         private readonly IConfigurationProcessor configurationProcessor;
 
-        public DefaultNHibernateSessionFactoryBuilder(IPersistenceConfigurerProvider persistenceConfigurerProvider, IAssemblyProvider assemblyProvider, IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders, IHbmMappingRegisterer hbmMappingRegisterer, IConventionApplier conventionApplier, IConfigurationProcessor configurationProcessor)
+        public DefaultNHibernateSessionFactoryBuilder(IPersistenceConfigurerProvider persistenceConfigurerProvider, ITypeProvider typeProvider, IList<IAutoPersistenceModelProvider> autoPersistenceModelProviders, IHbmMappingRegisterer hbmMappingRegisterer, IConventionApplier conventionApplier, IConfigurationProcessor configurationProcessor)
         {
             this.persistenceConfigurerProvider = persistenceConfigurerProvider;
-            this.assemblyProvider = assemblyProvider;
+            this.typeProvider = typeProvider;
             this.autoPersistenceModelProviders = autoPersistenceModelProviders;
             this.hbmMappingRegisterer = hbmMappingRegisterer;
             this.conventionApplier = conventionApplier;
@@ -59,7 +60,7 @@ namespace Bosphorus.Dao.NHibernate.Common.Session.Factory
 
             foreach (IAutoPersistenceModelProvider autoPersistenceModelProvider in autoPersistenceModelProviders)
             {
-                AutoPersistenceModel autoPersistenceModel = autoPersistenceModelProvider.GetAutoPersistenceModel(assemblyProvider, sessionAlias);
+                AutoPersistenceModel autoPersistenceModel = autoPersistenceModelProvider.GetAutoPersistenceModel(typeProvider, sessionAlias);
                 autoPersistenceModel.Conventions.Setup(conventionFinder => conventionApplier.Apply(sessionAlias, conventionFinder));
                 mappingConfiguration.AutoMappings.Add(autoPersistenceModel);
             }

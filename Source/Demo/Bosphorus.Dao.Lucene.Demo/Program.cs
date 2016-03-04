@@ -1,7 +1,6 @@
-﻿using System;
-using Bosphorus.Common.Core.Application;
-using Bosphorus.Dao.Client;
-using Environment = Bosphorus.Common.Core.Application.Environment;
+﻿using Bosphorus.Assemble.BootStrapper.Runner.Demo;
+using Bosphorus.Common.Application;
+using Bosphorus.Dao.Demo.Common;
 
 namespace Bosphorus.Dao.Lucene.Demo
 {
@@ -9,7 +8,7 @@ namespace Bosphorus.Dao.Lucene.Demo
     {
         static void Main(string[] args)
         {
-            DaoRunner.Run(Environment.Local, Perspective.Debug);
+            DemoRunner.Run(Environment.Local, Perspective.Debug, typeof(IDemoInstaller));
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using Bosphorus.Dao.Demo.Common.Business;
+﻿using System;
+using System.Collections.Generic;
+using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.NHibernate.Configuration.Fluent.AutoPersistenceModelProvider;
-using Castle.Core.Internal;
 using FluentNHibernate.Automapping;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Business.Configuration
 {
     public class AutoPersistenceModelProvider: AbstractAutoPersistenceModelProvider
     {
-        protected override AutoPersistenceModel GetAutoPersistenceModel(IAssemblyProvider assemblyProvider)
+        protected override AutoPersistenceModel GetAutoPersistenceModel(IEnumerable<Type> allLoadedTypes, string sessionAlias)
         {
             return
                 AutoMap

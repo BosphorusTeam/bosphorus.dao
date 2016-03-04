@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using Bosphorus.Container.Castle.Facade;
 using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
-using Bosphorus.Dao.Core.Session.Repository;
 using Castle.Core;
 using Castle.Windsor;
 
@@ -19,13 +16,13 @@ namespace Bosphorus.Dao.Core.Dao
         private readonly static ISessionProvider sessionProvider;
         private readonly static SessionDaoRegistry sessionDaoRegistry;
         private readonly static IDictionary emptyDictionary;
-        private readonly static WindsorContainer windsorContainer;
+        private readonly static IWindsorContainer windsorContainer;
 
         static GenericDaoExtensions()
         {
-            sessionProvider = IoC.staticContainer.Resolve<ISessionProvider>();
-            sessionDaoRegistry = IoC.staticContainer.Resolve<SessionDaoRegistry>();
-            windsorContainer = IoC.staticContainer;
+            sessionProvider = ContainerHolder.Current.Resolve<ISessionProvider>();
+            sessionDaoRegistry = ContainerHolder.Current.Resolve<SessionDaoRegistry>();
+            windsorContainer = ContainerHolder.Current;
             emptyDictionary = new Hashtable();
         }
 

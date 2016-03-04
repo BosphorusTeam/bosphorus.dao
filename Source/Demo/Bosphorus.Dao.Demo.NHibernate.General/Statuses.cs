@@ -1,4 +1,4 @@
-﻿using Bosphorus.Common.Clr.Enum;
+﻿using Bosphorus.Common.Api.Enum.Registration;
 using Bosphorus.Dao.Demo.Common.Business;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General

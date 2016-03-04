@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension.Temp;
-using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
@@ -15,12 +18,13 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         private readonly IEnumerable<int> selectedAccountGuids;
         private readonly IQueryable<Account> cachedAccounts;
 
-        public Hybrid(IWindsorContainer container, IDao<Customer> customerDao, IDao<Account> accountDao)
+        public Hybrid(IWindsorContainer container, IDao<Customer> customerDao, IDao<Account> accountDao, ISessionProvider sessionProvider)
             : base(container)
         {
             this.customerDao = customerDao;
             this.accountDao = accountDao;
-            cachedAccounts = accountDao.Query().ToList().AsQueryable();
+            ISession applicationSession = sessionProvider.Current(sessionScope: SessionScope.Application);
+            cachedAccounts = accountDao.Query(applicationSession).ToList().AsQueryable();
             selectedAccountGuids = cachedAccounts.Select(x => x.Customer.Id);
         }
 

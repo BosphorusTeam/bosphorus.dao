@@ -1,13 +1,14 @@
 ﻿using System.Linq;
+using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.CastAs;
-using Bosphorus.Dao.NHibernate.Extension.LinQ.Coalesce;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Decode;
-using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
 using Bosphorus.Dao.NHibernate.Extension.LinQ.Soundex;
-using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
+using FluentNHibernate.Conventions;
+using FluentNHibernate.Utils;
+using NHibernate.Criterion;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
 {
@@ -52,20 +53,19 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
 
         public IQueryable<Account> In_List()
         {
-
             IQueryable<Account> result = from model in accountDao.Query() where model.Name.In(inList) select model;
             return result;
         }
 
         public IQueryable<Account> NotIn_Values()
         {
-            IQueryable<Account> result = from model in accountDao.Query() where model.Name.NotIn("Onur", "Oğuz") select model;
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.IsNotAny("Onur", "Oğuz") select model;
             return result;
         }
 
         public IQueryable<Account> NotIn_List()
         {
-            IQueryable<Account> result = from model in accountDao.Query() where model.Name.NotIn(inList) select model;
+            IQueryable<Account> result = from model in accountDao.Query() where model.Name.IsNotAny(inList) select model;
             return result;
         }
 

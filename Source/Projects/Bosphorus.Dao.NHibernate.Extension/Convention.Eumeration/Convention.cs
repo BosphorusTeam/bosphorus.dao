@@ -1,5 +1,5 @@
 ﻿using System;
-using Bosphorus.Common.Clr.Enum;
+using Bosphorus.Common.Api.Enum;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bosphorus.Common.Core.Application;
-using Bosphorus.Demo.Runner;
+﻿using Bosphorus.Assemble.BootStrapper.Runner.Demo;
+using Bosphorus.Common.Application;
+using Bosphorus.Dao.Demo.Common;
 
 namespace Bosphorus.Dao.Demo.Mix
 {
@@ -11,7 +8,7 @@ namespace Bosphorus.Dao.Demo.Mix
     {
         static void Main(string[] args)
         {
-            DemoRunner.Run(Environment.Local, Perspective.Debug);
+            DemoRunner.Run(Environment.Local, Perspective.Debug, typeof(IDemoInstaller));
         }
     }
 }

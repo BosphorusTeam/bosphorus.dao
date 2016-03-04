@@ -1,10 +1,10 @@
-﻿using Castle.Core.Internal;
+﻿using Bosphorus.Common.Api.Symbol;
 using FluentNHibernate.Automapping;
 
 namespace Bosphorus.Dao.NHibernate.Configuration.Fluent.AutoPersistenceModelProvider
 {
     public interface IAutoPersistenceModelProvider
     {
-        AutoPersistenceModel GetAutoPersistenceModel(IAssemblyProvider assemblyProvider, string sessionAlias);
+        AutoPersistenceModel GetAutoPersistenceModel(ITypeProvider typeProvider, string sessionAlias);
     }
 }

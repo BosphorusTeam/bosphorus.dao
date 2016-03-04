@@ -1,6 +1,5 @@
 ﻿using System.Linq;
-using Bosphorus.Dao.Client.Model;
-using Bosphorus.Dao.Client.ResultTransformer;
+using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Castle.Windsor;

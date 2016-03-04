@@ -9,8 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bosphorus.Dao.Demo.NHibernate.DTC</RootNamespace>
     <AssemblyName>Bosphorus.Dao.Demo.NHibernate.DTC</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bosphorus.Assemble.BootStrapper, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bosphorus.Assemble.BootStrapper.2.0.9.0\lib\net461\Bosphorus.Assemble.BootStrapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bosphorus.Common.Api, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bosphorus.Common.Api.2.0.13.0\lib\net461\Bosphorus.Common.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bosphorus.Common.Application, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bosphorus.Common.Application.2.0.13.0\lib\net461\Bosphorus.Common.Application.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\bosphorus\Source\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +69,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.98.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.98.1\lib\net46\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,30 +98,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\bosphorus.bootstrapper\Source\Projects\Bosphorus.BootStapper\Bosphorus.BootStapper.csproj">
-      <Project>{E964E4A5-A437-41AE-90DB-D2929617D55B}</Project>
-      <Name>Bosphorus.BootStapper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Clr\Bosphorus.Common.Clr.csproj">
-      <Project>{C4455788-2C4A-447F-AD77-1AB63D8B56C1}</Project>
-      <Name>Bosphorus.Common.Clr</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\bosphorus.common\Source\Projects\Bosphorus.Common.Core\Bosphorus.Common.Core.csproj">
-      <Project>{6683BC19-B6C9-4686-B8FF-EE4A8596C724}</Project>
-      <Name>Bosphorus.Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Core\Bosphorus.Configuration.Core.csproj">
-      <Project>{FC5A7B05-6722-4959-988F-6ECB569EB356}</Project>
-      <Name>Bosphorus.Configuration.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\bosphorus.configuration\Source\Projects\Bosphorus.Configuration.Default\Bosphorus.Configuration.Default.csproj">
-      <Project>{38BF9F92-847F-4703-A86B-22C7F2AC9B52}</Project>
-      <Name>Bosphorus.Configuration.Default</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\bosphorus.container\Source\Projects\Bosphorus.Container.Castle\Bosphorus.Container.Castle.csproj">
-      <Project>{9B8DBFE7-A90C-40D6-B9C1-B6A9528F8317}</Project>
-      <Name>Bosphorus.Container.Castle</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj">
       <Project>{e4a03b9a-de39-4e22-84cb-5a9ea29c59d8}</Project>
       <Name>Bosphorus.Dao.NHibernate.Extension</Name>
@@ -125,6 +120,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\System.Data.SQLite.Core.1.0.98.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\packages\System.Data.SQLite.Core.1.0.98.1\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\System.Data.SQLite.Core.1.0.98.1\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\System.Data.SQLite.Core.1.0.98.1\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

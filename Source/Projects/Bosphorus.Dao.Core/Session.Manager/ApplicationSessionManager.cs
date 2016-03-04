@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bosphorus.Common.Core.Context;
-using Bosphorus.Common.Core.Context.Application;
+using Bosphorus.Common.Api.Context;
+using Bosphorus.Common.Api.Context.Listener;
+using Bosphorus.Common.Application.Scope.Application;
 using Bosphorus.Dao.Core.Session.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Core.Session.Repository;

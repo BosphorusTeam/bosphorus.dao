@@ -13,7 +13,7 @@ namespace Bosphorus.Dao.NHibernate.Extension.LinQ.CastAs
     {
         public HqlGenerator()
         {
-            this.SupportedMethods = new[] { ReflectionHelper.GetMethodDefinition(() => ObjectExtensions.CastAs<Object>(null)) };
+            this.SupportedMethods = new[] { ReflectionHelper.GetMethodDefinition(() => ObjectExtensions.CastAs<object>(null)) };
         }
 
         public override HqlTreeNode BuildHql(MethodInfo method, Expression targetObject, ReadOnlyCollection<Expression> arguments, HqlTreeBuilder treeBuilder, IHqlExpressionVisitor visitor)

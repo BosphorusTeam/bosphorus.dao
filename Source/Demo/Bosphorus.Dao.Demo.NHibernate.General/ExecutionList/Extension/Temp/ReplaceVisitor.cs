@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Bosphorus.Common.Clr.Symbol;
+using Bosphorus.Common.Api.Symbol;
 using Bosphorus.Dao.Demo.Common.Business;
 
 namespace ConsoleApplication1.LinQOpt

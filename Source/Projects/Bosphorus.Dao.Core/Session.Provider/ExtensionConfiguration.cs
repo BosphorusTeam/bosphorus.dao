@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bosphorus.Common.Core.Application;
-using Bosphorus.Configuration.Core.Configuration;
-using Bosphorus.Configuration.Core.Parameter;
+using Bosphorus.Common.Application;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session.Dao;
 using Bosphorus.Dao.Core.Session.Repository;
@@ -11,7 +9,7 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.Core.Session.Provider
 {
-    public class ExtensionConfiguration: AbstractConfiguration
+    public class ExtensionConfiguration
     {
         private readonly Host host;
         private static readonly IDictionary<Host, SessionScope> hostDefaultSessionScopes;
@@ -26,8 +24,11 @@ namespace Bosphorus.Dao.Core.Session.Provider
             hostDefaultSessionScopes.Add(Host.WCF, SessionScope.Call);
         }
 
-        public ExtensionConfiguration(IWindsorContainer container, IParameterProvider parameterProvider, SessionDaoRegistry sessionDaoRegistry, Host host)
-            : base(typeof(Extension).FullName, parameterProvider)
+        public Type DefaultSessionType { get; }
+
+        public SessionScope DefaultSessionScope => hostDefaultSessionScopes[host];
+
+        public ExtensionConfiguration(IWindsorContainer container, SessionDaoRegistry sessionDaoRegistry, Host host)
         {
             this.host = host;
             this.DefaultSessionType = GetDefaultSessionType(container, sessionDaoRegistry);
@@ -47,8 +48,5 @@ namespace Bosphorus.Dao.Core.Session.Provider
             return sessionType;
         }
 
-        public Type DefaultSessionType { get; }
-
-        public SessionScope DefaultSessionScope => hostDefaultSessionScopes[host];
     }
 }

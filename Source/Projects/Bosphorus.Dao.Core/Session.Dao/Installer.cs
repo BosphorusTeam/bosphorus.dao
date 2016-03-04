@@ -1,21 +1,27 @@
-﻿using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Container.Castle.Registration.Installer;
-using Castle.Facilities.Startable;
+﻿using Bosphorus.Common.Api.Container;
+using Bosphorus.Common.Api.Symbol;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Core.Session.Dao
 {
-    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
+    public class Installer: IBosphorusInstaller
     {
-        protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
+        private readonly ITypeProvider typeProvider;
+
+        public Installer(ITypeProvider typeProvider)
+        {
+            this.typeProvider = typeProvider;
+        }
+
+        public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 Component
                     .For<SessionDaoRegistry>(),
 
-                allLoadedTypes
+                Classes.From(typeProvider.LoadedTypes)
                     .BasedOn<ISessionDaoRegisterer>()
                     .WithService
                     .AllInterfaces()

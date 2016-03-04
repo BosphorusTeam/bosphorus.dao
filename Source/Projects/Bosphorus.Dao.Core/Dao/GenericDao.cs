@@ -79,7 +79,14 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entities) 
+        public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IEnumerable<TModel> entities)
+        {
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
+            IEnumerable<TModel> result = genericDao.Insert(currentSession, entities);
+            return result;
+        }
+
+        public IEnumerable<TModel> Insert<TModel>(ISession currentSession, IList<TModel> entities)
         {
             IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IEnumerable<TModel> result = genericDao.Insert(currentSession, entities);
@@ -93,7 +100,14 @@ namespace Bosphorus.Dao.Core.Dao
             return result;
         }
 
-        public IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entities) 
+        public IEnumerable<TModel> Update<TModel>(ISession currentSession, IEnumerable<TModel> entities)
+        {
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
+            IEnumerable<TModel> result = genericDao.Update(currentSession, entities);
+            return result;
+        }
+
+        public IEnumerable<TModel> Update<TModel>(ISession currentSession, IList<TModel> entities)
         {
             IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             IEnumerable<TModel> result = genericDao.Update(currentSession, entities);
@@ -107,7 +121,13 @@ namespace Bosphorus.Dao.Core.Dao
 
         }
 
-        public void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entities) 
+        public void Delete<TModel>(ISession currentSession, IEnumerable<TModel> entities)
+        {
+            IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
+            genericDao.Delete(currentSession, entities);
+        }
+
+        public void Delete<TModel>(ISession currentSession, IList<TModel> entities)
         {
             IDao<TModel> genericDao = container.Resolve<IDao<TModel>>();
             genericDao.Delete(currentSession, entities);

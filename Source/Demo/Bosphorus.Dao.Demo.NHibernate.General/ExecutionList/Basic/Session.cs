@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
-using Bosphorus.Dao.Core.Session.Repository;
-using Bosphorus.Dao.Core.Transaction;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
-using Bosphorus.Dao.NHibernate.Stateless.Session;
-using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic

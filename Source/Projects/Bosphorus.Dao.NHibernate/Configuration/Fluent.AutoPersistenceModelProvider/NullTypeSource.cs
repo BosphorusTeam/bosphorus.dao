@@ -24,7 +24,7 @@ namespace Bosphorus.Dao.NHibernate.Configuration.Fluent.AutoPersistenceModelProv
         public void LogSource(IDiagnosticLogger logger)
         {
             if (logger == null)
-                throw new ArgumentNullException("logger");
+                throw new ArgumentNullException(nameof(logger));
 
             logger.LoadedFluentMappingsFromSource(this);
         }

@@ -1,6 +1,4 @@
-﻿using Bosphorus.Container.Castle.Registration;
-using Bosphorus.Container.Castle.Registration.Fluent;
-using Bosphorus.Container.Castle.Registration.Installer;
+﻿using Bosphorus.Common.Api.Container;
 using Bosphorus.Dao.NHibernate.Common.Session.Factory;
 using Bosphorus.Dao.NHibernate.Stateful.Dao;
 using Bosphorus.Dao.NHibernate.Stateless.Dao;
@@ -10,31 +8,30 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.NHibernate
 {
-    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
+    public class Installer: IBosphorusInstaller
     {
-        protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
+        public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 Component
-                    .For(typeof(INHibernateStatefulDao<>))
-                    .ImplementedBy(typeof(NHibernateStatefulDao<>))
-                    .NamedUnique(),
+                    .For(typeof (INHibernateStatefulDao<>))
+                    .ImplementedBy(typeof (NHibernateStatefulDao<>))
+                    .NamedFull(),
 
                 Component
-                    .For(typeof(INHibernateStatelessDao<>))
-                    .ImplementedBy(typeof(NHibernateStatelessDao<>))
-                    .NamedUnique(),
+                    .For(typeof (INHibernateStatelessDao<>))
+                    .ImplementedBy(typeof (NHibernateStatelessDao<>))
+                    .NamedFull(),
 
                 Component
                     .For<INHibernateSessionFactoryBuilder>()
-                    .ImplementedBy<DefaultNHibernateSessionFactoryBuilder>()
-                /*
-                Decorator
-                    .Of<INHibernateSessionFactoryBuilder>()
-                    .Is<CacheDecorator>()
-                */
+                    .ImplementedBy<DefaultNHibernateSessionFactoryBuilder>(),
+
+                Component
+                    .For<INHibernateSessionFactoryBuilder>()
+                    .ImplementedBy<CacheDecorator>()
+                    .IsDefault()
             );
         }
-
     }
 }

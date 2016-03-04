@@ -1,6 +1,7 @@
-﻿using Bosphorus.Dao.Demo.Common.Log;
+﻿using System;
+using System.Collections.Generic;
+using Bosphorus.Dao.Demo.Common.Log;
 using Bosphorus.Dao.NHibernate.Configuration.Fluent.AutoPersistenceModelProvider;
-using Castle.Core.Internal;
 using FluentNHibernate.Automapping;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Log.Configuration
@@ -12,7 +13,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Log.Configuration
         {
         }
 
-        protected override AutoPersistenceModel GetAutoPersistenceModel(IAssemblyProvider assemblyProvider)
+        protected override AutoPersistenceModel GetAutoPersistenceModel(IEnumerable<Type> allLoadedTypes, string sessionAlias)
         {
             return AutoMap
                 .AssemblyOf<LogModel>()

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.NHibernate.Common.Common;
-using Bosphorus.Dao.NHibernate.Extension.LinQ.In;
-using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
+using FluentNHibernate.Utils;
+using NHibernate.Criterion;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
 {
@@ -44,7 +45,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Extension
         public IQueryable<Customer> WhereIn_FromDatabase()
         {
             List<CustomerType> customerTypes = customerTypeDao.Query().ToList();
-            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType.In(customerTypes));
+            IQueryable<Customer> result = customerDao.Query().Where(customer => customer.CustomerType.IsIn(customerTypes));
             return result;
         }
 

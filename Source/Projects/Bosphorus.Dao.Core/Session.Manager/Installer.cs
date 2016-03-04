@@ -1,4 +1,4 @@
-﻿using Bosphorus.Container.Castle.Registration.Installer;
+﻿using Bosphorus.Common.Api.Container;
 using Castle.Facilities.Startable;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -6,9 +6,9 @@ using Castle.Windsor;
 
 namespace Bosphorus.Dao.Core.Session.Manager
 {
-    public class Installer: AbstractWindsorInstaller, IInfrastructureInstaller
+    public class Installer: IBosphorusInstaller
     {
-        protected override void Install(IWindsorContainer container, IConfigurationStore store, FromTypesDescriptor allLoadedTypes)
+        public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 Component

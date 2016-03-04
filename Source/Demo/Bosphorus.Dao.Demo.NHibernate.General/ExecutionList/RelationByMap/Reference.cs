@@ -1,6 +1,6 @@
-﻿using Bosphorus.Dao.Demo.Common.Business;
+﻿using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
+using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.NHibernate.Extension.Utiliy.Relation;
-using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.RelationByMap

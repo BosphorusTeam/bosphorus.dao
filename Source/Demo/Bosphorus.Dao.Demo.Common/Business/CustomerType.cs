@@ -1,4 +1,4 @@
-﻿using Bosphorus.Common.Clr.Enum;
+﻿using Bosphorus.Common.Api.Enum;
 
 namespace Bosphorus.Dao.Demo.Common.Business
 {

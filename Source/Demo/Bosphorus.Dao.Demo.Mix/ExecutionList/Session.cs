@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
-using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
-using Bosphorus.Demo.Runner.Executable;
 using Castle.Windsor;
 
 namespace Bosphorus.Dao.Demo.Mix.ExecutionList
@@ -15,7 +14,7 @@ namespace Bosphorus.Dao.Demo.Mix.ExecutionList
         private readonly IDao<LogModel> logDao;
         private readonly IDao<Customer> customerDao;
 
-        public Session(IWindsorContainer container, IDao<Bank> bankDao, IDao<LogModel> logDao, IDao<Customer> customerDao, ISessionProvider sessionProvider) 
+        public Session(IWindsorContainer container, IDao<Bank> bankDao, IDao<LogModel> logDao, IDao<Customer> customerDao) 
             : base(container)
         {
             this.bankDao = bankDao;
