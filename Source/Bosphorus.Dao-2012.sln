@@ -16,10 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.NHibernate.Extension", "Projects\Bosphorus.Dao.NHibernate.Extension\Bosphorus.Dao.NHibernate.Extension.csproj", "{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Lucene", "Projects\Bosphorus.Dao.Lucene\Bosphorus.Dao.Lucene.csproj", "{6B1F7B25-148D-45D5-B717-0B8549D02211}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Lucene.Demo", "Demo\Bosphorus.Dao.Lucene.Demo\Bosphorus.Dao.Lucene.Demo.csproj", "{97EC6850-D454-400F-BD9F-DBA2211C1B9B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.NHibernate.Common", "Demo\Bosphorus.Dao.Demo.NHibernate.Common\Bosphorus.Dao.Demo.NHibernate.Common.csproj", "{BADFF52B-E54F-4492-A51D-ECE9F576AB28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.Common", "Demo\Bosphorus.Dao.Demo.Common\Bosphorus.Dao.Demo.Common.csproj", "{778A7196-5A9F-47B1-907B-1EF673D7BD56}"
@@ -27,8 +23,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.NHibernate.General", "Demo\Bosphorus.Dao.Demo.NHibernate.General\Bosphorus.Dao.Demo.NHibernate.General.csproj", "{23845F08-9310-4059-8F8A-1F133C0C9003}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.NHibernate.DTC", "Demo\Bosphorus.Dao.Demo.NHibernate.DTC\Bosphorus.Dao.Demo.NHibernate.DTC.csproj", "{E36CEF87-0A91-49B1-84A8-9CF064423862}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bosphorus.Dao.Demo.Mix", "Demo\Bosphorus.Dao.Demo.Mix\Bosphorus.Dao.Demo.Mix.csproj", "{C1418DA3-39C5-4E42-AF1A-2EDC14AA112F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,14 +42,6 @@ Global
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B1F7B25-148D-45D5-B717-0B8549D02211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B1F7B25-148D-45D5-B717-0B8549D02211}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B1F7B25-148D-45D5-B717-0B8549D02211}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B1F7B25-148D-45D5-B717-0B8549D02211}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97EC6850-D454-400F-BD9F-DBA2211C1B9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BADFF52B-E54F-4492-A51D-ECE9F576AB28}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,10 +58,6 @@ Global
 		{E36CEF87-0A91-49B1-84A8-9CF064423862}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E36CEF87-0A91-49B1-84A8-9CF064423862}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E36CEF87-0A91-49B1-84A8-9CF064423862}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1418DA3-39C5-4E42-AF1A-2EDC14AA112F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1418DA3-39C5-4E42-AF1A-2EDC14AA112F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1418DA3-39C5-4E42-AF1A-2EDC14AA112F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1418DA3-39C5-4E42-AF1A-2EDC14AA112F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,13 +66,10 @@ Global
 		{5C3B656E-528C-4988-A31F-EA0AABC82CFB} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
 		{30FB7F75-FF3E-49DF-AFBD-F9037E7C5A80} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
 		{E4A03B9A-DE39-4E22-84CB-5A9EA29C59D8} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
-		{6B1F7B25-148D-45D5-B717-0B8549D02211} = {8678E6FB-78FB-4D18-9321-A46EE3135A80}
-		{97EC6850-D454-400F-BD9F-DBA2211C1B9B} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 		{BADFF52B-E54F-4492-A51D-ECE9F576AB28} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 		{778A7196-5A9F-47B1-907B-1EF673D7BD56} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 		{23845F08-9310-4059-8F8A-1F133C0C9003} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 		{E36CEF87-0A91-49B1-84A8-9CF064423862} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
-		{C1418DA3-39C5-4E42-AF1A-2EDC14AA112F} = {31C4B3E6-B1DE-456C-8B0B-D4310DEA5BF9}
 	EndGlobalSection
 	GlobalSection(TextTemplating) = postSolution
 		TextTemplating = 1
