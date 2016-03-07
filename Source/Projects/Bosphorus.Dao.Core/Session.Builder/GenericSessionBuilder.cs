@@ -1,4 +1,5 @@
-﻿using Castle.Windsor;
+﻿using Castle.DynamicProxy;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Core.Session.Builder
 {
@@ -11,7 +12,8 @@ namespace Bosphorus.Dao.Core.Session.Builder
             this.container = container;
         }
 
-        public TSession Construct<TSession>(string aliasName)
+        public TSession Construct<TSession>(string aliasName) 
+            where TSession : class, ISession
         {
             ISessionBuilder<TSession> sessionBuilder = container.Resolve<ISessionBuilder<TSession>>();
             TSession session = sessionBuilder.Construct(aliasName);
@@ -19,6 +21,7 @@ namespace Bosphorus.Dao.Core.Session.Builder
         }
 
         public void Destruct<TSession>(TSession session)
+            where TSession : class, ISession
         {
             ISessionBuilder<TSession> sessionBuilder = container.Resolve<ISessionBuilder<TSession>>();
             sessionBuilder.Destruct(session);
