@@ -32,11 +32,11 @@ namespace Bosphorus.Dao.Core.Session.Provider
             return result;
         }
 
-        public static TSession Open<TSession>(this ISessionProvider extended, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
+        public static ISession Open<TSession>(this ISessionProvider extended, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
             where TSession : class, ISession
         {
             SessionScope currentSessionScope = GetCurrentSessionScope(sessionScope);
-            TSession result = extended.Open<TSession>(aliasName, currentSessionScope);
+            ISession result = extended.Open<TSession>(aliasName, currentSessionScope);
             return result;
         }
 
@@ -50,11 +50,11 @@ namespace Bosphorus.Dao.Core.Session.Provider
             return result;
         }
 
-        public static TSession Current<TSession>(this ISessionProvider extended, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
+        public static ISession Current<TSession>(this ISessionProvider extended, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
             where TSession : class, ISession
         {
             SessionScope currentSessionScope = GetCurrentSessionScope(sessionScope);
-            TSession result = extended.Current<TSession>(aliasName, currentSessionScope);
+            ISession result = extended.Current<TSession>(aliasName, currentSessionScope);
             return result;
         }
 
@@ -68,11 +68,11 @@ namespace Bosphorus.Dao.Core.Session.Provider
             return result;
         }
 
-        public static TSession Close<TSession>(this ISessionProvider extended, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
+        public static ISession Close<TSession>(this ISessionProvider extended, SessionScope sessionScope = SessionScope.Default, string aliasName = SessionAlias.Default)
             where TSession : class, ISession
         {
             SessionScope currentSessionScope = GetCurrentSessionScope(sessionScope);
-            TSession result = extended.Close<TSession>(aliasName, currentSessionScope);
+            ISession result = extended.Close<TSession>(aliasName, currentSessionScope);
             return result;
         }
 

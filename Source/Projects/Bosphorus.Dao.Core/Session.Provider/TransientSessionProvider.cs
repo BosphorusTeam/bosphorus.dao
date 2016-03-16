@@ -14,7 +14,7 @@ namespace Bosphorus.Dao.Core.Session.Provider
             this.sessionRepository = sessionRepository;
         }
 
-        public TSession Open<TSession>(string aliasName, SessionScope sessionScope)
+        public ISession Open<TSession>(string aliasName, SessionScope sessionScope)
             where TSession : class, ISession
         {
             TSession session = genericSessionBuilder.Construct<TSession>(aliasName);
@@ -22,14 +22,14 @@ namespace Bosphorus.Dao.Core.Session.Provider
             return session;
         }
 
-        public TSession Current<TSession>(string aliasName, SessionScope sessionScope)
+        public ISession Current<TSession>(string aliasName, SessionScope sessionScope)
             where TSession : class, ISession
         {
             TSession session = sessionRepository.Get<TSession>(aliasName, sessionScope);
             return session;
         }
 
-        public TSession Close<TSession>(string aliasName, SessionScope sessionScope)
+        public ISession Close<TSession>(string aliasName, SessionScope sessionScope)
             where TSession : class, ISession
         {
             TSession session = sessionRepository.Remove<TSession>(aliasName, sessionScope);
