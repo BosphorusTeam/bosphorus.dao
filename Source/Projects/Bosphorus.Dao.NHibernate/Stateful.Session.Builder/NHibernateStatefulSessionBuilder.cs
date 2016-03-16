@@ -6,7 +6,7 @@ using ISession = NHibernate.ISession;
 
 namespace Bosphorus.Dao.NHibernate.Stateful.Session.Builder
 {
-    public class NHibernateStatefulSessionBuilder : ISessionBuilder<NHibernateStatefulSession>
+    public class NHibernateStatefulSessionBuilder : AbstractSessionBuilder<NHibernateStatefulSession>
     {
         private readonly INHibernateSessionFactoryBuilder sessionFactoryBuilder;
 
@@ -15,7 +15,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Session.Builder
             this.sessionFactoryBuilder = sessionFactoryBuilder;
         }
 
-        public NHibernateStatefulSession Construct(string aliasName)
+        protected override NHibernateStatefulSession ConstructInternal(string aliasName)
         {
             ISessionFactory sessionFactory = sessionFactoryBuilder.Build(aliasName);
             ISession openSession = sessionFactory.OpenSession();
@@ -23,7 +23,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Session.Builder
             return statefulSession;
         }
 
-        public void Destruct(NHibernateStatefulSession session)
+        protected override void DestructInternal(NHibernateStatefulSession session)
         {
             ISession adapted = session.GetNativeSession<ISession>();
             adapted.Flush();

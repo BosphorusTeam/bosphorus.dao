@@ -12,15 +12,15 @@ namespace Bosphorus.Dao.Core.Session.Builder
             this.container = container;
         }
 
-        public TSession Construct<TSession>(string aliasName) 
+        public ISession Construct<TSession>(string aliasName) 
             where TSession : class, ISession
         {
             ISessionBuilder<TSession> sessionBuilder = container.Resolve<ISessionBuilder<TSession>>();
-            TSession session = sessionBuilder.Construct(aliasName);
+            ISession session = sessionBuilder.Construct(aliasName);
             return session;
         }
 
-        public void Destruct<TSession>(TSession session)
+        public void Destruct<TSession>(ISession session)
             where TSession : class, ISession
         {
             ISessionBuilder<TSession> sessionBuilder = container.Resolve<ISessionBuilder<TSession>>();

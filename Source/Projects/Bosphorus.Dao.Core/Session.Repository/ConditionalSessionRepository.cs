@@ -14,24 +14,24 @@ namespace Bosphorus.Dao.Core.Session.Repository
             repositoryDictionary.Add(SessionScope.Thread, new ThreadSessionRepository());
         }
 
-        public void Put<TSession>(string aliasName, SessionScope sessionScope, TSession session)
+        public void Put<TSession>(string aliasName, SessionScope sessionScope, ISession session)
             where TSession : ISession
         {
             ISessionRepository sessionRepository = GetSessionRepository(sessionScope);
-            sessionRepository.Put(aliasName, sessionScope, session);
+            sessionRepository.Put<TSession>(aliasName, sessionScope, session);
         }
 
-        public TSession Get<TSession>(string aliasName, SessionScope sessionScope) where TSession : ISession
+        public ISession Get<TSession>(string aliasName, SessionScope sessionScope) where TSession : ISession
         {
             ISessionRepository sessionRepository = GetSessionRepository(sessionScope);
-            TSession session = sessionRepository.Get<TSession>(aliasName, sessionScope);
+            ISession session = sessionRepository.Get<TSession>(aliasName, sessionScope);
             return session;
         }
 
-        public TSession Remove<TSession>(string aliasName, SessionScope sessionScope) where TSession : ISession
+        public ISession Remove<TSession>(string aliasName, SessionScope sessionScope) where TSession : ISession
         {
             ISessionRepository sessionRepository = GetSessionRepository(sessionScope);
-            TSession session = sessionRepository.Remove<TSession>(aliasName, sessionScope);
+            ISession session = sessionRepository.Remove<TSession>(aliasName, sessionScope);
             return session;
         }
 

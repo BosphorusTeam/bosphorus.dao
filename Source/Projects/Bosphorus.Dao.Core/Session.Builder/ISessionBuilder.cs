@@ -3,8 +3,8 @@
     public interface ISessionBuilder<TSession>
         where TSession: class, ISession
     {
-        TSession Construct(string aliasName);
+        ISession Construct(string aliasName);
 
-        void Destruct(TSession session);
+        void Destruct(ISession session);
     }
 }

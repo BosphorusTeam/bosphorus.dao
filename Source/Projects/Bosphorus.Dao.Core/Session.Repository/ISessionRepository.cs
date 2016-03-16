@@ -4,13 +4,13 @@ namespace Bosphorus.Dao.Core.Session.Repository
 {
     public interface ISessionRepository
     {
-        void Put<TSession>(String aliasName, SessionScope sessionScope, TSession session)
+        void Put<TSession>(string aliasName, SessionScope sessionScope, ISession session)
             where TSession : ISession;
 
-        TSession Get<TSession>(String aliasName, SessionScope sessionScope)
+        ISession Get<TSession>(string aliasName, SessionScope sessionScope)
             where TSession : ISession;
 
-        TSession Remove<TSession>(String aliasName, SessionScope sessionScope)
+        ISession Remove<TSession>(string aliasName, SessionScope sessionScope)
             where TSession : ISession;
     }
 }
