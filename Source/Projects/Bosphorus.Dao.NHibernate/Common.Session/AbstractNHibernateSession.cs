@@ -8,32 +8,28 @@ namespace Bosphorus.Dao.NHibernate.Common.Session
     public abstract class AbstractNHibernateSession<TNativeSession>: ISession
     {
         protected TNativeSession adapted;
-        protected static readonly IDictionary<IsolationLevel, System.Data.IsolationLevel> isolationLevelDictionary;
+        protected static readonly IDictionary<IsolationLevel, System.Data.IsolationLevel> IsolationLevelDictionary;
 
         static AbstractNHibernateSession()
         {
-            isolationLevelDictionary = new Dictionary<IsolationLevel, System.Data.IsolationLevel>();
-            isolationLevelDictionary.Add(IsolationLevel.Chaos, System.Data.IsolationLevel.Chaos);
-            isolationLevelDictionary.Add(IsolationLevel.ReadCommitted, System.Data.IsolationLevel.ReadCommitted);
-            isolationLevelDictionary.Add(IsolationLevel.ReadUncommitted, System.Data.IsolationLevel.ReadUncommitted);
-            isolationLevelDictionary.Add(IsolationLevel.RepeatableRead, System.Data.IsolationLevel.RepeatableRead);
-            isolationLevelDictionary.Add(IsolationLevel.Serializable, System.Data.IsolationLevel.Serializable);
-            isolationLevelDictionary.Add(IsolationLevel.Snapshot, System.Data.IsolationLevel.Snapshot);
-            isolationLevelDictionary.Add(IsolationLevel.Unspecified, System.Data.IsolationLevel.Unspecified);
+            IsolationLevelDictionary = new Dictionary<IsolationLevel, System.Data.IsolationLevel>();
+            IsolationLevelDictionary.Add(IsolationLevel.Chaos, System.Data.IsolationLevel.Chaos);
+            IsolationLevelDictionary.Add(IsolationLevel.ReadCommitted, System.Data.IsolationLevel.ReadCommitted);
+            IsolationLevelDictionary.Add(IsolationLevel.ReadUncommitted, System.Data.IsolationLevel.ReadUncommitted);
+            IsolationLevelDictionary.Add(IsolationLevel.RepeatableRead, System.Data.IsolationLevel.RepeatableRead);
+            IsolationLevelDictionary.Add(IsolationLevel.Serializable, System.Data.IsolationLevel.Serializable);
+            IsolationLevelDictionary.Add(IsolationLevel.Snapshot, System.Data.IsolationLevel.Snapshot);
+            IsolationLevelDictionary.Add(IsolationLevel.Unspecified, System.Data.IsolationLevel.Unspecified);
         }
+
+        public object NativeSession => adapted;
 
         protected AbstractNHibernateSession(TNativeSession adapted)
         {
             this.adapted = adapted;
         }
-
-        public TNativeSession InnerSession
-        {
-            get { return adapted; }
-        }
-
+        
         public abstract ITransaction NewTransaction(IsolationLevel isolationLevel);
-
         public void Dispose()
         {
             DisposeManagedObjects();

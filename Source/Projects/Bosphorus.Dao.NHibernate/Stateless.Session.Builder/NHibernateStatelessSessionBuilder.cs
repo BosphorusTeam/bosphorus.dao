@@ -1,4 +1,5 @@
-﻿using Bosphorus.Dao.Core.Session.Builder;
+﻿using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Builder;
 using Bosphorus.Dao.NHibernate.Common.Session.Factory;
 using NHibernate;
 
@@ -23,7 +24,7 @@ namespace Bosphorus.Dao.NHibernate.Stateless.Session.Builder
 
         public void Destruct(NHibernateStatelessSession session)
         {
-            IStatelessSession adapted = session.InnerSession;
+            IStatelessSession adapted = session.GetNativeSession<IStatelessSession>();
             adapted.Close();
         }
     }

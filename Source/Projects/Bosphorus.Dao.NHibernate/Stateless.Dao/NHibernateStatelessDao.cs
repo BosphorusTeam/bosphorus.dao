@@ -22,6 +22,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Common.Dao;
 using Bosphorus.Dao.NHibernate.Stateless.Session;
 using NHibernate;
@@ -34,9 +35,9 @@ namespace Bosphorus.Dao.NHibernate.Stateless.Dao
     public class NHibernateStatelessDao<TModel> : AbstractNHibernateDao<TModel>, INHibernateStatelessDao<TModel>
         where TModel : class
     {
-        private global::NHibernate.IStatelessSession GetNativeSession(ISession currentSession)
+        private IStatelessSession GetNativeSession(ISession currentSession)
         {
-            return ((NHibernateStatelessSession)currentSession).InnerSession;
+            return currentSession.GetNativeSession<IStatelessSession>();
         }
 
         public override IQueryable<TModel> GetAll(ISession currentSession)
@@ -47,14 +48,14 @@ namespace Bosphorus.Dao.NHibernate.Stateless.Dao
 
         public override IQueryable<TModel> Query(ISession currentSession)
         {
-            global::NHibernate.IStatelessSession nativeSession = GetNativeSession(currentSession);
+            IStatelessSession nativeSession = GetNativeSession(currentSession);
             IQueryable<TModel> queryable = nativeSession.Query<TModel>();
             return queryable;
         }
 
         public override IQueryable<TModel> GetById<TId>(ISession currentSession, TId id)
         {
-            global::NHibernate.IStatelessSession nativeSession = GetNativeSession(currentSession);
+            var nativeSession = GetNativeSession(currentSession);
             //IClassMetadata classMetadata = nativeSession.SessionFactory.GetClassMetadata(ServiceType);
             IClassMetadata classMetadata = null;
             Expression<Func<TModel, bool>> expression = BuildGetByIdExpression(classMetadata, id);

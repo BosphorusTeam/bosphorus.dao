@@ -22,6 +22,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.NHibernate.Common.Dao;
 using Bosphorus.Dao.NHibernate.Stateful.Session;
 using NHibernate;
@@ -36,12 +37,11 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
     {
         private global::NHibernate.ISession GetNativeSession(ISession currentSession)
         {
-            NHibernateStatefulSession nHibernateStatefulSession = currentSession as NHibernateStatefulSession;
-            global::NHibernate.ISession nativeSession = nHibernateStatefulSession.InnerSession;
+            var nativeSession  = currentSession.GetNativeSession<global::NHibernate.ISession>();
             IClassMetadata classMetadata = nativeSession.SessionFactory.GetClassMetadata(modelType);
             if (classMetadata == null)
             {
-                throw new MissingModelMappingException<TModel>(nHibernateStatefulSession);
+                throw new MissingModelMappingException<TModel>(currentSession);
             }
 
             return nativeSession;
@@ -49,14 +49,14 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         protected ICriteria GetNativeCriteria(ISession currentSession)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            var nativeSession = GetNativeSession(currentSession);
             ICriteria criteria = nativeSession.CreateCriteria(modelType);
             return criteria;
         }
 
         public override IQueryable<TModel> GetAll(ISession currentSession)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             nativeSession.Clear();
             IQueryable<TModel> queryable = Query(currentSession);
             return queryable;
@@ -64,7 +64,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override IQueryable<TModel> Query(ISession currentSession)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            var nativeSession = GetNativeSession(currentSession);
             IQueryable<TModel> queryable = nativeSession.Query<TModel>();
             return queryable;
         }
@@ -72,7 +72,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override IQueryable<TModel> GetById<TId>(ISession currentSession, TId id)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             nativeSession.Clear();
 
             IClassMetadata classMetadata = nativeSession.SessionFactory.GetClassMetadata(modelType);
@@ -109,7 +109,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override IQueryable<TModel> GetByQuery(ISession currentSession, string queryString, IDictionary parameterDictionary)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            var nativeSession = GetNativeSession(currentSession);
             ISQLQuery query = nativeSession.CreateSQLQuery(queryString);
             query.AddEntity(modelType);
             return GetByQuery<TModel>(query, parameterDictionary);
@@ -117,7 +117,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override IQueryable<TModel> GetByNamedQuery(ISession currentSession, string queryName, IDictionary parameterDictionary)
         {
-            global::NHibernate.ISession nativeSession = GetNativeSession(currentSession);
+            var nativeSession = GetNativeSession(currentSession);
             IQuery query = nativeSession.GetNamedQuery(queryName);
             query.SetResultTransformer(resultTransformer);
             return GetByQuery<TModel>(query, parameterDictionary);
@@ -125,7 +125,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override TModel Insert(ISession currentSession, TModel model)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             nativeSession.SaveOrUpdate(model);
             nativeSession.Flush();
             return model;
@@ -133,7 +133,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override IEnumerable<TModel> Insert(ISession currentSession, IEnumerable<TModel> models)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             foreach (TModel model in models)
             {
                 nativeSession.SaveOrUpdate(model);
@@ -144,7 +144,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override TModel Update(ISession currentSession, TModel model)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             nativeSession.Merge(model);
             nativeSession.Flush();
             return model;
@@ -152,7 +152,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override IEnumerable<TModel> Update(ISession currentSession, IEnumerable<TModel> models)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             foreach (TModel model in models)
             {
                 nativeSession.Merge(model);
@@ -163,14 +163,14 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Dao
 
         public override void Delete(ISession currentSession, TModel model)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             nativeSession.Delete(model);
             nativeSession.Flush();
         }
 
         public override void Delete(ISession currentSession, IEnumerable<TModel> models)
         {
-            global::NHibernate.ISession nativeSession= GetNativeSession(currentSession);
+            var nativeSession= GetNativeSession(currentSession);
             foreach (TModel model in models)
             {
                 nativeSession.Delete(model);

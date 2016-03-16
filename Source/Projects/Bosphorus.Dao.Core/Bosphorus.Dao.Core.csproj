@@ -115,6 +115,7 @@
     <Compile Include="Session.Repository\ApplicationSessionRepository.cs" />
     <Compile Include="Session.Repository\ISessionRepository.cs" />
     <Compile Include="Session.Repository\SessionScope.cs" />
+    <Compile Include="Session\Extensions.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Transaction\ITransaction.cs" />
     <Compile Include="Transaction\IsolationLevel.cs" />

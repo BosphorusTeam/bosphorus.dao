@@ -2,8 +2,10 @@
 using System.Linq;
 using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Dao;
+using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
 using Bosphorus.Dao.NHibernate.Stateful.Session;
+using ISession = NHibernate.ISession;
 
 namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
 {
@@ -19,15 +21,12 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
             return ContainerHolder.Current.Resolve<IDao<TModel>>();
         }
 
-        public AbstractBuilder()
+        protected AbstractBuilder()
         {
             model = new TModel();
         }
 
-        public static TBuilder Empty
-        {
-            get { return new TBuilder(); }
-        }
+        public static TBuilder Empty => new TBuilder();
 
         public static TBuilder FromDatabase()
         {
@@ -43,7 +42,9 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
         public TBuilder Evict()
         {
             ISessionProvider sessionProvider = ContainerHolder.Current.Resolve<ISessionProvider>();
-            sessionProvider.Current<NHibernateStatefulSession>().InnerSession.Evict(model);
+            var session = sessionProvider.Current<NHibernateStatefulSession>();
+            var nativeSession = session.GetNativeSession<global::NHibernate.ISession>();
+            nativeSession.Evict(model);
             return (TBuilder) this;
         }
 

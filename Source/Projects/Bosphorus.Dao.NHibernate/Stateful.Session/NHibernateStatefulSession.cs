@@ -13,7 +13,7 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Session
 
         public override ITransaction NewTransaction(IsolationLevel isolationLevel)
         {
-            System.Data.IsolationLevel adaptedIsolationLevel = isolationLevelDictionary[isolationLevel];
+            System.Data.IsolationLevel adaptedIsolationLevel = IsolationLevelDictionary[isolationLevel];
             global::NHibernate.ITransaction adaptedTransaction = adapted.BeginTransaction(adaptedIsolationLevel);
             NHibernateStatefulTransaction transaction = new NHibernateStatefulTransaction(adaptedTransaction, adapted);
             return transaction;
