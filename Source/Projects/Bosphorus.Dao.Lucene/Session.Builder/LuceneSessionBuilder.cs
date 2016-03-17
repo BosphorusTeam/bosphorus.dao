@@ -1,10 +1,11 @@
-﻿using Bosphorus.Dao.Core.Session.Builder;
+﻿using Bosphorus.Dao.Core.Session;
+using Bosphorus.Dao.Core.Session.Builder;
 using Bosphorus.Dao.Lucene.Session.Provider.Factory;
 using Lucene.Net.Linq;
 
 namespace Bosphorus.Dao.Lucene.Session.Builder
 {
-    public class LuceneSessionBuilder : ISessionBuilder<LuceneSession> 
+    public class LuceneSessionBuilder : AbstractSessionBuilder<LuceneSession> 
     {
         private readonly ILuceneDataProviderFactory luceneDataProviderFactory;
 
@@ -13,16 +14,16 @@ namespace Bosphorus.Dao.Lucene.Session.Builder
             this.luceneDataProviderFactory = luceneDataProviderFactory;
         }
 
-        public LuceneSession Construct(string aliasName)
+        protected override LuceneSession ConstructInternal(string aliasName)
         {
             LuceneDataProvider luceneDataProvider = luceneDataProviderFactory.Build(aliasName);
             LuceneSession session = new LuceneSession(luceneDataProvider);
             return session;
         }
 
-        public void Destruct(LuceneSession session)
+        protected override void DestructInternal(LuceneSession typedSession)
         {
-            LuceneDataProvider innerSession = session.InnerSession;
+            LuceneDataProvider innerSession = typedSession.GetNativeSession<LuceneDataProvider>();
             innerSession.IndexWriter.Optimize();
             //TODO: Neden patlıyor acaba burası.
             //innerSession.Dispose();

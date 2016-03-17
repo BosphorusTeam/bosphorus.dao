@@ -1,4 +1,5 @@
-﻿using Bosphorus.Common.Api.Container;
+﻿using System;
+using Bosphorus.Common.Api.Container;
 using Bosphorus.Common.Api.Symbol;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -21,11 +22,13 @@ namespace Bosphorus.Dao.Core.Session.Builder
                 Component
                     .For<GenericSessionBuilder>(),
 
-                Classes.From(typeProvider.LoadedTypes)
+                Classes
+                    .From(typeProvider.LoadedTypes)
                     .BasedOn(typeof(ISessionBuilder<>))
                     .WithService
                     .AllInterfaces()
             );
         }
+
     }
 }

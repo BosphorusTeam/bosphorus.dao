@@ -24,7 +24,7 @@ namespace Bosphorus.Dao.Core.Session.Repository
             string key = BuildKey<TSession>(aliasName, sessionScope);
             ISession session;
             repository.TryGetValue(key, out session);
-            return (TSession) session;
+            return session;
         }
 
         public ISession Remove<TSession>(string aliasName, SessionScope sessionScope) 

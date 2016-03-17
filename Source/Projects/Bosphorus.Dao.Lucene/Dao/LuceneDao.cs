@@ -23,8 +23,7 @@ namespace Bosphorus.Dao.Lucene.Dao
 
         private LuceneDataProvider GetNativeSession(ISession currentSession)
         {
-            LuceneSession luceneSession = (LuceneSession) currentSession;
-            LuceneDataProvider luceneDataProvider = luceneSession.InnerSession;
+            LuceneDataProvider luceneDataProvider = currentSession.GetNativeSession<LuceneDataProvider>();
             return luceneDataProvider;
         }
 

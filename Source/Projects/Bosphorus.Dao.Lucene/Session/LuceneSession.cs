@@ -14,12 +14,12 @@ namespace Bosphorus.Dao.Lucene.Session
             this.adapted = adapted;
         }
 
+        public object NativeSession => adapted;
+
         public ITransaction NewTransaction(IsolationLevel isolationLevel)
         {
             throw new NotImplementedException();
         }
-
-        public LuceneDataProvider InnerSession => adapted;
 
         public void Dispose()
         {

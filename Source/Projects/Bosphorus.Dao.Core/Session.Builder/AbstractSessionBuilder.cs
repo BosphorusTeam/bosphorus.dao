@@ -13,7 +13,7 @@
 
         public void Destruct(ISession session)
         {
-            TSession typedSession = session as TSession;
+            TSession typedSession = (TSession) session;
             DestructInternal(typedSession);
         }
 
