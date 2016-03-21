@@ -18,15 +18,14 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Session.Builder
         protected override NHibernateStatefulSession ConstructInternal(string aliasName)
         {
             ISessionFactory sessionFactory = sessionFactoryBuilder.Build(aliasName);
-            ISession openSession = sessionFactory.OpenSession();
-            NHibernateStatefulSession statefulSession = new NHibernateStatefulSession(openSession);
-            return statefulSession;
+            ISession adapted = sessionFactory.OpenSession();
+            NHibernateStatefulSession session = new NHibernateStatefulSession(adapted);
+            return session;
         }
 
         protected override void DestructInternal(NHibernateStatefulSession session)
         {
-            ISession adapted = session.GetNativeSession<ISession>();
-            adapted.Flush();
+            var adapted = session.GetNativeSession<ISession>();
             adapted.Close();
             adapted.Dispose();
         }

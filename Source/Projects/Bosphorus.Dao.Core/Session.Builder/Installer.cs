@@ -1,6 +1,6 @@
-﻿using System;
-using Bosphorus.Common.Api.Container;
+﻿using Bosphorus.Common.Api.Container;
 using Bosphorus.Common.Api.Symbol;
+using Bosphorus.Dao.Core.Session.Builder.Decoration.Lazy;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -24,9 +24,10 @@ namespace Bosphorus.Dao.Core.Session.Builder
 
                 Classes
                     .From(typeProvider.LoadedTypes)
-                    .BasedOn(typeof(ISessionBuilder<>))
+                    .BasedOn(typeof (ISessionBuilder<>))
                     .WithService
                     .AllInterfaces()
+                    .Configure(registration => registration.Activator<MyActivator>())
             );
         }
 

@@ -19,12 +19,14 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Session
             return transaction;
         }
 
-        protected override void DisposeManagedObjects()
+        public override void Clear()
+        {
+            adapted.Clear();
+        }
+
+        public override void Flush()
         {
             adapted.Flush();
-            adapted.Close();
-            adapted.Dispose();
-            adapted = null;
         }
     }
 }

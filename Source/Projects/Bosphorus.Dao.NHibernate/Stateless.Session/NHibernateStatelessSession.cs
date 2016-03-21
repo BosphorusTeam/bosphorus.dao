@@ -1,6 +1,7 @@
 using Bosphorus.Dao.Core.Transaction;
 using Bosphorus.Dao.NHibernate.Common.Session;
 using Bosphorus.Dao.NHibernate.Transaction;
+using NHibernate.Impl;
 
 namespace Bosphorus.Dao.NHibernate.Stateless.Session
 {
@@ -18,10 +19,13 @@ namespace Bosphorus.Dao.NHibernate.Stateless.Session
             return new NHibernateStatelessTransaction(adaptedTransaction);
         }
 
-        protected override void DisposeManagedObjects()
+        public override void Clear()
         {
-            adapted.Close();
-            adapted = null;
+        }
+
+        public override void Flush()
+        {
+            ((StatelessSessionImpl)adapted).ManagedFlush();
         }
     }
 }

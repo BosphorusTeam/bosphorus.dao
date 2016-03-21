@@ -24,8 +24,9 @@ namespace Bosphorus.Dao.NHibernate.Stateless.Session.Builder
 
         protected override void DestructInternal(NHibernateStatelessSession session)
         {
-            IStatelessSession adapted = session.GetNativeSession<IStatelessSession>();
+            var adapted = session.GetNativeSession<IStatelessSession>();
             adapted.Close();
+            adapted.Dispose();
         }
     }
 }

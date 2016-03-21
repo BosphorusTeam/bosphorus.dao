@@ -21,24 +21,14 @@ namespace Bosphorus.Dao.Lucene.Session
             throw new NotImplementedException();
         }
 
-        public void Dispose()
+        public void Clear()
         {
-            Dispose(true);
+            adapted.IndexWriter.Rollback();
         }
 
-        private void Dispose(bool isDisposing)
+        public void Flush()
         {
-            if (isDisposing)
-            {
-                adapted.Dispose();
-                //adapted = null;
-                GC.SuppressFinalize(this);
-            }
-        }
-
-        ~LuceneSession()
-        {
-            Dispose(false);
+            adapted.IndexWriter.Commit();
         }
     }
 }

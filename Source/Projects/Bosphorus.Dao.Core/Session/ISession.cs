@@ -3,10 +3,14 @@ using Bosphorus.Dao.Core.Transaction;
 
 namespace Bosphorus.Dao.Core.Session
 {
-    public interface ISession: IDisposable
+    public interface ISession
     {
         object NativeSession { get; }
 
         ITransaction NewTransaction(IsolationLevel isolationLevel);
+
+        void Clear();
+
+        void Flush();
     }
 }

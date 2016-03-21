@@ -23,10 +23,11 @@ namespace Bosphorus.Dao.Lucene.Session.Builder
 
         protected override void DestructInternal(LuceneSession typedSession)
         {
-            LuceneDataProvider innerSession = typedSession.GetNativeSession<LuceneDataProvider>();
-            innerSession.IndexWriter.Optimize();
-            //TODO: Neden patlıyor acaba burası.
-            //innerSession.Dispose();
+            var adapted = typedSession.GetNativeSession<LuceneDataProvider>();
+            adapted.IndexWriter.Optimize();
+            adapted.IndexWriter.Commit();
+            adapted.IndexWriter.Dispose();
+            adapted.Dispose();
         }
     }
 }

@@ -30,12 +30,8 @@ namespace Bosphorus.Dao.NHibernate.Common.Session
         }
         
         public abstract ITransaction NewTransaction(IsolationLevel isolationLevel);
-        public void Dispose()
-        {
-            DisposeManagedObjects();
-            GC.SuppressFinalize(this);
-        }
+        public abstract void Clear();
+        public abstract void Flush();
 
-        protected abstract void DisposeManagedObjects();
     }
 }

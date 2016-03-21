@@ -4,6 +4,7 @@ using Bosphorus.Assemble.BootStrapper.Runner.Demo.ExecutableItem;
 using Bosphorus.Dao.Core.Dao;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Provider;
+using Bosphorus.Dao.Core.Session.Repository;
 using Bosphorus.Dao.Demo.Common.Business;
 using Bosphorus.Dao.Demo.Common.Log;
 using Castle.Windsor;
@@ -43,11 +44,12 @@ namespace Bosphorus.Dao.Demo.NHibernate.General.ExecutionList.Basic
             return result;
         }
 
-        public IQueryable<Bank> SessionProvider_New()
+        public IList<Bank> SessionProvider_New()
         {
-            ISession session = sessionProvider.Open();
-            IQueryable<Bank> result = bankDao.GetAll(session);
-            sessionProvider.Close();
+            ISession session = sessionProvider.Open(sessionScope: SessionScope.Thread);
+            IList<Bank> result = bankDao.GetAll(session).ToList();
+            session.Flush();
+            sessionProvider.Close(sessionScope: SessionScope.Thread);
             return result;
         }
     }
