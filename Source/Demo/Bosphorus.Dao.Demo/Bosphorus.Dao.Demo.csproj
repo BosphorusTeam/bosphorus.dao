@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bosphorus.Assemble.BootStrapper, Version=2.0.1.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bosphorus.Assemble.BootStrapper.2.0.1.9\lib\net461\Bosphorus.Assemble.BootStrapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Bosphorus.Common.Api, Version=2.0.1.13, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Bosphorus.Common.Api.2.0.1.13\lib\net461\Bosphorus.Common.Api.dll</HintPath>
       <Private>True</Private>
