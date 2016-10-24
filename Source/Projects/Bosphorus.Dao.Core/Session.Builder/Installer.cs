@@ -27,7 +27,7 @@ namespace Bosphorus.Dao.Core.Session.Builder
                     .BasedOn(typeof (ISessionBuilder<>))
                     .WithService
                     .AllInterfaces()
-                    .Configure(registration => registration.Activator<MyActivator>())
+                    //.Configure(registration => registration.Activator<MyActivator>())
             );
         }
 

@@ -3,12 +3,12 @@ using NHibernate;
 
 namespace Bosphorus.Dao.NHibernate.Common.Session.Factory
 {
-    internal class CacheDecorator : INHibernateSessionFactoryBuilder
+    public class CacheDecorator : INHibernateSessionFactoryFactory
     {
-        private readonly INHibernateSessionFactoryBuilder decorated;
+        private readonly INHibernateSessionFactoryFactory decorated;
         private readonly ConcurrentDictionary<string, ISessionFactory> aliasSessionFactoryDictionary;
 
-        public CacheDecorator(INHibernateSessionFactoryBuilder decorated)
+        public CacheDecorator(INHibernateSessionFactoryFactory decorated)
         {
             this.decorated = decorated;
             this.aliasSessionFactoryDictionary = new ConcurrentDictionary<string, ISessionFactory>();

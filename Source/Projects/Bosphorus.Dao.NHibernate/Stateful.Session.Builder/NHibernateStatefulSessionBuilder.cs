@@ -8,16 +8,16 @@ namespace Bosphorus.Dao.NHibernate.Stateful.Session.Builder
 {
     public class NHibernateStatefulSessionBuilder : AbstractSessionBuilder<NHibernateStatefulSession>
     {
-        private readonly INHibernateSessionFactoryBuilder sessionFactoryBuilder;
+        private readonly INHibernateSessionFactoryFactory sessionFactoryFactory;
 
-        public NHibernateStatefulSessionBuilder(INHibernateSessionFactoryBuilder sessionFactoryBuilder)
+        public NHibernateStatefulSessionBuilder(INHibernateSessionFactoryFactory sessionFactoryFactory)
         {
-            this.sessionFactoryBuilder = sessionFactoryBuilder;
+            this.sessionFactoryFactory = sessionFactoryFactory;
         }
 
         protected override NHibernateStatefulSession ConstructInternal(string aliasName)
         {
-            ISessionFactory sessionFactory = sessionFactoryBuilder.Build(aliasName);
+            ISessionFactory sessionFactory = sessionFactoryFactory.Build(aliasName);
             ISession adapted = sessionFactory.OpenSession();
             NHibernateStatefulSession session = new NHibernateStatefulSession(adapted);
             return session;

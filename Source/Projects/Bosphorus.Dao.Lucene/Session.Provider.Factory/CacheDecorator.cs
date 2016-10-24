@@ -3,7 +3,7 @@ using Lucene.Net.Linq;
 
 namespace Bosphorus.Dao.Lucene.Session.Provider.Factory
 {
-    internal class CacheDecorator : ILuceneDataProviderFactory
+    public class CacheDecorator : ILuceneDataProviderFactory
     {
         private readonly ILuceneDataProviderFactory decorated;
         private readonly ConcurrentDictionary<string, LuceneDataProvider> cache;

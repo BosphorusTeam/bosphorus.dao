@@ -52,10 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business.Dto\AccountDto.cs" />
-    <Compile Include="Business.Dto\BankDto.cs" />
-    <Compile Include="Business.Dto\CustomerComplexDto.cs" />
-    <Compile Include="Business.Dto\CustomerDto.cs" />
     <Compile Include="Business\Account.cs" />
     <Compile Include="Business\Bank.cs" />
     <Compile Include="Business\CorporateCustomer.cs" />
@@ -63,8 +59,8 @@
     <Compile Include="Business\CustomerType.cs" />
     <Compile Include="Business\IndividualCustomer.cs" />
     <Compile Include="Business\Status.cs" />
-    <Compile Include="IDemoInstaller.cs" />
     <Compile Include="Log\LogModel.cs" />
+    <Compile Include="Log\StatisticModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

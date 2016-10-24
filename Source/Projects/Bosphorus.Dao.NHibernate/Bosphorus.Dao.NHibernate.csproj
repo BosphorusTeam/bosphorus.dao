@@ -94,31 +94,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common.Session.Factory\CacheDecorator.cs" />
-    <Compile Include="Common.Session.Factory\DefaultNHibernateSessionFactoryBuilder.cs" />
-    <Compile Include="Common.Session.Factory\INHibernateSessionFactoryBuilder.cs" />
+    <Compile Include="Common.Session.Factory\INHibernateSessionFactoryFactory.cs" />
     <Compile Include="Stateful.Dao\MissingModelMappingException.cs" />
-    <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\Installer.cs" />
-    <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\NullTypeSource.cs" />
-    <Compile Include="Configuration\Fluent.ConfigurationProcessor\Installer.cs" />
-    <Compile Include="Configuration\Fluent.ConventionApplier\AbstractConventionApplier.cs" />
-    <Compile Include="Configuration\Fluent.ConventionApplier\CompositeConventionApplier.cs" />
-    <Compile Include="Configuration\Fluent.ConventionApplier\IConventionApplier.cs" />
-    <Compile Include="Configuration\Fluent.ConventionApplier\Installer.cs" />
-    <Compile Include="Configuration\Fluent.HbmMappingProvider\AbstractHbmMappingRegisterer.cs" />
-    <Compile Include="Configuration\Fluent.HbmMappingProvider\CompositeHbmMappingRegisterer.cs" />
-    <Compile Include="Configuration\Fluent.HbmMappingProvider\IHbmMappingRegisterer.cs" />
-    <Compile Include="Configuration\Fluent.HbmMappingProvider\Installer.cs" />
-    <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\Installer.cs" />
-    <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\AbstractAutoPersistenceModelProvider.cs" />
-    <Compile Include="Configuration\Fluent.ConfigurationProcessor\AbstractConfigurationProcessor.cs" />
-    <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\ChainedPersistenceConfigurerProvider.cs" />
-    <Compile Include="Configuration\Fluent.ConfigurationProcessor\CompositeConfigurationProcessor.cs" />
-    <Compile Include="Configuration\Fluent.ConfigurationProcessor\IConfigurationProcessor.cs" />
-    <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\PersistenceConfigurerProviderNotFoundException.cs" />
-    <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\TypeSource.cs" />
-    <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\AbstractPersistenceConfigurerProvider.cs" />
-    <Compile Include="Configuration\Fluent.AutoPersistenceModelProvider\IAutoPersistenceModelProvider.cs" />
-    <Compile Include="Configuration\Fluent.PersistenceConfigurerProvider\IPersistenceConfigurerProvider.cs" />
     <Compile Include="Common.Session\AbstractNHibernateSession.cs" />
     <Compile Include="Stateful.Session\NHibernateStatefulSession.cs" />
     <Compile Include="Stateful.Dao\NHibernateStatefulDao.cs" />

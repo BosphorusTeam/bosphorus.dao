@@ -7,16 +7,16 @@ namespace Bosphorus.Dao.NHibernate.Stateless.Session.Builder
 {
     public class NHibernateStatelessSessionBuilder: AbstractSessionBuilder<NHibernateStatelessSession>
     {
-        private readonly INHibernateSessionFactoryBuilder sessionFactoryBuilder;
+        private readonly INHibernateSessionFactoryFactory sessionFactoryFactory;
 
-        public NHibernateStatelessSessionBuilder(INHibernateSessionFactoryBuilder sessionFactoryBuilder)
+        public NHibernateStatelessSessionBuilder(INHibernateSessionFactoryFactory sessionFactoryFactory)
         {
-            this.sessionFactoryBuilder = sessionFactoryBuilder;
+            this.sessionFactoryFactory = sessionFactoryFactory;
         }
 
         protected override NHibernateStatelessSession ConstructInternal(string aliasName)
         {
-            ISessionFactory sessionFactory = sessionFactoryBuilder.Build(aliasName);
+            ISessionFactory sessionFactory = sessionFactoryFactory.Build(aliasName);
             IStatelessSession nativeSession = sessionFactory.OpenStatelessSession();
             NHibernateStatelessSession result = new NHibernateStatelessSession(nativeSession);
             return result;

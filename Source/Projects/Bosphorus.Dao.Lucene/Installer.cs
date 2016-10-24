@@ -29,12 +29,7 @@ namespace Bosphorus.Dao.Lucene
                 Classes.From(typeProvider.LoadedTypes)
                     .BasedOn(typeof (ILuceneMap<>))
                     .WithService
-                    .AllInterfaces(),
-
-                Classes.From(typeProvider.LoadedTypes)
-                    .BasedOn<ILuceneDataProviderFactory>()
-                    .WithService
-                    .FromInterface()
+                    .AllInterfaces()
 
                 /*
                 //TODO: Cache decoartor of LuceneSessionProviderFactory<> must be...

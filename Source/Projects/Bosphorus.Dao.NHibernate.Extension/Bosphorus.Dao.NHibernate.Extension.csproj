@@ -82,7 +82,6 @@
     <Compile Include="LinQ.LeftJoin\HqlGenerator.cs" />
     <Compile Include="LinQ.LeftJoin\ObjectExtensions.cs" />
     <Compile Include="LinQ.Soundex\StringExtensions.cs" />
-    <Compile Include="LinQ\LinqExtender.cs" />
     <Compile Include="LinQ\LinqToHqlGeneratorsRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Convention.UpperCaseString\UserType.cs" />

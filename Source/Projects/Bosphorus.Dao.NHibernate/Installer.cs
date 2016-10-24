@@ -21,16 +21,16 @@ namespace Bosphorus.Dao.NHibernate
                 Component
                     .For(typeof (INHibernateStatelessDao<>))
                     .ImplementedBy(typeof (NHibernateStatelessDao<>))
-                    .NamedFull(),
+                    .NamedFull()
 
-                Component
-                    .For<INHibernateSessionFactoryBuilder>()
-                    .ImplementedBy<DefaultNHibernateSessionFactoryBuilder>(),
+                //Component
+                //    .For<INHibernateSessionFactoryFactory>()
+                //    .ImplementedBy<DefaultNHibernateSessionFactoryFactory>(),
 
-                Component
-                    .For<INHibernateSessionFactoryBuilder>()
-                    .ImplementedBy<CacheDecorator>()
-                    .IsDefault()
+                //Component
+                //    .For<INHibernateSessionFactoryFactory>()
+                //    .ImplementedBy<CacheDecorator>()
+                //    .IsDefault()
             );
         }
     }
