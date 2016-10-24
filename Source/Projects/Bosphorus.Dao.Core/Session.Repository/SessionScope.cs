@@ -3,7 +3,7 @@
     public enum SessionScope
     {
         Null,
-        Default,
+        HostBounded,
         Call,
         Application,
         Thread

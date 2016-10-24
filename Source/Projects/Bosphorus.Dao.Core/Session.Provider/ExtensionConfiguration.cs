@@ -17,7 +17,7 @@ namespace Bosphorus.Dao.Core.Session.Provider
         static ExtensionConfiguration()
         {
             hostDefaultSessionScopes = new Dictionary<Host, SessionScope>();
-            hostDefaultSessionScopes.Add(Host.Console, SessionScope.Call);
+            hostDefaultSessionScopes.Add(Host.Console, SessionScope.Application);
             hostDefaultSessionScopes.Add(Host.WinForm, SessionScope.Application);
             hostDefaultSessionScopes.Add(Host.Test, SessionScope.Application);
             hostDefaultSessionScopes.Add(Host.IIS, SessionScope.Call);

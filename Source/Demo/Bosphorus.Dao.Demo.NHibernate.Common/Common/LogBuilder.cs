@@ -7,7 +7,7 @@ namespace Bosphorus.Dao.Demo.NHibernate.Common.Common
     {
         public static LogBuilder Default
         {
-            get { return Empty.WithMessage("Default Log Message"); }
+            get { return Empty.WithMessage("HostBounded Log Message"); }
         }
 
         public LogBuilder WithId(Guid id)

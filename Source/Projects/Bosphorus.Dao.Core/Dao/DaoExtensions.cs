@@ -2,24 +2,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Bosphorus.Common.Api.Container;
 using Bosphorus.Dao.Core.Common;
 using Bosphorus.Dao.Core.Session;
 using Bosphorus.Dao.Core.Session.Dao;
 using Bosphorus.Dao.Core.Session.Provider;
 using Castle.Core;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
 
 namespace Bosphorus.Dao.Core.Dao
 {
-    public static class IDaoExtensions
+    public static class DaoExtensions
     {
-        private readonly static ISessionProvider sessionProvider;
-        private readonly static SessionDaoRegistry sessionDaoRegistry;
-        private readonly static IDictionary emptyDictionary;
+        private static IWindsorContainer container;
+        private static readonly IDictionary emptyDictionary;
+        private static readonly Lazy<ISessionProvider> sessionProvider;
+        private static readonly Lazy<SessionDaoRegistry> sessionDaoRegistry;
 
-        static IDaoExtensions()
+        public class Installer : IBosphorusInstaller
         {
-            sessionProvider = ContainerHolder.Current.Resolve<ISessionProvider>();
-            sessionDaoRegistry = ContainerHolder.Current.Resolve<SessionDaoRegistry>();
+            public void Install(IWindsorContainer instance, IConfigurationStore store)
+            {
+                container = instance;
+            }
+        }
+
+        static DaoExtensions()
+        {
+            sessionProvider = new Lazy<ISessionProvider>(() => container.Resolve<ISessionProvider>());
+            sessionDaoRegistry = new Lazy<SessionDaoRegistry>(() => container.Resolve<SessionDaoRegistry>());
             emptyDictionary = new Hashtable();
         }
 
@@ -27,8 +39,8 @@ namespace Bosphorus.Dao.Core.Dao
         {
             Type daoType = dao.GetType();
             Type daoGenericType = daoType.GetGenericTypeDefinition();
-            Type sessionType = sessionDaoRegistry.GetSessionType(daoGenericType);
-            ISession session = sessionProvider.Current(sessionType);
+            Type sessionType = sessionDaoRegistry.Value.GetSessionType(daoGenericType);
+            ISession session = sessionProvider.Value.Current(sessionType);
             return session;
         }
 

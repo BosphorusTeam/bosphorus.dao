@@ -34,7 +34,7 @@ namespace Bosphorus.Dao.Core.Session.Manager
             }
         }
 
-        private void ContextListenerOnContextFailed(object sender, ContextEventArgs<TContext> contextEventArgs)
+        private void ContextListenerOnContextFailed(object sender, ContextFailedEventArgs<TContext> contextEventArgs)
         {
             foreach (Type sessionType in sessionTypes)
             {

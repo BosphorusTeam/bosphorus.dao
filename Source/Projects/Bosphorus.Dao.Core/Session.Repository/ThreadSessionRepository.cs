@@ -6,7 +6,7 @@ namespace Bosphorus.Dao.Core.Session.Repository
     public class ThreadSessionRepository : ISessionRepository
     {
         [ThreadStatic]
-        private readonly static IDictionary<string, ISession> repository;
+        private static readonly IDictionary<string, ISession> repository;
 
         static ThreadSessionRepository()
         {
