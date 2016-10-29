@@ -58,9 +58,6 @@ namespace Bosphorus.Dao.NHibernate.Extension.Convention.UpperCaseString
         //    return "'" + upperCaseString + "'";
         //}
 
-        public override string Name
-        {
-            get { return "UpperCase String"; }
-        }
+        public override string Name => "UpperCase String";
     }
 }
