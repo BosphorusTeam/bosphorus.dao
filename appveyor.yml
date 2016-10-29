@@ -9,8 +9,6 @@ assembly_info:
 nuget:
   account_feed: true
   project_feed: true
-configuration:
-  - Debug
 before_build:
 - cd Source
 - nuget restore
