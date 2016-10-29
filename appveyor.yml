@@ -30,5 +30,5 @@ deploy:
   artifact: /.*\.nupkg/  
 install:
 - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-- cinst gitlink -pre -y
+- cinst gitlink -y
   
